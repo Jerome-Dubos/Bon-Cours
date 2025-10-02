@@ -1,0 +1,80 @@
+{
+  "name": "boncours-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Frontend pour l'application BonCours - Plateforme d'apprentissage en ligne",
+  "keywords": [
+    "react",
+    "vite",
+    "education",
+    "learning",
+    "frontend"
+  ],
+  "author": {
+    "name": "BonCours Team",
+    "email": "contact@boncours.fr"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boncours/frontend.git"
+  },
+  "homepage": "https://boncours.fr",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "build:analyze": "vite build --mode analyze",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext js,jsx --fix",
+    "preview": "vite preview --host",
+    "start": "vite --host",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules/.vite",
+    "format": "prettier --write \"src/**/*.{js,jsx,css,md}\" \"*.{js,json}\" \"public/**/*.json\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,css,md}\" \"*.{js,json}\" \"public/**/*.json\"",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "framer-motion": "^11.11.17",
+    "i18next": "^23.15.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-error-boundary": "^6.0.0",
+    "react-i18next": "^15.1.2",
+    "react-icons": "^5.4.0",
+    "react-router-dom": "^6.28.0",
+    "smooth-scroll": "^16.1.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "eslint": "^9.15.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "globals": "^15.12.0",
+    "prettier": "^3.3.3",
+    "vite": "^5.4.10",
+    "vite-bundle-analyzer": "^0.11.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

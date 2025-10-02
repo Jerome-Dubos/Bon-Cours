@@ -1,0 +1,304 @@
+{
+  "subjects": [
+    {
+      "id": "francais",
+      "name": "Français",
+      "description": "Apprentissage de la langue française",
+      "levels": [
+        {
+          "id": "debutant",
+          "name": "Débutant",
+          "description": "Niveau débutant - Bases de la langue française",
+          "requiredScore": 0,
+          "exercises": [
+            {
+              "id": "fr_debutant_1",
+              "title": "Les articles définis",
+              "type": "qcm",
+              "description": "Apprenez à utiliser les articles définis (le, la, les)",
+              "questions": [
+                {
+                  "id": 1,
+                  "question": "Quel article utiliser avec 'table' ?",
+                  "options": ["Le", "La", "Les", "L'"],
+                  "correctAnswer": 1,
+                  "explanation": "'Table' est féminin, donc on utilise 'la'"
+                },
+                {
+                  "id": 2,
+                  "question": "Quel article utiliser avec 'livre' ?",
+                  "options": ["Le", "La", "Les", "L'"],
+                  "correctAnswer": 0,
+                  "explanation": "'Livre' est masculin, donc on utilise 'le'"
+                },
+                {
+                  "id": 3,
+                  "question": "Quel article utiliser avec 'enfants' ?",
+                  "options": ["Le", "La", "Les", "L'"],
+                  "correctAnswer": 2,
+                  "explanation": "'Enfants' est pluriel, donc on utilise 'les'"
+                }
+              ]
+            },
+            {
+              "id": "fr_debutant_2",
+              "title": "Les verbes être et avoir",
+              "type": "qcm",
+              "description": "Conjuguez les verbes être et avoir au présent",
+              "questions": [
+                {
+                  "id": 4,
+                  "question": "Conjuguez 'être' à la 1ère personne du singulier",
+                  "options": ["Suis", "Es", "Est", "Sommes"],
+                  "correctAnswer": 0,
+                  "explanation": "La 1ère personne de 'être' est 'suis'"
+                },
+                {
+                  "id": 5,
+                  "question": "Conjuguez 'avoir' à la 3ème personne du singulier",
+                  "options": ["Ai", "As", "A", "Ont"],
+                  "correctAnswer": 2,
+                  "explanation": "La 3ème personne de 'avoir' est 'a'"
+                },
+                {
+                  "id": 6,
+                  "question": "Conjuguez 'être' à la 2ème personne du pluriel",
+                  "options": ["Es", "Êtes", "Est", "Sont"],
+                  "correctAnswer": 1,
+                  "explanation": "La 2ème personne du pluriel de 'être' est 'êtes'"
+                },
+                {
+                  "id": 7,
+                  "question": "Conjuguez 'avoir' à la 1ère personne du singulier",
+                  "options": ["Ai", "As", "A", "Ont"],
+                  "correctAnswer": 0,
+                  "explanation": "La 1ère personne de 'avoir' est 'ai'"
+                },
+                {
+                  "id": 8,
+                  "question": "Conjuguez 'être' à la 3ème personne du singulier",
+                  "options": ["Suis", "Es", "Est", "Sont"],
+                  "correctAnswer": 2,
+                  "explanation": "La 3ème personne de 'être' est 'est'"
+                },
+                {
+                  "id": 9,
+                  "question": "Conjuguez 'avoir' à la 2ème personne du singulier",
+                  "options": ["Ai", "As", "A", "Ont"],
+                  "correctAnswer": 1,
+                  "explanation": "La 2ème personne de 'avoir' est 'as'"
+                },
+                {
+                  "id": 10,
+                  "question": "Conjuguez 'être' à la 1ère personne du pluriel",
+                  "options": ["Suis", "Es", "Sommes", "Sont"],
+                  "correctAnswer": 2,
+                  "explanation": "La 1ère personne du pluriel de 'être' est 'sommes'"
+                },
+                {
+                  "id": 11,
+                  "question": "Conjuguez 'avoir' à la 1ère personne du pluriel",
+                  "options": ["Ai", "As", "A", "Avons"],
+                  "correctAnswer": 3,
+                  "explanation": "La 1ère personne du pluriel de 'avoir' est 'avons'"
+                },
+                {
+                  "id": 12,
+                  "question": "Conjuguez 'être' à la 2ème personne du singulier",
+                  "options": ["Suis", "Es", "Est", "Êtes"],
+                  "correctAnswer": 1,
+                  "explanation": "La 2ème personne de 'être' est 'es'"
+                },
+                {
+                  "id": 13,
+                  "question": "Conjuguez 'avoir' à la 2ème personne du pluriel",
+                  "options": ["As", "A", "Avons", "Avez"],
+                  "correctAnswer": 3,
+                  "explanation": "La 2ème personne du pluriel de 'avoir' est 'avez'"
+                }
+              ]
+            }
+          ],
+          "evaluation": {
+            "id": "fr_debutant_eval",
+            "title": "Évaluation Débutant Français",
+            "description": "Évaluation finale du niveau débutant",
+            "questions": [
+              {
+                "id": 14,
+                "question": "Quel article utiliser avec 'école' ?",
+                "options": ["Le", "La", "Les", "L'"],
+                "correctAnswer": 1,
+                "explanation": "'École' est féminin"
+              },
+              {
+                "id": 15,
+                "question": "Conjuguez 'avoir' à la 1ère personne du singulier",
+                "options": ["Ai", "As", "A", "Ont"],
+                "correctAnswer": 0,
+                "explanation": "La 1ère personne de 'avoir' est 'ai'"
+              },
+              {
+                "id": 16,
+                "question": "Quel est le pluriel de 'journal' ?",
+                "options": ["Journaux", "Journals", "Journales", "Journauxs"],
+                "correctAnswer": 0,
+                "explanation": "Le pluriel de 'journal' est 'journaux'"
+              }
+            ],
+            "passingScore": 2
+          }
+        },
+        {
+          "id": "intermediaire",
+          "name": "Intermédiaire",
+          "description": "Niveau intermédiaire - Grammaire et vocabulaire",
+          "requiredScore": 2,
+          "exercises": [
+            {
+              "id": "fr_inter_1",
+              "title": "Les temps verbaux",
+              "type": "qcm",
+              "description": "Apprenez les temps verbaux du présent, passé et futur",
+              "questions": [
+                {
+                  "id": 17,
+                  "question": "Conjuguez 'aller' au futur simple à la 1ère personne",
+                  "options": ["Vais", "Irai", "Allerai", "Allais"],
+                  "correctAnswer": 1,
+                  "explanation": "Le futur de 'aller' à la 1ère personne est 'irai'"
+                },
+                {
+                  "id": 18,
+                  "question": "Conjuguez 'faire' au passé composé à la 3ème personne",
+                  "options": ["Fait", "A fait", "Faisait", "Fera"],
+                  "correctAnswer": 1,
+                  "explanation": "Le passé composé de 'faire' est 'a fait'"
+                }
+              ]
+            }
+          ],
+          "evaluation": {
+            "id": "fr_inter_eval",
+            "title": "Évaluation Intermédiaire Français",
+            "description": "Évaluation finale du niveau intermédiaire",
+            "questions": [
+              {
+                "id": 19,
+                "question": "Conjuguez 'venir' au futur simple",
+                "options": ["Viens", "Vient", "Viendrai", "Venais"],
+                "correctAnswer": 2,
+                "explanation": "Le futur de 'venir' est 'viendrai'"
+              }
+            ],
+            "passingScore": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "anglais",
+      "name": "Anglais",
+      "description": "Apprentissage de la langue anglaise",
+      "levels": [
+        {
+          "id": "debutant",
+          "name": "Débutant",
+          "description": "Niveau débutant - Bases de l'anglais",
+          "requiredScore": 0,
+          "exercises": [
+            {
+              "id": "en_debutant_1",
+              "title": "Le verbe 'to be'",
+              "type": "qcm",
+              "description": "Apprenez à utiliser le verbe 'to be'",
+              "questions": [
+                {
+                  "id": 20,
+                  "question": "Conjuguez 'to be' à la 1ère personne du singulier",
+                  "options": ["Am", "Are", "Is", "Be"],
+                  "correctAnswer": 0,
+                  "explanation": "La 1ère personne de 'to be' est 'am'"
+                },
+                {
+                  "id": 21,
+                  "question": "Conjuguez 'to be' à la 3ème personne du singulier",
+                  "options": ["Am", "Are", "Is", "Be"],
+                  "correctAnswer": 2,
+                  "explanation": "La 3ème personne de 'to be' est 'is'"
+                }
+              ]
+            }
+          ],
+          "evaluation": {
+            "id": "en_debutant_eval",
+            "title": "Évaluation Débutant Anglais",
+            "description": "Évaluation finale du niveau débutant",
+            "questions": [
+              {
+                "id": 22,
+                "question": "Conjuguez 'to have' à la 1ère personne du singulier",
+                "options": ["Have", "Has", "Had", "Having"],
+                "correctAnswer": 0,
+                "explanation": "La 1ère personne de 'to have' est 'have'"
+              }
+            ],
+            "passingScore": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "espagnol",
+      "name": "Espagnol",
+      "description": "Apprentissage de la langue espagnole",
+      "levels": [
+        {
+          "id": "debutant",
+          "name": "Débutant",
+          "description": "Niveau débutant - Bases de l'espagnol",
+          "requiredScore": 0,
+          "exercises": [
+            {
+              "id": "es_debutant_1",
+              "title": "Les articles espagnols",
+              "type": "qcm",
+              "description": "Apprenez à utiliser les articles en espagnol",
+              "questions": [
+                {
+                  "id": 23,
+                  "question": "Quel article utiliser avec 'casa' ?",
+                  "options": ["El", "La", "Los", "Las"],
+                  "correctAnswer": 1,
+                  "explanation": "'Casa' est féminin, donc on utilise 'la'"
+                },
+                {
+                  "id": 24,
+                  "question": "Quel article utiliser avec 'libro' ?",
+                  "options": ["El", "La", "Los", "Las"],
+                  "correctAnswer": 0,
+                  "explanation": "'Libro' est masculin, donc on utilise 'el'"
+                }
+              ]
+            }
+          ],
+          "evaluation": {
+            "id": "es_debutant_eval",
+            "title": "Évaluation Débutant Espagnol",
+            "description": "Évaluation finale du niveau débutant",
+            "questions": [
+              {
+                "id": 25,
+                "question": "Quel article utiliser avec 'agua' ?",
+                "options": ["El", "La", "Los", "Las"],
+                "correctAnswer": 0,
+                "explanation": "'Agua' est féminin mais commence par 'a', donc on utilise 'el'"
+              }
+            ],
+            "passingScore": 1
+          }
+        }
+      ]
+    }
+  ]
+}

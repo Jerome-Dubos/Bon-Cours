@@ -1,0 +1,511 @@
+/* ===== MODALES - STYLES DE BASE ===== */
+
+/* Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-overlay, rgba(7, 46, 65, 0.8));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2147483647;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  animation: modalFadeIn 0.3s ease-out;
+  isolation: isolate;
+}
+
+/* Modal principale */
+.modal {
+  background-color: var(--bg-modal, rgba(74, 90, 109, 0.95));
+  border-radius: var(--border-radius-lg, 12px);
+  box-shadow: 0 var(--spacing-xl) 60px rgba(7, 46, 65, 0.4);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: modalSlideIn 0.3s ease-out;
+  border: 1px solid rgba(234, 189, 131, 0.2);
+  position: relative;
+  z-index: 2147483647;
+}
+
+/* Tailles de modales */
+.modal-small {
+  width: 400px;
+  max-width: 90vw;
+}
+
+.modal-medium {
+  width: 600px;
+  max-width: 90vw;
+}
+
+.modal-large {
+  width: 800px;
+  max-width: 90vw;
+}
+
+.modal-extra-large {
+  width: 1000px;
+  max-width: 95vw;
+}
+
+.modal-fullscreen {
+  width: 95vw;
+  height: 95vh;
+  max-width: none;
+  max-height: none;
+}
+
+/* Header */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 0 24px;
+  border-bottom: 1px solid rgba(234, 189, 131, 0.2);
+  margin-bottom: 0;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--secondary-gold);
+  line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  color: #ffffff;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 16px;
+}
+
+.modal-close:hover {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+.modal-close:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--secondary-gold-light);
+}
+
+/* Body */
+.modal-body {
+  padding: var(--spacing-lg);
+  overflow-y: auto;
+  flex: 1;
+  max-height: calc(90vh - 160px); /* Réserver plus d'espace pour header/footer */
+  padding-bottom: 20px; /* Espace supplémentaire en bas */
+}
+
+/* Footer */
+.modal-footer {
+  padding: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+  border-top: 1px solid rgba(234, 189, 131, 0.2);
+  margin-top: 0;
+  overflow: visible; /* Permettre l'élévation des boutons */
+}
+
+/* Actions dans le footer */
+.modal-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: var(--spacing-md);
+  padding: 4px; /* Espace pour compenser l'élévation des boutons */
+  overflow: visible; /* Permettre l'élévation des boutons */
+}
+
+.modal-actions .btn {
+  min-width: 100px;
+}
+
+/* Styles pour les boutons des modales */
+.modal-actions button[type='button'] {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  min-height: 48px;
+}
+
+.modal-actions button[type='button']:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-actions button[type='submit'] {
+  background: var(--secondary-gold);
+  border: 2px solid var(--secondary-gold);
+  color: var(--text-dark);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  min-height: 48px;
+}
+
+.modal-actions button[type='submit']:hover {
+  background: var(--secondary-gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(234, 189, 131, 0.3);
+}
+
+.modal-actions button[type='submit']:disabled {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.3) !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  opacity: 0.5 !important;
+}
+
+.modal-actions button[type='submit']:disabled:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  transform: none !important;
+  box-shadow: none !important;
+  opacity: 0.5 !important;
+}
+
+/* Contenu spécialisé */
+.modal-content {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.modal-message {
+  margin: var(--spacing-md) 0 0 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ffffff;
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Icônes */
+.modal-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.modal-icon-info {
+  color: var(--primary-blue, #364252);
+}
+
+.modal-icon-success {
+  color: #10b981;
+}
+
+.modal-icon-warning {
+  color: #f59e0b;
+}
+
+.modal-icon-error {
+  color: #ef4444;
+}
+
+.modal-icon-danger {
+  color: #ef4444;
+}
+
+/* Conteneurs pour médias */
+.modal-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 70vh;
+  overflow: hidden;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--border-radius-md);
+}
+
+.modal-video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 70vh;
+}
+
+.modal-video {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: var(--border-radius-md);
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--spacing-lg))) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: var(--spacing-sm);
+  }
+
+  .modal-small,
+  .modal-medium,
+  .modal-large {
+    width: 95vw;
+    max-width: 95vw;
+  }
+
+  .modal-header {
+    padding: var(--spacing-md) var(--spacing-md) 0 var(--spacing-md);
+  }
+
+  .modal-body {
+    padding: var(--spacing-md);
+    max-height: calc(90vh - 140px);
+    padding-bottom: 16px;
+  }
+
+  .modal-footer {
+    padding: 0 var(--spacing-md) var(--spacing-md) var(--spacing-md);
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+    color: var(--secondary-gold);
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .modal-actions .btn {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: var(--spacing-xs);
+  }
+
+  .modal {
+    border-radius: var(--border-radius-md);
+  }
+
+  .modal-header {
+    padding: var(--spacing-sm) var(--spacing-sm) 0 var(--spacing-sm);
+  }
+
+  .modal-body {
+    padding: var(--spacing-sm);
+    max-height: calc(90vh - 120px);
+    padding-bottom: 12px;
+  }
+
+  .modal-footer {
+    padding: 0 12px 12px 12px;
+  }
+}
+
+/* ===== ACCESSIBILITÉ ===== */
+
+/* Focus visible pour l'accessibilité */
+.modal:focus-visible {
+  outline: 2px solid var(--secondary-gold, #eabd83);
+  outline-offset: 2px;
+}
+
+/* Support pour les préférences de réduction de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay,
+  .modal {
+    animation: none;
+  }
+}
+
+/* ===== ÉTATS SPÉCIAUX ===== */
+
+/* Modal avec scroll */
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: rgba(54, 66, 82, 0.1);
+  border-radius: var(--border-radius-sm);
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: var(--secondary-gold, #eabd83);
+  border-radius: var(--border-radius-sm);
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-gold-dark, #d4a76a);
+}
+
+/* ===== FORMULAIRES DANS LES MODALES ===== */
+
+.form-modal-content {
+  padding: 0;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid rgba(234, 189, 131, 0.3);
+  border-radius: var(--border-radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-light);
+  font-size: 0.95rem;
+  transition: all var(--transition-normal);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--secondary-gold);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(234, 189, 131, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-group select option {
+  background: var(--primary-blue-dark);
+  color: var(--text-light);
+}
+
+/* Responsive pour les formulaires */
+@media (max-width: 768px) {
+  .form-fields {
+    gap: var(--spacing-sm);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: var(--spacing-sm);
+    font-size: 1rem;
+  }
+}
+
+/* ===== BLOQUAGE DU SCROLL ===== */
+
+/* Empêcher le scroll du body quand une modale est ouverte */
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Empêcher le scroll sur tous les éléments parents */
+body.modal-open * {
+  overflow: hidden !important;
+}
+
+/* Permettre le scroll dans la modale elle-même */
+body.modal-open .modal-body {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* Empêcher le scroll sur l'overlay */
+body.modal-open .modal-overlay {
+  overflow: hidden !important;
+}
+
+/* Empêcher le scroll sur le contenu principal */
+body.modal-open #root {
+  overflow: hidden !important;
+}
+
+/* Forcer la navbar à rester en dessous des modales */
+body.modal-open .navbar,
+.modal-overlay ~ .navbar {
+  z-index: 999 !important;
+}

@@ -1,0 +1,364 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "title": "Français Adulte - Débutant",
+      "language": "Français",
+      "level": "adult",
+      "type": "presentiel",
+      "maxStudents": 6,
+      "enrolledStudents": 3,
+      "teacherId": "teacher1",
+      "schedule": {
+        "date": "2024-01-15",
+        "time": "18:00",
+        "duration": "1h30"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Anglais Adulte - Intermédiaire",
+      "language": "Anglais",
+      "level": "adult",
+      "type": "visio",
+      "maxStudents": 8,
+      "enrolledStudents": 5,
+      "teacherId": "teacher2",
+      "schedule": {
+        "date": "2024-01-15",
+        "time": "19:30",
+        "duration": "1h30"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Espagnol Adulte - Avancé",
+      "language": "Espagnol",
+      "level": "adult",
+      "type": "presentiel",
+      "maxStudents": 6,
+      "enrolledStudents": 4,
+      "teacherId": "teacher3",
+      "schedule": {
+        "date": "2024-01-16",
+        "time": "18:00",
+        "duration": "1h30"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Allemand Adulte - Débutant",
+      "language": "Allemand",
+      "level": "adult",
+      "type": "visio",
+      "maxStudents": 8,
+      "enrolledStudents": 2,
+      "teacherId": "teacher4",
+      "schedule": {
+        "date": "2024-01-16",
+        "time": "19:30",
+        "duration": "1h30"
+      }
+    },
+    {
+      "id": 5,
+      "title": "Italien Adulte - Intermédiaire",
+      "language": "Italien",
+      "level": "adult",
+      "type": "presentiel",
+      "maxStudents": 6,
+      "enrolledStudents": 6,
+      "teacherId": "teacher5",
+      "schedule": {
+        "date": "2024-01-17",
+        "time": "18:00",
+        "duration": "1h30"
+      }
+    },
+    {
+      "id": 6,
+      "title": "Français Enfant - Débutant",
+      "language": "Français",
+      "level": "child",
+      "type": "presentiel",
+      "maxStudents": 8,
+      "enrolledStudents": 5,
+      "teacherId": "teacher6",
+      "schedule": {
+        "date": "2024-01-15",
+        "time": "16:30",
+        "duration": "1h"
+      }
+    },
+    {
+      "id": 7,
+      "title": "Anglais Enfant - Intermédiaire",
+      "language": "Anglais",
+      "level": "child",
+      "type": "visio",
+      "maxStudents": 10,
+      "enrolledStudents": 7,
+      "teacherId": "teacher7",
+      "schedule": {
+        "date": "2024-01-15",
+        "time": "17:30",
+        "duration": "1h"
+      }
+    },
+    {
+      "id": 8,
+      "title": "Espagnol Enfant - Débutant",
+      "language": "Espagnol",
+      "level": "child",
+      "type": "presentiel",
+      "maxStudents": 8,
+      "enrolledStudents": 4,
+      "teacherId": "teacher8",
+      "schedule": {
+        "date": "2024-01-16",
+        "time": "16:30",
+        "duration": "1h"
+      }
+    },
+    {
+      "id": 9,
+      "title": "Allemand Enfant - Intermédiaire",
+      "language": "Allemand",
+      "level": "child",
+      "type": "visio",
+      "maxStudents": 10,
+      "enrolledStudents": 3,
+      "teacherId": "teacher9",
+      "schedule": {
+        "date": "2024-01-16",
+        "time": "17:30",
+        "duration": "1h"
+      }
+    },
+    {
+      "id": 10,
+      "title": "Français Adulte - Avancé",
+      "language": "Français",
+      "level": "adult",
+      "type": "presentiel",
+      "maxStudents": 6,
+      "enrolledStudents": 2,
+      "teacherId": "teacher1",
+      "schedule": {
+        "date": "2024-01-17",
+        "time": "19:30",
+        "duration": "1h30"
+      }
+    },
+    {
+      "id": 11,
+      "title": "Anglais Adulte - Débutant",
+      "language": "Anglais",
+      "level": "adult",
+      "type": "visio",
+      "maxStudents": 8,
+      "enrolledStudents": 4,
+      "teacherId": "teacher2",
+      "schedule": {
+        "date": "2024-01-18",
+        "time": "18:00",
+        "duration": "1h30"
+      }
+    },
+    {
+      "id": 12,
+      "title": "Espagnol Adulte - Intermédiaire",
+      "language": "Espagnol",
+      "level": "adult",
+      "type": "presentiel",
+      "maxStudents": 6,
+      "enrolledStudents": 5,
+      "teacherId": "teacher3",
+      "schedule": {
+        "date": "2024-01-18",
+        "time": "19:30",
+        "duration": "1h30"
+      }
+    },
+    {
+      "id": 13,
+      "title": "Italien Enfant - Débutant",
+      "language": "Italien",
+      "level": "child",
+      "type": "presentiel",
+      "maxStudents": 8,
+      "enrolledStudents": 6,
+      "teacherId": "teacher10",
+      "schedule": {
+        "date": "2024-01-17",
+        "time": "16:30",
+        "duration": "1h"
+      }
+    },
+    {
+      "id": 14,
+      "title": "Français Enfant - Avancé",
+      "language": "Français",
+      "level": "child",
+      "type": "visio",
+      "maxStudents": 10,
+      "enrolledStudents": 8,
+      "teacherId": "teacher6",
+      "schedule": {
+        "date": "2024-01-18",
+        "time": "17:30",
+        "duration": "1h"
+      }
+    },
+    {
+      "id": 15,
+      "title": "Anglais Enfant - Avancé",
+      "language": "Anglais",
+      "level": "child",
+      "type": "presentiel",
+      "maxStudents": 8,
+      "enrolledStudents": 7,
+      "teacherId": "teacher7",
+      "schedule": {
+        "date": "2024-01-19",
+        "time": "16:30",
+        "duration": "1h"
+      }
+    },
+    {
+      "id": 16,
+      "title": "Allemand Adulte - Avancé",
+      "language": "Allemand",
+      "level": "adult",
+      "type": "visio",
+      "maxStudents": 8,
+      "enrolledStudents": 3,
+      "teacherId": "teacher4",
+      "schedule": {
+        "date": "2024-01-19",
+        "time": "18:00",
+        "duration": "1h30"
+      }
+    },
+    {
+      "id": 17,
+      "title": "Italien Adulte - Avancé",
+      "language": "Italien",
+      "level": "adult",
+      "type": "presentiel",
+      "maxStudents": 6,
+      "enrolledStudents": 4,
+      "teacherId": "teacher5",
+      "schedule": {
+        "date": "2024-01-19",
+        "time": "19:30",
+        "duration": "1h30"
+      }
+    },
+    {
+      "id": 18,
+      "title": "Espagnol Enfant - Avancé",
+      "language": "Espagnol",
+      "level": "child",
+      "type": "visio",
+      "maxStudents": 10,
+      "enrolledStudents": 5,
+      "teacherId": "teacher8",
+      "schedule": {
+        "date": "2024-01-19",
+        "time": "17:30",
+        "duration": "1h"
+      }
+    },
+    {
+      "id": 19,
+      "title": "Français Adulte - Intermédiaire",
+      "language": "Français",
+      "level": "adult",
+      "type": "presentiel",
+      "maxStudents": 6,
+      "enrolledStudents": 3,
+      "teacherId": "teacher1",
+      "schedule": {
+        "date": "2024-01-20",
+        "time": "09:00",
+        "duration": "2h"
+      }
+    },
+    {
+      "id": 20,
+      "title": "Anglais Adulte - Avancé",
+      "language": "Anglais",
+      "level": "adult",
+      "type": "visio",
+      "maxStudents": 8,
+      "enrolledStudents": 6,
+      "teacherId": "teacher2",
+      "schedule": {
+        "date": "2024-01-20",
+        "time": "11:00",
+        "duration": "2h"
+      }
+    },
+    {
+      "id": 21,
+      "title": "Allemand Enfant - Avancé",
+      "language": "Allemand",
+      "level": "child",
+      "type": "presentiel",
+      "maxStudents": 8,
+      "enrolledStudents": 5,
+      "teacherId": "teacher9",
+      "schedule": {
+        "date": "2024-01-20",
+        "time": "14:00",
+        "duration": "1h30"
+      }
+    },
+    {
+      "id": 22,
+      "title": "Italien Enfant - Intermédiaire",
+      "language": "Italien",
+      "level": "child",
+      "type": "visio",
+      "maxStudents": 10,
+      "enrolledStudents": 4,
+      "teacherId": "teacher10",
+      "schedule": {
+        "date": "2024-01-20",
+        "time": "15:30",
+        "duration": "1h30"
+      }
+    },
+    {
+      "id": 23,
+      "title": "Français Enfant - Intermédiaire",
+      "language": "Français",
+      "level": "child",
+      "type": "presentiel",
+      "maxStudents": 8,
+      "enrolledStudents": 6,
+      "teacherId": "teacher6",
+      "schedule": {
+        "date": "2024-01-21",
+        "time": "10:00",
+        "duration": "1h"
+      }
+    },
+    {
+      "id": 24,
+      "title": "Anglais Enfant - Débutant",
+      "language": "Anglais",
+      "level": "child",
+      "type": "visio",
+      "maxStudents": 10,
+      "enrolledStudents": 8,
+      "teacherId": "teacher7",
+      "schedule": {
+        "date": "2024-01-21",
+        "time": "11:00",
+        "duration": "1h"
+      }
+    }
+  ]
+}

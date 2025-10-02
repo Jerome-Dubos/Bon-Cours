@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://boncours.fr/sitemap.xml
+
+# Disallow private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /_next/
+Disallow: /assets/
+
+# Allow important pages
+Allow: /
+Allow: /cours
+Allow: /contact
+Allow: /about
+Allow: /pricing
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

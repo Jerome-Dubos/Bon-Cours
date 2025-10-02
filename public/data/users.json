@@ -1,0 +1,163 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Marie Dupont",
+      "email": "marie.dupont@email.com",
+      "role": "student",
+      "status": "active",
+      "languages": [
+        {
+          "language": "Anglais",
+          "enrolledDate": "2024-01-15",
+          "status": "active"
+        },
+        {
+          "language": "Espagnol",
+          "enrolledDate": "2024-01-16",
+          "status": "active"
+        }
+      ],
+      "academicSupport": [
+        {
+          "subject": "Mathématiques",
+          "startDate": "2024-01-10",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Jean Martin",
+      "email": "jean@demo.com",
+      "role": "teacher",
+      "status": "active",
+      "languages": [
+        {
+          "language": "Anglais",
+          "startDate": "2024-01-01",
+          "status": "active"
+        },
+        {
+          "language": "Français",
+          "startDate": "2024-01-01",
+          "status": "active"
+        },
+        {
+          "language": "Italien",
+          "startDate": "2024-01-01",
+          "status": "active"
+        }
+      ],
+      "subjects": [
+        {
+          "subject": "Anglais",
+          "startDate": "2024-01-01",
+          "status": "active"
+        },
+        {
+          "subject": "Français",
+          "startDate": "2024-01-01",
+          "status": "active"
+        }
+      ],
+      "academicSupport": []
+    },
+    {
+      "id": 3,
+      "name": "Sophie Laurent",
+      "email": "sophie@demo.com",
+      "role": "student",
+      "status": "active",
+      "languages": [
+        {
+          "language": "Français",
+          "enrolledDate": "2024-01-17",
+          "status": "active"
+        },
+        {
+          "language": "Allemand",
+          "enrolledDate": "2024-01-18",
+          "status": "active"
+        }
+      ],
+      "academicSupport": [
+        {
+          "subject": "Français",
+          "startDate": "2024-01-12",
+          "status": "active"
+        },
+        {
+          "subject": "Histoire",
+          "startDate": "2024-01-15",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Pierre Dubois",
+      "email": "pierre@demo.com",
+      "role": "teacher",
+      "status": "active",
+      "languages": [
+        {
+          "language": "Espagnol",
+          "startDate": "2024-01-01",
+          "status": "active"
+        },
+        {
+          "language": "Allemand",
+          "startDate": "2024-01-01",
+          "status": "active"
+        }
+      ],
+      "subjects": [
+        {
+          "subject": "Espagnol",
+          "startDate": "2024-01-01",
+          "status": "active"
+        },
+        {
+          "subject": "Allemand",
+          "startDate": "2024-01-01",
+          "status": "active"
+        }
+      ],
+      "academicSupport": []
+    },
+    {
+      "id": 5,
+      "name": "Emma Wilson",
+      "email": "emma@demo.com",
+      "role": "student",
+      "status": "active",
+      "languages": [
+        {
+          "language": "Italien",
+          "enrolledDate": "2024-01-19",
+          "status": "active"
+        },
+        {
+          "language": "Anglais",
+          "enrolledDate": "2024-01-15",
+          "status": "active"
+        }
+      ],
+      "academicSupport": [
+        {
+          "subject": "Sciences",
+          "startDate": "2024-01-08",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Florence Bigdeli",
+      "email": "isabelle@demo.com",
+      "role": "director",
+      "status": "active"
+    }
+  ]
+}

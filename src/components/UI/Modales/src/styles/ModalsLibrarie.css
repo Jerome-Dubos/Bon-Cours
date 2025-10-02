@@ -1,0 +1,311 @@
+/* ===== MODALES SPÉCIALISÉES - STYLES ===== */
+
+/* Styles pour les actions dans les modales */
+.modal-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: var(--spacing-md);
+}
+
+.modal-actions > * {
+  min-width: 100px;
+}
+
+/* ===== MODALES SPÉCIALISÉES ===== */
+
+/* Modal de confirmation */
+.modal-confirm .modal-content {
+  text-align: center;
+}
+
+.modal-confirm .modal-message {
+  font-size: 1.1rem;
+  margin: var(--spacing-lg) 0;
+}
+
+/* Modal de suppression */
+.modal-delete .modal-content {
+  text-align: center;
+}
+
+.modal-delete .modal-icon-danger {
+  margin-bottom: var(--spacing-lg);
+}
+
+.modal-delete .modal-message {
+  font-size: 1.1rem;
+  margin: var(--spacing-md) 0;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Modales d'information */
+.modal-info .modal-content,
+.modal-success .modal-content,
+.modal-warning .modal-content,
+.modal-error .modal-content {
+  text-align: center;
+  padding: var(--spacing-xxl) var(--spacing-lg);
+}
+
+.modal-info .modal-message,
+.modal-success .modal-message,
+.modal-warning .modal-message,
+.modal-error .modal-message {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: var(--spacing-lg) 0 0 0;
+}
+
+/* Modal de formulaire */
+.modal-form .modal-body {
+  padding: var(--spacing-lg);
+}
+
+.modal-form .modal-footer {
+  background-color: rgba(54, 66, 82, 0.02);
+  border-top: 1px solid rgba(54, 66, 82, 0.1);
+}
+
+/* Modal d'image */
+.modal-image .modal-body {
+  padding: 0;
+  overflow: hidden;
+}
+
+.modal-image .modal-image-container {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.modal-image .modal-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+/* Modal vidéo */
+.modal-video .modal-body {
+  padding: 0;
+  overflow: hidden;
+}
+
+.modal-video .modal-video-container {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.modal-video .modal-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+}
+
+/* ===== ANIMATIONS SPÉCIALISÉES ===== */
+
+/* Animation pour les icônes */
+.modal-icon svg {
+  animation: iconPulse 0.6s ease-out;
+}
+
+@keyframes iconPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Animation pour les messages */
+.modal-message {
+  animation: messageSlideIn 0.4s ease-out 0.2s both;
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--spacing-sm));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE SPÉCIALISÉ ===== */
+
+@media (max-width: 768px) {
+  .modal-info .modal-content,
+  .modal-success .modal-content,
+  .modal-warning .modal-content,
+  .modal-error .modal-content {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .modal-info .modal-message,
+  .modal-success .modal-message,
+  .modal-warning .modal-message,
+  .modal-error .modal-message {
+    font-size: 1rem;
+  }
+
+  .modal-image .modal-image,
+  .modal-video .modal-video {
+    max-height: 60vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-info .modal-content,
+  .modal-success .modal-content,
+  .modal-warning .modal-content,
+  .modal-error .modal-content {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .modal-image .modal-image,
+  .modal-video .modal-video {
+    max-height: 50vh;
+  }
+}
+
+/* ===== ACCESSIBILITÉ SPÉCIALISÉE ===== */
+
+/* Support pour les préférences de réduction de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .modal-icon svg,
+  .modal-message {
+    animation: none;
+  }
+}
+
+/* Focus visible pour les boutons d'action */
+.modal-actions .btn:focus-visible {
+  outline: 2px solid var(--secondary-gold, #eabd83);
+  outline-offset: var(--spacing-xs);
+}
+
+/* ===== ÉTATS SPÉCIAUX ===== */
+
+/* Modal avec contenu long */
+.modal-long-content .modal-body {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* Modal sans header */
+.modal-no-header .modal-body {
+  padding-top: var(--spacing-lg);
+}
+
+/* Modal sans footer */
+.modal-no-footer .modal-body {
+  padding-bottom: var(--spacing-lg);
+}
+
+/* ===== NOTIFICATIONS DANS LES MODALES ===== */
+
+.modal-notifications {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* ===== SÉPARATEURS DANS LES MODALES ===== */
+
+.modal-separator {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--secondary-gold, #eabd83), transparent);
+  margin: var(--spacing-lg) 0;
+  opacity: 0.6;
+}
+
+.modal-separator:hover {
+  opacity: 1;
+  transition: opacity var(--transition-normal);
+}
+
+.modal-notifications .notification {
+  margin-bottom: var(--spacing-sm);
+}
+
+.modal-notifications .notification:last-child {
+  margin-bottom: 0;
+}
+
+/* Animation d'entrée pour les notifications */
+.modal-notifications .notification {
+  animation: notificationSlideIn 0.3s ease-out;
+}
+
+@keyframes notificationSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal avec actions centrées */
+.modal-actions-centered .modal-actions {
+  justify-content: center;
+}
+
+/* Modal avec actions à gauche */
+.modal-actions-left .modal-actions {
+  justify-content: flex-start;
+}
+
+/* Modal avec actions espacées */
+.modal-actions-spread .modal-actions {
+  justify-content: space-between;
+}
+
+/* ===== THÈMES SPÉCIAUX ===== */
+
+/* Modal avec bordure colorée */
+.modal-bordered-primary {
+  border: 2px solid var(--primary-blue, #364252);
+}
+
+.modal-bordered-success {
+  border: 2px solid #10b981;
+}
+
+.modal-bordered-warning {
+  border: 2px solid #f59e0b;
+}
+
+.modal-bordered-error {
+  border: 2px solid #ef4444;
+}
+
+/* Modal avec bordure colorée */
+.modal-bordered-primary {
+  border: 2px solid var(--primary-blue, #364252);
+}
+
+.modal-bordered-success {
+  border: 2px solid #10b981;
+}
+
+.modal-bordered-warning {
+  border: 2px solid #f59e0b;
+}
+
+.modal-bordered-error {
+  border: 2px solid #ef4444;
+}

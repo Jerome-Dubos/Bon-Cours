@@ -1,0 +1,442 @@
+/* ===== EXEMPLE MODALES - STYLES ===== */
+
+.modals-example {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header de l'exemple */
+.example-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.example-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark, #2a364e);
+  margin-bottom: 16px;
+}
+
+.example-header p {
+  font-size: 1.2rem;
+  color: var(--text-dark, #2a364e);
+  opacity: 0.8;
+}
+
+/* Grille des exemples */
+.example-grid {
+  display: grid;
+  gap: 40px;
+}
+
+/* Sections d'exemples */
+.example-section {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(54, 66, 82, 0.1);
+}
+
+.example-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark, #2a364e);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Groupes de boutons */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Styles des boutons pour l'exemple */
+.button-group .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  padding: 12px 24px;
+  font-size: 16px;
+  min-height: 44px;
+  text-decoration: none;
+}
+
+/* Variantes de boutons */
+.button-group .btn-primary {
+  background-color: var(--primary-blue, #364252);
+  color: var(--text-light, #f5f5f5);
+}
+
+.button-group .btn-primary:hover {
+  background-color: var(--primary-blue-dark, #2a364e);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(54, 66, 82, 0.3);
+}
+
+.button-group .btn-secondary {
+  background-color: var(--secondary-gold, #eabd83);
+  color: var(--text-dark, #2a364e);
+}
+
+.button-group .btn-secondary:hover {
+  background-color: var(--secondary-gold-dark, #d4a76a);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(234, 189, 131, 0.3);
+}
+
+.button-group .btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--primary-blue, #364252);
+  color: var(--primary-blue, #364252);
+}
+
+.button-group .btn-outline:hover {
+  background-color: var(--primary-blue, #364252);
+  color: var(--text-light, #f5f5f5);
+  transform: translateY(-1px);
+}
+
+.button-group .btn-success {
+  background-color: #10b981;
+  color: white;
+}
+
+.button-group .btn-success:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.button-group .btn-warning {
+  background-color: #f59e0b;
+  color: white;
+}
+
+.button-group .btn-warning:hover {
+  background-color: #d97706;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.button-group .btn-error,
+.button-group .btn-danger {
+  background-color: #ef4444;
+  color: white;
+}
+
+.button-group .btn-error:hover,
+.button-group .btn-danger:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.button-group .btn-info {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.button-group .btn-info:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Focus state */
+.button-group .btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(234, 189, 131, 0.3);
+}
+
+/* Contenu des modales */
+.content-example {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(54, 66, 82, 0.05);
+  border-radius: 8px;
+}
+
+.content-example h3 {
+  margin-top: 0;
+  color: var(--text-dark, #2a364e);
+}
+
+.content-example ul {
+  margin: 16px 0;
+  padding-left: 20px;
+}
+
+.content-example li {
+  margin-bottom: 8px;
+  color: var(--text-dark, #2a364e);
+}
+
+/* Contenu plein écran */
+.fullscreen-content {
+  padding: 20px;
+}
+
+.fullscreen-content h2 {
+  color: var(--text-dark, #2a364e);
+  margin-bottom: 20px;
+}
+
+.fullscreen-content ul {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+.fullscreen-content li {
+  margin-bottom: 12px;
+  color: var(--text-dark, #2a364e);
+}
+
+.demo-content {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: rgba(54, 66, 82, 0.05);
+  border-radius: 8px;
+}
+
+.demo-content p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+  color: var(--text-dark, #2a364e);
+}
+
+/* Formulaire d'exemple */
+.example-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--text-dark, #2a364e);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  border: 2px solid rgba(54, 66, 82, 0.2);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-blue, #364252);
+  box-shadow: 0 0 0 3px rgba(54, 66, 82, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Contenu personnalisé */
+.custom-content {
+  padding: 20px 0;
+}
+
+.custom-content h3 {
+  color: var(--text-dark, #2a364e);
+  margin-bottom: 16px;
+}
+
+.custom-content p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: var(--text-dark, #2a364e);
+}
+
+.custom-widget {
+  padding: 20px;
+  background-color: rgba(234, 189, 131, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid var(--secondary-gold, #eabd83);
+}
+
+.custom-widget h4 {
+  margin-top: 0;
+  color: var(--text-dark, #2a364e);
+}
+
+.custom-widget p {
+  margin-bottom: 0;
+  color: var(--text-dark, #2a364e);
+}
+
+/* ===== CONTENU DE NOTIFICATION ===== */
+
+.notification-content {
+  padding: var(--spacing-lg);
+}
+
+.notification-content h3 {
+  color: var(--secondary-gold);
+  margin-bottom: var(--spacing-md);
+}
+
+.notification-content p {
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+}
+
+.notification-info {
+  background: rgba(234, 189, 131, 0.1);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  border-left: 4px solid var(--secondary-gold);
+}
+
+.notification-info h4 {
+  color: var(--secondary-gold);
+  margin-bottom: var(--spacing-sm);
+}
+
+.notification-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.notification-info li {
+  color: var(--text-light);
+  margin-bottom: var(--spacing-xs);
+  padding-left: var(--spacing-sm);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .modals-example {
+    padding: 20px 16px;
+  }
+
+  .example-header h1 {
+    font-size: 2rem;
+  }
+
+  .example-header p {
+    font-size: 1rem;
+  }
+
+  .example-section {
+    padding: 24px;
+  }
+
+  .example-section h2 {
+    font-size: 1.25rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .button-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .fullscreen-content {
+    padding: 16px;
+  }
+
+  .demo-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modals-example {
+    padding: 16px 12px;
+  }
+
+  .example-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .example-section {
+    padding: 20px;
+  }
+
+  .button-group .btn {
+    padding: 10px 20px;
+    font-size: 15px;
+    min-height: 40px;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+
+.example-section {
+  animation: sectionFadeIn 0.6s ease-out;
+}
+
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation pour les boutons */
+.button-group .btn {
+  animation: buttonSlideIn 0.4s ease-out;
+}
+
+@keyframes buttonSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== ACCESSIBILITÉ ===== */
+
+/* Support pour les préférences de réduction de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .example-section,
+  .button-group .btn {
+    animation: none;
+  }
+}
+
+/* Focus visible pour l'accessibilité */
+.button-group .btn:focus-visible {
+  outline: 2px solid var(--secondary-gold, #eabd83);
+  outline-offset: 2px;
+}

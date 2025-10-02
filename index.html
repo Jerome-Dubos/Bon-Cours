@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Meta tags de base -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Favicon et icônes -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Meta tags SEO -->
+    <title>Bon Cours - École de Langues</title>
+    <meta
+      name="description"
+      content="BonCours est une plateforme d'apprentissage en ligne innovante qui propose des cours interactifs et personnalisés pour tous les niveaux."
+    />
+    <meta
+      name="keywords"
+      content="apprentissage, cours en ligne, éducation, formation, BonCours, e-learning"
+    />
+    <meta name="author" content="BonCours Team" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://boncours.fr/" />
+    <meta property="og:title" content="Bon Cours - École de Langues" />
+    <meta
+      property="og:description"
+      content="BonCours est une plateforme d'apprentissage en ligne innovante qui propose des cours interactifs et personnalisés pour tous les niveaux."
+    />
+    <meta property="og:image" content="https://boncours.fr/images/og-image.jpg" />
+    <meta property="og:site_name" content="Bon Cours" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://boncours.fr/" />
+    <meta property="twitter:title" content="Bon Cours - École de Langues" />
+    <meta
+      property="twitter:description"
+      content="BonCours est une plateforme d'apprentissage en ligne innovante qui propose des cours interactifs et personnalisés pour tous les niveaux."
+    />
+    <meta property="twitter:image" content="https://boncours.fr/images/twitter-image.jpg" />
+
+    <!-- Meta tags pour les applications mobiles -->
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Bon Cours" />
+
+    <!-- Preconnect pour optimiser les performances -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Chargement optimisé de la police Inter -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+    />
+
+    <!-- DNS prefetch pour les domaines externes -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
+    <!-- Performance hints -->
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "BonCours",
+        "url": "https://boncours.fr",
+        "logo": "https://boncours.fr/images/logo.png",
+        "description": "Plateforme d'apprentissage en ligne innovante",
+        "sameAs": [
+          "https://www.facebook.com/boncours",
+          "https://www.twitter.com/boncours",
+          "https://www.linkedin.com/company/boncours"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Loading indicator -->
+    <div
+      id="loading"
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+      "
+    >
+      <div style="text-align: center">
+        <div
+          style="
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+          "
+        ></div>
+        <p style="color: #666; margin: 0">Chargement...</p>
+      </div>
+    </div>
+
+    <style>
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Script pour masquer le loading une fois l'app chargée -->
+    <script>
+      window.addEventListener('load', function () {
+        const loading = document.getElementById('loading');
+        if (loading) {
+          loading.style.opacity = '0';
+          setTimeout(() => {
+            loading.remove();
+          }, 300);
+        }
+      });
+    </script>
+  </body>
+</html>

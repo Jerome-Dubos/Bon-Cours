@@ -1,0 +1,115 @@
+{
+  "progress": [
+    {
+      "userId": 1,
+      "userName": "Marie Dupont",
+      "subjects": [
+        {
+          "subjectId": "francais",
+          "subjectName": "Français",
+          "levels": [
+            {
+              "levelId": "debutant",
+              "levelName": "Débutant",
+              "completedExercises": ["fr_debutant_1"],
+              "evaluationCompleted": false,
+              "evaluationScore": null,
+              "unlocked": true,
+              "completed": false
+            },
+            {
+              "levelId": "intermediaire",
+              "levelName": "Intermédiaire",
+              "completedExercises": [],
+              "evaluationCompleted": false,
+              "evaluationScore": null,
+              "unlocked": false,
+              "completed": false
+            }
+          ]
+        },
+        {
+          "subjectId": "anglais",
+          "subjectName": "Anglais",
+          "levels": [
+            {
+              "levelId": "debutant",
+              "levelName": "Débutant",
+              "completedExercises": [],
+              "evaluationCompleted": false,
+              "evaluationScore": null,
+              "unlocked": true,
+              "completed": false
+            }
+          ]
+        },
+        {
+          "subjectId": "espagnol",
+          "subjectName": "Espagnol",
+          "levels": [
+            {
+              "levelId": "debutant",
+              "levelName": "Débutant",
+              "completedExercises": [],
+              "evaluationCompleted": false,
+              "evaluationScore": null,
+              "unlocked": true,
+              "completed": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "userId": 3,
+      "userName": "Sophie Laurent",
+      "subjects": [
+        {
+          "subjectId": "francais",
+          "subjectName": "Français",
+          "levels": [
+            {
+              "levelId": "debutant",
+              "levelName": "Débutant",
+              "completedExercises": ["fr_debutant_1", "fr_debutant_2"],
+              "evaluationCompleted": true,
+              "evaluationScore": 3,
+              "unlocked": true,
+              "completed": true
+            },
+            {
+              "levelId": "intermediaire",
+              "levelName": "Intermédiaire",
+              "completedExercises": ["fr_inter_1"],
+              "evaluationCompleted": true,
+              "evaluationScore": 1,
+              "unlocked": true,
+              "completed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "userId": 5,
+      "userName": "Emma Wilson",
+      "subjects": [
+        {
+          "subjectId": "anglais",
+          "subjectName": "Anglais",
+          "levels": [
+            {
+              "levelId": "debutant",
+              "levelName": "Débutant",
+              "completedExercises": ["en_debutant_1"],
+              "evaluationCompleted": true,
+              "evaluationScore": 1,
+              "unlocked": true,
+              "completed": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+.vite/
+
+# Generated files
+coverage/
+*.log
+
+# Package files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Config files that shouldn't be formatted
+*.min.js
+*.min.css
+
+# Documentation
+CHANGELOG.md
+LICENSE
+
+# IDE files
+.vscode/
+.idea/
