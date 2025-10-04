@@ -86,6 +86,35 @@
   margin-bottom: var(--spacing-xxl);
 }
 
+/* Ajustements Desktop */
+@media (min-width: 1024px) {
+  .footer {
+    margin-top: 0; /* Suppression du margin-top pour une transition fluide depuis Témoignages */
+  }
+
+  .footer-content {
+    padding: 100px 80px 80px 80px; /* Padding généreux et symétrique pour desktop */
+  }
+
+  .footer-main {
+    gap: 80px; /* Espacement généreux entre les colonnes */
+    margin-bottom: 60px;
+  }
+
+  .footer-section {
+    padding: 0 20px; /* Padding latéral pour chaque section */
+  }
+
+  .footer-bottom {
+    padding-top: 48px; /* Plus d'espace avant le copyright */
+  }
+
+  .footer-developer {
+    padding-top: 48px;
+    margin-top: 48px;
+  }
+}
+
 /* Section à propos */
 .footer-section {
   position: relative;

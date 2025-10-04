@@ -12,6 +12,30 @@
   padding: 0 var(--spacing-xl);
 }
 
+/* Ajustements Desktop */
+@media (min-width: 1024px) {
+  .features-section {
+    padding: 120px 0 140px 0; /* Augmentation de l'espacement en bas pour mieux séparer des sections suivantes */
+  }
+
+  .features-container {
+    padding: 0 60px; /* Augmentation du padding latéral pour plus d'air */
+  }
+
+  .language-section {
+    margin-bottom: 80px; /* Espacement harmonieux entre langues et soutien scolaire */
+  }
+
+  .school-section {
+    padding: 60px; /* Padding plus généreux pour la section école */
+    margin-bottom: 60px;
+  }
+
+  .section-header {
+    margin-bottom: 48px; /* Plus d'espace sous les titres */
+  }
+}
+
 /* Section Langues */
 .language-section {
   margin-bottom: var(--spacing-xxl);

@@ -51,11 +51,85 @@ const Navbar = () => {
     account: false,
   });
 
+  // État pour les sous-menus de navigation
+  const [navDropdowns, setNavDropdowns] = useState({
+    offres: false,
+    methode: false,
+  });
+
   const { user, logout } = useAuth();
   const { t, i18n } = useTranslation();
   const dropdownRef = useRef(null);
   const navLinksRef = useRef(null);
   const linkRefs = useRef([]);
+
+  // Structure des sous-menus pour Offres et Méthode
+  // Organisation en colonnes pour le mega menu
+  const offresSubmenu = useMemo(
+    () => ({
+      // Colonne gauche
+      leftColumn: [
+        { label: 'Horaires (planning)', path: '/offres/horaires' },
+        { label: 'Passez votre test', path: '/offres/test' },
+        {
+          label: 'Langues',
+          submenu: [
+            { label: 'Enfants & ados', path: '/offres/langues/enfants-ados' },
+            { label: 'Adultes et professionnels', path: '/offres/langues/adultes' },
+            { label: 'Entreprises', path: '/offres/langues/entreprises' },
+          ],
+        },
+        {
+          label: 'Soutien scolaire',
+          submenu: [
+            { label: 'Primaire', path: '/offres/soutien-scolaire/primaire' },
+            { label: 'Collège', path: '/offres/soutien-scolaire/college' },
+            { label: 'Lycée', path: '/offres/soutien-scolaire/lycee' },
+          ],
+        },
+      ],
+      // Colonne droite
+      rightColumn: [
+        {
+          label: 'Ateliers linguistiques',
+          submenu: [
+            { label: 'Langue orale', path: '/offres/ateliers/langue-orale' },
+            { label: 'Langue écrite', path: '/offres/ateliers/langue-ecrite' },
+            { label: 'Cuisine', path: '/offres/ateliers/cuisine' },
+            { label: 'Sport', path: '/offres/ateliers/sport' },
+            { label: 'Jeux', path: '/offres/ateliers/jeux' },
+            { label: 'Cinéma', path: '/offres/ateliers/cinema' },
+          ],
+        },
+        {
+          label: 'Examens',
+          submenu: [
+            { label: 'Certifications', path: '/offres/examens/certifications' },
+            { label: 'Naturalisation', path: '/offres/examens/naturalisation' },
+          ],
+        },
+        {
+          label: 'Accompagnements complémentaires',
+          submenu: [
+            { label: 'Administratif', path: '/offres/accompagnements/administratif' },
+            { label: 'Scolarité', path: '/offres/accompagnements/scolarite' },
+            { label: 'Traduction', path: '/offres/accompagnements/traduction' },
+          ],
+        },
+      ],
+    }),
+    []
+  );
+
+  const methodeSubmenu = useMemo(
+    () => [
+      { label: 'Approche actionnelle', path: '/methode/approche' },
+      { label: 'Niveaux & parcours', path: '/methode/niveaux' },
+      { label: 'Outils & ressources', path: '/methode/outils' },
+      { label: 'Tests de niveau', path: '/methode/tests' },
+    ],
+    []
+  );
 
   // Liens de navigation publique - mémorisés (définis en premier)
   const navLinks = useMemo(
@@ -66,11 +140,15 @@ const Navbar = () => {
           path: '/offres',
           label: t('nav.offers', 'Offres'),
           icon: <IoSchoolOutline size={18} />,
+          hasSubmenu: true,
+          submenuKey: 'offres',
         },
         {
           path: '/methode',
           label: t('nav.method', 'Méthode'),
           icon: <IoFlaskOutline size={18} />,
+          hasSubmenu: true,
+          submenuKey: 'methode',
         },
         {
           path: '/inscription',
@@ -85,6 +163,14 @@ const Navbar = () => {
       ].filter(link => !isNavLinkHidden(link.path)),
     [t]
   ); // Filtrer les liens masqués en production
+
+  // Fermer tous les sous-menus de navigation - DOIT être défini tôt car utilisé dans useEffect
+  const closeAllNavDropdowns = useCallback(() => {
+    setNavDropdowns({
+      offres: false,
+      methode: false,
+    });
+  }, []);
 
   // Fonction utilitaire pour calculer le style optimisé de la barre - mémorisée
   const calculateOptimizedUnderlineStyle = useCallback((container, activeLink) => {
@@ -206,7 +292,9 @@ const Navbar = () => {
         }));
       }, 200);
     }
-  }, [location.pathname, dropdownState.isOpen]);
+    // Fermer aussi les sous-menus de navigation
+    closeAllNavDropdowns();
+  }, [location.pathname, dropdownState.isOpen, closeAllNavDropdowns]);
 
   // Mettre à jour l'index du lien actif basé sur la location
   useEffect(() => {
@@ -274,6 +362,47 @@ const Navbar = () => {
       [sectionName]: !prev[sectionName],
     }));
   }, []);
+
+  // Gérer l'ouverture/fermeture des sous-menus de navigation au clic
+  // Un seul menu peut être ouvert à la fois
+  const handleNavDropdownToggle = useCallback(submenuKey => {
+    setNavDropdowns(prev => {
+      const isCurrentlyOpen = prev[submenuKey];
+
+      // Si on clique sur un menu déjà ouvert, on le ferme
+      if (isCurrentlyOpen) {
+        return {
+          offres: false,
+          methode: false,
+        };
+      }
+
+      // Sinon, on ferme tous les autres et on ouvre celui-ci
+      return {
+        offres: submenuKey === 'offres',
+        methode: submenuKey === 'methode',
+      };
+    });
+  }, []);
+
+  // Fermer les sous-menus quand on clique en dehors
+  useEffect(() => {
+    const handleClickOutside = event => {
+      // Vérifier si le clic est en dehors de la navbar
+      if (navLinksRef.current && !navLinksRef.current.contains(event.target)) {
+        closeAllNavDropdowns();
+      }
+    };
+
+    // Ajouter l'écouteur seulement si un menu est ouvert
+    if (navDropdowns.offres || navDropdowns.methode) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [navDropdowns.offres, navDropdowns.methode, closeAllNavDropdowns]);
 
   // Gérer le scroll du body quand le menu mobile est ouvert
   useEffect(() => {
@@ -365,18 +494,143 @@ const Navbar = () => {
       {/* Navigation principale */}
       {!user && (
         <div className='nav-links' ref={navLinksRef}>
-          {navLinks.slice(0, 5).map((link, index) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              ref={el => (linkRefs.current[index] = el)}
-              className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
-              onClick={() => handleNavLinkClick(link.path, index)}
-            >
-              <span className='nav-link-icon'>{link.icon}</span>
-              <span className='nav-link-text'>{link.label}</span>
-            </Link>
-          ))}
+          {navLinks.slice(0, 5).map((link, index) => {
+            const hasSubmenu = link.hasSubmenu;
+            const isSubmenuOpen = hasSubmenu && navDropdowns[link.submenuKey];
+            const isMegaMenu = link.submenuKey === 'offres';
+
+            return (
+              <div key={link.path} className='nav-link-wrapper'>
+                <Link
+                  to={hasSubmenu ? '#' : link.path}
+                  ref={el => (linkRefs.current[index] = el)}
+                  className={`nav-link ${location.pathname === link.path ? 'active' : ''} ${
+                    hasSubmenu ? 'has-submenu' : ''
+                  } ${isSubmenuOpen ? 'submenu-open' : ''}`}
+                  onClick={e => {
+                    if (hasSubmenu) {
+                      e.preventDefault();
+                      handleNavDropdownToggle(link.submenuKey);
+                    } else {
+                      handleNavLinkClick(link.path, index);
+                    }
+                  }}
+                >
+                  <span className='nav-link-icon'>{link.icon}</span>
+                  <span className='nav-link-text'>{link.label}</span>
+                  {hasSubmenu && (
+                    <IoChevronDownOutline
+                      size={14}
+                      className={`nav-submenu-arrow ${isSubmenuOpen ? 'open' : ''}`}
+                    />
+                  )}
+                </Link>
+
+                {/* Sous-menu déroulant - Mega menu pour Offres */}
+                {hasSubmenu && isSubmenuOpen && isMegaMenu && (
+                  <div className='nav-submenu nav-mega-menu'>
+                    <div className='nav-mega-menu-column'>
+                      {offresSubmenu.leftColumn.map((item, idx) => (
+                        <div key={idx} className='nav-submenu-item-wrapper'>
+                          {item.submenu ? (
+                            <div className='nav-submenu-item-group'>
+                              <div className='nav-submenu-group-title'>{item.label}</div>
+                              <div className='nav-submenu-sublist'>
+                                {item.submenu.map((subItem, subIdx) => (
+                                  <Link
+                                    key={subIdx}
+                                    to={subItem.path}
+                                    className='nav-submenu-subitem'
+                                    onClick={() => closeAllNavDropdowns()}
+                                  >
+                                    {subItem.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            <Link
+                              to={item.path}
+                              className='nav-submenu-item'
+                              onClick={() => closeAllNavDropdowns()}
+                            >
+                              {item.label}
+                            </Link>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <div className='nav-mega-menu-column'>
+                      {offresSubmenu.rightColumn.map((item, idx) => (
+                        <div key={idx} className='nav-submenu-item-wrapper'>
+                          {item.submenu ? (
+                            <div className='nav-submenu-item-group'>
+                              <div className='nav-submenu-group-title'>{item.label}</div>
+                              <div className='nav-submenu-sublist'>
+                                {item.submenu.map((subItem, subIdx) => (
+                                  <Link
+                                    key={subIdx}
+                                    to={subItem.path}
+                                    className='nav-submenu-subitem'
+                                    onClick={() => closeAllNavDropdowns()}
+                                  >
+                                    {subItem.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            <Link
+                              to={item.path}
+                              className='nav-submenu-item'
+                              onClick={() => closeAllNavDropdowns()}
+                            >
+                              {item.label}
+                            </Link>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Sous-menu standard pour Méthode */}
+                {hasSubmenu && isSubmenuOpen && !isMegaMenu && (
+                  <div className='nav-submenu'>
+                    {methodeSubmenu.map((item, idx) => (
+                      <div key={idx} className='nav-submenu-item-wrapper'>
+                        {item.submenu ? (
+                          <div className='nav-submenu-item-group'>
+                            <div className='nav-submenu-group-title'>{item.label}</div>
+                            <div className='nav-submenu-sublist'>
+                              {item.submenu.map((subItem, subIdx) => (
+                                <Link
+                                  key={subIdx}
+                                  to={subItem.path}
+                                  className='nav-submenu-subitem'
+                                  onClick={() => closeAllNavDropdowns()}
+                                >
+                                  {subItem.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        ) : (
+                          <Link
+                            to={item.path}
+                            className='nav-submenu-item'
+                            onClick={() => closeAllNavDropdowns()}
+                          >
+                            {item.label}
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
           {/* Barre de soulignement glissante */}
           <div className='sliding-underline' style={navigationState.underlineStyle} />
         </div>
@@ -511,17 +765,88 @@ const Navbar = () => {
             <div
               className={`mobile-section-content ${expandedSections.navigation ? 'expanded' : ''}`}
             >
-              {navLinks.map(link => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`mobile-nav-link ${location.pathname === link.path ? 'active' : ''}`}
-                  onClick={closeMobileMenu}
-                >
-                  <span className='mobile-link-icon'>{link.icon}</span>
-                  <span>{link.label}</span>
-                </Link>
-              ))}
+              {navLinks.map(link => {
+                const hasSubmenu = link.hasSubmenu;
+                const submenuKey = link.submenuKey;
+                const isMegaMenu = submenuKey === 'offres';
+
+                // Combiner les colonnes pour le mobile
+                const submenuItems = isMegaMenu
+                  ? [...offresSubmenu.leftColumn, ...offresSubmenu.rightColumn]
+                  : methodeSubmenu;
+
+                return (
+                  <div key={link.path}>
+                    {hasSubmenu ? (
+                      <div className='mobile-nav-submenu-wrapper'>
+                        <button
+                          className='mobile-nav-link-with-submenu'
+                          onClick={() =>
+                            setExpandedSections(prev => ({
+                              ...prev,
+                              [submenuKey]: !prev[submenuKey],
+                            }))
+                          }
+                        >
+                          <div className='mobile-nav-link-content'>
+                            <span className='mobile-link-icon'>{link.icon}</span>
+                            <span>{link.label}</span>
+                          </div>
+                          <IoChevronDownOutline
+                            size={18}
+                            className={`mobile-submenu-arrow ${
+                              expandedSections[submenuKey] ? 'expanded' : ''
+                            }`}
+                          />
+                        </button>
+
+                        {expandedSections[submenuKey] && (
+                          <div className='mobile-submenu-content'>
+                            {submenuItems.map((item, idx) => (
+                              <div key={idx}>
+                                {item.submenu ? (
+                                  <div className='mobile-submenu-group'>
+                                    <div className='mobile-submenu-group-title'>{item.label}</div>
+                                    {item.submenu.map((subItem, subIdx) => (
+                                      <Link
+                                        key={subIdx}
+                                        to={subItem.path}
+                                        className='mobile-submenu-subitem'
+                                        onClick={closeMobileMenu}
+                                      >
+                                        {subItem.label}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                ) : (
+                                  <Link
+                                    to={item.path}
+                                    className='mobile-submenu-item'
+                                    onClick={closeMobileMenu}
+                                  >
+                                    {item.label}
+                                  </Link>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <Link
+                        to={link.path}
+                        className={`mobile-nav-link ${
+                          location.pathname === link.path ? 'active' : ''
+                        }`}
+                        onClick={closeMobileMenu}
+                      >
+                        <span className='mobile-link-icon'>{link.icon}</span>
+                        <span>{link.label}</span>
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
 

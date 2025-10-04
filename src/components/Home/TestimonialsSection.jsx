@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Button } from '../UI/Buttons';
-// import { useTranslation } from 'react-i18next'; // Désactivé pour utiliser les textes en dur
 import { IoChevronBack, IoChevronForward, IoStar, IoStarOutline } from 'react-icons/io5';
 import apiService from '../../services/apiService';
+import { Button } from '../UI/Buttons';
 import './TestimonialsSection.css';
 
 const TestimonialsSection = ({ isMobile = false }) => {
@@ -14,9 +13,8 @@ const TestimonialsSection = ({ isMobile = false }) => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const carouselRef = useRef(null);
-  // const { t } = useTranslation(); // Désactivé pour utiliser les textes en dur
 
-  // Charger les témoignages depuis le service backend
+  // Charger les témoignages
   useEffect(() => {
     const loadTestimonials = async () => {
       try {
@@ -32,13 +30,13 @@ const TestimonialsSection = ({ isMobile = false }) => {
     loadTestimonials();
   }, []);
 
-  // Obtenir les langues uniques optimisé avec useMemo
+  // Langues disponibles
   const languages = useMemo(
     () => ['Toutes', ...new Set(testimonials.map(t => t.language))],
     [testimonials]
   );
 
-  // Filtrer par langue optimisé avec useCallback
+  // Filtrer par langue
   const handleLanguageFilter = useCallback(
     language => {
       setSelectedLanguage(language);
@@ -52,7 +50,7 @@ const TestimonialsSection = ({ isMobile = false }) => {
     [testimonials]
   );
 
-  // Navigation du carousel optimisée avec useCallback
+  // Navigation
   const nextTestimonial = useCallback(() => {
     setCurrentIndex(prev => (prev === filteredTestimonials.length - 1 ? 0 : prev + 1));
   }, [filteredTestimonials.length]);
@@ -65,7 +63,7 @@ const TestimonialsSection = ({ isMobile = false }) => {
     setCurrentIndex(index);
   }, []);
 
-  // Gestion des gestes tactiles pour mobile optimisée
+  // Gestion tactile
   const handleTouchStart = useCallback(
     e => {
       if (!isMobile) return;
@@ -99,7 +97,7 @@ const TestimonialsSection = ({ isMobile = false }) => {
     setTouchEnd(null);
   }, [isMobile, touchStart, touchEnd, nextTestimonial, prevTestimonial]);
 
-  // Auto-play du carousel (désactivé sur mobile pour une meilleure UX)
+  // Auto-play
   useEffect(() => {
     if (filteredTestimonials.length <= 1 || isMobile) return;
 
@@ -108,9 +106,9 @@ const TestimonialsSection = ({ isMobile = false }) => {
     }, 6000);
 
     return () => clearInterval(timer);
-  }, [filteredTestimonials.length, currentIndex, isMobile]);
+  }, [filteredTestimonials.length, currentIndex, isMobile, nextTestimonial]);
 
-  // Rendu des étoiles optimisé avec useMemo
+  // Rendu des étoiles
   const renderStars = useCallback(
     rating => {
       const starSize = isMobile ? 18 : 20;
@@ -123,6 +121,7 @@ const TestimonialsSection = ({ isMobile = false }) => {
     [isMobile]
   );
 
+  // États de chargement
   if (isLoading) {
     return (
       <section className='testimonials' id='testimonials'>
@@ -158,9 +157,10 @@ const TestimonialsSection = ({ isMobile = false }) => {
   return (
     <section className='testimonials' id='testimonials'>
       <div className='testimonials-container'>
+        {/* Titre */}
         <h2>Témoignages de nos apprenants</h2>
 
-        {/* Filtres par langue */}
+        {/* Filtres */}
         <div className='testimonials-filters'>
           {languages.map(language => (
             <Button
@@ -182,7 +182,7 @@ const TestimonialsSection = ({ isMobile = false }) => {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Boutons de navigation - masqués sur mobile */}
+          {/* Boutons de navigation */}
           {filteredTestimonials.length > 1 && !isMobile && (
             <>
               <Button
@@ -204,7 +204,7 @@ const TestimonialsSection = ({ isMobile = false }) => {
             </>
           )}
 
-          {/* Témoignage actuel */}
+          {/* Carte témoignage */}
           <div className='testimonial-card'>
             <div className='testimonial-header'>
               <div className='testimonial-info'>
@@ -223,24 +223,24 @@ const TestimonialsSection = ({ isMobile = false }) => {
               "{filteredTestimonials[currentIndex]?.text}"
             </blockquote>
           </div>
-
-          {/* Indicateurs */}
-          {filteredTestimonials.length > 1 && (
-            <div className='testimonial-indicators'>
-              {filteredTestimonials.map((_, index) => (
-                <Button
-                  key={index}
-                  variant={index === currentIndex ? 'primary' : 'outline'}
-                  className={`indicator ${index === currentIndex ? 'active' : ''}`}
-                  onClick={() => goToTestimonial(index)}
-                  aria-label={`Aller au témoignage ${index + 1}`}
-                >
-                  <span className='sr-only'>Témoignage {index + 1}</span>
-                </Button>
-              ))}
-            </div>
-          )}
         </div>
+
+        {/* Indicateurs de pagination */}
+        {filteredTestimonials.length > 1 && (
+          <div className='testimonial-indicators'>
+            {filteredTestimonials.map((_, index) => (
+              <Button
+                key={index}
+                variant={index === currentIndex ? 'primary' : 'outline'}
+                className={`indicator ${index === currentIndex ? 'active' : ''}`}
+                onClick={() => goToTestimonial(index)}
+                aria-label={`Aller au témoignage ${index + 1}`}
+              >
+                <span className='sr-only'>Témoignage {index + 1}</span>
+              </Button>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
