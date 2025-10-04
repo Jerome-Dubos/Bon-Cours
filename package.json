@@ -37,7 +37,7 @@
     "clean": "rm -rf dist node_modules/.vite",
     "format": "prettier --write \"src/**/*.{js,jsx,css,md}\" \"*.{js,json}\" \"public/**/*.json\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,css,md}\" \"*.{js,json}\" \"public/**/*.json\"",
-    "prepare": "husky install"
+    "prepare": "husky install || true"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
