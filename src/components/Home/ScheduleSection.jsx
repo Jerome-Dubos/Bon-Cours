@@ -13,6 +13,7 @@ import {
 } from 'react-icons/io5';
 import apiService from '../../services/apiService';
 import contactService from '../../services/contactService';
+import { Loader } from '../UI';
 import { Button } from '../UI/Buttons';
 import { ContactForm as ContactFormComponent } from '../UI/Forms';
 import { LargeModal } from '../UI/Modales';
@@ -362,9 +363,12 @@ const ScheduleSection = () => {
               <p className='schedule-description'>Chargement en cours...</p>
             </div>
           </div>
-          <div className='loading-spinner'>
-            <div className='spinner'></div>
-          </div>
+          <Loader
+            size='default'
+            variant='rotating-squares'
+            color='default'
+            message='Chargement du planning...'
+          />
         </div>
       </section>
     );

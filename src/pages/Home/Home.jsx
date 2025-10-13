@@ -7,6 +7,7 @@ import {
   ScheduleSection,
   TestimonialsSection,
 } from '../../components';
+import { Loader } from '../../components/UI';
 import { useDebounce, useErrorHandler, usePerformance } from '../../hooks';
 import './Home.css';
 
@@ -100,9 +101,12 @@ const Home = () => {
   // Gestion d'erreur pour le chargement
   if (isLoading) {
     return (
-      <div className='home-loading'>
-        <div className='loading-spinner' />
-      </div>
+      <Loader
+        size='default'
+        variant='rotating-squares'
+        color='default'
+        message="Chargement de la page d'accueil..."
+      />
     );
   }
 

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   FaBicycle,
   FaBus,
@@ -12,28 +11,18 @@ import {
 import './ContactInfo.css';
 
 const ContactInfo = () => {
-  const { t } = useTranslation();
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
   const [isHiding, setIsHiding] = useState(false);
 
   const horaires = [
-    { jour: t('contact.hours.monday'), heures: t('contact.hours.time_range') },
-    { jour: t('contact.hours.tuesday'), heures: t('contact.hours.time_range') },
-    {
-      jour: t('contact.hours.wednesday'),
-      heures: t('contact.hours.time_range'),
-    },
-    {
-      jour: t('contact.hours.thursday'),
-      heures: t('contact.hours.time_range'),
-    },
-    { jour: t('contact.hours.friday'), heures: t('contact.hours.time_range') },
-    {
-      jour: t('contact.hours.saturday'),
-      heures: t('contact.hours.time_range'),
-    },
-    { jour: t('contact.hours.sunday'), heures: t('contact.hours.time_range') },
+    { jour: 'Lundi', heures: '9h - 19h' },
+    { jour: 'Mardi', heures: '9h - 19h' },
+    { jour: 'Mercredi', heures: '9h - 19h' },
+    { jour: 'Jeudi', heures: '9h - 19h' },
+    { jour: 'Vendredi', heures: '9h - 19h' },
+    { jour: 'Samedi', heures: '9h - 19h' },
+    { jour: 'Dimanche', heures: '9h - 19h' },
   ];
 
   const contactInfo = {
@@ -41,15 +30,7 @@ const ContactInfo = () => {
   };
 
   // Détermination du jour actif
-  const joursFR = [
-    t('contact.hours.sunday'),
-    t('contact.hours.monday'),
-    t('contact.hours.tuesday'),
-    t('contact.hours.wednesday'),
-    t('contact.hours.thursday'),
-    t('contact.hours.friday'),
-    t('contact.hours.saturday'),
-  ];
+  const joursFR = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
   const today = new Date();
   const todayName = joursFR[today.getDay()];
 
@@ -84,45 +65,30 @@ const ContactInfo = () => {
 
   const handleCopyAddress = () => {
     copyToClipboard(contactInfo.adresse);
-    showLocalNotification(t('contact.info.notifications.address_copied'));
+    showLocalNotification('Adresse copiée !');
   };
 
   const handleCopyHours = () => {
     const hoursText = horaires.map(h => `${h.jour}: ${h.heures}`).join('\n');
     copyToClipboard(hoursText);
-    showLocalNotification(t('contact.info.notifications.hours_copied'));
+    showLocalNotification('Horaires copiés !');
   };
 
   return (
     <div className='contact-info-container'>
       {/* Notification locale discrète */}
       {showNotification && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            zIndex: 1000,
-            background: 'rgba(255, 255, 255, 0.95)',
-            color: '#333',
-            padding: '8px 16px',
-            borderRadius: '20px',
-            fontSize: '0.9rem',
-            fontWeight: '500',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            maxWidth: '200px',
-            animation: isHiding ? 'slideOutRight 0.3s ease-in' : 'slideInRight 0.3s ease-out',
-          }}
-        >
+        <div className={`contact-notification-toast ${isHiding ? 'hiding' : ''}`}>
           {notificationMessage}
         </div>
       )}
       <div className='contact-info-content'>
         <div className='contact-hero-section'>
           <div className='contact-hero-header'>
-            <h2 className='contact-hero-title'>{t('contact.info.title')}</h2>
-            <p className='contact-hero-subtitle'>{t('contact.info.subtitle')}</p>
+            <h2 className='contact-hero-title'>Où nous trouver</h2>
+            <p className='contact-hero-subtitle'>
+              Venez nous rendre visite dans notre centre à Strasbourg
+            </p>
           </div>
 
           <div className='contact-hero-grid'>
@@ -145,7 +111,7 @@ const ContactInfo = () => {
                   <div className='map-hero-overlay'>
                     <button className='directions-hero-button' onClick={handleGetDirections}>
                       <FaDirections size={18} />
-                      <span>{t('contact.info.get_directions')}</span>
+                      <span>Obtenir l'itinéraire</span>
                     </button>
                   </div>
                 </div>
@@ -153,15 +119,15 @@ const ContactInfo = () => {
 
               {/* Section d'accès compacte */}
               <div className='access-compact-section'>
-                <h3 className='access-compact-title'>{t('contact.info.access_title')}</h3>
+                <h3 className='access-compact-title'>Comment venir ?</h3>
                 <div className='access-compact-methods'>
                   <div className='access-compact-method'>
                     <div className='access-compact-icon'>
                       <FaTrain size={14} />
                     </div>
                     <div className='access-compact-content'>
-                      <h4>{t('contact.info.transport.tram')}</h4>
-                      <p>{t('contact.info.transport.tram_info')}</p>
+                      <h4>Tram</h4>
+                      <p>A & D - Gallia</p>
                     </div>
                   </div>
                   <div className='access-compact-method'>
@@ -169,8 +135,8 @@ const ContactInfo = () => {
                       <FaBus size={14} />
                     </div>
                     <div className='access-compact-content'>
-                      <h4>{t('contact.info.transport.bus')}</h4>
-                      <p>{t('contact.info.transport.bus_info')}</p>
+                      <h4>Bus</h4>
+                      <p>10 & 30</p>
                     </div>
                   </div>
                   <div className='access-compact-method'>
@@ -178,8 +144,8 @@ const ContactInfo = () => {
                       <FaCar size={14} />
                     </div>
                     <div className='access-compact-content'>
-                      <h4>{t('contact.info.transport.car')}</h4>
-                      <p>{t('contact.info.transport.car_info')}</p>
+                      <h4>Voiture</h4>
+                      <p>Parking proche</p>
                     </div>
                   </div>
                   <div className='access-compact-method'>
@@ -187,8 +153,8 @@ const ContactInfo = () => {
                       <FaBicycle size={14} />
                     </div>
                     <div className='access-compact-content'>
-                      <h4>{t('contact.info.transport.bike')}</h4>
-                      <p>{t('contact.info.transport.bike_info')}</p>
+                      <h4>Vélo</h4>
+                      <p>Vélhop 2min</p>
                     </div>
                   </div>
                 </div>
@@ -207,7 +173,7 @@ const ContactInfo = () => {
                     <FaMapMarkerAlt size={24} />
                   </div>
                   <div className='info-hero-content'>
-                    <h3 className='info-hero-label'>{t('contact.info.address_title')}</h3>
+                    <h3 className='info-hero-label'>Adresse</h3>
                     <p className='info-hero-text'>{contactInfo.adresse}</p>
                   </div>
                 </div>
@@ -222,7 +188,7 @@ const ContactInfo = () => {
                       >
                         <FaClock size={24} />
                       </div>
-                      <h3 className='info-hero-label'>{t('contact.info.hours_title')}</h3>
+                      <h3 className='info-hero-label'>Horaires d'ouverture</h3>
                     </div>
                     <div className='hours-hero-list'>
                       {horaires.map((horaire, index) => (

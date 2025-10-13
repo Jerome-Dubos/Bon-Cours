@@ -1,13 +1,6 @@
-// ===== EXPORTS DES COMPOSANTS MODULAIRES =====
+// Point d'entrée des composants de formulaires
+export { default as ContactForm } from './components/ContactForm/ContactForm';
+export { default as LoginForm } from './components/LoginForm/LoginForm';
 
-// Formulaires principaux
-export { default as ContactForm } from './components/ContactForm/ContactForm.simple';
-export { default as LoginForm } from './components/LoginForm';
-
-// Utilitaires
+// Réexporter les règles de validation pour faciliter l'usage
 export * from './utils/validationRules';
-
-// ===== EXPORTS PAR DÉFAUT =====
-
-// Export par défaut du ContactForm (formulaire le plus utilisé)
-export { default } from './components/ContactForm/ContactForm.simple';

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Loader } from '../../components/UI';
 import { useErrorHandler, usePerformance } from '../../hooks';
 import './Method.css';
 
@@ -51,9 +52,12 @@ const Method = () => {
 
   if (isLoading) {
     return (
-      <div className='method-loading'>
-        <div className='loading-spinner' />
-      </div>
+      <Loader
+        size='default'
+        variant='rotating-squares'
+        color='default'
+        message='Chargement de la méthode...'
+      />
     );
   }
 

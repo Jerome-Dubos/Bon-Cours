@@ -1,0 +1,24 @@
+{
+  "name": "DWS-loaders",
+  "version": "1.0.0",
+  "description": "Collection complète de composants de chargement pour React",
+  "main": "index.js",
+  "keywords": [
+    "react",
+    "loader",
+    "spinner",
+    "loading",
+    "ui",
+    "components"
+  ],
+  "author": "Dubos Web Services",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "files": [
+    "src/",
+    "index.js",
+    "README.md"
+  ]
+}

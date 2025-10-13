@@ -90,30 +90,7 @@
 }
 
 /* === ÉTATS DE CHARGEMENT ET ERREUR === */
-.loading-spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 300px;
-}
-
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid rgba(234, 189, 131, 0.2);
-  border-top: 4px solid var(--secondary-gold);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+/* Loaders centralisés dans le composant LoadingSpinner */
 
 .error-message {
   background: rgba(255, 107, 107, 0.1);

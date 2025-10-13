@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { FaComments, FaEnvelope, FaPaperPlane, FaPhone, FaUser } from 'react-icons/fa';
 import { Button } from '../UI/Buttons';
-import ContactForm from '../UI/Forms/src/components/ContactForm/ContactForm.simple';
+import ContactForm from '../UI/Forms/src/components/ContactForm/ContactForm';
 import { Modal } from '../UI/Modales';
 
 /**
@@ -416,7 +416,7 @@ const FormUsageExample = () => {
             fontSize: '0.9rem',
           }}
         >
-          {`import ContactForm from '../UI/Forms/src/components/ContactForm/ContactForm.simple';
+          {`import ContactForm from '../UI/Forms/src/components/ContactForm/ContactForm';
 import { Button } from '../UI/Buttons';
 
 // Formulaire simple avec validation

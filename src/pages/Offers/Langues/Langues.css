@@ -66,7 +66,7 @@
   );
 }
 
-.flags-track {
+.languages-flags-carousel .flags-track {
   display: flex;
   gap: var(--spacing-md);
   animation: scroll 40s linear infinite;
@@ -83,7 +83,7 @@
   }
 }
 
-.flag-item {
+.languages-flags-carousel .flag-item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,7 +103,7 @@
   position: relative;
 }
 
-.flag-item::before {
+.languages-flags-carousel .flag-item::before {
   content: '';
   position: absolute;
   top: 0;
@@ -115,11 +115,11 @@
   transition: opacity var(--transition-normal);
 }
 
-.flag-item:hover::before {
+.languages-flags-carousel .flag-item:hover::before {
   opacity: 1;
 }
 
-.flag-item:hover {
+.languages-flags-carousel .flag-item:hover {
   background: linear-gradient(145deg, rgba(234, 189, 131, 0.15) 0%, rgba(234, 189, 131, 0.05) 100%);
   border-color: rgba(234, 189, 131, 0.4);
   transform: translateY(-4px) scale(1.02);
@@ -129,7 +129,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.flag-item:hover .flag-icon {
+.languages-flags-carousel .flag-item:hover .flag-icon {
   background: linear-gradient(145deg, rgba(234, 189, 131, 0.25) 0%, rgba(234, 189, 131, 0.08) 100%);
   transform: scale(1.05);
   box-shadow:
@@ -137,13 +137,13 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.flag-item:hover .flag-icon svg,
-.flag-item:hover .flag-icon img {
+.languages-flags-carousel .flag-item:hover .flag-icon svg,
+.languages-flags-carousel .flag-item:hover .flag-icon img {
   transform: scale(1.08);
   filter: brightness(1.15) saturate(1.2) contrast(1.05);
 }
 
-.flag-icon {
+.languages-flags-carousel .flag-icon {
   margin-bottom: var(--spacing-xs);
   display: flex;
   align-items: center;
@@ -162,66 +162,66 @@
   position: relative;
 }
 
-.flag-icon svg,
-.flag-icon img {
+.languages-flags-carousel .flag-icon svg,
+.languages-flags-carousel .flag-icon img {
   width: 100%;
   height: 100%;
   transition: all var(--transition-normal);
   object-fit: contain;
 }
 
-.flag-icon img {
+.languages-flags-carousel .flag-icon img {
   display: block;
   border-radius: var(--border-radius-sm);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Styles spécifiques pour chaque drapeau */
-.flag-french {
+.languages-flags-carousel .flag-french {
   aspect-ratio: 3/2;
 }
 
-.flag-uk {
+.languages-flags-carousel .flag-uk {
   aspect-ratio: 3/2;
 }
 
-.flag-german {
+.languages-flags-carousel .flag-german {
   aspect-ratio: 3/2;
 }
 
-.flag-spanish {
+.languages-flags-carousel .flag-spanish {
   aspect-ratio: 3/2;
 }
 
-.flag-portuguese {
+.languages-flags-carousel .flag-portuguese {
   aspect-ratio: 3/2;
 }
 
-.flag-italian {
+.languages-flags-carousel .flag-italian {
   aspect-ratio: 3/2;
 }
 
-.flag-turkish {
+.languages-flags-carousel .flag-turkish {
   aspect-ratio: 3/2;
 }
 
-.flag-arabic {
+.languages-flags-carousel .flag-arabic {
   aspect-ratio: 3/2;
 }
 
-.flag-iranian {
+.languages-flags-carousel .flag-iranian {
   aspect-ratio: 3/2;
 }
 
-.flag-chinese {
+.languages-flags-carousel .flag-chinese {
   aspect-ratio: 3/2;
 }
 
-.flag-japanese {
+.languages-flags-carousel .flag-japanese {
   aspect-ratio: 3/2;
 }
 
-.flag-item span {
+.languages-flags-carousel .flag-item span {
   color: var(--text-light);
   font-size: var(--text-sm);
   font-weight: 600;
@@ -534,21 +534,21 @@
     margin: var(--spacing-lg) 0;
   }
 
-  .flags-track {
+  .languages-flags-carousel .flags-track {
     gap: var(--spacing-sm);
   }
 
-  .flag-item {
+  .languages-flags-carousel .flag-item {
     min-width: 90px;
     padding: var(--spacing-sm);
   }
 
-  .flag-icon {
+  .languages-flags-carousel .flag-icon {
     width: 80px;
     height: 60px;
   }
 
-  .flag-item span {
+  .languages-flags-carousel .flag-item span {
     font-size: var(--text-xs);
   }
 
@@ -592,21 +592,21 @@
     margin: var(--spacing-md) 0;
   }
 
-  .flags-track {
+  .languages-flags-carousel .flags-track {
     gap: var(--spacing-xs);
   }
 
-  .flag-item {
+  .languages-flags-carousel .flag-item {
     min-width: 80px;
     padding: var(--spacing-xs);
   }
 
-  .flag-icon {
+  .languages-flags-carousel .flag-icon {
     width: 70px;
     height: 53px;
   }
 
-  .flag-item span {
+  .languages-flags-carousel .flag-item span {
     font-size: var(--text-xs);
   }
 

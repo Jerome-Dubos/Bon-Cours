@@ -256,5 +256,80 @@ export const fr = {
       phone: 'Téléphone',
       message: 'Message',
     },
+    forms: {
+      contact: {
+        submit: 'Envoyer le message',
+        loading: 'Envoi en cours...',
+        success:
+          'Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.',
+        error: "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.",
+        fields: {
+          nom: 'Nom',
+          prenom: 'Prénom',
+          email: 'Email',
+          telephone: 'Téléphone',
+          message: 'Message',
+          preference_contact: 'Préférence de contact',
+          jours_preference: 'Jours de disponibilité',
+          creneaux_horaires: 'Créneaux horaires',
+        },
+        placeholders: {
+          nom: 'Dupont',
+          prenom: 'Jean',
+          email: 'jean.dupont@example.com',
+          telephone: '06 12 34 56 78',
+          message: 'Votre message...',
+        },
+        options: {
+          jours: {
+            lundi: 'Lundi',
+            mardi: 'Mardi',
+            mercredi: 'Mercredi',
+            jeudi: 'Jeudi',
+            vendredi: 'Vendredi',
+            samedi: 'Samedi',
+            dimanche: 'Dimanche',
+          },
+          horaires: {
+            matin: 'Matin',
+            apres_midi: 'Après-midi',
+            soir: 'Soir',
+            flexible: 'Flexible',
+          },
+          sublabels: {
+            matin: '8h-12h',
+            apres_midi: '12h-18h',
+            soir: '18h-21h',
+            flexible: 'Tous créneaux',
+          },
+          preference: {
+            email: 'Par email',
+            telephone: 'Par téléphone',
+          },
+        },
+        errors: {
+          select_jour: 'Veuillez sélectionner au moins un jour',
+          select_creneau: 'Veuillez sélectionner au moins un créneau horaire',
+        },
+      },
+      login: {
+        submit: 'Se connecter',
+        loading: 'Connexion en cours...',
+        success: 'Connexion réussie ! Bienvenue.',
+        error: 'Identifiants incorrects. Veuillez vérifier votre email et votre mot de passe.',
+        fields: {
+          email: 'Adresse email',
+          password: 'Mot de passe',
+        },
+        placeholders: {
+          email: 'votre@email.com',
+          password: 'Votre mot de passe',
+        },
+        remember_me: 'Se souvenir de moi',
+        forgot_password: 'Mot de passe oublié ?',
+        show_password: 'Afficher le mot de passe',
+        hide_password: 'Masquer le mot de passe',
+      },
+    },
   },
 };

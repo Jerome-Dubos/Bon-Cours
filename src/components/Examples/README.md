@@ -99,7 +99,7 @@ Exemples de formulaires avec validation :
 **Cas d'usage :**
 
 ```jsx
-import ContactForm from '../UI/Forms/src/components/ContactForm/ContactForm.simple';
+import ContactForm from '../UI/Forms/src/components/ContactForm/ContactForm';
 
 // Utilisation du composant ContactForm
 <ContactForm

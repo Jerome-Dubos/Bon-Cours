@@ -16,6 +16,7 @@ export { default as ScheduleSection } from './Home/ScheduleSection';
 export { default as TestimonialsSection } from './Home/TestimonialsSection';
 
 // === COMPOSANTS UI ===
+export { Loader } from './UI/Loaders';
 export { OptimizedImage } from './UI/OptimizedImage';
 
 // === COMPOSANTS BUTTONS ===

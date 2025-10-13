@@ -104,68 +104,6 @@
   --breakpoint-2xl: 1536px;
 }
 
-/* === LOADER MODERNE === */
-.loading-spinner {
-  width: var(--loader-size);
-  height: var(--loader-size);
-  position: relative;
-  display: inline-block;
-}
-
-.loading-spinner::before,
-.loading-spinner::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  animation: loader-pulse 1.5s ease-in-out infinite;
-}
-
-.loading-spinner::before {
-  width: 100%;
-  height: 100%;
-  border: var(--loader-border) solid rgba(234, 189, 131, 0.2);
-  animation-delay: 0s;
-}
-
-.loading-spinner::after {
-  width: 60%;
-  height: 60%;
-  top: 20%;
-  left: 20%;
-  border: var(--loader-border) solid var(--secondary-gold);
-  animation-delay: 0.3s;
-}
-
-@keyframes loader-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(0.8);
-    opacity: 0.7;
-  }
-}
-
-/* Animation alternative pour les appareils qui préfèrent moins de mouvement */
-@media (prefers-reduced-motion: reduce) {
-  .loading-spinner::before,
-  .loading-spinner::after {
-    animation: loader-fade 1s ease-in-out infinite;
-  }
-
-  @keyframes loader-fade {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-  }
-}
-
 /* === CONTENEUR PRINCIPAL === */
 #root {
   min-height: 100vh;
@@ -206,6 +144,13 @@
   padding: 0;
 }
 
+/* S'assurer que les éléments principaux n'ont pas de fond blanc par défaut */
+html,
+body,
+#root {
+  background-color: var(--primary-blue-dark);
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;
@@ -222,6 +167,8 @@ html {
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
+  /* Éviter le flash blanc au chargement */
+  background-color: var(--primary-blue-dark);
 }
 
 body {
@@ -249,6 +196,8 @@ body {
   will-change: auto;
   /* Optimisation du scroll */
   scroll-behavior: smooth;
+  /* Forcer le fond pour éviter les zones blanches */
+  background-color: var(--primary-blue-dark);
 }
 
 /* === TYPOGRAPHIE OPTIMISÉE === */
@@ -334,6 +283,8 @@ a:hover {
   position: relative;
   /* Empêcher l'overscroll */
   overscroll-behavior: none;
+  /* Forcer le fond pour éviter les zones blanches */
+  background-color: var(--primary-blue-dark);
 }
 
 /* === UTILITAIRES === */
