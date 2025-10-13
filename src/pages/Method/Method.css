@@ -14,13 +14,82 @@
 
 .method-container h1 {
   font-size: clamp(2rem, 5vw, 3rem);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
   color: var(--secondary-gold);
 }
 
-.method-container p {
-  font-size: 1.2rem;
-  opacity: 0.8;
+.method-content {
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.method-intro,
+.method-concrete,
+.method-activities,
+.method-objective {
+  margin-bottom: var(--spacing-xl);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(234, 189, 131, 0.15);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.method-intro::before,
+.method-concrete::before,
+.method-activities::before,
+.method-objective::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(234, 189, 131, 0.3), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.method-intro:hover::before,
+.method-concrete:hover::before,
+.method-activities:hover::before,
+.method-objective:hover::before {
+  opacity: 1;
+}
+
+.method-intro:hover,
+.method-concrete:hover,
+.method-activities:hover,
+.method-objective:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: rgba(234, 189, 131, 0.3);
+}
+
+.method-intro h2,
+.method-concrete h2,
+.method-activities h2,
+.method-objective h2 {
+  color: var(--secondary-gold);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.method-intro p,
+.method-concrete p,
+.method-activities p,
+.method-objective p {
+  color: var(--text-light);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
 }
 
 /* === ÉTAT DE CHARGEMENT === */
@@ -54,5 +123,31 @@
 @media (max-width: 768px) {
   .method {
     padding: var(--spacing-lg);
+  }
+
+  .method-content {
+    max-width: 100%;
+  }
+
+  .method-intro,
+  .method-concrete,
+  .method-activities,
+  .method-objective {
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .method-intro h2,
+  .method-concrete h2,
+  .method-activities h2,
+  .method-objective h2 {
+    font-size: var(--text-lg);
+  }
+
+  .method-intro p,
+  .method-concrete p,
+  .method-activities p,
+  .method-objective p {
+    font-size: var(--text-sm);
   }
 }

@@ -71,6 +71,13 @@
   --z-tooltip: 1070;
   --z-loading: 9999;
 
+  /* Hauteur de la navbar */
+  --navbar-height: 80px;
+
+  /* Loader moderne */
+  --loader-size: 48px;
+  --loader-border: 4px;
+
   /* Typographie optimisée */
   --font-family-sans:
     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
@@ -95,6 +102,99 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
+}
+
+/* === LOADER MODERNE === */
+.loading-spinner {
+  width: var(--loader-size);
+  height: var(--loader-size);
+  position: relative;
+  display: inline-block;
+}
+
+.loading-spinner::before,
+.loading-spinner::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  animation: loader-pulse 1.5s ease-in-out infinite;
+}
+
+.loading-spinner::before {
+  width: 100%;
+  height: 100%;
+  border: var(--loader-border) solid rgba(234, 189, 131, 0.2);
+  animation-delay: 0s;
+}
+
+.loading-spinner::after {
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+  border: var(--loader-border) solid var(--secondary-gold);
+  animation-delay: 0.3s;
+}
+
+@keyframes loader-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+}
+
+/* Animation alternative pour les appareils qui préfèrent moins de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner::before,
+  .loading-spinner::after {
+    animation: loader-fade 1s ease-in-out infinite;
+  }
+
+  @keyframes loader-fade {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+}
+
+/* === CONTENEUR PRINCIPAL === */
+#root {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--primary-blue-dark) 0%,
+    var(--primary-blue) 50%,
+    var(--primary-blue-light) 100%
+  );
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  /* Transition fluide pour éviter les flashes */
+  transition: background 0.3s ease;
+}
+
+/* === TRANSITIONS DE PAGES === */
+.page-transition {
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
+  min-height: 100vh;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Éviter les flashes blancs pendant le chargement */
+.page-loading {
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
+  min-height: 100vh;
 }
 
 /* === RESET ET BASE === */

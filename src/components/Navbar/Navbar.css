@@ -219,10 +219,10 @@ body.modal-open .navbar.scrolled {
 
 /* Mega menu (2 colonnes pour Offres) */
 .nav-mega-menu {
-  min-width: 560px;
-  max-width: 600px;
+  min-width: 800px;
+  max-width: 840px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* Largeurs égales */
   gap: var(--spacing-lg);
   max-height: 80vh;
   padding: var(--spacing-lg);
@@ -232,16 +232,19 @@ body.modal-open .navbar.scrolled {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
+  width: 100%;
+  min-width: 0; /* Permet au contenu de se rétrécir si nécessaire */
+  box-sizing: border-box;
 }
 
 /* Séparateur entre les colonnes */
 .nav-mega-menu-column:first-child {
   border-right: 1px solid rgba(234, 189, 131, 0.15);
-  padding-right: var(--spacing-md);
+  padding-right: var(--spacing-lg);
 }
 
 .nav-mega-menu-column:last-child {
-  padding-left: var(--spacing-md);
+  padding-left: var(--spacing-lg);
 }
 
 .nav-submenu::-webkit-scrollbar {
@@ -290,6 +293,7 @@ body.modal-open .navbar.scrolled {
   position: relative;
   overflow: hidden;
   border: 1px solid transparent;
+  white-space: nowrap;
 }
 
 .nav-submenu-item::before {
@@ -336,6 +340,7 @@ body.modal-open .navbar.scrolled {
   margin-bottom: var(--spacing-sm);
   padding: var(--spacing-xs) var(--spacing-sm);
   border-bottom: 1px solid rgba(234, 189, 131, 0.2);
+  white-space: nowrap;
 }
 
 .nav-submenu-sublist {

@@ -1,58 +1,52 @@
 /* === PAGE CONTACT === */
 .contact {
   min-height: 100vh;
-  padding: var(--spacing-xl);
   background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
+  padding-top: var(--navbar-height);
 }
 
-.contact-container {
+/* Assurer que le ContactForm est dans le bon container */
+.contact .contact-form {
   max-width: 1200px;
   margin: 0 auto;
-  text-align: center;
-  color: var(--text-light);
+  padding: var(--spacing-xxl) var(--spacing-xl);
 }
 
-.contact-container h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  margin-bottom: var(--spacing-lg);
-  color: var(--secondary-gold);
-}
-
-.contact-container p {
-  font-size: 1.2rem;
-  opacity: 0.8;
-}
-
-/* === ÉTAT DE CHARGEMENT === */
-.contact-loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
-}
-
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(234, 189, 131, 0.3);
-  border-top: 3px solid var(--secondary-gold);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
+/* Animations pour les notifications locales */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
   }
-  100% {
-    transform: rotate(360deg);
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
   }
 }
 
 /* === RESPONSIVE === */
-@media (max-width: 768px) {
-  .contact {
-    padding: var(--spacing-lg);
+
+/* Tablette */
+@media screen and (max-width: 1024px) {
+  .contact .contact-form {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .contact .contact-form {
+    padding: var(--spacing-lg) var(--spacing-md);
   }
 }

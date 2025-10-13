@@ -74,17 +74,17 @@ const Navbar = () => {
         {
           label: 'Langues',
           submenu: [
-            { label: 'Enfants & ados', path: '/offres/langues/enfants-ados' },
-            { label: 'Adultes et professionnels', path: '/offres/langues/adultes' },
-            { label: 'Entreprises', path: '/offres/langues/entreprises' },
+            { label: 'Enfants & ados', path: '/offres/langues?tab=enfants-ados' },
+            { label: 'Adultes & professionnels', path: '/offres/langues?tab=adultes' },
+            { label: 'Entreprises', path: '/offres/langues?tab=entreprises' },
           ],
         },
         {
           label: 'Soutien scolaire',
           submenu: [
-            { label: 'Primaire', path: '/offres/soutien-scolaire/primaire' },
-            { label: 'Collège', path: '/offres/soutien-scolaire/college' },
-            { label: 'Lycée', path: '/offres/soutien-scolaire/lycee' },
+            { label: 'Primaire', path: '/offres/soutien-scolaire?tab=primaire' },
+            { label: 'Collège', path: '/offres/soutien-scolaire?tab=college' },
+            { label: 'Lycée', path: '/offres/soutien-scolaire?tab=lycee' },
           ],
         },
       ],
@@ -93,27 +93,27 @@ const Navbar = () => {
         {
           label: 'Ateliers linguistiques',
           submenu: [
-            { label: 'Langue orale', path: '/offres/ateliers/langue-orale' },
-            { label: 'Langue écrite', path: '/offres/ateliers/langue-ecrite' },
-            { label: 'Cuisine', path: '/offres/ateliers/cuisine' },
-            { label: 'Sport', path: '/offres/ateliers/sport' },
-            { label: 'Jeux', path: '/offres/ateliers/jeux' },
-            { label: 'Cinéma', path: '/offres/ateliers/cinema' },
+            { label: 'Langue orale', path: '/offres/ateliers?tab=langue-orale' },
+            { label: 'Langue écrite', path: '/offres/ateliers?tab=langue-ecrite' },
+            { label: 'Cuisine', path: '/offres/ateliers?tab=cuisine' },
+            { label: 'Sport', path: '/offres/ateliers?tab=sport' },
+            { label: 'Jeux', path: '/offres/ateliers?tab=jeux' },
+            { label: 'Cinéma', path: '/offres/ateliers?tab=cinema' },
           ],
         },
         {
           label: 'Examens',
           submenu: [
-            { label: 'Certifications', path: '/offres/examens/certifications' },
-            { label: 'Naturalisation', path: '/offres/examens/naturalisation' },
+            { label: 'Certifications', path: '/offres/examens?tab=certifications' },
+            { label: 'Naturalisation', path: '/offres/examens?tab=naturalisation' },
           ],
         },
         {
           label: 'Accompagnements complémentaires',
           submenu: [
-            { label: 'Administratif', path: '/offres/accompagnements/administratif' },
-            { label: 'Scolarité', path: '/offres/accompagnements/scolarite' },
-            { label: 'Traduction', path: '/offres/accompagnements/traduction' },
+            { label: 'Administratif', path: '/offres/accompagnements?tab=administratif' },
+            { label: 'Scolarité', path: '/offres/accompagnements?tab=scolarite' },
+            { label: 'Traduction', path: '/offres/accompagnements?tab=traduction' },
           ],
         },
       ],
@@ -123,10 +123,10 @@ const Navbar = () => {
 
   const methodeSubmenu = useMemo(
     () => [
-      { label: 'Approche actionnelle', path: '/methode/approche' },
-      { label: 'Niveaux & parcours', path: '/methode/niveaux' },
-      { label: 'Outils & ressources', path: '/methode/outils' },
-      { label: 'Tests de niveau', path: '/methode/tests' },
+      { label: 'Approche actionnelle', path: '/methode/approche-actionnelle' },
+      { label: 'Niveaux & parcours', path: '/methode/niveaux-parcours' },
+      { label: 'Outils & ressources', path: '/methode/outils-ressources' },
+      { label: 'Tests de niveau', path: '/methode/tests-niveau' },
     ],
     []
   );
@@ -305,6 +305,15 @@ const Navbar = () => {
     if (location.pathname === '/login' && !user) {
       setNavigationState({ activeLinkIndex: -1, underlineStyle: { opacity: 0 } });
       return;
+    }
+
+    // Détecter les sous-pages pour les routes principales
+    if (currentIndex === -1) {
+      if (location.pathname.startsWith('/offres/')) {
+        currentIndex = navLinks.findIndex(link => link.path === '/offres');
+      } else if (location.pathname.startsWith('/methode/')) {
+        currentIndex = navLinks.findIndex(link => link.path === '/methode');
+      }
     }
 
     const newIndex = currentIndex !== -1 ? currentIndex : 0;

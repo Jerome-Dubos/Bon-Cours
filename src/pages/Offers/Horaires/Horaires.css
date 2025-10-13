@@ -1,0 +1,39 @@
+/* === PAGE HORAIRES === */
+.horaires {
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* === WRAPPER POUR LE COMPOSANT SCHEDULE === */
+.horaires-wrapper {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Le composant ScheduleSection gère son propre fond et espacement */
+.horaires-wrapper .schedule-section {
+  min-height: 100vh;
+  padding-top: calc(var(--navbar-height) + 60px);
+}
+
+/* === ÉTAT DE CHARGEMENT === */
+.horaires-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .horaires-wrapper .schedule-section {
+    padding-top: calc(var(--navbar-height) + 40px);
+  }
+}
+
+@media (max-width: 600px) {
+  .horaires-wrapper .schedule-section {
+    padding-top: calc(var(--navbar-height) + 30px);
+  }
+}

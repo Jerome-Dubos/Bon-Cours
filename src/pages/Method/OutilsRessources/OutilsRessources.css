@@ -1,0 +1,89 @@
+/* === PAGE OUTILS & RESSOURCES === */
+.outils-ressources {
+  min-height: 100vh;
+  padding: var(--navbar-height) var(--spacing-xl) var(--spacing-xl);
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
+}
+
+.outils-ressources-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.outils-ressources-container h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: var(--spacing-lg);
+  color: var(--secondary-gold);
+}
+
+.outils-ressources-intro {
+  margin-bottom: var(--spacing-xl);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(234, 189, 131, 0.15);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.outils-ressources-intro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(234, 189, 131, 0.3), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.outils-ressources-intro:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: rgba(234, 189, 131, 0.3);
+}
+
+.outils-ressources-intro:hover::before {
+  opacity: 1;
+}
+
+.outils-ressources-intro p {
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--text-light);
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* === ÉTAT DE CHARGEMENT === */
+.outils-ressources-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
+}
+
+/* Le loader utilise maintenant les styles globaux */
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .outils-ressources {
+    padding: var(--spacing-lg);
+  }
+
+  .outils-ressources-intro {
+    padding: var(--spacing-lg);
+  }
+
+  .outils-ressources-intro p {
+    font-size: var(--text-base);
+  }
+}

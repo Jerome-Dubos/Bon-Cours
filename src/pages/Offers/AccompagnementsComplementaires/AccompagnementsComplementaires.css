@@ -1,30 +1,37 @@
-/* === PAGE OFFERS === */
-.offers {
+/* === PAGE ACCOMPAGNEMENTS COMPLÉMENTAIRES === */
+.accompagnements-complementaires {
   min-height: 100vh;
-  padding: var(--spacing-xl);
+  padding: var(--navbar-height) var(--spacing-xl) var(--spacing-xl);
   background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
 }
 
-.offers-container {
+.accompagnements-complementaires-container {
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
   color: var(--text-light);
 }
 
-.offers-container h1 {
+.accompagnements-complementaires-container h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: var(--spacing-lg);
   color: var(--secondary-gold);
 }
 
-.offers-container p {
-  font-size: 1.2rem;
-  opacity: 0.8;
+.intro-text {
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xl);
+  color: var(--text-light);
+  opacity: 0.9;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* === ÉTAT DE CHARGEMENT === */
-.offers-loading {
+.accompagnements-complementaires-loading {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,23 +39,7 @@
   background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
 }
 
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(234, 189, 131, 0.3);
-  border-top: 3px solid var(--secondary-gold);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+/* Le loader utilise maintenant les styles globaux */
 
 /* === SYSTÈME D'ONGLETS === */
 .tabs-container {
@@ -135,7 +126,12 @@
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
-  .offers {
+  .accompagnements-complementaires {
     padding: var(--spacing-lg);
+  }
+
+  .intro-text {
+    font-size: var(--text-base);
+    margin-bottom: var(--spacing-lg);
   }
 }

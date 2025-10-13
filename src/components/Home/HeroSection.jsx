@@ -14,10 +14,11 @@ import {
   FaUsers,
 } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import heroBackground from '../../assets/images/BG-HeroSection.webp';
 import { Button } from '../UI/Buttons';
 import { OptimizedImage } from '../UI/OptimizedImage';
 import './HeroSection.css';
+// Image de fond maintenant dans public/assets
+const heroBackground = '/assets/images/BG-HeroSection.webp';
 
 const HeroSection = () => {
   // const { t } = useTranslation(); // Désactivé pour utiliser les textes en dur

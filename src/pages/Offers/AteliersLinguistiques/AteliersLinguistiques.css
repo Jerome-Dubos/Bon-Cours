@@ -1,0 +1,409 @@
+/* === PAGE ATELIERS LINGUISTIQUES === */
+.ateliers-linguistiques {
+  min-height: 100vh;
+  padding: var(--navbar-height) var(--spacing-xl) var(--spacing-xl);
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
+}
+
+.ateliers-linguistiques-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.ateliers-linguistiques-container h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: var(--spacing-lg);
+  color: var(--secondary-gold);
+}
+
+.intro-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.ateliers-linguistiques-container .intro-text {
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xl);
+  color: var(--text-light);
+  opacity: 0.9;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.price-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(234, 189, 131, 0.2);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  max-width: 400px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.price-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(234, 189, 131, 0.3), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.price-card:hover::before {
+  opacity: 1;
+}
+
+.price-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.price-content {
+  flex: 1;
+}
+
+.price-label {
+  font-size: var(--text-sm);
+  color: var(--text-light);
+  opacity: 0.8;
+  margin: 0 0 var(--spacing-xs) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.price-value {
+  font-size: var(--text-2xl);
+  color: var(--secondary-gold);
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ateliers-linguistiques-container p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* === ÉTAT DE CHARGEMENT === */
+.ateliers-linguistiques-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
+}
+
+/* Le loader utilise maintenant les styles globaux */
+
+/* === SYSTÈME D'ONGLETS === */
+.tabs-container {
+  margin-top: var(--spacing-xl);
+  text-align: left;
+}
+
+/* === CONTENU DES ATELIERS === */
+.atelier-content {
+  text-align: left;
+}
+
+.atelier-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(234, 189, 131, 0.2);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.atelier-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(234, 189, 131, 0.3), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.atelier-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: rgba(234, 189, 131, 0.4);
+}
+
+.atelier-card:hover::before {
+  opacity: 1;
+}
+
+.atelier-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(145deg, rgba(234, 189, 131, 0.1) 0%, rgba(234, 189, 131, 0.05) 100%);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(234, 189, 131, 0.2);
+}
+
+.atelier-info {
+  flex: 1;
+}
+
+.atelier-info h3 {
+  color: var(--secondary-gold);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.atelier-description {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-light);
+  opacity: 0.9;
+}
+
+.atelier-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.feature-tag {
+  background: linear-gradient(135deg, rgba(234, 189, 131, 0.2) 0%, rgba(234, 189, 131, 0.1) 100%);
+  color: var(--secondary-gold);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(234, 189, 131, 0.3);
+  transition: all var(--transition-normal);
+}
+
+.feature-tag:hover {
+  background: linear-gradient(135deg, rgba(234, 189, 131, 0.3) 0%, rgba(234, 189, 131, 0.2) 100%);
+  transform: translateY(-1px);
+}
+
+/* === CTA SECTION === */
+.cta-section {
+  margin-top: var(--spacing-xl);
+  text-align: center;
+}
+
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--secondary-gold-light) 100%);
+  color: var(--primary-blue-dark);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  text-decoration: none;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 4px 15px rgba(234, 189, 131, 0.3);
+  transition: all var(--transition-normal);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--transition-normal);
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 189, 131, 0.4);
+  border-color: var(--secondary-gold);
+  color: var(--primary-blue-dark);
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+.cta-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(234, 189, 131, 0.3);
+}
+
+.tabs-header {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 2px solid rgba(234, 189, 131, 0.2);
+  padding-bottom: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  background: transparent;
+  border: 2px solid transparent;
+  color: var(--text-light);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  opacity: 1;
+  background: rgba(234, 189, 131, 0.1);
+  border-color: rgba(234, 189, 131, 0.3);
+}
+
+.tab-button.active {
+  background: var(--secondary-gold);
+  color: var(--primary-blue-dark);
+  opacity: 1;
+  border-color: var(--secondary-gold);
+  font-weight: 600;
+}
+
+.tab-button.active:hover {
+  background: var(--secondary-gold);
+  color: var(--primary-blue-dark);
+  opacity: 1;
+  border-color: var(--secondary-gold);
+  font-weight: 600;
+  transform: none;
+}
+
+.tab-content {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(234, 189, 131, 0.2);
+}
+
+.tab-content h2 {
+  color: var(--secondary-gold);
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.tab-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tabs-header {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .tab-button {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .ateliers-linguistiques {
+    padding: var(--spacing-lg);
+  }
+
+  .ateliers-linguistiques-container .intro-text {
+    font-size: var(--text-base);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .price-info p {
+    font-size: var(--text-base);
+  }
+
+  .price-highlight {
+    font-size: var(--text-lg);
+  }
+
+  .atelier-description {
+    font-size: var(--text-base);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .cta-button {
+    font-size: var(--text-base);
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+
+  .price-card {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-md);
+  }
+
+  .price-icon {
+    font-size: 2rem;
+  }
+
+  .price-value {
+    font-size: var(--text-xl);
+  }
+
+  .atelier-card {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-md);
+  }
+
+  .atelier-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    margin: 0 auto;
+  }
+
+  .atelier-info h3 {
+    text-align: center;
+  }
+
+  .atelier-description {
+    text-align: center;
+  }
+
+  .atelier-features {
+    justify-content: center;
+  }
+}
