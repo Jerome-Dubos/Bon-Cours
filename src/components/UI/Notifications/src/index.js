@@ -4,20 +4,11 @@ export { default as Notification } from './components/Notifications';
 // Export de la bibliothèque complète
 export { default as NotificationLibraries } from './components/NotificationsLibrarie';
 
-// Exports individuels des notifications prédéfinies
+// Exports individuels des notifications essentielles uniquement
 export {
-  AchievementNotification,
-  ActionNotification,
-  AutoCloseNotification,
-  BannerNotification,
-  CompactNotification,
   ErrorNotification,
   InfoNotification,
-  InlineNotification,
-  LargeNotification,
-  PersistentNotification,
   SuccessNotification,
-  ToastNotification,
   WarningNotification,
 } from './components/NotificationsLibrarie';
 

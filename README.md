@@ -4,7 +4,7 @@
 
 Créé avec soin par **Dubos Web Services** (https://www.duboswebservices.fr)
 
-![Logo Dubos Web Services](public/images/logo.png)
+![Logo Institut Bon Cours](public/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg)
 
 ---
 
@@ -56,4 +56,5 @@ Un backend Express minimal est créé si demandé, dans `backend/`.
 ---
 
 **Merci d’utiliser ce générateur de projets React moderne.**
+
 # Bon-Cours

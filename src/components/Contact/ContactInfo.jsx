@@ -8,12 +8,12 @@ import {
   FaMapMarkerAlt,
   FaTrain,
 } from 'react-icons/fa';
+import { SuccessNotification } from '../UI/Notifications';
 import './ContactInfo.css';
 
 const ContactInfo = () => {
-  const [showNotification, setShowNotification] = useState(false);
-  const [notificationMessage, setNotificationMessage] = useState('');
-  const [isHiding, setIsHiding] = useState(false);
+  const [successNotifications, setSuccessNotifications] = useState([]);
+  const [nextNotificationId, setNextNotificationId] = useState(1);
 
   const horaires = [
     { jour: 'Lundi', heures: '9h - 19h' },
@@ -47,41 +47,34 @@ const ContactInfo = () => {
     }
   };
 
-  const showLocalNotification = message => {
-    setNotificationMessage(message);
-    setShowNotification(true);
-    setIsHiding(false);
+  // Fonction pour ajouter une notification
+  const addNotification = message => {
+    const newNotification = {
+      id: nextNotificationId,
+      message,
+    };
+    setSuccessNotifications(prev => [...prev, newNotification]);
+    setNextNotificationId(prev => prev + 1);
+  };
 
-    // Commencer l'animation de disparition après 2.5 secondes
-    setTimeout(() => {
-      setIsHiding(true);
-      // Supprimer complètement après l'animation
-      setTimeout(() => {
-        setShowNotification(false);
-        setIsHiding(false);
-      }, 300);
-    }, 2500);
+  // Fonction pour supprimer une notification
+  const removeSuccessNotification = id => {
+    setSuccessNotifications(prev => prev.filter(n => n.id !== id));
   };
 
   const handleCopyAddress = () => {
     copyToClipboard(contactInfo.adresse);
-    showLocalNotification('Adresse copiée !');
+    addNotification('Adresse copiée !');
   };
 
   const handleCopyHours = () => {
     const hoursText = horaires.map(h => `${h.jour}: ${h.heures}`).join('\n');
     copyToClipboard(hoursText);
-    showLocalNotification('Horaires copiés !');
+    addNotification('Horaires copiés !');
   };
 
   return (
     <div className='contact-info-container'>
-      {/* Notification locale discrète */}
-      {showNotification && (
-        <div className={`contact-notification-toast ${isHiding ? 'hiding' : ''}`}>
-          {notificationMessage}
-        </div>
-      )}
       <div className='contact-info-content'>
         <div className='contact-hero-section'>
           <div className='contact-hero-header'>
@@ -210,6 +203,17 @@ const ContactInfo = () => {
           </div>
         </div>
       </div>
+
+      {/* Notifications centralisées */}
+      {successNotifications.length > 0 && (
+        <SuccessNotification
+          notifications={successNotifications}
+          onRemove={removeSuccessNotification}
+          autoClose={true}
+          autoCloseDelay={3000}
+          showCloseButton={false}
+        />
+      )}
     </div>
   );
 };

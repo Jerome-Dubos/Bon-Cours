@@ -35,7 +35,7 @@
   height: 100%;
   border-radius: 50%;
   border: var(--loader-border) solid transparent;
-  border-top: var(--loader-border) solid var(--secondary-gold);
+  border-top: var(--loader-border) solid var(--secondary-peach);
   animation: spin 1s linear infinite;
 }
 
@@ -400,7 +400,7 @@
 }
 
 .loader--minimal .loader__outer {
-  border-top-color: var(--secondary-gold);
+  border-top-color: var(--secondary-peach);
   border-right-color: transparent;
   border-bottom-color: transparent;
   border-left-color: transparent;
@@ -511,7 +511,7 @@
 .loader--dots .loader__dot {
   width: 8px;
   height: 8px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   border-radius: 50%;
   animation: dotBounce 1.4s ease-in-out infinite both;
 }
@@ -583,7 +583,7 @@
 .loader--wave .loader__bar {
   width: 3px;
   height: 20px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   border-radius: 2px;
   animation: wave 1.2s ease-in-out infinite;
 }
@@ -623,8 +623,8 @@
 .loader-page {
   width: 40px;
   height: 40px;
-  border: 3px solid rgba(234, 189, 131, 0.3);
-  border-top: 3px solid var(--secondary-gold);
+  border: 3px solid rgba(255, 214, 176, 0.3);
+  border-top: 3px solid var(--secondary-peach);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -634,7 +634,7 @@
   width: 40px;
   height: 40px;
   border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top: 3px solid var(--secondary-gold);
+  border-top: 3px solid var(--secondary-peach);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -643,8 +643,8 @@
 .loader-section {
   width: 50px;
   height: 50px;
-  border: 4px solid rgba(234, 189, 131, 0.2);
-  border-top: 4px solid var(--secondary-gold);
+  border: 4px solid rgba(255, 214, 176, 0.2);
+  border-top: 4px solid var(--secondary-peach);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -686,7 +686,7 @@
 .loader-pulse {
   width: 40px;
   height: 40px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   border-radius: 50%;
   animation: pulse-scale 1.5s ease-in-out infinite;
 }
@@ -735,7 +735,7 @@
 .loader-bounce__dot {
   width: 8px;
   height: 8px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   border-radius: 50%;
   animation: bounce-dot 1.4s ease-in-out infinite both;
 }
@@ -830,7 +830,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  border: 2px solid var(--secondary-gold);
+  border: 2px solid var(--secondary-peach);
   border-radius: 50%;
   animation: ripple 1.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
@@ -861,7 +861,7 @@
 .loader-squares__square {
   width: 8px;
   height: 8px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   animation: squares-bounce 1.2s ease-in-out infinite;
 }
 
@@ -920,7 +920,7 @@
   position: absolute;
   width: 12px;
   height: 12px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   animation: rotating-squares 2s linear infinite;
 }
 
@@ -971,7 +971,7 @@
 .loader-hearts__heart {
   width: 12px;
   height: 12px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   transform: rotate(45deg);
   animation: hearts-beat 1.2s ease-in-out infinite;
 }
@@ -982,7 +982,7 @@
   position: absolute;
   width: 12px;
   height: 12px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   border-radius: 50%;
 }
 
@@ -1048,7 +1048,7 @@
   position: absolute;
   width: 20px;
   height: 20px;
-  border: 3px solid var(--secondary-gold);
+  border: 3px solid var(--secondary-peach);
   border-radius: 50%;
   animation: gears-rotate 1s linear infinite;
 }
@@ -1060,7 +1060,7 @@
   left: 50%;
   width: 8px;
   height: 8px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
@@ -1119,7 +1119,7 @@
   position: absolute;
   width: 4px;
   height: 40px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   border-radius: 2px;
   animation: dna-rotate 2s linear infinite;
 }
@@ -1176,7 +1176,7 @@
   position: absolute;
   width: 8px;
   height: 8px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   border-radius: 50%;
   animation: orbit 2s linear infinite;
 }
@@ -1202,7 +1202,7 @@
 .loader-morphing {
   width: 40px;
   height: 40px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   animation: morphing 2s ease-in-out infinite;
 }
 
@@ -1252,7 +1252,7 @@
   position: relative;
   width: 40px;
   height: 40px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   border-radius: 4px;
   animation: glitch 0.3s infinite;
 }
@@ -1286,7 +1286,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   border-radius: 4px;
 }
 
@@ -1373,11 +1373,11 @@
   width: 100%;
   height: 100%;
   border: 2px solid transparent;
-  border-top: 2px solid var(--secondary-gold);
+  border-top: 2px solid var(--secondary-peach);
   border-radius: 50%;
   animation: neon-spin 1s linear infinite;
-  filter: drop-shadow(0 0 5px var(--secondary-gold)) drop-shadow(0 0 10px var(--secondary-gold))
-    drop-shadow(0 0 15px var(--secondary-gold));
+  filter: drop-shadow(0 0 5px var(--secondary-peach)) drop-shadow(0 0 10px var(--secondary-peach))
+    drop-shadow(0 0 15px var(--secondary-peach));
 }
 
 /* === NEON AVEC TAILLES === */
@@ -1414,7 +1414,7 @@
 .loader-minimalist {
   width: 160px;
   height: 2px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   position: relative;
   animation: minimalist-load 2s ease-in-out infinite;
 }
@@ -1446,7 +1446,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  background: var(--secondary-gold-light);
+  background: var(--secondary-peach-light);
   animation: minimalist-progress 2s ease-in-out infinite;
 }
 
@@ -1504,7 +1504,7 @@
   position: absolute;
   width: 4px;
   height: 4px;
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   border-radius: 50%;
   animation: particle-float 2s ease-in-out infinite;
 }

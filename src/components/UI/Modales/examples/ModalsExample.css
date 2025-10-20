@@ -94,9 +94,9 @@
 }
 
 .button-group .btn-secondary:hover {
-  background-color: var(--secondary-gold-dark, #d4a76a);
+  background-color: var(--primary-blue, #d4a76a);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(234, 189, 131, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 214, 176, 0.3);
 }
 
 .button-group .btn-outline {
@@ -160,7 +160,7 @@
 /* Focus state */
 .button-group .btn:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(234, 189, 131, 0.3);
+  box-shadow: 0 0 0 3px rgba(255, 214, 176, 0.3);
 }
 
 /* Contenu des modales */
@@ -276,7 +276,7 @@
 
 .custom-widget {
   padding: 20px;
-  background-color: rgba(234, 189, 131, 0.1);
+  background-color: rgba(255, 214, 176, 0.1);
   border-radius: 8px;
   border-left: 4px solid var(--secondary-gold, #eabd83);
 }
@@ -291,41 +291,41 @@
   color: var(--text-dark, #2a364e);
 }
 
-/* ===== CONTENU DE NOTIFICATION ===== */
+/* ===== CONTENU DE NOTIFICATION (exemple modal) ===== */
 
-.notification-content {
+.modal-notification-content {
   padding: var(--spacing-lg);
 }
 
-.notification-content h3 {
-  color: var(--secondary-gold);
+.modal-notification-content h3 {
+  color: var(--secondary-peach);
   margin-bottom: var(--spacing-md);
 }
 
-.notification-content p {
+.modal-notification-content p {
   color: var(--text-light);
   line-height: 1.6;
   margin-bottom: var(--spacing-lg);
 }
 
-.notification-info {
-  background: rgba(234, 189, 131, 0.1);
+.modal-notification-info {
+  background: rgba(255, 214, 176, 0.1);
   padding: var(--spacing-lg);
   border-radius: var(--border-radius-md);
-  border-left: 4px solid var(--secondary-gold);
+  border-left: 4px solid var(--secondary-peach);
 }
 
-.notification-info h4 {
-  color: var(--secondary-gold);
+.modal-notification-info h4 {
+  color: var(--secondary-peach);
   margin-bottom: var(--spacing-sm);
 }
 
-.notification-info ul {
+.modal-notification-info ul {
   list-style: none;
   padding: 0;
 }
 
-.notification-info li {
+.modal-notification-info li {
   color: var(--text-light);
   margin-bottom: var(--spacing-xs);
   padding-left: var(--spacing-sm);

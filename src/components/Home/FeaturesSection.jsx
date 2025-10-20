@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-// import { useTranslation } from 'react-i18next'; // Désactivé pour utiliser les textes en dur
-import { FaBook, FaBullseye, FaGlobe, FaGraduationCap, FaTrophy } from 'react-icons/fa';
+import { FaBook, FaBullseye, FaGraduationCap, FaTrophy } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../UI/Buttons';
+import LanguageCarousel from '../UI/LanguageCarousel';
 import './FeaturesSection.css';
 
 const FeaturesSection = () => {
-  // const { t } = useTranslation(); // Désactivé pour utiliser les textes en dur
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -28,35 +27,65 @@ const FeaturesSection = () => {
     };
   }, []);
 
+  // Configuration des langues pour le carousel
   const languages = useMemo(
     () => [
-      { code: 'fr', name: 'Français', flag: '🇫🇷' },
-      { code: 'en', name: 'Anglais', flag: '🇬🇧' },
-      { code: 'de', name: 'Allemand', flag: '🇩🇪' },
-      { code: 'es', name: 'Espagnol', flag: '🇪🇸' },
-      { code: 'tr', name: 'Turc', flag: '🇹🇷' },
-      { code: 'ar', name: 'Arabe', flag: '🇸🇦' },
-      { code: 'other', name: 'Autres langues', icon: <FaGlobe /> },
-      { code: 'school', name: 'Soutien scolaire', icon: <FaGraduationCap /> },
+      {
+        id: 'french',
+        name: 'Français',
+        flag: '/assets/images/flags/france.webp',
+        alt: 'Drapeau français',
+      },
+      {
+        id: 'english',
+        name: 'Anglais',
+        flag: '/assets/images/flags/royaume-uni.webp',
+        alt: 'Drapeau britannique',
+      },
+      {
+        id: 'german',
+        name: 'Allemand',
+        flag: '/assets/images/flags/allemagne.webp',
+        alt: 'Drapeau allemand',
+      },
+      {
+        id: 'spanish',
+        name: 'Espagnol',
+        flag: '/assets/images/flags/espagne.webp',
+        alt: 'Drapeau espagnol',
+      },
+      {
+        id: 'portuguese',
+        name: 'Portugais',
+        flag: '/assets/images/flags/le-portugal.webp',
+        alt: 'Drapeau portugais',
+      },
+      {
+        id: 'italian',
+        name: 'Italien',
+        flag: '/assets/images/flags/italie.webp',
+        alt: 'Drapeau italien',
+      },
+      {
+        id: 'turkish',
+        name: 'Turc',
+        flag: '/assets/images/flags/turquie.webp',
+        alt: 'Drapeau turc',
+      },
+      {
+        id: 'arabic',
+        name: 'Arabe',
+        flag: '/assets/images/flags/arabie-saoudite.webp',
+        alt: 'Drapeau arabe',
+      },
     ],
     []
   );
 
   const handleLanguageClick = useCallback(
-    languageCode => {
-      if (languageCode === 'school') {
-        // Naviguer vers l'onglet enfants
-        navigate('/courses');
-        // Optionnel: ajouter un paramètre URL pour ouvrir directement l'onglet enfants
-        setTimeout(() => {
-          const childrenButton = document.querySelector('[data-filter="child"]');
-          if (childrenButton) {
-            childrenButton.click();
-          }
-        }, 100);
-      } else {
-        navigate('/courses');
-      }
+    language => {
+      // Navigation vers la page des cours avec la langue sélectionnée
+      navigate(`/offres/langues?langue=${language.id}`);
     },
     [navigate]
   );
@@ -68,23 +97,6 @@ const FeaturesSection = () => {
   const handleContactClick = useCallback(() => {
     navigate('/contact');
   }, [navigate]);
-
-  const renderLanguageIcons = useCallback(
-    (suffix = '') => {
-      return languages.map(language => (
-        <button
-          key={`${language.code}${suffix}`}
-          className='language-icon'
-          onClick={() => handleLanguageClick(language.code)}
-          title={language.name}
-          type='button'
-        >
-          {language.flag || language.icon}
-        </button>
-      ));
-    },
-    [languages, handleLanguageClick]
-  );
 
   return (
     <section className='features-section'>
@@ -98,16 +110,14 @@ const FeaturesSection = () => {
             </p>
           </div>
 
-          <div className='languages-grid'>
-            {isMobile ? (
-              <div className='languages-scroll-container'>
-                {renderLanguageIcons('-1')}
-                {renderLanguageIcons('-2')}
-              </div>
-            ) : (
-              renderLanguageIcons()
-            )}
-          </div>
+          <LanguageCarousel
+            languages={languages}
+            speed={isMobile ? 30 : 40}
+            direction='left'
+            pauseOnHover={true}
+            onLanguageClick={handleLanguageClick}
+            className='features-language-carousel'
+          />
         </div>
 
         {/* Section École */}
@@ -161,7 +171,7 @@ const FeaturesSection = () => {
             <PrimaryButton
               size='large'
               onClick={handleContactClick}
-              className='action-button test-button'
+              className='action-button contact-button'
             >
               Être contacté
             </PrimaryButton>

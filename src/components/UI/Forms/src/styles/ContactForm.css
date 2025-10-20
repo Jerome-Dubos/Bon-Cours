@@ -91,7 +91,7 @@
 
 .contact-icon {
   font-size: var(--text-base);
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
 }
 
 /* Inputs et textarea */
@@ -154,7 +154,7 @@
 
 .contact-phone-code {
   font-weight: 600;
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
 }
 
 .contact-phone-chevron {
@@ -200,7 +200,7 @@
 }
 
 .contact-phone-option:hover {
-  background: rgba(234, 189, 131, 0.1);
+  background: rgba(255, 214, 176, 0.1);
 }
 
 .contact-phone-option-flag {
@@ -210,7 +210,7 @@
 
 .contact-phone-option-code {
   font-weight: 600;
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   min-width: 45px;
 }
 
@@ -236,8 +236,8 @@
 .contact-input:focus,
 .contact-textarea:focus {
   background: rgba(255, 255, 255, 0.12);
-  border-color: var(--secondary-gold);
-  box-shadow: 0 0 0 3px rgba(234, 189, 131, 0.1);
+  border-color: var(--secondary-peach);
+  box-shadow: 0 0 0 3px rgba(255, 214, 176, 0.1);
 }
 
 .contact-input:hover,
@@ -313,8 +313,8 @@
 }
 
 .contact-radio-option.contact-selected {
-  background: rgba(234, 189, 131, 0.15);
-  border-color: var(--secondary-gold);
+  background: rgba(255, 214, 176, 0.15);
+  border-color: var(--secondary-peach);
 }
 
 .contact-radio {
@@ -334,7 +334,7 @@
 
 .contact-radio-icon {
   font-size: var(--text-lg);
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   margin-bottom: var(--spacing-xs);
 }
 
@@ -362,7 +362,7 @@
   justify-content: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-md) var(--spacing-xl);
-  background: linear-gradient(135deg, var(--secondary-gold-dark) 0%, var(--secondary-gold) 100%);
+  background: var(--gradient-button-primary);
   color: var(--text-dark);
   font-size: var(--text-base);
   font-weight: 600;
@@ -375,7 +375,7 @@
 
 .contact-submit-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(234, 189, 131, 0.4);
+  box-shadow: 0 4px 12px rgba(255, 214, 176, 0.4);
 }
 
 .contact-submit-button:active:not(:disabled) {

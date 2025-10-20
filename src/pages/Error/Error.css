@@ -41,7 +41,7 @@
 /* === ICÔNE D'ERREUR === */
 .error-icon {
   font-size: 4rem;
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   margin-bottom: var(--spacing-lg);
   display: inline-block;
 }
@@ -105,14 +105,14 @@
 }
 
 .error-button-primary {
-  background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--secondary-gold-light) 100%);
+  background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--secondary-peach-light) 100%);
   color: var(--primary-blue-dark);
-  box-shadow: 0 4px 12px rgba(234, 189, 131, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 214, 176, 0.3);
 }
 
 .error-button-primary:hover {
-  background: linear-gradient(135deg, var(--secondary-gold-light) 0%, var(--secondary-gold) 100%);
-  box-shadow: 0 6px 16px rgba(234, 189, 131, 0.4);
+  background: linear-gradient(135deg, var(--secondary-peach-light) 0%, var(--secondary-peach) 100%);
+  box-shadow: 0 6px 16px rgba(255, 214, 176, 0.4);
   transform: translateY(-2px);
 }
 
@@ -154,7 +154,7 @@
 .decoration {
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--secondary-gold-light) 100%);
+  background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--secondary-peach-light) 100%);
   opacity: 0.1;
   animation: float 6s ease-in-out infinite;
 }

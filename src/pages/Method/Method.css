@@ -15,7 +15,7 @@
 .method-container h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: var(--spacing-xl);
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
 }
 
 .method-content {
@@ -30,7 +30,7 @@
 .method-objective {
   margin-bottom: var(--spacing-xl);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-  border: 1px solid rgba(234, 189, 131, 0.15);
+  border: 1px solid rgba(255, 214, 176, 0.15);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   backdrop-filter: blur(10px);
@@ -50,7 +50,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(234, 189, 131, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 214, 176, 0.3), transparent);
   opacity: 0;
   transition: opacity var(--transition-normal);
 }
@@ -68,14 +68,14 @@
 .method-objective:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  border-color: rgba(234, 189, 131, 0.3);
+  border-color: rgba(255, 214, 176, 0.3);
 }
 
 .method-intro h2,
 .method-concrete h2,
 .method-activities h2,
 .method-objective h2 {
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   font-size: var(--text-xl);
   font-weight: 600;
   margin-bottom: var(--spacing-md);

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Tabs from '../../../components/Tabs/Tabs';
+import LanguageCarousel from '../../../components/UI/LanguageCarousel';
 import { useErrorHandler, usePerformance } from '../../../hooks';
 import { useTabNavigation } from '../../../hooks/useTabNavigation';
 import './Langues.css';
@@ -70,7 +71,7 @@ const Langues = () => {
     },
     {
       id: 'adultes',
-      label: 'Adultes & professionnels',
+      label: 'Adultes',
       content: (
         <div className='adultes-content'>
           <p className='intro-text'>
@@ -115,28 +116,6 @@ const Langues = () => {
         </div>
       ),
       title: 'Formation pour Adultes',
-    },
-    {
-      id: 'entreprises',
-      label: 'Entreprises',
-      content: (
-        <div className='entreprises-content'>
-          <div className='entreprises-intro'>
-            <p className='intro-text'>
-              Besoin de former vos salariés à la langue de vos partenaires ou clients ? L'ensemble
-              de nos offres sont disponibles pour les entreprises, dans nos locaux ou dans votre
-              structure. Contactez-nous pour nous faire part de vos besoins et pour demander un
-              devis.
-            </p>
-          </div>
-          <div className='cta-section'>
-            <Link to='/contact' className='cta-button'>
-              Demander un devis
-            </Link>
-          </div>
-        </div>
-      ),
-      title: 'Formation Entreprise',
     },
   ];
 
@@ -192,145 +171,12 @@ const Langues = () => {
         <h1>Nos cours de langues</h1>
 
         {/* Drapeaux des langues - Carousel infini */}
-        <div className='languages-flags-carousel'>
-          <div className='flags-track'>
-            {/* Première série de drapeaux */}
-            <div className='flag-item'>
-              <div className='flag-icon flag-french'>
-                <img src='/assets/images/flags/france.webp' alt='Drapeau français' />
-              </div>
-              <span>Français</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-uk'>
-                <img src='/assets/images/flags/royaume-uni.webp' alt='Drapeau britannique' />
-              </div>
-              <span>Anglais</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-german'>
-                <img src='/assets/images/flags/allemagne.webp' alt='Drapeau allemand' />
-              </div>
-              <span>Allemand</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-spanish'>
-                <img src='/assets/images/flags/espagne.webp' alt='Drapeau espagnol' />
-              </div>
-              <span>Espagnol</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-portuguese'>
-                <img src='/assets/images/flags/le-portugal.webp' alt='Drapeau portugais' />
-              </div>
-              <span>Portugais</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-italian'>
-                <img src='/assets/images/flags/italie.webp' alt='Drapeau italien' />
-              </div>
-              <span>Italien</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-turkish'>
-                <img src='/assets/images/flags/turquie.webp' alt='Drapeau turc' />
-              </div>
-              <span>Turc</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-arabic'>
-                <img src='/assets/images/flags/arabie-saoudite.webp' alt='Drapeau arabe' />
-              </div>
-              <span>Arabe</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-iranian'>
-                <img src='/assets/images/flags/liran.webp' alt='Drapeau iranien' />
-              </div>
-              <span>Persan</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-chinese'>
-                <img src='/assets/images/flags/chine.webp' alt='Drapeau chinois' />
-              </div>
-              <span>Mandarin</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-japanese'>
-                <img src='/assets/images/flags/japon.webp' alt='Drapeau japonais' />
-              </div>
-              <span>Japonais</span>
-            </div>
-
-            {/* Deuxième série de drapeaux (pour l'effet infini) */}
-            <div className='flag-item'>
-              <div className='flag-icon flag-french'>
-                <img src='/assets/images/flags/france.webp' alt='Drapeau français' />
-              </div>
-              <span>Français</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-uk'>
-                <img src='/assets/images/flags/royaume-uni.webp' alt='Drapeau britannique' />
-              </div>
-              <span>Anglais</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-german'>
-                <img src='/assets/images/flags/allemagne.webp' alt='Drapeau allemand' />
-              </div>
-              <span>Allemand</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-spanish'>
-                <img src='/assets/images/flags/espagne.webp' alt='Drapeau espagnol' />
-              </div>
-              <span>Espagnol</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-portuguese'>
-                <img src='/assets/images/flags/le-portugal.webp' alt='Drapeau portugais' />
-              </div>
-              <span>Portugais</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-italian'>
-                <img src='/assets/images/flags/italie.webp' alt='Drapeau italien' />
-              </div>
-              <span>Italien</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-turkish'>
-                <img src='/assets/images/flags/turquie.webp' alt='Drapeau turc' />
-              </div>
-              <span>Turc</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-arabic'>
-                <img src='/assets/images/flags/arabie-saoudite.webp' alt='Drapeau arabe' />
-              </div>
-              <span>Arabe</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-iranian'>
-                <img src='/assets/images/flags/liran.webp' alt='Drapeau iranien' />
-              </div>
-              <span>Persan</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-chinese'>
-                <img src='/assets/images/flags/chine.webp' alt='Drapeau chinois' />
-              </div>
-              <span>Mandarin</span>
-            </div>
-            <div className='flag-item'>
-              <div className='flag-icon flag-japanese'>
-                <img src='/assets/images/flags/japon.webp' alt='Drapeau japonais' />
-              </div>
-              <span>Japonais</span>
-            </div>
-          </div>
-        </div>
+        <LanguageCarousel
+          speed={40}
+          direction='left'
+          pauseOnHover={true}
+          className='languages-flags-carousel'
+        />
 
         {/* Texte "pour" */}
         <div className='languages-for'>

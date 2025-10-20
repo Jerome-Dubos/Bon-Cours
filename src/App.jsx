@@ -18,7 +18,6 @@ const ApprocheActionnelle = lazy(
 );
 const NiveauxParcours = lazy(() => import('./pages/Method/NiveauxParcours/NiveauxParcours'));
 const OutilsRessources = lazy(() => import('./pages/Method/OutilsRessources/OutilsRessources'));
-const TestsNiveau = lazy(() => import('./pages/Method/TestsNiveau/TestsNiveau'));
 
 // Pages Offres avec onglets
 const Langues = lazy(() => import('./pages/Offers/Langues/Langues'));
@@ -67,7 +66,6 @@ const App = () => {
             <Route path='/methode/approche-actionnelle' element={<ApprocheActionnelle />} />
             <Route path='/methode/niveaux-parcours' element={<NiveauxParcours />} />
             <Route path='/methode/outils-ressources' element={<OutilsRessources />} />
-            <Route path='/methode/tests-niveau' element={<TestsNiveau />} />
             {/* Routes Offres avec onglets */}
             <Route path='/offres/langues' element={<Langues />} />
             <Route path='/offres/soutien-scolaire' element={<SoutienScolaire />} />

@@ -1,0 +1,225 @@
+/* === COMPOSANT LANGUAGE CAROUSEL RÉUTILISABLE === */
+.language-carousel {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-lg) 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.language-carousel__container {
+  position: relative;
+  width: 100%;
+}
+
+/* Effets de dégradé sur les côtés */
+.language-carousel::before,
+.language-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.language-carousel::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    var(--primary-blue-dark) 0%,
+    var(--primary-blue-80) 20%,
+    var(--primary-blue-60) 40%,
+    var(--primary-blue-40) 60%,
+    transparent 100%
+  );
+}
+
+.language-carousel::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    var(--primary-blue-dark) 0%,
+    var(--primary-blue-80) 20%,
+    var(--primary-blue-60) 40%,
+    var(--primary-blue-40) 60%,
+    transparent 100%
+  );
+}
+
+/* Piste du carousel */
+.language-carousel__track {
+  display: flex;
+  gap: var(--spacing-md, 1rem);
+  animation: scroll var(--carousel-speed, 40s) linear infinite;
+  animation-direction: var(--carousel-direction, normal);
+  width: fit-content;
+  will-change: transform;
+}
+
+/* Animation de défilement */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Élément de langue */
+.language-carousel__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs, 0.5rem);
+  padding: var(--spacing-md, 1rem);
+  transition: all var(--transition-normal, 0.3s ease);
+  min-width: 100px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.language-carousel__item:hover {
+  cursor: default;
+  transform: translateY(-2px) scale(1.02);
+}
+
+.language-carousel__item:hover .language-carousel__flag {
+  transform: scale(1.05);
+}
+
+.language-carousel__item:hover .language-carousel__flag img {
+  transform: scale(1.08);
+  filter: brightness(1.15) saturate(1.2) contrast(1.05);
+}
+
+/* Drapeau */
+.language-carousel__flag {
+  margin-bottom: var(--spacing-xs, 0.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 68px;
+  transition: all var(--transition-normal, 0.3s ease);
+  overflow: hidden;
+}
+
+.language-carousel__flag img {
+  width: 100%;
+  height: 100%;
+  transition: all var(--transition-normal, 0.3s ease);
+  object-fit: contain;
+  display: block;
+}
+
+/* Nom de la langue */
+.language-carousel__name {
+  color: var(--text-light, #ffffff);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.3px;
+}
+
+/* Styles spécifiques pour chaque drapeau */
+.language-carousel__flag.flag-french,
+.language-carousel__flag.flag-uk,
+.language-carousel__flag.flag-german,
+.language-carousel__flag.flag-spanish,
+.language-carousel__flag.flag-portuguese,
+.language-carousel__flag.flag-italian,
+.language-carousel__flag.flag-turkish,
+.language-carousel__flag.flag-arabic,
+.language-carousel__flag.flag-iranian,
+.language-carousel__flag.flag-chinese,
+.language-carousel__flag.flag-japanese {
+  aspect-ratio: 3/2;
+}
+
+/* Variantes de thème */
+.language-carousel--light {
+  --carousel-bg: rgba(255, 255, 255, 0.1);
+  --carousel-border: rgba(0, 0, 0, 0.1);
+  --carousel-text: #333333;
+  --carousel-hover-bg: rgba(0, 0, 0, 0.05);
+}
+
+.language-carousel--dark {
+  --carousel-bg: rgba(255, 255, 255, 0.08);
+  --carousel-border: rgba(255, 214, 176, 0.15);
+  --carousel-text: #ffffff;
+  --carousel-hover-bg: rgba(255, 214, 176, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .language-carousel {
+    margin: var(--spacing-lg, 1.5rem) 0;
+  }
+
+  .language-carousel__track {
+    gap: var(--spacing-sm, 0.75rem);
+  }
+
+  .language-carousel__item {
+    min-width: 90px;
+    padding: var(--spacing-sm, 0.75rem);
+  }
+
+  .language-carousel__flag {
+    width: 80px;
+    height: 60px;
+  }
+
+  .language-carousel__name {
+    font-size: var(--text-xs, 0.75rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .language-carousel {
+    margin: var(--spacing-md, 1rem) 0;
+  }
+
+  .language-carousel__track {
+    gap: var(--spacing-xs, 0.5rem);
+  }
+
+  .language-carousel__item {
+    min-width: 80px;
+    padding: var(--spacing-xs, 0.5rem);
+  }
+
+  .language-carousel__flag {
+    width: 70px;
+    height: 53px;
+  }
+
+  .language-carousel__name {
+    font-size: var(--text-xs, 0.75rem);
+  }
+}
+
+/* Accessibilité */
+.language-carousel__item:focus-visible {
+  outline: 2px solid var(--secondary-gold, #eabd83);
+  outline-offset: 2px;
+}
+
+/* Réduction de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .language-carousel__track {
+    animation: none;
+  }
+
+  .language-carousel__item {
+    transition: none;
+  }
+
+  .language-carousel__item:hover {
+    transform: none;
+  }
+}

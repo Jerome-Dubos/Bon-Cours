@@ -779,8 +779,6 @@ export const NotificationModal = ({
               onRemove={onRemoveNotification}
               autoClose={true}
               autoCloseDelay={5000}
-              position='top-right'
-              className='notification-compact'
             />
           )}
           {notifications.some(n => n.type === 'success') && (
@@ -789,8 +787,6 @@ export const NotificationModal = ({
               onRemove={onRemoveNotification}
               autoClose={true}
               autoCloseDelay={4000}
-              position='top-right'
-              className='notification-compact'
             />
           )}
           {notifications.some(n => n.type === 'warning') && (
@@ -799,8 +795,6 @@ export const NotificationModal = ({
               onRemove={onRemoveNotification}
               autoClose={true}
               autoCloseDelay={5000}
-              position='top-right'
-              className='notification-compact'
             />
           )}
           {notifications.some(n => n.type === 'info') && (
@@ -809,8 +803,6 @@ export const NotificationModal = ({
               onRemove={onRemoveNotification}
               autoClose={true}
               autoCloseDelay={5000}
-              position='top-right'
-              className='notification-compact'
             />
           )}
         </div>

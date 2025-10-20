@@ -12,7 +12,6 @@ export { default as Navbar } from './Navbar/Navbar';
 // === COMPOSANTS HOME ===
 export { default as FeaturesSection } from './Home/FeaturesSection';
 export { default as HeroSection } from './Home/HeroSection';
-export { default as ScheduleSection } from './Home/ScheduleSection';
 export { default as TestimonialsSection } from './Home/TestimonialsSection';
 
 // === COMPOSANTS UI ===

@@ -15,7 +15,7 @@
 .test-container h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: var(--spacing-lg);
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
 }
 
 .test-container p {
@@ -45,18 +45,18 @@
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(234, 189, 131, 0.2);
+  border: 1px solid rgba(255, 214, 176, 0.2);
   margin-bottom: var(--spacing-lg);
 }
 
 .test-section h2 {
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   font-size: 1.8rem;
   margin-bottom: var(--spacing-md);
 }
 
 .test-section h3 {
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   font-size: 1.4rem;
   margin-bottom: var(--spacing-sm);
   margin-top: var(--spacing-lg);
@@ -73,7 +73,7 @@
 
 .test-info li {
   padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid rgba(234, 189, 131, 0.2);
+  border-bottom: 1px solid rgba(255, 214, 176, 0.2);
 }
 
 .test-info li:last-child {
@@ -81,7 +81,7 @@
 }
 
 .test-info strong {
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
 }
 
 /* === TEXTE D'INTRO === */
@@ -101,7 +101,7 @@
 
 .contact-button {
   display: inline-block;
-  background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--secondary-gold-light) 100%);
+  background: var(--gradient-button-primary);
   color: var(--primary-blue-dark);
   padding: 16px 48px;
   border-radius: var(--border-radius-md);
@@ -111,7 +111,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 15px rgba(234, 189, 131, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 214, 176, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -132,14 +132,16 @@
 }
 
 .contact-button:hover {
-  background: linear-gradient(135deg, var(--secondary-gold-light) 0%, var(--secondary-gold) 100%);
+  background: var(--gradient-peach-reverse);
+  color: var(--primary-blue-dark);
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(234, 189, 131, 0.4);
+  box-shadow: 0 8px 25px rgba(255, 214, 176, 0.4);
 }
 
 .contact-button:active {
+  color: var(--primary-blue-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(234, 189, 131, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 214, 176, 0.3);
 }
 
 /* === RESPONSIVE === */

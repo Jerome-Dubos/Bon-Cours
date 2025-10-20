@@ -1,6 +1,6 @@
 /* === TESTIMONIALS SECTION === */
 .testimonials {
-  padding: var(--spacing-6xl) var(--spacing-xl) var(--spacing-6xl) var(--spacing-xl);
+  padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 60px) 0 clamp(20px, 5vw, 60px);
   background: linear-gradient(
     135deg,
     var(--primary-blue) 0%,
@@ -10,6 +10,7 @@
   position: relative;
   overflow: hidden;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .testimonials::before {
@@ -20,8 +21,8 @@
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(circle at 20% 50%, rgba(234, 189, 131, 0.08) 0%, transparent 70%),
-    radial-gradient(circle at 80% 50%, rgba(234, 189, 131, 0.06) 0%, transparent 70%);
+    radial-gradient(circle at 20% 50%, rgba(255, 214, 176, 0.08) 0%, transparent 70%),
+    radial-gradient(circle at 80% 50%, rgba(255, 214, 176, 0.06) 0%, transparent 70%);
   z-index: 1;
   pointer-events: none;
 }
@@ -39,39 +40,82 @@
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 700;
   color: var(--text-light);
-  margin-bottom: var(--spacing-3xl);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
   position: relative;
 }
 
 .testimonials h2::after {
   content: '';
   position: absolute;
-  bottom: calc(-1 * var(--spacing-md));
+  bottom: calc(-1 * clamp(0.75rem, 2vw, 1.25rem));
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--secondary-gold) 0%, var(--secondary-gold-light) 100%);
-  border-radius: var(--border-radius-sm);
+  width: clamp(60px, 8vw, 120px);
+  height: clamp(3px, 0.5vw, 5px);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--secondary-peach) 20%,
+    var(--secondary-peach-light) 50%,
+    var(--secondary-peach) 80%,
+    transparent 100%
+  );
+  border-radius: clamp(2px, 0.3vw, 4px);
+  box-shadow:
+    0 2px 8px rgba(255, 214, 176, 0.3),
+    0 1px 4px rgba(255, 214, 176, 0.2);
+  animation: underlineGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes underlineGlow {
+  0% {
+    box-shadow:
+      0 2px 8px rgba(255, 214, 176, 0.3),
+      0 1px 4px rgba(255, 214, 176, 0.2);
+  }
+  100% {
+    box-shadow:
+      0 4px 16px rgba(255, 214, 176, 0.5),
+      0 2px 8px rgba(255, 214, 176, 0.3);
+  }
+}
+
+/* Version alternative plus subtile */
+.testimonials h2::before {
+  content: '';
+  position: absolute;
+  bottom: calc(-1 * clamp(0.75rem, 2vw, 1.25rem));
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(40px, 6vw, 80px);
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 214, 176, 0.4) 50%,
+    transparent 100%
+  );
+  border-radius: 1px;
+  z-index: 1;
 }
 
 /* === FILTRES === */
 .testimonials-filters {
   display: flex;
   justify-content: center;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-4xl);
-  margin-bottom: var(--spacing-5xl);
+  gap: clamp(0.5rem, 2vw, 1rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(1rem, 2vw, 2rem);
   flex-wrap: wrap;
 }
 
 .filter-btn {
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(234, 189, 131, 0.25);
+  border: 1px solid rgba(255, 214, 176, 0.25);
   border-radius: var(--border-radius-xl) !important;
-  padding: var(--spacing-sm) var(--spacing-xl) !important;
+  padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 3vw, 1.5rem) !important;
   color: var(--text-light);
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -82,20 +126,20 @@
 }
 
 .filter-btn:hover {
-  background: rgba(234, 189, 131, 0.2);
-  border-color: var(--secondary-gold);
-  color: var(--secondary-gold);
+  background: rgba(255, 214, 176, 0.2);
+  border-color: var(--secondary-peach);
+  color: var(--secondary-peach);
   transform: translateY(-2px);
 }
 
 .filter-btn.active {
-  background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--secondary-gold-light) 100%);
-  border-color: var(--secondary-gold);
+  background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--secondary-peach-light) 100%);
+  border-color: var(--secondary-peach);
   color: var(--text-dark);
   font-weight: 600;
   box-shadow:
-    0 6px 20px rgba(234, 189, 131, 0.4),
-    0 2px 8px rgba(234, 189, 131, 0.2);
+    0 6px 20px rgba(255, 214, 176, 0.4),
+    0 2px 8px rgba(255, 214, 176, 0.2);
   transform: translateY(-2px);
 }
 
@@ -104,7 +148,7 @@
   position: relative;
   max-width: 900px;
   margin: 0 auto;
-  min-height: 420px;
+  min-height: clamp(350px, 50vw, 420px);
   display: flex;
   align-items: center;
   margin-bottom: 0;
@@ -114,19 +158,19 @@
 .testimonial-card {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(234, 189, 131, 0.25);
+  border: 1px solid rgba(255, 214, 176, 0.25);
   border-radius: var(--border-radius-2xl);
-  padding: var(--spacing-5xl);
+  padding: clamp(2rem, 5vw, 3.5rem);
   text-align: center;
   transition: all var(--transition-normal);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.15),
-    0 4px 16px rgba(234, 189, 131, 0.1);
+    0 4px 16px rgba(255, 214, 176, 0.1);
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 400px;
+  min-height: clamp(300px, 45vw, 400px);
   position: relative;
   overflow: hidden;
 }
@@ -140,9 +184,9 @@
   bottom: 0;
   background: linear-gradient(
     135deg,
-    rgba(234, 189, 131, 0.03) 0%,
+    rgba(255, 214, 176, 0.03) 0%,
     transparent 50%,
-    rgba(234, 189, 131, 0.02) 100%
+    rgba(255, 214, 176, 0.02) 100%
   );
   pointer-events: none;
   z-index: 0;
@@ -150,11 +194,11 @@
 
 .testimonial-card:hover {
   background: rgba(255, 255, 255, 0.12);
-  border-color: var(--secondary-gold);
+  border-color: var(--secondary-peach);
   transform: translateY(-6px);
   box-shadow:
     0 16px 48px rgba(0, 0, 0, 0.2),
-    0 8px 24px rgba(234, 189, 131, 0.15);
+    0 8px 24px rgba(255, 214, 176, 0.15);
 }
 
 /* === HEADER === */
@@ -162,7 +206,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: var(--spacing-4xl);
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
   text-align: left;
   position: relative;
   z-index: 1;
@@ -173,15 +217,15 @@
 }
 
 .testimonial-name {
-  font-size: 1.35rem;
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
   font-weight: 600;
   color: var(--text-light);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: clamp(0.25rem, 1vw, 0.5rem);
 }
 
 .testimonial-course {
-  font-size: 0.95rem;
-  color: var(--secondary-gold);
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  color: var(--secondary-peach);
   font-weight: 500;
   opacity: 0.9;
 }
@@ -189,8 +233,8 @@
 .testimonial-rating {
   display: flex;
   gap: var(--spacing-xs);
-  color: var(--secondary-gold);
-  filter: drop-shadow(0 2px 4px rgba(234, 189, 131, 0.3));
+  color: var(--secondary-peach);
+  filter: drop-shadow(0 2px 4px rgba(255, 214, 176, 0.3));
 }
 
 .testimonial-star {
@@ -204,13 +248,13 @@
 
 /* === TEXTE === */
 .testimonial-text {
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
   color: var(--text-light);
   line-height: 1.8;
   font-style: italic;
   position: relative;
   margin: 0;
-  padding: var(--spacing-xl) var(--spacing-lg);
+  padding: clamp(1rem, 3vw, 1.5rem) clamp(0.75rem, 2vw, 1.25rem);
   flex: 1;
   display: flex;
   align-items: center;
@@ -222,13 +266,13 @@
 .testimonial-text::before,
 .testimonial-text::after {
   content: '"';
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   font-size: 3.5rem;
   font-weight: bold;
   line-height: 1;
   position: absolute;
   opacity: 0.3;
-  filter: drop-shadow(0 2px 4px rgba(234, 189, 131, 0.2));
+  filter: drop-shadow(0 2px 4px rgba(255, 214, 176, 0.2));
 }
 
 .testimonial-text::before {
@@ -248,7 +292,7 @@
   transform: translateY(-50%) !important;
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(234, 189, 131, 0.3) !important;
+  border: 1px solid rgba(255, 214, 176, 0.3) !important;
   border-radius: 50% !important;
   width: 56px;
   height: 56px;
@@ -269,17 +313,17 @@
 }
 
 .carousel-nav:hover {
-  background: rgba(234, 189, 131, 0.25);
-  border-color: var(--secondary-gold) !important;
-  color: var(--secondary-gold);
+  background: rgba(255, 214, 176, 0.25);
+  border-color: var(--secondary-peach) !important;
+  color: var(--secondary-peach);
   transform: translateY(-50%) scale(1.1) !important;
   box-shadow:
-    0 8px 24px rgba(234, 189, 131, 0.4),
+    0 8px 24px rgba(255, 214, 176, 0.4),
     0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-nav:focus {
-  outline: 2px solid var(--secondary-gold);
+  outline: 2px solid var(--secondary-peach);
   outline-offset: 2px;
 }
 
@@ -295,8 +339,9 @@
 .testimonial-indicators {
   display: flex;
   justify-content: center;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-3xl);
+  gap: clamp(0.5rem, 2vw, 1rem);
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: 0;
   flex-wrap: wrap;
   padding: 0;
   max-width: 900px;
@@ -308,7 +353,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50% !important;
-  background: rgba(234, 189, 131, 0.3);
+  background: rgba(255, 214, 176, 0.3);
   border: none !important;
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -326,14 +371,14 @@
 }
 
 .indicator:hover {
-  background: rgba(234, 189, 131, 0.6);
+  background: rgba(255, 214, 176, 0.6);
   transform: scale(1.2);
 }
 
 .indicator.active {
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   transform: scale(1.3);
-  box-shadow: 0 0 10px rgba(234, 189, 131, 0.5);
+  box-shadow: 0 0 10px rgba(255, 214, 176, 0.5);
 }
 
 /* === ÉTATS DE CHARGEMENT === */
@@ -358,7 +403,7 @@
 /* === RESPONSIVE DESKTOP LARGE === */
 @media (min-width: 1280px) {
   .testimonials {
-    padding: var(--spacing-6xl) var(--spacing-4xl);
+    padding: clamp(80px, 10vw, 140px) clamp(40px, 6vw, 80px);
   }
 
   .carousel-nav.prev {
@@ -373,7 +418,7 @@
 /* === RESPONSIVE DESKTOP === */
 @media (min-width: 1024px) and (max-width: 1279px) {
   .testimonials {
-    padding: var(--spacing-5xl) var(--spacing-3xl);
+    padding: clamp(60px, 8vw, 100px) clamp(30px, 4vw, 60px);
   }
 
   .testimonials-carousel {
@@ -392,21 +437,21 @@
 /* === RESPONSIVE TABLETTE === */
 @media (max-width: 1023px) {
   .testimonials {
-    padding: var(--spacing-4xl) var(--spacing-xl);
+    padding: clamp(40px, 6vw, 80px) clamp(20px, 3vw, 40px);
   }
 
   .testimonials h2 {
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
   }
 
   .testimonials-filters {
-    margin-top: var(--spacing-3xl);
-    margin-bottom: var(--spacing-4xl);
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: clamp(2rem, 4vw, 3rem);
   }
 
   .testimonial-card {
-    padding: var(--spacing-4xl);
-    min-height: 380px;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    min-height: clamp(280px, 40vw, 380px);
   }
 
   .carousel-nav {
@@ -419,28 +464,31 @@
   }
 }
 
+/* === RESPONSIVE TABLETTE ET MOBILE === */
+@media (max-width: 1023px) {
+  .testimonials {
+    padding: clamp(30px, 5vw, 60px) clamp(15px, 2.5vw, 30px) !important;
+  }
+}
+
 /* === RESPONSIVE MOBILE === */
 @media (max-width: 768px) {
-  .testimonials {
-    padding: var(--spacing-4xl) var(--spacing-lg);
-  }
-
   .testimonials h2 {
     font-size: clamp(1.8rem, 5vw, 2.2rem);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
   }
 
   .testimonials-filters {
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-xl);
-    margin-bottom: var(--spacing-3xl);
+    gap: clamp(0.25rem, 1vw, 0.5rem);
+    margin-top: clamp(1rem, 3vw, 1.5rem);
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
 
   .filter-btn {
-    padding: var(--spacing-sm) var(--spacing-md) !important;
-    font-size: 0.85rem;
+    padding: clamp(0.4rem, 1.5vw, 0.6rem) clamp(0.6rem, 2vw, 1rem) !important;
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -451,87 +499,87 @@
   }
 
   .testimonials-carousel {
-    min-height: 350px;
+    min-height: clamp(300px, 45vw, 350px);
   }
 
   .testimonial-card {
-    padding: var(--spacing-3xl);
-    min-height: 320px;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    min-height: clamp(280px, 40vw, 320px);
   }
 
   .testimonial-header {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-3xl);
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+    margin-bottom: clamp(1.25rem, 3vw, 2rem);
   }
 
   .testimonial-name {
-    font-size: 1.15rem;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
     text-align: center;
   }
 
   .testimonial-course {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     text-align: center;
   }
 
   .testimonial-text {
-    font-size: 1rem;
-    padding: var(--spacing-md) 0;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    padding: clamp(0.75rem, 2vw, 1rem) 0;
     line-height: 1.6;
   }
 
   .testimonial-text::before {
     left: -5px;
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     top: -15px;
   }
 
   .testimonial-text::after {
     right: -5px;
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     bottom: -15px;
   }
 
   .testimonial-indicators {
-    margin-top: var(--spacing-3xl);
-    gap: var(--spacing-sm);
+    margin-top: clamp(1.25rem, 3vw, 2rem);
+    gap: clamp(0.25rem, 1vw, 0.5rem);
   }
 
   .indicator {
-    width: 8px;
-    height: 8px;
-    min-width: 8px !important;
-    min-height: 8px !important;
-    max-width: 8px !important;
-    max-height: 8px !important;
+    width: clamp(6px, 1.5vw, 8px);
+    height: clamp(6px, 1.5vw, 8px);
+    min-width: clamp(6px, 1.5vw, 8px) !important;
+    min-height: clamp(6px, 1.5vw, 8px) !important;
+    max-width: clamp(6px, 1.5vw, 8px) !important;
+    max-height: clamp(6px, 1.5vw, 8px) !important;
   }
 }
 
 /* === RESPONSIVE PETIT MOBILE === */
 @media (max-width: 480px) {
   .testimonials {
-    padding: var(--spacing-3xl) var(--spacing-md);
+    padding: clamp(20px, 4vw, 40px) clamp(10px, 2vw, 20px);
   }
 
   .testimonials h2 {
-    font-size: 1.6rem;
+    font-size: clamp(1.4rem, 4vw, 1.6rem);
   }
 
   .testimonial-card {
-    padding: var(--spacing-xl);
-    min-height: 300px;
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+    min-height: clamp(250px, 35vw, 300px);
   }
 
   .testimonial-text {
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
   }
 
   .filter-btn {
-    font-size: 0.8rem;
-    padding: var(--spacing-xs) var(--spacing-sm) !important;
+    font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+    padding: clamp(0.3rem, 1vw, 0.5rem) clamp(0.5rem, 1.5vw, 0.75rem) !important;
   }
 }
 
@@ -577,7 +625,7 @@
   }
 
   .filter-btn:active {
-    background: rgba(234, 189, 131, 0.2);
+    background: rgba(255, 214, 176, 0.2);
     transform: scale(0.96);
   }
 
@@ -598,5 +646,9 @@
   .indicator {
     animation: none !important;
     transition: none !important;
+  }
+
+  .testimonials h2::after {
+    animation: none !important;
   }
 }

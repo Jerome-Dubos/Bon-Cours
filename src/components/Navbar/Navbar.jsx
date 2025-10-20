@@ -69,14 +69,13 @@ const Navbar = () => {
     () => ({
       // Colonne gauche
       leftColumn: [
-        { label: 'Horaires (planning)', path: '/offres/horaires' },
+        { label: 'Horaires', path: '/offres/horaires' },
         { label: 'Passez votre test', path: '/offres/test' },
         {
           label: 'Langues',
           submenu: [
             { label: 'Enfants & ados', path: '/offres/langues?tab=enfants-ados' },
-            { label: 'Adultes & professionnels', path: '/offres/langues?tab=adultes' },
-            { label: 'Entreprises', path: '/offres/langues?tab=entreprises' },
+            { label: 'Adultes', path: '/offres/langues?tab=adultes' },
           ],
         },
         {
@@ -126,7 +125,6 @@ const Navbar = () => {
       { label: 'Approche actionnelle', path: '/methode/approche-actionnelle' },
       { label: 'Niveaux & parcours', path: '/methode/niveaux-parcours' },
       { label: 'Outils & ressources', path: '/methode/outils-ressources' },
-      { label: 'Tests de niveau', path: '/methode/tests-niveau' },
     ],
     []
   );
@@ -135,30 +133,30 @@ const Navbar = () => {
   const navLinks = useMemo(
     () =>
       [
-        { path: '/', label: t('nav.home'), icon: <IoHomeOutline size={18} /> },
+        { path: '/', label: t('nav.home'), icon: <IoHomeOutline size={20} /> },
         {
           path: '/offres',
           label: t('nav.offers', 'Offres'),
-          icon: <IoSchoolOutline size={18} />,
+          icon: <IoSchoolOutline size={20} />,
           hasSubmenu: true,
           submenuKey: 'offres',
         },
         {
           path: '/methode',
           label: t('nav.method', 'Méthode'),
-          icon: <IoFlaskOutline size={18} />,
+          icon: <IoFlaskOutline size={20} />,
           hasSubmenu: true,
           submenuKey: 'methode',
         },
         {
           path: '/inscription',
           label: t('nav.registration', 'Inscription'),
-          icon: <IoInformationCircleOutline size={18} />,
+          icon: <IoInformationCircleOutline size={20} />,
         },
         {
           path: '/contact',
           label: t('nav.contact'),
-          icon: <IoMailOutline size={18} />,
+          icon: <IoMailOutline size={20} />,
         },
       ].filter(link => !isNavLinkHidden(link.path)),
     [t]
@@ -495,10 +493,21 @@ const Navbar = () => {
       className={`navbar ${shouldShowBackground ? 'scrolled' : ''} ${
         !user ? 'has-navigation' : ''
       }`}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        width: '100%',
+      }}
     >
       {/* Logo */}
       <Link to='/' className='navbar-logo' onClick={() => handleNavLinkClick('/')}>
-        <img src='/beige-paysage.svg' alt='Bon Cours Logo' className='navbar-logo-img' />
+        <img
+          src='/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg'
+          alt='Bon Cours Logo'
+          className='navbar-logo-img'
+        />
       </Link>
       {/* Navigation principale */}
       {!user && (
@@ -747,6 +756,9 @@ const Navbar = () => {
         className={`mobile-menu-button ${mobileState.isOpen ? 'active' : ''}`}
         onClick={toggleMobileMenu}
         aria-label='Menu'
+        style={{
+          marginRight: '1rem',
+        }}
       >
         {mobileState.isOpen ? <IoCloseOutline size={24} /> : <IoMenuOutline size={24} />}
       </button>
@@ -957,7 +969,11 @@ const Navbar = () => {
 
           {/* Logo du menu mobile */}
           <div className='mobile-menu-logo'>
-            <img src='/beige-portrait.svg' alt='Bon Cours Logo' className='mobile-menu-logo-img' />
+            <img
+              src='/assets/images/logo/InstitutBonCours_Logo_vertical_petit_clair.svg'
+              alt='Bon Cours Logo'
+              className='mobile-menu-logo-img'
+            />
           </div>
         </div>
       )}

@@ -15,7 +15,7 @@
 .offers-container h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: var(--spacing-lg);
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
 }
 
 .offers-container p {
@@ -44,7 +44,7 @@
   display: flex;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-lg);
-  border-bottom: 2px solid rgba(234, 189, 131, 0.2);
+  border-bottom: 2px solid rgba(255, 214, 176, 0.2);
   padding-bottom: var(--spacing-sm);
 }
 
@@ -63,23 +63,23 @@
 
 .tab-button:hover {
   opacity: 1;
-  background: rgba(234, 189, 131, 0.1);
-  border-color: rgba(234, 189, 131, 0.3);
+  background: rgba(255, 214, 176, 0.1);
+  border-color: rgba(255, 214, 176, 0.3);
 }
 
 .tab-button.active {
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   color: var(--primary-blue-dark);
   opacity: 1;
-  border-color: var(--secondary-gold);
+  border-color: var(--secondary-peach);
   font-weight: 600;
 }
 
 .tab-button.active:hover {
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   color: var(--primary-blue-dark);
   opacity: 1;
-  border-color: var(--secondary-gold);
+  border-color: var(--secondary-peach);
   font-weight: 600;
   transform: none;
 }
@@ -89,11 +89,11 @@
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(234, 189, 131, 0.2);
+  border: 1px solid rgba(255, 214, 176, 0.2);
 }
 
 .tab-content h2 {
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   font-size: 1.8rem;
   margin-bottom: var(--spacing-md);
 }

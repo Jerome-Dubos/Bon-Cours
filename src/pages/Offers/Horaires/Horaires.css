@@ -1,19 +1,132 @@
 /* === PAGE HORAIRES === */
 .horaires {
   min-height: 100vh;
-  background: transparent;
+  padding: var(--navbar-height) var(--spacing-xl) var(--spacing-xl);
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
 }
 
-/* === WRAPPER POUR LE COMPOSANT SCHEDULE === */
-.horaires-wrapper {
-  width: 100%;
-  min-height: 100vh;
+.horaires-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-light);
 }
 
-/* Le composant ScheduleSection gère son propre fond et espacement */
-.horaires-wrapper .schedule-section {
-  min-height: 100vh;
-  padding-top: calc(var(--navbar-height) + 60px);
+.horaires-container h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: var(--spacing-xl);
+  color: var(--secondary-peach);
+  font-weight: 700;
+}
+
+.horaires-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* === CONTENU DE LA PAGE === */
+.horaires-intro {
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.9;
+  text-align: center;
+}
+
+.horaires-flexibility {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+  font-weight: 600;
+  color: var(--secondary-peach);
+  text-align: center;
+}
+
+.horaires-features {
+  margin-bottom: var(--spacing-xl);
+}
+
+.horaires-features p {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.9;
+  text-align: center;
+}
+
+.horaires-practice {
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-lg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 214, 176, 0.2);
+}
+
+.horaires-practice h2 {
+  color: var(--secondary-peach);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.horaires-practice h2 svg {
+  color: var(--secondary-peach);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.horaires-practice ul {
+  list-style: none;
+  padding-left: 0;
+  margin: var(--spacing-md) 0;
+}
+
+.horaires-practice li {
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.6;
+  font-size: 1rem;
+  position: relative;
+  padding-left: var(--spacing-lg);
+}
+
+.horaires-practice li::before {
+  content: '•';
+  color: var(--secondary-peach);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.horaires-cta {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: rgba(255, 214, 176, 0.1);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(255, 214, 176, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.horaires-cta p {
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.horaires-cta-button {
+  box-shadow: 0 4px 15px rgba(255, 214, 176, 0.3);
+  transition: all 0.3s ease;
+  min-width: 250px;
+}
+
+.horaires-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 214, 176, 0.4);
 }
 
 /* === ÉTAT DE CHARGEMENT === */
@@ -27,13 +140,56 @@
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
-  .horaires-wrapper .schedule-section {
-    padding-top: calc(var(--navbar-height) + 40px);
+  .horaires {
+    padding: var(--navbar-height) var(--spacing-lg) var(--spacing-lg);
+  }
+
+  .horaires-container h1 {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+
+  .horaires-intro {
+    font-size: var(--text-base);
+  }
+
+  .horaires-practice h2 {
+    font-size: 1.2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+
+  .horaires-cta-button {
+    min-width: 200px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .horaires-practice {
+    padding: var(--spacing-md);
+  }
+
+  .horaires-cta {
+    padding: var(--spacing-md);
   }
 }
 
-@media (max-width: 600px) {
-  .horaires-wrapper .schedule-section {
-    padding-top: calc(var(--navbar-height) + 30px);
+@media (max-width: 480px) {
+  .horaires {
+    padding: var(--navbar-height) var(--spacing-md) var(--spacing-md);
+  }
+
+  .horaires-content {
+    text-align: center;
+  }
+
+  .horaires-features p,
+  .horaires-flexibility,
+  .horaires-intro {
+    text-align: center;
+  }
+
+  .horaires-cta p {
+    font-size: var(--text-sm);
   }
 }

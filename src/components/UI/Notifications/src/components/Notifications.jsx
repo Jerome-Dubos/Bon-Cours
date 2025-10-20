@@ -1,214 +1,226 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
-import { Button } from '../../../Buttons/src/index';
+import { createPortal } from 'react-dom';
 import '../styles/Notifications.css';
-import '../styles/NotificationsLibrarie.css';
 
-/**
- * Composant Notification optimisé avec performances améliorées et gestion d'animations optimisée
- * @version 2.0.0
- * @author Bon Cours Team
- */
 const Notification = memo(
   ({
-    notifications,
+    notifications = [],
     onRemove,
-    variant = 'toast',
     position = 'top-right',
     autoClose = true,
     autoCloseDelay = 4000,
     className = '',
     maxNotifications = 5,
-    animationDuration = 300,
-    onNotificationAdd,
-    onNotificationRemove,
+    showCloseButton = true,
     ...props
   }) => {
     const timeoutRefs = useRef(new Map());
-    const notificationRefs = useRef(new Map());
 
-    // Classes CSS mémorisées pour éviter les recalculs
-    const positionClass = useMemo(() => `notification-container-${position}`, [position]);
-    const variantClass = useMemo(() => `notification-${variant}`, [variant]);
-    const classes = useMemo(
-      () => `${positionClass} ${variantClass} ${className}`.trim(),
-      [positionClass, variantClass, className]
-    );
+    // Classes CSS simplifiées
+    const containerClasses = useMemo(() => {
+      const baseClasses = ['notification-container'];
+      const positionClass = `notification-container--${position}`;
+      return [...baseClasses, positionClass, className].filter(Boolean).join(' ');
+    }, [position, className]);
 
-    // Gestionnaire optimisé de suppression de notification
+    // Gestionnaire de suppression
     const handleRemove = useCallback(
       notificationId => {
-        // Nettoyer le timeout si il existe
         const timeoutId = timeoutRefs.current.get(notificationId);
         if (timeoutId) {
           clearTimeout(timeoutId);
           timeoutRefs.current.delete(notificationId);
         }
-
-        // Supprimer la notification
-        onRemove(notificationId);
-        onNotificationRemove?.(notificationId);
+        onRemove?.(notificationId);
       },
-      [onRemove, onNotificationRemove]
+      [onRemove]
     );
 
-    // Gestionnaire optimisé de clic sur l'action
-    const handleActionClick = useCallback(
-      (action, notificationId) => {
-        action.onClick();
-        // Optionnel : fermer la notification après l'action
-        if (action.closeOnClick !== false) {
-          handleRemove(notificationId);
-        }
-      },
-      [handleRemove]
-    );
-
-    // Gestion optimisée de l'auto-close
+    // Gestion de l'auto-close
     useEffect(() => {
       if (!autoClose || notifications.length === 0) return;
 
       // Nettoyer les anciens timeouts
-      timeoutRefs.current.forEach(timeoutId => {
-        clearTimeout(timeoutId);
-      });
+      timeoutRefs.current.forEach(timeoutId => clearTimeout(timeoutId));
       timeoutRefs.current.clear();
 
-      // Créer de nouveaux timeouts pour chaque notification
+      // Créer de nouveaux timeouts
       notifications.forEach(notification => {
-        const timeoutId = setTimeout(() => {
-          handleRemove(notification.id);
-        }, autoCloseDelay);
+        if (notification.autoClose !== false) {
+          const timeoutId = setTimeout(() => {
+            handleRemove(notification.id);
+          }, notification.autoCloseDelay || autoCloseDelay);
 
-        timeoutRefs.current.set(notification.id, timeoutId);
+          timeoutRefs.current.set(notification.id, timeoutId);
+        }
       });
 
-      // Nettoyage au démontage
       return () => {
-        timeoutRefs.current.forEach(timeoutId => {
-          clearTimeout(timeoutId);
-        });
+        timeoutRefs.current.forEach(timeoutId => clearTimeout(timeoutId));
         timeoutRefs.current.clear();
       };
     }, [notifications, autoClose, autoCloseDelay, handleRemove]);
 
-    // Callback d'ajout de notification
-    useEffect(() => {
-      if (notifications.length > 0) {
-        onNotificationAdd?.(notifications);
-      }
-    }, [notifications, onNotificationAdd]);
-
-    // Limiter le nombre de notifications affichées
+    // Limiter le nombre de notifications
     const limitedNotifications = useMemo(() => {
       return notifications.slice(0, maxNotifications);
     }, [notifications, maxNotifications]);
 
-    // Animations optimisées
-    const animationVariants = useMemo(
-      () => ({
+    // Animations simplifiées
+    const animationVariants = useMemo(() => {
+      const isTop = position.includes('top');
+      const isRight = position.includes('right');
+      const isLeft = position.includes('left');
+
+      return {
         initial: {
           opacity: 0,
-          y: position.includes('top') ? -50 : 50,
-          scale: 0.3,
-          x: position.includes('right') ? 50 : position.includes('left') ? -50 : 0,
+          scale: 0.9,
+          y: isTop ? -20 : 20,
+          x: isRight ? 20 : isLeft ? -20 : 0,
         },
         animate: {
           opacity: 1,
-          y: 0,
           scale: 1,
+          y: 0,
           x: 0,
           transition: {
-            duration: animationDuration / 1000,
-            ease: 'easeOut',
+            type: 'spring',
+            stiffness: 300,
+            damping: 25,
           },
         },
         exit: {
           opacity: 0,
-          scale: 0.5,
-          y: position.includes('top') ? -20 : 20,
-          x: position.includes('right') ? 20 : position.includes('left') ? -20 : 0,
+          scale: 0.9,
+          y: isTop ? -10 : 10,
+          x: isRight ? 10 : isLeft ? -10 : 0,
           transition: {
             duration: 0.2,
-            ease: 'easeIn',
           },
         },
-      }),
-      [position, animationDuration]
-    );
+      };
+    }, [position]);
 
-    return (
-      <div className={classes} {...props}>
+    // Contenu des notifications
+    const notificationContent = (
+      <div className={containerClasses} {...props}>
         <AnimatePresence mode='popLayout'>
-          {limitedNotifications.map(notification => (
-            <motion.div
-              key={notification.id}
-              ref={el => {
-                if (el) {
-                  notificationRefs.current.set(notification.id, el);
-                } else {
-                  notificationRefs.current.delete(notification.id);
-                }
-              }}
-              className={`notification ${notification.type}`}
-              variants={animationVariants}
-              initial='initial'
-              animate='animate'
-              exit='exit'
-              layout
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <div className='notification-content'>
-                {notification.icon && <div className='notification-icon'>{notification.icon}</div>}
-                <span className='notification-message'>{notification.message}</span>
-                {notification.showCloseButton !== false && (
-                  <button
-                    className='notification-close'
-                    onClick={() => handleRemove(notification.id)}
-                    aria-label='Fermer la notification'
-                  >
-                    ×
-                  </button>
-                )}
-              </div>
-              {notification.action && (
-                <div className='notification-action'>
-                  <Button
-                    variant='outline'
-                    size='small'
-                    onClick={() => handleActionClick(notification.action, notification.id)}
-                  >
-                    {notification.action.label}
-                  </Button>
+          {limitedNotifications.map(notification => {
+            const notificationClasses = [
+              'notification',
+              `notification--${notification.type || 'info'}`,
+              notification.className,
+            ]
+              .filter(Boolean)
+              .join(' ');
+
+            return (
+              <motion.div
+                key={notification.id}
+                className={notificationClasses}
+                variants={animationVariants}
+                initial='initial'
+                animate='animate'
+                exit='exit'
+                layout
+              >
+                <div className='notification__content'>
+                  {notification.icon && (
+                    <div className='notification__icon'>{notification.icon}</div>
+                  )}
+
+                  <div className='notification__body'>
+                    {notification.title && (
+                      <div className='notification__title'>{notification.title}</div>
+                    )}
+                    <div className='notification__message'>{notification.message}</div>
+                  </div>
+
+                  {showCloseButton && notification.showCloseButton !== false && (
+                    <button
+                      type='button'
+                      className='notification__close'
+                      onClick={() => handleRemove(notification.id)}
+                      aria-label='Fermer la notification'
+                    >
+                      <span aria-hidden='true'>×</span>
+                    </button>
+                  )}
                 </div>
-              )}
-            </motion.div>
-          ))}
+
+                {notification.action && (
+                  <div className='notification__actions'>
+                    <button
+                      type='button'
+                      className='notification__action'
+                      onClick={e => {
+                        notification.action.onClick?.(notification.id, e);
+                        if (notification.action.closeOnClick !== false) {
+                          handleRemove(notification.id);
+                        }
+                      }}
+                    >
+                      {notification.action.label}
+                    </button>
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </AnimatePresence>
       </div>
     );
+
+    // Portal simplifié
+    if (typeof document !== 'undefined') {
+      let notificationRoot = document.getElementById('notification-root');
+      if (!notificationRoot) {
+        notificationRoot = document.createElement('div');
+        notificationRoot.id = 'notification-root';
+        notificationRoot.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          pointer-events: none;
+          z-index: 10000;
+          overflow: visible;
+          margin: 0;
+          padding: 0;
+        `;
+        document.body.appendChild(notificationRoot);
+      }
+      return createPortal(notificationContent, notificationRoot);
+    }
+
+    return notificationContent;
   }
 );
 
 Notification.propTypes = {
   notifications: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       message: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(['info', 'success', 'error', 'warning', 'achievement']).isRequired,
+      title: PropTypes.string,
+      type: PropTypes.oneOf(['info', 'success', 'error', 'warning']),
       icon: PropTypes.node,
       action: PropTypes.shape({
         label: PropTypes.string.isRequired,
-        onClick: PropTypes.func.isRequired,
+        onClick: PropTypes.func,
         closeOnClick: PropTypes.bool,
       }),
       showCloseButton: PropTypes.bool,
+      autoClose: PropTypes.bool,
+      autoCloseDelay: PropTypes.number,
+      className: PropTypes.string,
     })
-  ).isRequired,
+  ),
   onRemove: PropTypes.func.isRequired,
-  variant: PropTypes.oneOf(['toast', 'banner', 'inline']),
   position: PropTypes.oneOf([
     'top-right',
     'top-left',
@@ -221,12 +233,9 @@ Notification.propTypes = {
   autoCloseDelay: PropTypes.number,
   className: PropTypes.string,
   maxNotifications: PropTypes.number,
-  animationDuration: PropTypes.number,
-  onNotificationAdd: PropTypes.func,
-  onNotificationRemove: PropTypes.func,
+  showCloseButton: PropTypes.bool,
 };
 
-// Ajout du displayName pour le debugging
 Notification.displayName = 'Notification';
 
 export default Notification;

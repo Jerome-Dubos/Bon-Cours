@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
 import { FaBullseye, FaClock, FaUserGraduate, FaUsers } from 'react-icons/fa';
+import { IoGlobeOutline } from 'react-icons/io5';
 import { Link, useLocation } from 'react-router-dom';
 import Tabs from '../../../components/Tabs/Tabs';
 import { useErrorHandler, usePerformance } from '../../../hooks';
@@ -70,7 +71,9 @@ const Examens = () => {
               {/* Français */}
               <div className='certification-card'>
                 <div className='certification-header'>
-                  <div className='certification-flag'>🇫🇷</div>
+                  <div className='certification-flag'>
+                    <img src='/assets/images/flags/france.webp' alt='Drapeau français' />
+                  </div>
                   <h4>Français</h4>
                 </div>
                 <div className='certification-list'>
@@ -94,7 +97,9 @@ const Examens = () => {
               {/* Anglais */}
               <div className='certification-card'>
                 <div className='certification-header'>
-                  <div className='certification-flag'>🇬🇧</div>
+                  <div className='certification-flag'>
+                    <img src='/assets/images/flags/royaume-uni.webp' alt='Drapeau britannique' />
+                  </div>
                   <h4>Anglais</h4>
                 </div>
                 <div className='certification-list'>
@@ -126,7 +131,9 @@ const Examens = () => {
               {/* Autres langues */}
               <div className='certification-card'>
                 <div className='certification-header'>
-                  <div className='certification-flag'>🌍</div>
+                  <div className='certification-flag'>
+                    <IoGlobeOutline size={32} />
+                  </div>
                   <h4>Autres langues</h4>
                 </div>
                 <div className='certification-list'>

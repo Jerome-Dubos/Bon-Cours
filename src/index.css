@@ -1,18 +1,171 @@
 /* === VARIABLES CSS OPTIMISÉES === */
 :root {
-  /* Couleurs principales */
-  --primary-blue: #3f4d5f;
-  --primary-blue-light: #4a5a6d;
-  --primary-blue-dark: #072e41;
-  --secondary-gold: #eabd83;
-  --secondary-gold-light: #f4d4a8;
-  --secondary-gold-dark: #d4a574;
+  /* Couleurs principales selon la charte graphique */
+  --primary-blue: #233158; /* Bleu foncé - couleur principale */
+  --primary-blue-light: #92bedf; /* Bleu ciel - couleur secondaire */
+  --primary-blue-dark: #1a2640; /* Bleu foncé plus sombre */
+  --secondary-peach: #ffd6b0; /* Pêche - couleur secondaire */
+  --secondary-sky-blue: #92bedf; /* Bleu ciel - couleur secondaire */
 
-  /* Couleurs de texte */
-  --text-light: #ffffff;
-  --text-dark: #1a1a1a;
-  --text-muted: #6b7280;
-  --text-secondary: #e5e7eb;
+  /* Variantes de transparence selon la charte (40%, 60%, 80%) */
+  --secondary-peach-80: rgba(255, 214, 176, 0.8); /* Pêche 80% */
+  --secondary-peach-60: rgba(255, 214, 176, 0.6); /* Pêche 60% */
+  --secondary-peach-40: rgba(255, 214, 176, 0.4); /* Pêche 40% */
+  --secondary-peach-light: rgba(255, 214, 176, 0.8); /* Alias pour compatibilité */
+  --secondary-peach-medium: rgba(255, 214, 176, 0.6); /* Alias pour compatibilité */
+  --secondary-peach-faint: rgba(255, 214, 176, 0.4); /* Alias pour compatibilité */
+
+  --secondary-sky-blue-80: rgba(146, 190, 223, 0.8); /* Bleu ciel 80% */
+  --secondary-sky-blue-60: rgba(146, 190, 223, 0.6); /* Bleu ciel 60% */
+  --secondary-sky-blue-40: rgba(146, 190, 223, 0.4); /* Bleu ciel 40% */
+  --secondary-sky-blue-light: rgba(146, 190, 223, 0.8); /* Alias pour compatibilité */
+  --secondary-sky-blue-medium: rgba(146, 190, 223, 0.6); /* Alias pour compatibilité */
+  --secondary-sky-blue-faint: rgba(146, 190, 223, 0.4); /* Alias pour compatibilité */
+
+  /* Variantes de bleu foncé */
+  --primary-blue-80: rgba(35, 49, 88, 0.8); /* Bleu foncé 80% */
+  --primary-blue-60: rgba(35, 49, 88, 0.6); /* Bleu foncé 60% */
+  --primary-blue-40: rgba(35, 49, 88, 0.4); /* Bleu foncé 40% */
+
+  /* Variantes de blanc et noir selon la charte */
+  --white-90: rgba(255, 255, 255, 0.9);
+  --white-80: rgba(255, 255, 255, 0.8);
+  --white-60: rgba(255, 255, 255, 0.6);
+  --white-40: rgba(255, 255, 255, 0.4);
+  --black-90: rgba(0, 0, 0, 0.9);
+  --black-80: rgba(0, 0, 0, 0.8);
+  --black-60: rgba(0, 0, 0, 0.6);
+  --black-40: rgba(0, 0, 0, 0.4);
+
+  /* Couleurs de texte selon la charte graphique */
+  --text-light: #ffffff; /* Blanc */
+  --text-dark: #000000; /* Noir 90% */
+  --text-muted: rgba(0, 0, 0, 0.6); /* Noir avec transparence */
+  --text-secondary: #92bedf; /* Bleu ciel pour texte secondaire */
+
+  /* === DÉGRADÉS SELON LA CHARTE GRAPHIQUE === */
+
+  /* Dégradés principaux */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--primary-blue) 0%,
+    var(--primary-blue-light) 100%
+  );
+  --gradient-primary-reverse: linear-gradient(
+    135deg,
+    var(--primary-blue-light) 0%,
+    var(--primary-blue) 100%
+  );
+  --gradient-primary-dark: linear-gradient(
+    135deg,
+    var(--primary-blue-dark) 0%,
+    var(--primary-blue) 100%
+  );
+
+  /* Dégradés pêche */
+  --gradient-peach: linear-gradient(
+    135deg,
+    var(--secondary-peach) 0%,
+    var(--secondary-peach-80) 100%
+  );
+  --gradient-peach-reverse: linear-gradient(
+    135deg,
+    var(--secondary-peach-80) 0%,
+    var(--secondary-peach) 100%
+  );
+  --gradient-peach-soft: linear-gradient(
+    135deg,
+    var(--secondary-peach-60) 0%,
+    var(--secondary-peach-40) 100%
+  );
+
+  /* Dégradés bleu ciel */
+  --gradient-sky-blue: linear-gradient(
+    135deg,
+    var(--secondary-sky-blue) 0%,
+    var(--secondary-sky-blue-80) 100%
+  );
+  --gradient-sky-blue-reverse: linear-gradient(
+    135deg,
+    var(--secondary-sky-blue-80) 0%,
+    var(--secondary-sky-blue) 100%
+  );
+  --gradient-sky-blue-soft: linear-gradient(
+    135deg,
+    var(--secondary-sky-blue-60) 0%,
+    var(--secondary-sky-blue-40) 100%
+  );
+
+  /* Dégradés mixtes (respectant les proportions de la charte) */
+  --gradient-primary-peach: linear-gradient(
+    135deg,
+    var(--primary-blue) 0%,
+    var(--secondary-peach) 100%
+  );
+  --gradient-peach-primary: linear-gradient(
+    135deg,
+    var(--secondary-peach) 0%,
+    var(--primary-blue) 100%
+  );
+  --gradient-sky-peach: linear-gradient(
+    135deg,
+    var(--secondary-sky-blue) 0%,
+    var(--secondary-peach) 100%
+  );
+  --gradient-peach-sky: linear-gradient(
+    135deg,
+    var(--secondary-peach) 0%,
+    var(--secondary-sky-blue) 100%
+  );
+
+  /* Dégradés avec transparences */
+  --gradient-primary-overlay: linear-gradient(
+    135deg,
+    var(--primary-blue-80) 0%,
+    var(--primary-blue-40) 100%
+  );
+  --gradient-peach-overlay: linear-gradient(
+    135deg,
+    var(--secondary-peach-80) 0%,
+    var(--secondary-peach-40) 100%
+  );
+  --gradient-sky-overlay: linear-gradient(
+    135deg,
+    var(--secondary-sky-blue-80) 0%,
+    var(--secondary-sky-blue-40) 100%
+  );
+
+  /* Dégradés complexes pour les arrière-plans */
+  --gradient-hero: linear-gradient(
+    135deg,
+    var(--primary-blue-80) 0%,
+    var(--primary-blue-40) 50%,
+    var(--secondary-sky-blue-40) 100%
+  );
+  --gradient-card: linear-gradient(
+    145deg,
+    var(--primary-blue-60) 0%,
+    var(--primary-blue-40) 50%,
+    var(--white-40) 100%
+  );
+  --gradient-button-primary: linear-gradient(
+    135deg,
+    var(--secondary-peach) 0%,
+    var(--secondary-peach-80) 100%
+  );
+  --gradient-button-secondary: linear-gradient(
+    135deg,
+    var(--primary-blue) 0%,
+    var(--primary-blue-80) 100%
+  );
+
+  /* Version très douce du dégradé hero */
+  --gradient-hero-soft: linear-gradient(
+    135deg,
+    var(--primary-blue-60) 0%,
+    var(--primary-blue-40) 50%,
+    var(--secondary-sky-blue-60) 100%
+  );
 
   /* Couleurs d'état */
   --success: #10b981;
@@ -70,6 +223,7 @@
   --z-popover: 1060;
   --z-tooltip: 1070;
   --z-loading: 9999;
+  --z-notification: 10000;
 
   /* Hauteur de la navbar */
   --navbar-height: 80px;
@@ -78,10 +232,15 @@
   --loader-size: 48px;
   --loader-border: 4px;
 
-  /* Typographie optimisée */
+  /* Typographie selon la charte graphique */
+  /* Afacad pour le corps de texte */
   --font-family-sans:
-    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Afacad', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
     sans-serif;
+  /* Co Headline pour les titres */
+  --font-family-heading:
+    'Co Headline', 'Afacad', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
   --font-family-mono:
     'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
 
@@ -187,6 +346,7 @@ body {
   background-attachment: fixed;
   min-height: 100vh;
   overflow-x: hidden;
+  padding-top: 70px; /* Compenser la hauteur de la navbar fixe */
   /* Empêcher l'overscroll qui peut afficher du blanc */
   overscroll-behavior: none;
   -webkit-font-smoothing: antialiased;
@@ -200,13 +360,14 @@ body {
   background-color: var(--primary-blue-dark);
 }
 
-/* === TYPOGRAPHIE OPTIMISÉE === */
+/* === TYPOGRAPHIE SELON LA CHARTE GRAPHIQUE === */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
+  font-family: var(--font-family-heading);
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: var(--spacing-md);
@@ -248,13 +409,13 @@ p {
 }
 
 a {
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: var(--secondary-gold-light);
+  color: var(--secondary-peach-light);
 }
 
 /* === LAYOUT === */
@@ -303,7 +464,7 @@ a:hover {
   color: var(--primary-blue);
 }
 .text-secondary {
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
 }
 .text-success {
   color: var(--success);
@@ -846,12 +1007,23 @@ a:hover {
 
 /* Focus visible pour l'accessibilité */
 :focus-visible {
-  outline: 2px solid var(--secondary-gold);
+  outline: 2px solid var(--secondary-peach);
   outline-offset: 2px;
 }
 
 /* === PERFORMANCE OPTIMISÉE === */
 /* Optimisations pour éviter le CLS et améliorer les performances */
+
+/* Empêcher l'allongement au scroll */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  will-change: auto;
+}
 
 /* Images optimisées */
 img {
@@ -925,9 +1097,9 @@ img {
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(
     135deg,
-    var(--secondary-gold-dark) 0%,
-    var(--secondary-gold) 50%,
-    var(--secondary-gold-light) 100%
+    var(--primary-blue) 0%,
+    var(--secondary-peach) 50%,
+    var(--secondary-peach-light) 100%
   );
   border-radius: 6px;
   border: 2px solid rgba(15, 23, 42, 0.1);
@@ -938,34 +1110,34 @@ img {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     135deg,
-    var(--secondary-gold) 0%,
-    var(--secondary-gold-light) 50%,
-    rgba(244, 212, 168, 0.9) 100%
+    var(--secondary-peach) 0%,
+    var(--secondary-peach-light) 50%,
+    rgba(255, 214, 176, 0.9) 100%
   );
   border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 8px rgba(234, 189, 131, 0.3);
+  box-shadow: 0 4px 8px rgba(255, 214, 176, 0.3);
   transform: scaleY(1.05);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: var(--secondary-gold-dark);
+  background: var(--primary-blue);
   transform: scaleY(0.95);
 }
 
 /* Scrollbar pour Firefox */
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--secondary-gold) rgba(15, 23, 42, 0.3);
+  scrollbar-color: var(--secondary-peach) rgba(15, 23, 42, 0.3);
 }
 
 /* === SELECTION DE TEXTE === */
 ::selection {
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   color: var(--text-dark);
 }
 
 ::-moz-selection {
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   color: var(--text-dark);
 }
 
@@ -1030,7 +1202,7 @@ html {
   border-color: var(--primary-blue);
 }
 .border-secondary {
-  border-color: var(--secondary-gold);
+  border-color: var(--secondary-peach);
 }
 .border-success {
   border-color: var(--success);
@@ -1247,4 +1419,202 @@ html {
 }
 .left-0 {
   left: 0;
+}
+
+/* === CLASSES TYPOGRAPHIQUES SELON LA CHARTE GRAPHIQUE === */
+.font-heading {
+  font-family: var(--font-family-heading);
+}
+
+.font-body {
+  font-family: var(--font-family-sans);
+}
+
+/* Poids disponibles pour Co Headline selon la charte */
+.font-light {
+  font-weight: 300;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+/* Poids disponibles pour Afacad selon la charte */
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+/* === CLASSES DE COULEURS SELON LA CHARTE GRAPHIQUE === */
+.text-primary-blue {
+  color: var(--primary-blue);
+}
+
+.text-sky-blue {
+  color: var(--secondary-sky-blue);
+}
+
+.text-peach {
+  color: var(--secondary-peach);
+}
+
+.bg-primary-blue {
+  background-color: var(--primary-blue);
+}
+
+.bg-sky-blue {
+  background-color: var(--secondary-sky-blue);
+}
+
+.bg-peach {
+  background-color: var(--secondary-peach);
+}
+
+/* === CLASSES DE DÉGRADÉS SELON LA CHARTE GRAPHIQUE === */
+
+/* Dégradés de base */
+.bg-gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.bg-gradient-primary-reverse {
+  background: var(--gradient-primary-reverse);
+}
+
+.bg-gradient-peach {
+  background: var(--gradient-peach);
+}
+
+.bg-gradient-peach-reverse {
+  background: var(--gradient-peach-reverse);
+}
+
+.bg-gradient-sky-blue {
+  background: var(--gradient-sky-blue);
+}
+
+.bg-gradient-sky-blue-reverse {
+  background: var(--gradient-sky-blue-reverse);
+}
+
+/* Dégradés mixtes */
+.bg-gradient-primary-peach {
+  background: var(--gradient-primary-peach);
+}
+
+.bg-gradient-peach-primary {
+  background: var(--gradient-peach-primary);
+}
+
+.bg-gradient-sky-peach {
+  background: var(--gradient-sky-peach);
+}
+
+.bg-gradient-peach-sky {
+  background: var(--gradient-peach-sky);
+}
+
+/* Dégradés spéciaux */
+.bg-gradient-hero {
+  background: var(--gradient-hero);
+}
+
+.bg-gradient-card {
+  background: var(--gradient-card);
+}
+
+/* === VARIANTES DE COULEURS AVEC TRANSPARENCE === */
+
+.text-primary-blue-80 {
+  color: var(--primary-blue-80);
+}
+
+.text-primary-blue-60 {
+  color: var(--primary-blue-60);
+}
+
+.text-primary-blue-40 {
+  color: var(--primary-blue-40);
+}
+
+.text-peach-80 {
+  color: var(--secondary-peach-80);
+}
+
+.text-peach-60 {
+  color: var(--secondary-peach-60);
+}
+
+.text-peach-40 {
+  color: var(--secondary-peach-40);
+}
+
+.text-sky-blue-80 {
+  color: var(--secondary-sky-blue-80);
+}
+
+.text-sky-blue-60 {
+  color: var(--secondary-sky-blue-60);
+}
+
+.text-sky-blue-40 {
+  color: var(--secondary-sky-blue-40);
+}
+
+.bg-primary-blue-80 {
+  background-color: var(--primary-blue-80);
+}
+
+.bg-primary-blue-60 {
+  background-color: var(--primary-blue-60);
+}
+
+.bg-primary-blue-40 {
+  background-color: var(--primary-blue-40);
+}
+
+.bg-peach-80 {
+  background-color: var(--secondary-peach-80);
+}
+
+.bg-peach-60 {
+  background-color: var(--secondary-peach-60);
+}
+
+.bg-peach-40 {
+  background-color: var(--secondary-peach-40);
+}
+
+.bg-sky-blue-80 {
+  background-color: var(--secondary-sky-blue-80);
+}
+
+.bg-sky-blue-60 {
+  background-color: var(--secondary-sky-blue-60);
+}
+
+.bg-sky-blue-40 {
+  background-color: var(--secondary-sky-blue-40);
+}
+
+/* === NOTIFICATIONS === */
+/* S'assurer que les notifications ne sont pas affectées par overflow-x: hidden */
+#notification-root,
+.notification-container,
+.notification-container--top-right,
+.notification-container--top-left,
+.notification-container--bottom-right,
+.notification-container--bottom-left,
+.notification-container--top-center,
+.notification-container--bottom-center {
+  overflow: visible !important;
+  clip: none !important;
+  clip-path: none !important;
 }

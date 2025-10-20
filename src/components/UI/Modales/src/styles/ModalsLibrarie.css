@@ -214,12 +214,6 @@
   padding-bottom: var(--spacing-lg);
 }
 
-/* ===== NOTIFICATIONS DANS LES MODALES ===== */
-
-.modal-notifications {
-  margin-bottom: var(--spacing-lg);
-}
-
 /* ===== SÉPARATEURS DANS LES MODALES ===== */
 
 .modal-separator {
@@ -233,30 +227,6 @@
 .modal-separator:hover {
   opacity: 1;
   transition: opacity var(--transition-normal);
-}
-
-.modal-notifications .notification {
-  margin-bottom: var(--spacing-sm);
-}
-
-.modal-notifications .notification:last-child {
-  margin-bottom: 0;
-}
-
-/* Animation d'entrée pour les notifications */
-.modal-notifications .notification {
-  animation: notificationSlideIn 0.3s ease-out;
-}
-
-@keyframes notificationSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* Modal avec actions centrées */

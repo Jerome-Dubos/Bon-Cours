@@ -386,13 +386,13 @@ const ModalsExample = () => {
           console.log(`Notification ${id} supprimée`);
         }}
       >
-        <div className='notification-content'>
+        <div className='modal-notification-content'>
           <h3>Exemple de Modal avec Notifications</h3>
           <p>
             Cette modal démontre l'intégration des notifications dans les modales. Les notifications
             peuvent être de différents types : info, success, warning, error.
           </p>
-          <div className='notification-info'>
+          <div className='modal-notification-info'>
             <h4>Fonctionnalités :</h4>
             <ul>
               <li>✅ Notifications intégrées</li>

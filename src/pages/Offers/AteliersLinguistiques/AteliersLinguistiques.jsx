@@ -187,7 +187,6 @@ const AteliersLinguistiques = () => {
           </p>
 
           <div className='price-card'>
-            <div className='price-icon'>💰</div>
             <div className='price-content'>
               <p className='price-label'>Tarif unique</p>
               <p className='price-value'>60 €/ atelier de 2h</p>

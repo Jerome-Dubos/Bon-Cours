@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-// import { useTranslation } from 'react-i18next'; // Désactivé pour utiliser les textes en dur
 import {
   IoChevronBackOutline,
   IoChevronDownOutline,
@@ -11,13 +11,10 @@ import {
   IoStopwatchOutline,
   IoTimeOutline,
 } from 'react-icons/io5';
-import apiService from '../../services/apiService';
-import contactService from '../../services/contactService';
-import { Loader } from '../UI';
-import { Button } from '../UI/Buttons';
-import { ContactForm as ContactFormComponent } from '../UI/Forms';
-import { LargeModal } from '../UI/Modales';
-import { translateScheduleData } from '../utils/translationUtils';
+import { Button } from '../Buttons';
+import { ContactForm as ContactFormComponent } from '../Forms';
+import { Loader } from '../Loaders';
+import { LargeModal } from '../Modales';
 import './ScheduleSection.css';
 
 // Fonction de traduction française optimisée avec cache
@@ -135,119 +132,171 @@ const frenchTranslator = (() => {
   return key => translations[key] || key;
 })();
 
-// Fonction de soumission personnalisée pour le formulaire d'intérêt
-const handleInterestSubmit = async (data, course, onClose) => {
-  // Utiliser le service de contact pour envoyer la demande d'intérêt
-  const result = await contactService.sendInterestRequest(data, course);
+// Fonction de traduction des données de planning
+const translateScheduleData = (data, translator) => {
+  if (!data) return {};
 
-  if (result.success) {
-    onClose();
-    return true;
-  } else {
-    throw new Error(result.message || 'Une erreur est survenue. Veuillez réessayer.');
+  const translated = {};
+
+  Object.keys(data).forEach(level => {
+    translated[level] = {};
+    Object.keys(data[level] || {}).forEach(type => {
+      translated[level][type] = {};
+      Object.keys(data[level][type] || {}).forEach(day => {
+        translated[level][type][day] = (data[level][type][day] || []).map(course => ({
+          ...course,
+          language: translator(course.languageKey) || course.language,
+          level: translator(course.levelKey) || course.level,
+          type: translator(course.typeKey) || course.type,
+        }));
+      });
+    });
+  });
+
+  return translated;
+};
+
+// Fonction de soumission personnalisée pour le formulaire d'intérêt
+const handleInterestSubmit = async (data, course, onClose, onSubmit) => {
+  try {
+    if (onSubmit) {
+      const result = await onSubmit(data, course);
+      if (result.success) {
+        onClose();
+        return true;
+      } else {
+        throw new Error(result.message || 'Une erreur est survenue. Veuillez réessayer.');
+      }
+    } else {
+      // Comportement par défaut si aucune fonction de soumission n'est fournie
+      console.log('Données du formulaire:', data);
+      console.log('Cours sélectionné:', course);
+      onClose();
+      return true;
+    }
+  } catch (error) {
+    throw error;
   }
 };
 
-// Nouveau composant ScheduleSection simplifié
-const ScheduleSection = () => {
-  // const { t } = useTranslation(); // Désactivé pour utiliser les textes en dur
+const ScheduleSection = ({
+  title = 'Planning des cours',
+  description = 'Découvrez nos cours disponibles en présentiel et en visioconférence',
+  coursesData = {},
+  loading = false,
+  error = null,
+  onInterestSubmit = null,
+  onCourseClick = null,
+  coursesPerPage = 3,
+  showEmptyMessage = true,
+  emptyMessage = {
+    title: 'Nouvelle session en préparation',
+    text: 'Nous préparons actuellement notre nouvelle session de cours qui débutera en octobre. Notre équipe pédagogique met en place un programme enrichi avec de nouveaux créneaux horaires pour mieux répondre à vos besoins.',
+    features: [
+      { icon: <IoPersonOutline />, text: 'Cours adultes et enfants' },
+      { icon: <IoDesktopOutline />, text: 'Présentiel et visioconférence' },
+      { icon: <IoTimeOutline />, text: 'Horaires flexibles' },
+    ],
+  },
+  className = '',
+  startDate = '2024-01-15',
+  weekDays = 7,
+  levelTabs = [
+    {
+      id: 'adult',
+      label: 'Cours adulte',
+      icon: <IoPersonOutline />,
+      description: 'Pour les adultes',
+    },
+    {
+      id: 'child',
+      label: 'Cours enfant',
+      icon: <IoPeopleOutline />,
+      description: 'Pour les enfants',
+    },
+  ],
+  typeTabs = [
+    {
+      id: 'presentiel',
+      label: 'Présentiel',
+      icon: <IoSchoolOutline />,
+      description: 'En salle de classe',
+    },
+    {
+      id: 'visio',
+      label: 'Visioconférence',
+      icon: <IoDesktopOutline />,
+      description: 'En ligne depuis chez vous',
+    },
+  ],
+  translator = frenchTranslator,
+  ...props
+}) => {
   const [selectedCourse, setSelectedCourse] = useState(null);
-  const [activeLevel, setActiveLevel] = useState('adult');
-  const [activeType, setActiveType] = useState('presentiel');
+  const [activeLevel, setActiveLevel] = useState(levelTabs[0]?.id || 'adult');
+  const [activeType, setActiveType] = useState(typeTabs[0]?.id || 'presentiel');
   const [selectedDay, setSelectedDay] = useState(null);
-  const [coursesData, setCoursesData] = useState({});
   const [translatedCoursesData, setTranslatedCoursesData] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const coursesPerPage = 3; // Nombre de cours par page
   const [isClosing, setIsClosing] = useState(false);
 
-  // Chargement des données
-  useEffect(() => {
-    const loadCoursesData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        // Utiliser le service API pour charger les données de planning organisées
-        const data = await apiService.getScheduleData();
-        setCoursesData(data);
-        const translated = translateScheduleData(data, frenchTranslator);
-        setTranslatedCoursesData(translated);
-      } catch (err) {
-        setError(err.message);
-        setCoursesData({
-          adult: { presentiel: {}, visio: {} },
-          child: { presentiel: {}, visio: {} },
-        });
-        setTranslatedCoursesData({
-          adult: { presentiel: {}, visio: {} },
-          child: { presentiel: {}, visio: {} },
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadCoursesData();
-  }, []);
-
+  // Traduction des données
   useEffect(() => {
     if (coursesData && Object.keys(coursesData).length > 0) {
-      const translated = translateScheduleData(coursesData, frenchTranslator);
+      const translated = translateScheduleData(coursesData, translator);
       setTranslatedCoursesData(translated);
     }
-  }, [coursesData]);
+  }, [coursesData, translator]);
 
-  // Utilitaires optimisés avec useMemo
+  // Génération des jours de la semaine
   const getWeekDays = useMemo(() => {
     const week = [];
-    const startDate = new Date('2024-01-15');
-    for (let i = 0; i < 7; i++) {
-      const day = new Date(startDate);
-      day.setDate(startDate.getDate() + i);
+    const start = new Date(startDate);
+    for (let i = 0; i < weekDays; i++) {
+      const day = new Date(start);
+      day.setDate(start.getDate() + i);
       week.push(day);
     }
     return week;
-  }, []);
+  }, [startDate, weekDays]);
 
   const formatDate = useCallback(date => {
     return date.toISOString().split('T')[0];
   }, []);
 
-  const handleInterest = useCallback((course, event) => {
-    // Empêcher le scroll vers le haut
-    event?.preventDefault();
-    event?.stopPropagation();
+  const handleInterest = useCallback(
+    (course, event) => {
+      event?.preventDefault();
+      event?.stopPropagation();
 
-    // Sauvegarder la position actuelle
-    const currentScrollY = window.scrollY;
+      const currentScrollY = window.scrollY;
+      setSelectedCourse(course);
 
-    setSelectedCourse(course);
+      requestAnimationFrame(() => {
+        window.scrollTo(0, currentScrollY);
+        const firstInput = document.querySelector('input, textarea');
+        if (firstInput) {
+          firstInput.blur();
+        }
+      });
 
-    // Maintenir la position de scroll et empêcher le focus automatique
-    requestAnimationFrame(() => {
-      window.scrollTo(0, currentScrollY);
-      // Empêcher le focus automatique sur le premier champ
-      const firstInput = document.querySelector('input, textarea');
-      if (firstInput) {
-        firstInput.blur();
+      if (onCourseClick) {
+        onCourseClick(course);
       }
-    });
-  }, []);
+    },
+    [onCourseClick]
+  );
 
   const handleDayClick = useCallback(
     dateStr => {
       if (selectedDay === dateStr) {
-        // Fermeture avec animation
         setIsClosing(true);
         setTimeout(() => {
           setSelectedDay(null);
           setCurrentPage(1);
           setIsClosing(false);
-        }, 250); // Durée de l'animation de fermeture
+        }, 250);
       } else {
-        // Ouverture directe
         setSelectedDay(dateStr);
         setCurrentPage(1);
         setIsClosing(false);
@@ -266,50 +315,13 @@ const ScheduleSection = () => {
     setSelectedDay(null);
   }, []);
 
-  // Configuration des onglets optimisée avec useMemo
-  const levelTabs = useMemo(
-    () => [
-      {
-        id: 'adult',
-        label: 'Cours adulte',
-        icon: <IoPersonOutline />,
-        description: 'Pour les adultes',
-      },
-      {
-        id: 'child',
-        label: 'Cours enfant',
-        icon: <IoPeopleOutline />,
-        description: 'Pour les enfants',
-      },
-    ],
-    []
-  );
-
-  const typeTabs = useMemo(
-    () => [
-      {
-        id: 'presentiel',
-        label: 'Présentiel',
-        icon: <IoSchoolOutline />,
-        description: 'En salle de classe',
-      },
-      {
-        id: 'visio',
-        label: 'Visioconférence',
-        icon: <IoDesktopOutline />,
-        description: 'En ligne depuis chez vous',
-      },
-    ],
-    []
-  );
-
-  // Tous les hooks doivent être appelés avant les returns conditionnels
+  // Cours actuels
   const currentCourses = useMemo(
     () => translatedCoursesData?.[activeLevel]?.[activeType] || {},
     [translatedCoursesData, activeLevel, activeType]
   );
 
-  // Vérifier si toutes les données sont vides - optimisé avec useMemo
+  // Vérification si des cours existent
   const hasAnyCourses = useMemo(() => {
     if (!translatedCoursesData) return false;
 
@@ -331,7 +343,7 @@ const ScheduleSection = () => {
 
   const isEmpty = !hasAnyCourses;
 
-  // Logique de pagination optimisée avec useMemo
+  // Pagination
   const getCurrentPageCourses = useMemo(() => {
     if (!selectedDay || !currentCourses[selectedDay]) return [];
 
@@ -355,11 +367,11 @@ const ScheduleSection = () => {
   // Affichage pendant le chargement
   if (loading) {
     return (
-      <section className='schedule-section'>
+      <section className={`schedule-section ${className}`} {...props}>
         <div className='schedule-container'>
           <div className='schedule-header'>
             <div className='schedule-header__content'>
-              <h2>Planning des cours</h2>
+              <h2>{title}</h2>
               <p className='schedule-description'>Chargement en cours...</p>
             </div>
           </div>
@@ -377,11 +389,11 @@ const ScheduleSection = () => {
   // Affichage en cas d'erreur
   if (error) {
     return (
-      <section className='schedule-section'>
+      <section className={`schedule-section ${className}`} {...props}>
         <div className='schedule-container'>
           <div className='schedule-header'>
             <div className='schedule-header__content'>
-              <h2>Planning des cours</h2>
+              <h2>{title}</h2>
               <div className='error-message'>
                 <p>Erreur lors du chargement des données :</p>
                 <span className='error-details'>{error}</span>
@@ -394,17 +406,15 @@ const ScheduleSection = () => {
   }
 
   return (
-    <section className='schedule-section'>
+    <section className={`schedule-section ${className}`} {...props}>
       <div className='schedule-container'>
         {/* En-tête */}
         <div className='schedule-header'>
           <div className='schedule-header__content'>
-            <h2>Planning des cours</h2>
+            <h2>{title}</h2>
             {!isEmpty && (
               <div className='schedule-subtitle-container'>
-                <p className='schedule-description'>
-                  Découvrez nos cours disponibles en présentiel et en visioconférence
-                </p>
+                <p className='schedule-description'>{description}</p>
               </div>
             )}
           </div>
@@ -465,31 +475,23 @@ const ScheduleSection = () => {
 
         {/* Planning ou message d'information */}
         {isEmpty ? (
-          <div className='empty-schedule-info'>
-            <div className='empty-schedule-icon'>
-              <IoSchoolOutline />
-            </div>
-            <h3 className='empty-schedule-title'>Nouvelle session en préparation</h3>
-            <p className='empty-schedule-text'>
-              Nous préparons actuellement notre nouvelle session de cours qui débutera en octobre.
-              Notre équipe pédagogique met en place un programme enrichi avec de nouveaux créneaux
-              horaires pour mieux répondre à vos besoins.
-            </p>
-            <div className='empty-schedule-features'>
-              <div className='empty-feature'>
-                <IoPersonOutline />
-                <span>Cours adultes et enfants</span>
+          showEmptyMessage ? (
+            <div className='empty-schedule-info'>
+              <div className='empty-schedule-icon'>
+                <IoSchoolOutline />
               </div>
-              <div className='empty-feature'>
-                <IoDesktopOutline />
-                <span>Présentiel et visioconférence</span>
-              </div>
-              <div className='empty-feature'>
-                <IoTimeOutline />
-                <span>Horaires flexibles</span>
+              <h3 className='empty-schedule-title'>{emptyMessage.title}</h3>
+              <p className='empty-schedule-text'>{emptyMessage.text}</p>
+              <div className='empty-schedule-features'>
+                {emptyMessage.features.map((feature, index) => (
+                  <div key={index} className='empty-feature'>
+                    {feature.icon}
+                    <span>{feature.text}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          ) : null
         ) : (
           <div className='weekly-schedule'>
             <div className='weekdays-row'>
@@ -707,7 +709,12 @@ const ScheduleSection = () => {
 
           <ContactFormComponent
             onSubmit={data =>
-              handleInterestSubmit(data, selectedCourse, () => setSelectedCourse(null))
+              handleInterestSubmit(
+                data,
+                selectedCourse,
+                () => setSelectedCourse(null),
+                onInterestSubmit
+              )
             }
             submitText='Envoyer le message'
             loadingText='Envoi en cours...'
@@ -719,6 +726,48 @@ const ScheduleSection = () => {
       )}
     </section>
   );
+};
+
+ScheduleSection.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  coursesData: PropTypes.object,
+  loading: PropTypes.bool,
+  error: PropTypes.string,
+  onInterestSubmit: PropTypes.func,
+  onCourseClick: PropTypes.func,
+  coursesPerPage: PropTypes.number,
+  showEmptyMessage: PropTypes.bool,
+  emptyMessage: PropTypes.shape({
+    title: PropTypes.string,
+    text: PropTypes.string,
+    features: PropTypes.arrayOf(
+      PropTypes.shape({
+        icon: PropTypes.node,
+        text: PropTypes.string,
+      })
+    ),
+  }),
+  className: PropTypes.string,
+  startDate: PropTypes.string,
+  weekDays: PropTypes.number,
+  levelTabs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      icon: PropTypes.node.isRequired,
+      description: PropTypes.string.isRequired,
+    })
+  ),
+  typeTabs: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      icon: PropTypes.node.isRequired,
+      description: PropTypes.string.isRequired,
+    })
+  ),
+  translator: PropTypes.func,
 };
 
 export default ScheduleSection;

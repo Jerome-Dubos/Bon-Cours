@@ -963,8 +963,7 @@ const ContactForm = ({
           onRemove={removeSuccessNotification}
           autoClose={true}
           autoCloseDelay={4000}
-          position='top-right'
-          className='notification-compact'
+          showCloseButton={false}
         />
       )}
 
@@ -974,8 +973,7 @@ const ContactForm = ({
           onRemove={removeErrorNotification}
           autoClose={true}
           autoCloseDelay={5000}
-          position='top-right'
-          className='notification-compact'
+          showCloseButton={false}
         />
       )}
     </>

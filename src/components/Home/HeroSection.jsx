@@ -109,23 +109,20 @@ const HeroSection = () => {
   }, [goToPrevious, goToNext]);
 
   const handleTouchStart = e => {
-    e.preventDefault();
     setTouchStart(e.targetTouches[0].clientX);
     setTouchEnd(null);
   };
 
   const handleTouchMove = e => {
-    e.preventDefault();
     setTouchEnd(e.targetTouches[0].clientX);
   };
 
   const handleTouchEnd = e => {
-    e.preventDefault();
     if (!touchStart || !touchEnd) return;
 
     const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
+    const isLeftSwipe = distance > 30;
+    const isRightSwipe = distance < -30;
 
     if (isLeftSwipe) {
       setSlideDirection('next');
@@ -142,7 +139,7 @@ const HeroSection = () => {
 
   const slideVariants = {
     enter: direction => ({
-      x: direction === 'next' ? 100 : -100,
+      x: direction === 'next' ? 50 : -50,
       opacity: 0,
     }),
     center: {
@@ -150,7 +147,7 @@ const HeroSection = () => {
       opacity: 1,
     },
     exit: direction => ({
-      x: direction === 'next' ? -100 : 100,
+      x: direction === 'next' ? -50 : 50,
       opacity: 0,
     }),
   };
@@ -186,7 +183,7 @@ const HeroSection = () => {
                 initial='enter'
                 animate='center'
                 exit='exit'
-                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
               >
                 <div className='slide-content'>
                   <div className='slide-image-container'>

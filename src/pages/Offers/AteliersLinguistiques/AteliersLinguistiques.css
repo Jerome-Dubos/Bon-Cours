@@ -15,7 +15,7 @@
 .ateliers-linguistiques-container h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: var(--spacing-lg);
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
 }
 
 .intro-section {
@@ -36,7 +36,7 @@
 
 .price-card {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-  border: 1px solid rgba(234, 189, 131, 0.2);
+  border: 1px solid rgba(255, 214, 176, 0.2);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   backdrop-filter: blur(10px);
@@ -57,7 +57,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(234, 189, 131, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 214, 176, 0.3), transparent);
   opacity: 0;
   transition: opacity var(--transition-normal);
 }
@@ -86,7 +86,7 @@
 
 .price-value {
   font-size: var(--text-2xl);
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   font-weight: 700;
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -121,7 +121,7 @@
 
 .atelier-card {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-  border: 1px solid rgba(234, 189, 131, 0.2);
+  border: 1px solid rgba(255, 214, 176, 0.2);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   backdrop-filter: blur(10px);
@@ -142,7 +142,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(234, 189, 131, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 214, 176, 0.3), transparent);
   opacity: 0;
   transition: opacity var(--transition-normal);
 }
@@ -150,7 +150,7 @@
 .atelier-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  border-color: rgba(234, 189, 131, 0.4);
+  border-color: rgba(255, 214, 176, 0.4);
 }
 
 .atelier-card:hover::before {
@@ -165,9 +165,9 @@
   justify-content: center;
   width: 80px;
   height: 80px;
-  background: linear-gradient(145deg, rgba(234, 189, 131, 0.1) 0%, rgba(234, 189, 131, 0.05) 100%);
+  background: linear-gradient(145deg, rgba(255, 214, 176, 0.1) 0%, rgba(255, 214, 176, 0.05) 100%);
   border-radius: var(--border-radius-lg);
-  border: 1px solid rgba(234, 189, 131, 0.2);
+  border: 1px solid rgba(255, 214, 176, 0.2);
 }
 
 .atelier-info {
@@ -175,7 +175,7 @@
 }
 
 .atelier-info h3 {
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   font-size: var(--text-xl);
   font-weight: 600;
   margin: 0 0 var(--spacing-md) 0;
@@ -196,18 +196,18 @@
 }
 
 .feature-tag {
-  background: linear-gradient(135deg, rgba(234, 189, 131, 0.2) 0%, rgba(234, 189, 131, 0.1) 100%);
-  color: var(--secondary-gold);
+  background: linear-gradient(135deg, rgba(255, 214, 176, 0.2) 0%, rgba(255, 214, 176, 0.1) 100%);
+  color: var(--secondary-peach);
   font-size: var(--text-sm);
   font-weight: 500;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-md);
-  border: 1px solid rgba(234, 189, 131, 0.3);
+  border: 1px solid rgba(255, 214, 176, 0.3);
   transition: all var(--transition-normal);
 }
 
 .feature-tag:hover {
-  background: linear-gradient(135deg, rgba(234, 189, 131, 0.3) 0%, rgba(234, 189, 131, 0.2) 100%);
+  background: linear-gradient(135deg, rgba(255, 214, 176, 0.3) 0%, rgba(255, 214, 176, 0.2) 100%);
   transform: translateY(-1px);
 }
 
@@ -219,14 +219,14 @@
 
 .cta-button {
   display: inline-block;
-  background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--secondary-gold-light) 100%);
+  background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--secondary-peach-light) 100%);
   color: var(--primary-blue-dark);
   font-size: var(--text-lg);
   font-weight: 600;
   text-decoration: none;
   padding: var(--spacing-md) var(--spacing-xl);
   border-radius: var(--border-radius-lg);
-  box-shadow: 0 4px 15px rgba(234, 189, 131, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 214, 176, 0.3);
   transition: all var(--transition-normal);
   border: 2px solid transparent;
   position: relative;
@@ -246,8 +246,8 @@
 
 .cta-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(234, 189, 131, 0.4);
-  border-color: var(--secondary-gold);
+  box-shadow: 0 6px 20px rgba(255, 214, 176, 0.4);
+  border-color: var(--secondary-peach);
   color: var(--primary-blue-dark);
 }
 
@@ -257,14 +257,14 @@
 
 .cta-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 10px rgba(234, 189, 131, 0.3);
+  box-shadow: 0 2px 10px rgba(255, 214, 176, 0.3);
 }
 
 .tabs-header {
   display: flex;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-lg);
-  border-bottom: 2px solid rgba(234, 189, 131, 0.2);
+  border-bottom: 2px solid rgba(255, 214, 176, 0.2);
   padding-bottom: var(--spacing-sm);
   flex-wrap: wrap;
 }
@@ -285,23 +285,23 @@
 
 .tab-button:hover {
   opacity: 1;
-  background: rgba(234, 189, 131, 0.1);
-  border-color: rgba(234, 189, 131, 0.3);
+  background: rgba(255, 214, 176, 0.1);
+  border-color: rgba(255, 214, 176, 0.3);
 }
 
 .tab-button.active {
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   color: var(--primary-blue-dark);
   opacity: 1;
-  border-color: var(--secondary-gold);
+  border-color: var(--secondary-peach);
   font-weight: 600;
 }
 
 .tab-button.active:hover {
-  background: var(--secondary-gold);
+  background: var(--secondary-peach);
   color: var(--primary-blue-dark);
   opacity: 1;
-  border-color: var(--secondary-gold);
+  border-color: var(--secondary-peach);
   font-weight: 600;
   transform: none;
 }
@@ -311,11 +311,11 @@
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(234, 189, 131, 0.2);
+  border: 1px solid rgba(255, 214, 176, 0.2);
 }
 
 .tab-content h2 {
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   font-size: 1.8rem;
   margin-bottom: var(--spacing-md);
 }

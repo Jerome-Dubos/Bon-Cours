@@ -59,7 +59,7 @@ const SimpleNavbar = ({ user, onLogin, onLogout }) => {
         }}
       >
         <img
-          src='/beige-paysage.svg'
+          src='/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg'
           alt='Logo'
           style={{ height: '40px', marginRight: '0.5rem' }}
         />

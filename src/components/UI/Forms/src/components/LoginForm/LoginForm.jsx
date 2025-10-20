@@ -286,6 +286,7 @@ const LoginForm = ({
           autoCloseDelay={3000}
           position='top-right'
           className='notification-compact'
+          showCloseButton={false}
         />
       )}
 
@@ -297,6 +298,7 @@ const LoginForm = ({
           autoCloseDelay={5000}
           position='top-right'
           className='notification-compact'
+          showCloseButton={false}
         />
       )}
     </>

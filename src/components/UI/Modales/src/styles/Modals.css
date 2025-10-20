@@ -29,7 +29,7 @@
   display: flex;
   flex-direction: column;
   animation: modalSlideIn 0.3s ease-out;
-  border: 1px solid rgba(234, 189, 131, 0.2);
+  border: 1px solid rgba(255, 214, 176, 0.2);
   position: relative;
   z-index: 2147483647;
 }
@@ -68,15 +68,16 @@
   align-items: center;
   justify-content: space-between;
   padding: 24px 24px 0 24px;
-  border-bottom: 1px solid rgba(234, 189, 131, 0.2);
+  border-bottom: 1px solid rgba(255, 214, 176, 0.2);
   margin-bottom: 0;
 }
 
 .modal-title {
   margin: 0;
+  font-family: var(--font-family-heading);
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--secondary-gold);
+  color: var(--secondary-peach);
   line-height: 1.2;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
@@ -103,7 +104,7 @@
 
 .modal-close:focus {
   outline: none;
-  box-shadow: 0 0 0 3px var(--secondary-gold-light);
+  box-shadow: 0 0 0 3px var(--secondary-peach-light);
 }
 
 /* Body */
@@ -118,7 +119,7 @@
 /* Footer */
 .modal-footer {
   padding: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
-  border-top: 1px solid rgba(234, 189, 131, 0.2);
+  border-top: 1px solid rgba(255, 214, 176, 0.2);
   margin-top: 0;
   overflow: visible; /* Permettre l'élévation des boutons */
 }
@@ -163,8 +164,8 @@
 }
 
 .modal-actions button[type='submit'] {
-  background: var(--secondary-gold);
-  border: 2px solid var(--secondary-gold);
+  background: var(--secondary-peach);
+  border: 2px solid var(--secondary-peach);
   color: var(--text-dark);
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--border-radius-md);
@@ -180,9 +181,9 @@
 }
 
 .modal-actions button[type='submit']:hover {
-  background: var(--secondary-gold-light);
+  background: var(--secondary-peach-light);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(234, 189, 131, 0.3);
+  box-shadow: 0 8px 20px rgba(255, 214, 176, 0.3);
 }
 
 .modal-actions button[type='submit']:disabled {
@@ -324,7 +325,7 @@
 
   .modal-title {
     font-size: 1.25rem;
-    color: var(--secondary-gold);
+    color: var(--secondary-peach);
   }
 
   .modal-actions {
@@ -396,7 +397,7 @@
 }
 
 .modal-body::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-gold-dark, #d4a76a);
+  background: var(--primary-blue, #d4a76a);
 }
 
 /* ===== FORMULAIRES DANS LES MODALES ===== */
@@ -428,7 +429,7 @@
 .form-group select,
 .form-group textarea {
   padding: var(--spacing-sm) var(--spacing-md);
-  border: 1px solid rgba(234, 189, 131, 0.3);
+  border: 1px solid rgba(255, 214, 176, 0.3);
   border-radius: var(--border-radius-md);
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-light);
@@ -440,9 +441,9 @@
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--secondary-gold);
+  border-color: var(--secondary-peach);
   background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 0 3px rgba(234, 189, 131, 0.1);
+  box-shadow: 0 0 0 3px rgba(255, 214, 176, 0.1);
 }
 
 .form-group input::placeholder,
@@ -486,6 +487,14 @@ body.modal-open {
 /* Empêcher le scroll sur tous les éléments parents */
 body.modal-open * {
   overflow: hidden !important;
+}
+
+/* Exception pour les notifications - elles doivent rester visibles même avec une modale ouverte */
+body.modal-open .notification-container,
+body.modal-open .notification-container *,
+body.modal-open #notification-root,
+body.modal-open #notification-root * {
+  overflow: visible !important;
 }
 
 /* Permettre le scroll dans la modale elle-même */
