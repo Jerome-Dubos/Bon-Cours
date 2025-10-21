@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  FaArrowLeft,
   FaArrowRight,
   FaCertificate,
   FaChalkboardTeacher,
@@ -14,11 +13,12 @@ import './HeroSection.css';
 
 const HeroSection = () => {
   const navigate = useNavigate();
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [slideDirection, setSlideDirection] = useState('next');
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
+  const [currentSlide1, setCurrentSlide1] = useState(0);
+  const [currentSlide2, setCurrentSlide2] = useState(1);
+  const [currentSlide3, setCurrentSlide3] = useState(2);
+  const [progress1, setProgress1] = useState(0);
+  const [progress2, setProgress2] = useState(0);
+  const [progress3, setProgress3] = useState(0);
 
   const slides = [
     {
@@ -71,86 +71,197 @@ const HeroSection = () => {
     },
   ];
 
-  // Auto-play
+  // Références pour éviter les conflits de slides
+  const currentSlide2Ref = useRef(currentSlide2);
+  const currentSlide3Ref = useRef(currentSlide3);
+  const currentSlide1Ref = useRef(currentSlide1);
+
+  // Mise à jour des refs quand les états changent
+  currentSlide2Ref.current = currentSlide2;
+  currentSlide3Ref.current = currentSlide3;
+  currentSlide1Ref.current = currentSlide1;
+
+  // Auto-play avec transition douce pour chaque carousel
   useEffect(() => {
-    if (isPaused) return;
+    const duration1 = 6000; // 6 secondes
+    const duration2 = 7000; // 7 secondes
+    const duration3 = 8000; // 8 secondes
 
-    const interval = setInterval(() => {
-      setSlideDirection('next');
-      setCurrentSlide(prev => (prev + 1) % slides.length);
-    }, 5000);
+    // Barres de progression
+    const progressInterval1 = setInterval(() => {
+      setProgress1(prev => {
+        const increment = (100 / duration1) * 50; // Update toutes les 50ms
+        const newProgress = prev + increment;
+        return newProgress >= 100 ? 0 : newProgress;
+      });
+    }, 50);
 
-    return () => clearInterval(interval);
-  }, [isPaused, slides.length, currentSlide]);
+    const progressInterval2 = setInterval(() => {
+      setProgress2(prev => {
+        const increment = (100 / duration2) * 50;
+        const newProgress = prev + increment;
+        return newProgress >= 100 ? 0 : newProgress;
+      });
+    }, 50);
 
-  const goToPrevious = useCallback(() => {
-    setSlideDirection('prev');
-    setCurrentSlide(prev => (prev - 1 + slides.length) % slides.length);
-  }, [slides.length]);
+    const progressInterval3 = setInterval(() => {
+      setProgress3(prev => {
+        const increment = (100 / duration3) * 50;
+        const newProgress = prev + increment;
+        return newProgress >= 100 ? 0 : newProgress;
+      });
+    }, 50);
 
-  const goToNext = useCallback(() => {
-    setSlideDirection('next');
-    setCurrentSlide(prev => (prev + 1) % slides.length);
-  }, [slides.length]);
+    // Changement des slides
+    const interval1 = setInterval(() => {
+      setCurrentSlide1(prev => {
+        let nextSlide = (prev + 1) % slides.length;
+        // Éviter de confliter avec les autres carousels
+        while (nextSlide === currentSlide2Ref.current || nextSlide === currentSlide3Ref.current) {
+          nextSlide = (nextSlide + 1) % slides.length;
+        }
+        return nextSlide;
+      });
+      setProgress1(0); // Reset progress bar
+    }, duration1);
 
-  // Navigation au clavier
-  useEffect(() => {
-    const handleKeyPress = e => {
-      if (e.key === 'ArrowLeft') {
-        goToPrevious();
-      }
-      if (e.key === 'ArrowRight') {
-        goToNext();
-      }
+    const interval2 = setInterval(() => {
+      setCurrentSlide2(prev => {
+        let nextSlide = (prev + 1) % slides.length;
+        // Éviter de confliter avec les autres carousels
+        while (nextSlide === currentSlide1Ref.current || nextSlide === currentSlide3Ref.current) {
+          nextSlide = (nextSlide + 1) % slides.length;
+        }
+        return nextSlide;
+      });
+      setProgress2(0); // Reset progress bar
+    }, duration2);
+
+    const interval3 = setInterval(() => {
+      setCurrentSlide3(prev => {
+        let nextSlide = (prev + 1) % slides.length;
+        // Éviter de confliter avec les autres carousels
+        while (nextSlide === currentSlide1Ref.current || nextSlide === currentSlide2Ref.current) {
+          nextSlide = (nextSlide + 1) % slides.length;
+        }
+        return nextSlide;
+      });
+      setProgress3(0); // Reset progress bar
+    }, duration3);
+
+    return () => {
+      clearInterval(interval1);
+      clearInterval(interval2);
+      clearInterval(interval3);
+      clearInterval(progressInterval1);
+      clearInterval(progressInterval2);
+      clearInterval(progressInterval3);
     };
+  }, [slides.length]);
 
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [goToPrevious, goToNext]);
-
-  const handleTouchStart = e => {
-    setTouchStart(e.targetTouches[0].clientX);
-    setTouchEnd(null);
-  };
-
-  const handleTouchMove = e => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = e => {
-    if (!touchStart || !touchEnd) return;
-
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 30;
-    const isRightSwipe = distance < -30;
-
-    if (isLeftSwipe) {
-      setSlideDirection('next');
-      goToNext();
-    }
-    if (isRightSwipe) {
-      setSlideDirection('prev');
-      goToPrevious();
-    }
-
-    setTouchStart(null);
-    setTouchEnd(null);
-  };
-
-  const slideVariants = {
-    enter: direction => ({
-      x: direction === 'next' ? 50 : -50,
-      opacity: 0,
+  // Mémoriser les données de slide pour éviter les re-renders
+  const slideData = useMemo(
+    () => ({
+      image: slides[currentSlide1].image,
+      icon: slides[currentSlide1].icon,
+      title: slides[currentSlide1].title,
+      subtitle: slides[currentSlide1].subtitle,
+      ctaText: slides[currentSlide1].ctaText,
+      ctaAction: slides[currentSlide1].ctaAction,
     }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: direction => ({
-      x: direction === 'next' ? -50 : 50,
-      opacity: 0,
+    [currentSlide1]
+  );
+
+  const slideData2 = useMemo(
+    () => ({
+      image: slides[currentSlide2].image,
+      icon: slides[currentSlide2].icon,
+      title: slides[currentSlide2].title,
+      subtitle: slides[currentSlide2].subtitle,
+      ctaText: slides[currentSlide2].ctaText,
+      ctaAction: slides[currentSlide2].ctaAction,
     }),
-  };
+    [currentSlide2]
+  );
+
+  const slideData3 = useMemo(
+    () => ({
+      image: slides[currentSlide3].image,
+      icon: slides[currentSlide3].icon,
+      title: slides[currentSlide3].title,
+      subtitle: slides[currentSlide3].subtitle,
+      ctaText: slides[currentSlide3].ctaText,
+      ctaAction: slides[currentSlide3].ctaAction,
+    }),
+    [currentSlide3]
+  );
+
+  // Composant Carousel optimisé avec transition smooth
+  const Carousel = useCallback(({ currentSlide, carouselClass, slideData, progress }) => {
+    const IconComponent = slideData.icon;
+
+    return (
+      <div className={`hero-carousel ${carouselClass}`}>
+        <AnimatePresence mode='wait'>
+          <motion.div
+            key={`${carouselClass}-${currentSlide}`}
+            className='carousel-slide'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              duration: 0.6,
+              ease: 'easeInOut',
+            }}
+            style={{
+              backgroundImage: `url(${slideData.image})`,
+            }}
+          >
+            <div className='slide-overlay'></div>
+
+            <motion.div
+              className='slide-content-wrapper'
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.8,
+                delay: 0.2,
+                ease: 'easeOut',
+              }}
+            >
+              <div className='slide-header-section'>
+                <div className='slide-icon-container'>
+                  {IconComponent && <IconComponent className='slide-icon' />}
+                </div>
+                <div className='slide-text-section'>
+                  <h2 className='slide-title'>{slideData.title}</h2>
+                  <p className='slide-subtitle'>{slideData.subtitle}</p>
+                </div>
+              </div>
+
+              <div className='slide-footer-section'>
+                <button className='slide-cta-button' onClick={slideData.ctaAction}>
+                  {slideData.ctaText}
+                  <FaArrowRight className='cta-arrow' />
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Barre de progression */}
+            <div className='carousel-progress-bar'>
+              <div
+                className='progress-fill'
+                style={{
+                  width: `${progress}%`,
+                  transition: 'width 0.1s linear',
+                }}
+              />
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    );
+  }, []);
 
   return (
     <section className='hero' id='home'>
@@ -158,80 +269,29 @@ const HeroSection = () => {
         <h1>MAÎTRISEZ LES LANGUES • EXCELLENCE SCOLAIRE</h1>
 
         <div className='carousel-container'>
-          <button
-            className='carousel-arrow carousel-arrow-left'
-            onClick={goToPrevious}
-            aria-label='Slide précédent'
-          >
-            <FaArrowLeft />
-          </button>
-
-          <div
-            className='hero-carousel'
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            <AnimatePresence mode='wait' custom={slideDirection}>
-              <motion.div
-                key={currentSlide}
-                className='carousel-slide'
-                custom={slideDirection}
-                variants={slideVariants}
-                initial='enter'
-                animate='center'
-                exit='exit'
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-              >
-                <div className='slide-content'>
-                  <div className='slide-image-container'>
-                    <img
-                      src={slides[currentSlide].image}
-                      alt={slides[currentSlide].title}
-                      className='slide-image'
-                      loading={currentSlide === 0 ? 'eager' : 'lazy'}
-                    />
-                    <div className='slide-image-overlay'></div>
-                  </div>
-
-                  <div className='slide-text-container'>
-                    <div className='slide-icon'>
-                      {slides[currentSlide].icon &&
-                        (() => {
-                          const Icon = slides[currentSlide].icon;
-                          return <Icon />;
-                        })()}
-                    </div>
-                    <h2 className='slide-title'>{slides[currentSlide].title}</h2>
-                    <h3 className='slide-subtitle'>{slides[currentSlide].subtitle}</h3>
-                    <button className='slide-cta' onClick={slides[currentSlide].ctaAction}>
-                      {slides[currentSlide].ctaText}
-                      <FaArrowRight />
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            <div className='carousel-progress-bar'>
-              <div
-                className='progress-fill'
-                style={{
-                  width: `${(currentSlide / (slides.length - 1)) * 100}%`,
-                }}
-              />
-            </div>
+          <div className='carousel-main'>
+            <Carousel
+              currentSlide={currentSlide1}
+              carouselClass='carousel-large'
+              slideData={slideData}
+              progress={progress1}
+            />
           </div>
 
-          <button
-            className='carousel-arrow carousel-arrow-right'
-            onClick={goToNext}
-            aria-label='Slide suivant'
-          >
-            <FaArrowRight />
-          </button>
+          <div className='carousel-side'>
+            <Carousel
+              currentSlide={currentSlide2}
+              carouselClass='carousel-small'
+              slideData={slideData2}
+              progress={progress2}
+            />
+            <Carousel
+              currentSlide={currentSlide3}
+              carouselClass='carousel-small'
+              slideData={slideData3}
+              progress={progress3}
+            />
+          </div>
         </div>
       </div>
     </section>

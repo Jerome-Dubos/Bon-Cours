@@ -171,12 +171,7 @@ const Langues = () => {
         <h1>Nos cours de langues</h1>
 
         {/* Drapeaux des langues - Carousel infini */}
-        <LanguageCarousel
-          speed={40}
-          direction='left'
-          pauseOnHover={true}
-          className='languages-flags-carousel'
-        />
+        <LanguageCarousel speed={40} direction='left' className='languages-flags-carousel' />
 
         {/* Texte "pour" */}
         <div className='languages-for'>

@@ -43,37 +43,6 @@
   margin: var(--spacing-xl) 0;
 }
 
-.features-language-carousel .language-carousel__item {
-  min-width: 120px;
-  padding: var(--spacing-lg);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-  border: 2px solid rgba(255, 214, 176, 0.2);
-  border-radius: var(--border-radius-xl);
-  transition: all var(--transition-normal);
-  cursor: pointer;
-}
-
-.features-language-carousel .language-carousel__item:hover {
-  background: linear-gradient(145deg, rgba(255, 214, 176, 0.2) 0%, rgba(255, 214, 176, 0.1) 100%);
-  border-color: var(--secondary-peach);
-  transform: translateY(-6px) scale(1.05);
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.2),
-    0 6px 20px rgba(255, 214, 176, 0.3);
-}
-
-.features-language-carousel .language-carousel__flag {
-  width: 100px;
-  height: 75px;
-  margin-bottom: var(--spacing-sm);
-}
-
-.features-language-carousel .language-carousel__name {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--text-light);
-}
-
 /* === SECTION ÉCOLE === */
 .school-section {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);

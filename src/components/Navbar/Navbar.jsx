@@ -149,8 +149,8 @@ const Navbar = () => {
           submenuKey: 'methode',
         },
         {
-          path: '/inscription',
-          label: t('nav.registration', 'Inscription'),
+          path: '/qui-sommes-nous',
+          label: t('nav.qui-sommes-nous', 'Qui sommes nous ?'),
           icon: <IoInformationCircleOutline size={20} />,
         },
         {

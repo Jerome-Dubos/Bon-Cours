@@ -63,7 +63,7 @@ const Footer = () => {
     ],
     pages: [
       { path: '/', label: 'Accueil' },
-      { path: '/inscription', label: 'Inscription' },
+      { path: '/qui-sommes-nous', label: 'Qui sommes nous ?' },
       { path: '/contact', label: 'Contact' },
     ],
   };

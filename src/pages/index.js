@@ -11,7 +11,7 @@ export { default as Home } from './Home/Home';
 export { default as Contact } from './Contact/Contact';
 export { default as Method } from './Method/Method';
 export { default as Offers } from './Offers/Offers';
-export { default as Registration } from './Registration/Registration';
+export { default as QuiSommesNous } from './QuiSommesNous/QuiSommesNous';
 
 // === REEXPORT DES HOOKS ===
 export * from '../hooks';

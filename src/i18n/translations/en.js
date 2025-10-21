@@ -106,7 +106,7 @@ export const en = {
       home: 'Home',
       offers: 'Offers',
       method: 'Method',
-      registration: 'Registration',
+      'qui-sommes-nous': 'Who are we?',
       contact: 'Contact',
       courses: 'Courses',
       test: 'Test',

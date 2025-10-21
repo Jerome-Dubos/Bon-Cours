@@ -9,7 +9,7 @@ const Home = lazy(() => import('./pages/Home/Home'));
 const Error = lazy(() => import('./pages/Error/Error'));
 const Offers = lazy(() => import('./pages/Offers/Offers'));
 const Method = lazy(() => import('./pages/Method/Method'));
-const Registration = lazy(() => import('./pages/Registration/Registration'));
+const QuiSommesNous = lazy(() => import('./pages/QuiSommesNous/QuiSommesNous'));
 const Contact = lazy(() => import('./pages/Contact/Contact'));
 
 // Pages Méthode
@@ -60,7 +60,7 @@ const App = () => {
             <Route path='/' element={<Home />} />
             <Route path='/offres' element={<Offers />} />
             <Route path='/methode' element={<Method />} />
-            <Route path='/inscription' element={<Registration />} />
+            <Route path='/qui-sommes-nous' element={<QuiSommesNous />} />
             <Route path='/contact' element={<Contact />} />
             {/* Routes Méthode */}
             <Route path='/methode/approche-actionnelle' element={<ApprocheActionnelle />} />

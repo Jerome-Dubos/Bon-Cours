@@ -1,0 +1,134 @@
+.about-tabs {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+}
+
+.about-tabs__header {
+  margin-bottom: var(--spacing-4xl);
+  border-bottom: 2px solid var(--primary-blue-light);
+  position: relative;
+  z-index: 0; /* Pour s'assurer que la barre est en arrière-plan */
+}
+
+.about-tabs__nav {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  position: relative;
+  z-index: 1; /* Pour que les boutons soient au-dessus de la barre */
+}
+
+/* Styles spécifiques pour les boutons d'onglets */
+.about-tabs__nav-item {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: none;
+  font-size: 1.125rem;
+  font-weight: 500;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0; /* Rayons sur les coins du haut */
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  min-width: 200px;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px; /* Pour que le bouton se superpose à la barre */
+  font-family: inherit;
+  outline: none;
+  box-shadow: none; /* Pas d'ombre par défaut */
+}
+
+.about-tabs__nav-item:hover {
+  color: var(--secondary-peach);
+  background: var(--secondary-peach-40);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 214, 176, 0.2);
+}
+
+.about-tabs__nav-item.active {
+  color: var(--primary-blue-dark) !important; /* Texte sombre pour être cohérent avec l'icône */
+  background: var(--secondary-peach) !important; /* Fond pêche simple et élégant */
+  box-shadow: 0 -6px 25px rgba(255, 214, 176, 0.4) !important; /* Halo plus visible et plus large */
+  border-bottom: 2px solid var(--secondary-peach) !important;
+  z-index: 1 !important; /* Pour s'assurer que le bouton actif est au-dessus de la barre */
+  position: relative !important; /* Assure que le z-index fonctionne */
+  font-weight: 600 !important; /* Texte plus gras */
+  transform: translateY(-1px) !important; /* Légère élévation */
+}
+
+.about-tabs__nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--secondary-peach);
+  border-radius: 0; /* Ligne droite */
+  z-index: 2; /* Pour s'assurer que la ligne est au-dessus de tout */
+}
+
+.about-tabs__nav-item:focus {
+  outline: none; /* Suppression complète de la bordure de focus */
+  box-shadow: none; /* Suppression de l'ombre de focus */
+}
+
+.about-tabs__content {
+  min-height: 400px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-tabs {
+    padding: var(--spacing-lg);
+  }
+
+  .about-tabs__nav {
+    flex-direction: row;
+    gap: var(--spacing-sm);
+    justify-content: space-between;
+    overflow-x: auto;
+    padding-bottom: var(--spacing-sm);
+  }
+
+  .about-tabs__nav-item {
+    min-width: auto;
+    flex: 1;
+    border-radius: var(--border-radius-md) var(--border-radius-md) 0 0; /* Rayons sur les coins du haut sur mobile */
+    text-align: center;
+    font-size: 1rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+    white-space: nowrap;
+  }
+
+  .about-tabs__nav-item.active::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-tabs {
+    padding: var(--spacing-md);
+  }
+
+  .about-tabs__nav {
+    gap: var(--spacing-xs);
+  }
+
+  .about-tabs__nav-item {
+    font-size: 0.9rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}

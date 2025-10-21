@@ -237,6 +237,7 @@
   padding-bottom: var(--spacing-sm);
   font-family: var(--font-family-heading);
   line-height: 1.2;
+  display: inline-block;
 }
 
 .footer-section h3::after {
@@ -244,7 +245,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 60px;
+  width: 60%;
   height: 2px;
   background: var(--gradient-peach);
   border-radius: var(--border-radius-sm);
@@ -252,7 +253,7 @@
 }
 
 .footer-section:hover h3::after {
-  width: 80px;
+  width: 100%;
 }
 
 /* === LOGO ET DESCRIPTION === */

@@ -83,11 +83,12 @@ body.modal-open .navbar.scrolled {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-lg);
   position: relative;
   padding-bottom: 4px;
   margin: 0 var(--spacing-sm);
-  margin-left: 20%;
+  margin-left: 15%;
+  flex-wrap: nowrap;
 }
 
 /* Wrapper pour les liens avec sous-menus */
@@ -126,6 +127,8 @@ body.modal-open .navbar.scrolled {
   background: transparent;
   cursor: pointer;
   will-change: color, transform;
+  white-space: nowrap;
+  min-width: fit-content;
 }
 
 .nav-link:hover {
@@ -1405,6 +1408,10 @@ body.modal-open .navbar.scrolled {
   .navbar {
     padding: var(--spacing-sm) var(--spacing-lg);
   }
+
+  .nav-links {
+    margin-left: 12%;
+  }
 }
 
 /* Navigation compacte (1024px-1199px) */
@@ -1415,11 +1422,13 @@ body.modal-open .navbar.scrolled {
 
   .nav-links {
     gap: var(--spacing-md);
+    margin-left: 10%;
   }
 
   .nav-link {
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: 0.9rem;
+    white-space: nowrap;
   }
 
   /* Adapter le mega menu pour les écrans plus petits */

@@ -6,7 +6,6 @@ const LanguageCarousel = ({
   languages = [],
   speed = 40,
   direction = 'left',
-  pauseOnHover = true,
   className = '',
   onLanguageClick = null,
 }) => {
@@ -138,7 +137,6 @@ LanguageCarousel.propTypes = {
   ),
   speed: PropTypes.number,
   direction: PropTypes.oneOf(['left', 'right']),
-  pauseOnHover: PropTypes.bool,
   className: PropTypes.string,
   onLanguageClick: PropTypes.func,
 };
