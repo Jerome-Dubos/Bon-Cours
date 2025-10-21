@@ -83,14 +83,12 @@ const HeroSection = () => {
 
   // Auto-play avec transition douce pour chaque carousel
   useEffect(() => {
-    const duration1 = 6000; // 6 secondes
-    const duration2 = 7000; // 7 secondes
-    const duration3 = 8000; // 8 secondes
+    const duration = 6000; // 6 secondes pour tous les carousels
 
     // Barres de progression
     const progressInterval1 = setInterval(() => {
       setProgress1(prev => {
-        const increment = (100 / duration1) * 50; // Update toutes les 50ms
+        const increment = (100 / duration) * 50; // Update toutes les 50ms
         const newProgress = prev + increment;
         return newProgress >= 100 ? 0 : newProgress;
       });
@@ -98,7 +96,7 @@ const HeroSection = () => {
 
     const progressInterval2 = setInterval(() => {
       setProgress2(prev => {
-        const increment = (100 / duration2) * 50;
+        const increment = (100 / duration) * 50;
         const newProgress = prev + increment;
         return newProgress >= 100 ? 0 : newProgress;
       });
@@ -106,48 +104,27 @@ const HeroSection = () => {
 
     const progressInterval3 = setInterval(() => {
       setProgress3(prev => {
-        const increment = (100 / duration3) * 50;
+        const increment = (100 / duration) * 50;
         const newProgress = prev + increment;
         return newProgress >= 100 ? 0 : newProgress;
       });
     }, 50);
 
-    // Changement des slides
+    // Changement des slides - tous synchronisés
     const interval1 = setInterval(() => {
-      setCurrentSlide1(prev => {
-        let nextSlide = (prev + 1) % slides.length;
-        // Éviter de confliter avec les autres carousels
-        while (nextSlide === currentSlide2Ref.current || nextSlide === currentSlide3Ref.current) {
-          nextSlide = (nextSlide + 1) % slides.length;
-        }
-        return nextSlide;
-      });
+      setCurrentSlide1(prev => (prev + 1) % slides.length);
       setProgress1(0); // Reset progress bar
-    }, duration1);
+    }, duration);
 
     const interval2 = setInterval(() => {
-      setCurrentSlide2(prev => {
-        let nextSlide = (prev + 1) % slides.length;
-        // Éviter de confliter avec les autres carousels
-        while (nextSlide === currentSlide1Ref.current || nextSlide === currentSlide3Ref.current) {
-          nextSlide = (nextSlide + 1) % slides.length;
-        }
-        return nextSlide;
-      });
+      setCurrentSlide2(prev => (prev + 1) % slides.length);
       setProgress2(0); // Reset progress bar
-    }, duration2);
+    }, duration);
 
     const interval3 = setInterval(() => {
-      setCurrentSlide3(prev => {
-        let nextSlide = (prev + 1) % slides.length;
-        // Éviter de confliter avec les autres carousels
-        while (nextSlide === currentSlide1Ref.current || nextSlide === currentSlide2Ref.current) {
-          nextSlide = (nextSlide + 1) % slides.length;
-        }
-        return nextSlide;
-      });
+      setCurrentSlide3(prev => (prev + 1) % slides.length);
       setProgress3(0); // Reset progress bar
-    }, duration3);
+    }, duration);
 
     return () => {
       clearInterval(interval1);
