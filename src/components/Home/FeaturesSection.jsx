@@ -66,7 +66,9 @@ const FeaturesSection = () => {
               <FaGraduationCap />
             </div>
             <h2 className='section-title'>Soutien scolaire</h2>
-            <p className='section-subtitle'>Accompagnement personnalisé pour réussir vos études</p>
+            <p className='section-subtitle'>
+              Accompagnement personnalisé pour atteindre vos objectifs
+            </p>
           </div>
 
           <div className='school-content'>
@@ -75,22 +77,22 @@ const FeaturesSection = () => {
                 <div className='feature-icon'>
                   <FaBook />
                 </div>
-                <h3>Matières principales</h3>
-                <p>Mathématiques, Français, Histoire-Géo, Sciences</p>
+                <h3>Pour tous les niveaux</h3>
+                <p>Primaire, Collège, Lycée</p>
               </div>
               <div className='feature-item'>
                 <div className='feature-icon'>
                   <FaBullseye />
                 </div>
-                <h3>Objectifs personnalisés</h3>
-                <p>Programmes adaptés à votre niveau et vos objectifs</p>
+                <h3>Diagnostic offert</h3>
+                <p>Pour optimiser votre progression</p>
               </div>
               <div className='feature-item'>
                 <div className='feature-icon'>
                   <FaTrophy />
                 </div>
-                <h3>Professeurs qualifiés</h3>
-                <p>Équipe pédagogique expérimentée et bienveillante</p>
+                <h3>Équipe experte</h3>
+                <p>Intervenants pédagogues et bienveillants</p>
               </div>
             </div>
           </div>
@@ -104,7 +106,7 @@ const FeaturesSection = () => {
               onClick={handleContactClick}
               className='action-button contact-button'
             >
-              Être contacté
+              Contactez-nous
             </PrimaryButton>
           </div>
         </div>

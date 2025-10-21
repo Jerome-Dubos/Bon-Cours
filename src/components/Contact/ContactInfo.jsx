@@ -16,13 +16,13 @@ const ContactInfo = () => {
   const [nextNotificationId, setNextNotificationId] = useState(1);
 
   const horaires = [
-    { jour: 'Lundi', heures: '9h - 19h' },
-    { jour: 'Mardi', heures: '9h - 19h' },
-    { jour: 'Mercredi', heures: '9h - 19h' },
-    { jour: 'Jeudi', heures: '9h - 19h' },
-    { jour: 'Vendredi', heures: '9h - 19h' },
-    { jour: 'Samedi', heures: '9h - 19h' },
-    { jour: 'Dimanche', heures: '9h - 19h' },
+    { jour: 'Lundi', heures: '8h - 20h' },
+    { jour: 'Mardi', heures: '8h - 20h' },
+    { jour: 'Mercredi', heures: '8h - 20h' },
+    { jour: 'Jeudi', heures: '8h - 20h' },
+    { jour: 'Vendredi', heures: '8h - 20h' },
+    { jour: 'Samedi', heures: '8h - 20h' },
+    { jour: 'Dimanche', heures: '8h - 20h' },
   ];
 
   const contactInfo = {
@@ -79,9 +79,6 @@ const ContactInfo = () => {
         <div className='contact-hero-section'>
           <div className='contact-hero-header'>
             <h2 className='contact-hero-title'>Où nous trouver</h2>
-            <p className='contact-hero-subtitle'>
-              Venez nous rendre visite dans notre centre à Strasbourg
-            </p>
           </div>
 
           <div className='contact-hero-grid'>
