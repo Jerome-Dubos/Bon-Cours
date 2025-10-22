@@ -63,7 +63,7 @@ const LanguageCarousel = ({
       {
         id: 'persian',
         name: 'Persan',
-        flag: '/assets/images/flags/liran.webp',
+        flag: '/assets/images/flags/Iran.webp',
         alt: 'Drapeau iranien',
       },
       {
