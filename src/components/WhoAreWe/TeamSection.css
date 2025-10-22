@@ -567,6 +567,103 @@
   animation-delay: 0.5s;
 }
 
+/* === PAGINATION === */
+.team-section__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  margin: var(--spacing-4xl) 0 var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-lg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--secondary-peach-40);
+}
+
+.team-section__pagination-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background: var(--primary-blue-60);
+  color: var(--text-light);
+  border: 1px solid var(--secondary-peach-40);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.team-section__pagination-btn:hover:not(:disabled) {
+  background: var(--primary-blue-80);
+  border-color: var(--secondary-peach-60);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 214, 176, 0.2);
+}
+
+.team-section__pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.team-section__pagination-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.team-section__pagination-numbers {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.team-section__pagination-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--primary-blue-60);
+  color: var(--text-light);
+  border: 1px solid var(--secondary-peach-40);
+  border-radius: var(--border-radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.team-section__pagination-number:hover {
+  background: var(--primary-blue-80);
+  border-color: var(--secondary-peach-60);
+  transform: translateY(-1px);
+}
+
+.team-section__pagination-number--active {
+  background: var(--secondary-peach) !important;
+  color: var(--primary-blue-dark) !important;
+  border-color: var(--secondary-peach) !important;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(255, 214, 176, 0.3);
+}
+
+.team-section__pagination-info {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
 /* === DESIGN RESPONSIVE OPTIMISÉ TACTILE === */
 
 /* Tablette (768px - 1024px) */
@@ -626,6 +723,24 @@
   .team-section__expertise-tags,
   .team-section__languages-list {
     justify-content: center;
+  }
+
+  .team-section__pagination {
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+  }
+
+  .team-section__pagination-btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.85rem;
+    min-height: 40px;
+  }
+
+  .team-section__pagination-number {
+    width: 40px;
+    height: 40px;
+    font-size: 0.85rem;
   }
 }
 
@@ -852,6 +967,37 @@
     min-height: 40px;
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: 0.85rem;
+  }
+
+  .team-section__pagination {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+  }
+
+  .team-section__pagination-btn {
+    width: 100%;
+    justify-content: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.9rem;
+    min-height: 44px;
+  }
+
+  .team-section__pagination-numbers {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .team-section__pagination-number {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+
+  .team-section__pagination-info {
+    font-size: 0.85rem;
+    margin-top: var(--spacing-md);
   }
 }
 

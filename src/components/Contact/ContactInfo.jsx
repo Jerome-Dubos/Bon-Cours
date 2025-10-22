@@ -8,11 +8,11 @@ import {
   FaMapMarkerAlt,
   FaTrain,
 } from 'react-icons/fa';
-import { SuccessNotification } from '../UI/Notifications';
+import { InfoNotification } from '../UI/Notifications';
 import './ContactInfo.css';
 
 const ContactInfo = () => {
-  const [successNotifications, setSuccessNotifications] = useState([]);
+  const [infoNotifications, setInfoNotifications] = useState([]);
   const [nextNotificationId, setNextNotificationId] = useState(1);
 
   const horaires = [
@@ -53,13 +53,13 @@ const ContactInfo = () => {
       id: nextNotificationId,
       message,
     };
-    setSuccessNotifications(prev => [...prev, newNotification]);
+    setInfoNotifications(prev => [...prev, newNotification]);
     setNextNotificationId(prev => prev + 1);
   };
 
   // Fonction pour supprimer une notification
-  const removeSuccessNotification = id => {
-    setSuccessNotifications(prev => prev.filter(n => n.id !== id));
+  const removeInfoNotification = id => {
+    setInfoNotifications(prev => prev.filter(n => n.id !== id));
   };
 
   const handleCopyAddress = () => {
@@ -117,7 +117,7 @@ const ContactInfo = () => {
                     </div>
                     <div className='access-compact-content'>
                       <h4>Tram</h4>
-                      <p>A & D - Gallia</p>
+                      <p>B - Arrêt Lycée Kleber</p>
                     </div>
                   </div>
                   <div className='access-compact-method'>
@@ -126,7 +126,11 @@ const ContactInfo = () => {
                     </div>
                     <div className='access-compact-content'>
                       <h4>Bus</h4>
-                      <p>10 & 30</p>
+                      <p>
+                        Ligne 2 - Arrêt Bethesda
+                        <br />
+                        Ligne C6, 30 et 72 - Arrêt Orangerie
+                      </p>
                     </div>
                   </div>
                   <div className='access-compact-method'>
@@ -135,7 +139,7 @@ const ContactInfo = () => {
                     </div>
                     <div className='access-compact-content'>
                       <h4>Voiture</h4>
-                      <p>Parking proche</p>
+                      <p>Places payantes à proximité</p>
                     </div>
                   </div>
                   <div className='access-compact-method'>
@@ -144,7 +148,7 @@ const ContactInfo = () => {
                     </div>
                     <div className='access-compact-content'>
                       <h4>Vélo</h4>
-                      <p>Vélhop 2min</p>
+                      <p>Stationnement au pied de l'immeuble</p>
                     </div>
                   </div>
                 </div>
@@ -155,15 +159,17 @@ const ContactInfo = () => {
             <div className='right-column'>
               <div className='info-hero-card'>
                 <div className='info-hero-item'>
-                  <div
-                    className='info-hero-icon'
-                    onClick={handleCopyAddress}
-                    title="Cliquer pour copier l'adresse"
-                  >
-                    <FaMapMarkerAlt size={24} />
-                  </div>
                   <div className='info-hero-content'>
-                    <h3 className='info-hero-label'>Adresse</h3>
+                    <div className='info-hero-header'>
+                      <div
+                        className='info-hero-icon'
+                        onClick={handleCopyAddress}
+                        title="Cliquer pour copier l'adresse"
+                      >
+                        <FaMapMarkerAlt size={24} />
+                      </div>
+                      <h3 className='info-hero-label'>Adresse</h3>
+                    </div>
                     <p className='info-hero-text'>{contactInfo.adresse}</p>
                   </div>
                 </div>
@@ -202,10 +208,10 @@ const ContactInfo = () => {
       </div>
 
       {/* Notifications centralisées */}
-      {successNotifications.length > 0 && (
-        <SuccessNotification
-          notifications={successNotifications}
-          onRemove={removeSuccessNotification}
+      {infoNotifications.length > 0 && (
+        <InfoNotification
+          notifications={infoNotifications}
+          onRemove={removeInfoNotification}
           autoClose={true}
           autoCloseDelay={3000}
           showCloseButton={false}

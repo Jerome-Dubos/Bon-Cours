@@ -1,6 +1,6 @@
 /* === FEATURES SECTION - DESIGN MODERNE ET RESPONSIVE === */
 .features-section {
-  padding: var(--spacing-xxxl) 0;
+  padding: var(--spacing-4xl) 0 var(--spacing-2xl) 0;
   background: transparent;
   position: relative;
 }
@@ -228,7 +228,7 @@
   }
 
   .features-section {
-    padding: 140px 0 160px 0;
+    padding: 140px 0 80px 0;
   }
 
   .school-section {
@@ -243,7 +243,7 @@
   }
 
   .features-section {
-    padding: 120px 0 140px 0;
+    padding: 120px 0 70px 0;
   }
 }
 
@@ -254,7 +254,7 @@
   }
 
   .features-section {
-    padding: 100px 0 120px 0;
+    padding: 100px 0 60px 0;
   }
 
   .school-features {

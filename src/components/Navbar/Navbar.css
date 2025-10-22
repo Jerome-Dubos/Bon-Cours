@@ -809,7 +809,6 @@ body.modal-open .navbar.scrolled {
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 16px;
-  padding-right: 35px;
 
   /* Styles spécifiques pour Firefox */
   text-indent: 0.01px;
@@ -853,6 +852,146 @@ body.modal-open .navbar.scrolled {
   background: var(--primary-blue-dark);
   color: var(--text-light);
   padding: 8px 12px;
+}
+
+/* Sélecteur de langue personnalisé desktop */
+.language-dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.language-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-light);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  font-size: 1.1rem;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: visible;
+  z-index: 1000;
+}
+
+.language-dropdown-toggle:hover {
+  border-color: var(--secondary-peach);
+  background-color: rgba(255, 214, 176, 0.08);
+  box-shadow: 0 4px 12px rgba(255, 214, 176, 0.15);
+}
+
+.language-current {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.language-flag-icon {
+  width: 18px;
+  height: 13px;
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.language-code {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.language-dropdown-arrow {
+  transition: transform var(--transition-normal);
+  color: var(--secondary-peach);
+}
+
+.language-dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.language-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: rgba(74, 90, 109, 0.98);
+  border: 1px solid rgba(255, 214, 176, 0.2);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(50px) saturate(130%);
+  -webkit-backdrop-filter: blur(50px) saturate(130%);
+  z-index: 1001;
+  min-width: 120px;
+  padding: var(--spacing-sm);
+  animation: languageDropdownSlideIn 0.2s ease-out;
+}
+
+.language-dropdown-menu.closing {
+  animation: languageDropdownSlideOut 0.2s ease-out;
+}
+
+@keyframes languageDropdownSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes languageDropdownSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.language-option:hover {
+  background: rgba(255, 214, 176, 0.12);
+  color: var(--secondary-peach);
+}
+
+.language-option.active {
+  background: rgba(255, 214, 176, 0.15);
+  color: var(--secondary-peach);
+  font-weight: 500;
+}
+
+.language-option-flag {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.language-option-code {
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 /* Bouton menu mobile */
@@ -1345,7 +1484,6 @@ body.modal-open .navbar.scrolled {
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 16px;
-  padding-right: 40px;
 
   /* Styles spécifiques pour Firefox */
   text-indent: 0.01px;
@@ -1389,6 +1527,57 @@ body.modal-open .navbar.scrolled {
   background: var(--primary-blue-dark);
   color: var(--text-light);
   padding: 8px 12px;
+}
+
+/* Sélecteur de langue mobile personnalisé */
+.mobile-language-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  width: 100%;
+}
+
+.mobile-language-option {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-light);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-align: left;
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.mobile-language-option:hover {
+  border-color: var(--secondary-peach);
+  background: rgba(255, 214, 176, 0.12);
+  box-shadow: 0 4px 16px rgba(255, 214, 176, 0.2);
+}
+
+.mobile-language-option.active {
+  border-color: var(--secondary-peach);
+  background: rgba(255, 214, 176, 0.15);
+  color: var(--secondary-peach);
+  font-weight: 500;
+}
+
+.mobile-language-flag {
+  width: 22px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-language-code {
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 /* Responsive - Breakpoints optimisés selon les mémoires */

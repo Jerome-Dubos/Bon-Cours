@@ -23,7 +23,7 @@ const HeroSection = () => {
   const slides = [
     {
       id: 0,
-      title: 'Cours et Ateliers en Petits Groupes',
+      title: 'Cours et ateliers en petits groupes',
       subtitle:
         'Apprenez la langue de votre choix en groupes de 6 personnes ou renforcez votre niveau scolaire en groupes de 4 élèves',
       image: '/assets/images/carousel/carousel-1.webp',
@@ -33,7 +33,7 @@ const HeroSection = () => {
     },
     {
       id: 1,
-      title: 'Cours Adaptés à Vos Besoins',
+      title: 'Cours adaptés à vos besoins',
       subtitle:
         "Bénéficiez d'un diagnostic initial, de nos cours personnalisés et de bilans réguliers",
       image: '/assets/images/carousel/carousel-2.webp',
@@ -43,7 +43,7 @@ const HeroSection = () => {
     },
     {
       id: 2,
-      title: 'Horaires Flexibles',
+      title: 'Horaires flexibles',
       subtitle: "Décidez de l'horaire de votre cours ou de votre atelier",
       image: '/assets/images/carousel/carousel-3.webp',
       ctaText: 'Voir les horaires',
@@ -52,7 +52,7 @@ const HeroSection = () => {
     },
     {
       id: 3,
-      title: 'Professeurs Qualifiés',
+      title: 'Professeurs qualifiés',
       subtitle:
         'Notre équipe diplômée et expérimentée est à votre service pour vous faire progresser au rythme que vous désirez',
       image: '/assets/images/carousel/carousel-4.webp',
@@ -62,7 +62,7 @@ const HeroSection = () => {
     },
     {
       id: 4,
-      title: 'Accompagnement Illimité',
+      title: 'Accompagnement illimité',
       subtitle: 'Profitez de notre suivi individuel dans toutes vos démarches',
       image: '/assets/images/carousel/carousel-5.webp',
       ctaText: "S'inscrire",
@@ -179,7 +179,7 @@ const HeroSection = () => {
 
     return (
       <div className={`hero-carousel ${carouselClass}`}>
-        <AnimatePresence mode='wait'>
+        <AnimatePresence>
           <motion.div
             key={`${carouselClass}-${currentSlide}`}
             className='carousel-slide'
@@ -187,7 +187,7 @@ const HeroSection = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{
-              duration: 0.6,
+              duration: 0.8,
               ease: 'easeInOut',
             }}
             style={{
@@ -243,7 +243,7 @@ const HeroSection = () => {
   return (
     <section className='hero' id='home'>
       <div className='hero-content'>
-        <h1>MAÎTRISEZ LES LANGUES • EXCELLENCE SCOLAIRE</h1>
+        <h1>L'excellence sur mesure au cœur de Strasbourg</h1>
 
         <div className='carousel-container'>
           <div className='carousel-main'>

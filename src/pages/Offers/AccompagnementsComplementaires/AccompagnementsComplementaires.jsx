@@ -7,7 +7,6 @@ import {
   FaClipboardList,
   FaCompass,
   FaFileAlt,
-  FaPhone,
 } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Tabs from '../../../components/Tabs/Tabs';
@@ -102,12 +101,10 @@ const AccompagnementsComplementaires = () => {
             <Button
               variant='primary'
               size='large'
-              icon={FaPhone}
-              iconPosition='left'
               onClick={handleContactClick}
               className='cta-button cta-button-large'
             >
-              Contactez-nous maintenant
+              Contactez-nous
             </Button>
           </div>
         </div>
@@ -183,24 +180,15 @@ const AccompagnementsComplementaires = () => {
             <Button
               variant='primary'
               size='large'
-              icon={FaPhone}
-              iconPosition='left'
               onClick={handleContactClick}
               className='cta-button cta-button-large'
             >
-              Contactez-nous maintenant
+              Contactez-nous
             </Button>
           </div>
         </div>
       ),
       title: 'Accompagnement Scolarité',
-    },
-    {
-      id: 'traduction',
-      label: 'Traduction',
-      content:
-        'Services de traduction professionnelle pour vos documents officiels, académiques ou personnels. Traduction certifiée et assermentée disponible.',
-      title: 'Services de Traduction',
     },
   ];
 

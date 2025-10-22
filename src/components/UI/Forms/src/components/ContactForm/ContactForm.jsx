@@ -805,7 +805,11 @@ const ContactForm = ({
             {/* Préférence de contact */}
             <div className='contact-field'>
               <label className='contact-label'>
-                <FaPhone className='contact-icon' />
+                {formData.preferenceContact === 'email' ? (
+                  <FaEnvelope className='contact-icon' />
+                ) : (
+                  <FaPhone className='contact-icon' />
+                )}
                 Préférence de contact
               </label>
               <div className='contact-radio-group'>

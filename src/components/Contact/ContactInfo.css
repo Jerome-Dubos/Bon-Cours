@@ -344,14 +344,14 @@
 }
 
 .info-hero-label {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   color: var(--text-light);
   margin-bottom: var(--spacing-md);
   font-weight: 600;
 }
 
 .info-hero-text {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 0;

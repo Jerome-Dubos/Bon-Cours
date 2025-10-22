@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { FaCheck, FaPhone } from 'react-icons/fa';
+import { FaCheck } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../../../components/UI/Buttons';
 import { useErrorHandler, usePerformance } from '../../../hooks';
@@ -117,12 +117,10 @@ const Horaires = () => {
             <Button
               variant='primary'
               size='large'
-              icon={FaPhone}
-              iconPosition='left'
               onClick={handleContactClick}
               className='horaires-cta-button'
             >
-              Contactez-nous maintenant
+              Contactez-nous
             </Button>
           </div>
         </div>

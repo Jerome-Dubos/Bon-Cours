@@ -57,11 +57,18 @@ const Navbar = () => {
     methode: false,
   });
 
+  // État pour le dropdown des langues
+  const [languageDropdown, setLanguageDropdown] = useState({
+    isOpen: false,
+    isClosing: false,
+  });
+
   const { user, logout } = useAuth();
   const { t, i18n } = useTranslation();
   const dropdownRef = useRef(null);
   const navLinksRef = useRef(null);
   const linkRefs = useRef([]);
+  const languageDropdownRef = useRef(null);
 
   // Structure des sous-menus pour Offres et Méthode
   // Organisation en colonnes pour le mega menu
@@ -392,6 +399,27 @@ const Navbar = () => {
     });
   }, []);
 
+  // Gérer l'ouverture/fermeture du dropdown des langues
+  const handleLanguageDropdownToggle = useCallback(() => {
+    if (languageDropdown.isOpen) {
+      setLanguageDropdown(prev => ({
+        ...prev,
+        isClosing: true,
+      }));
+      setTimeout(() => {
+        setLanguageDropdown({
+          isOpen: false,
+          isClosing: false,
+        });
+      }, 200);
+    } else {
+      setLanguageDropdown({
+        isOpen: true,
+        isClosing: false,
+      });
+    }
+  }, [languageDropdown.isOpen]);
+
   // Fermer les sous-menus quand on clique en dehors
   useEffect(() => {
     const handleClickOutside = event => {
@@ -399,17 +427,33 @@ const Navbar = () => {
       if (navLinksRef.current && !navLinksRef.current.contains(event.target)) {
         closeAllNavDropdowns();
       }
+
+      // Vérifier si le clic est en dehors du dropdown des langues
+      if (languageDropdownRef.current && !languageDropdownRef.current.contains(event.target)) {
+        if (languageDropdown.isOpen) {
+          setLanguageDropdown(prev => ({
+            ...prev,
+            isClosing: true,
+          }));
+          setTimeout(() => {
+            setLanguageDropdown({
+              isOpen: false,
+              isClosing: false,
+            });
+          }, 200);
+        }
+      }
     };
 
     // Ajouter l'écouteur seulement si un menu est ouvert
-    if (navDropdowns.offres || navDropdowns.methode) {
+    if (navDropdowns.offres || navDropdowns.methode || languageDropdown.isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [navDropdowns.offres, navDropdowns.methode, closeAllNavDropdowns]);
+  }, [navDropdowns.offres, navDropdowns.methode, languageDropdown.isOpen, closeAllNavDropdowns]);
 
   // Gérer le scroll du body quand le menu mobile est ouvert
   useEffect(() => {
@@ -740,15 +784,62 @@ const Navbar = () => {
           )
         )}
 
-        {/* Sélecteur de langue desktop */}
-        <select
-          className='language-select desktop-only'
-          value={i18n.language}
-          onChange={e => i18n.changeLanguage(e.target.value)}
-        >
-          <option value='fr'>🇫🇷</option>
-          <option value='en'>🇬🇧</option>
-        </select>
+        {/* Sélecteur de langue desktop personnalisé */}
+        <div className='language-dropdown-container desktop-only' ref={languageDropdownRef}>
+          <button className='language-dropdown-toggle' onClick={handleLanguageDropdownToggle}>
+            <div className='language-current'>
+              <img
+                src={
+                  i18n.language === 'fr'
+                    ? '/assets/images/flags/france.webp'
+                    : '/assets/images/flags/royaume-uni.webp'
+                }
+                alt={i18n.language === 'fr' ? 'Drapeau français' : 'Drapeau britannique'}
+                className='language-flag-icon'
+              />
+              <span className='language-code'>{i18n.language.toUpperCase()}</span>
+            </div>
+            <IoChevronDownOutline
+              size={14}
+              className={`language-dropdown-arrow ${languageDropdown.isOpen ? 'open' : ''}`}
+            />
+          </button>
+
+          {languageDropdown.isOpen && (
+            <div
+              className={`language-dropdown-menu ${languageDropdown.isClosing ? 'closing' : ''}`}
+            >
+              <button
+                className={`language-option ${i18n.language === 'fr' ? 'active' : ''}`}
+                onClick={() => {
+                  i18n.changeLanguage('fr');
+                  handleLanguageDropdownToggle();
+                }}
+              >
+                <img
+                  src='/assets/images/flags/france.webp'
+                  alt='Drapeau français'
+                  className='language-option-flag'
+                />
+                <span className='language-option-code'>FR</span>
+              </button>
+              <button
+                className={`language-option ${i18n.language === 'en' ? 'active' : ''}`}
+                onClick={() => {
+                  i18n.changeLanguage('en');
+                  handleLanguageDropdownToggle();
+                }}
+              >
+                <img
+                  src='/assets/images/flags/royaume-uni.webp'
+                  alt='Drapeau britannique'
+                  className='language-option-flag'
+                />
+                <span className='language-option-code'>EN</span>
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Bouton menu mobile - séparé pour un meilleur contrôle */}
@@ -957,14 +1048,30 @@ const Navbar = () => {
           {/* Sélecteur de langue mobile */}
           <div className='mobile-language-section'>
             <h4 className='mobile-section-title'>Langue</h4>
-            <select
-              className='mobile-language-select'
-              value={i18n.language}
-              onChange={e => i18n.changeLanguage(e.target.value)}
-            >
-              <option value='fr'>🇫🇷 Français</option>
-              <option value='en'>🇬🇧 English</option>
-            </select>
+            <div className='mobile-language-options'>
+              <button
+                className={`mobile-language-option ${i18n.language === 'fr' ? 'active' : ''}`}
+                onClick={() => i18n.changeLanguage('fr')}
+              >
+                <img
+                  src='/assets/images/flags/france.webp'
+                  alt='Drapeau français'
+                  className='mobile-language-flag'
+                />
+                <span className='mobile-language-code'>FR</span>
+              </button>
+              <button
+                className={`mobile-language-option ${i18n.language === 'en' ? 'active' : ''}`}
+                onClick={() => i18n.changeLanguage('en')}
+              >
+                <img
+                  src='/assets/images/flags/royaume-uni.webp'
+                  alt='Drapeau britannique'
+                  className='mobile-language-flag'
+                />
+                <span className='mobile-language-code'>EN</span>
+              </button>
+            </div>
           </div>
 
           {/* Logo du menu mobile */}

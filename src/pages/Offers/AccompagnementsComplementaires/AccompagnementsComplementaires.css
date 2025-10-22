@@ -188,6 +188,7 @@
   line-height: 1.6;
   font-size: 1rem;
   position: relative;
+  padding-left: var(--spacing-md);
 }
 
 .tab-description li::before {
@@ -195,7 +196,8 @@
   color: var(--secondary-peach);
   font-weight: bold;
   position: absolute;
-  left: -var(--spacing-md);
+  left: 0;
+  top: 0;
 }
 
 /* Styles pour le CTA de contact */
@@ -277,8 +279,8 @@
     padding-left: var(--spacing-md);
   }
 
-  .tab-description li::before {
-    left: -var(--spacing-sm);
+  .tab-description li {
+    padding-left: var(--spacing-sm);
   }
 
   .tab-description .cta-container {

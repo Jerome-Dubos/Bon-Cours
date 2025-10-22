@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FaChevronRight,
@@ -21,7 +21,6 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [isExtendedFooter, setIsExtendedFooter] = useState(false);
 
   // Gestion des modales avec le hook personnalisé
   const { modalStates, toggleModal } = useModalState(['legal', 'privacy', 'terms']);
@@ -33,10 +32,6 @@ const Footer = () => {
 
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
-
-  const toggleFooterVersion = useCallback(() => {
-    setIsExtendedFooter(prev => !prev);
   }, []);
 
   const handleNavClick = useCallback(
@@ -75,8 +70,8 @@ const Footer = () => {
         src='/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg'
         alt='Institut Bon Cours - École de langues'
         className='footer-logo-img'
-        width={isExtendedFooter ? '250' : '300'}
-        height={isExtendedFooter ? '100' : '100'}
+        width='250'
+        height='100'
         loading='lazy'
       />
     </header>
@@ -132,15 +127,9 @@ const Footer = () => {
             className='contact-text contact-link'
             aria-label='Voir notre adresse sur Google Maps'
           >
-            {isExtendedFooter ? (
-              <>
-                36 quai Mullenheim
-                <br />
-                67000 Strasbourg
-              </>
-            ) : (
-              '36 quai Mullenheim, 67000 Strasbourg'
-            )}
+            36 quai Mullenheim
+            <br />
+            67000 Strasbourg
           </a>
         </div>
         <div className='contact-item'>
@@ -190,22 +179,10 @@ const Footer = () => {
     </section>
   );
 
-  // Composants footer optimisés
-  const SimpleFooter = () => (
-    <div className='footer-main footer-simple'>
-      <section className='footer-section' aria-labelledby='about-heading'>
-        <LogoSection />
-        <DescriptionSection />
-        <SocialSection />
-      </section>
-      <ContactSection />
-    </div>
-  );
-
-  const ExtendedFooter = () => (
+  // Composant footer avec navigation
+  const FooterWithNavigation = () => (
     <div className='footer-main footer-extended'>
       <section className='footer-section' aria-labelledby='about-heading'>
-        <LogoSection />
         <DescriptionSection />
         <SocialSection />
       </section>
@@ -234,33 +211,36 @@ const Footer = () => {
   );
 
   return (
-    <footer
-      className={`footer ${isExtendedFooter ? 'footer-extended' : 'footer-simple'}`}
-      role='contentinfo'
-    >
-      {/* Bouton de switch flottant */}
-      <Button
-        variant='text'
-        className='footer-switch-floating'
-        onClick={toggleFooterVersion}
-        aria-label={`Changer vers le footer ${isExtendedFooter ? 'sans navigation' : 'avec navigation'}`}
-        type='button'
-      >
-        {isExtendedFooter ? 'Sans navigation' : 'Avec navigation'}
-      </Button>
-
+    <footer className='footer footer-extended' role='contentinfo'>
       <div className='footer-content'>
-        {isExtendedFooter ? (
-          <>
-            {/* Logo centré pour la version étendue */}
-            <div className='footer-extended-logo-container'>
-              <LogoSection />
+        {/* Informations de contact centrées */}
+        <div className='footer-contact-info-container'>
+          <div className='footer-logo-contact-info'>
+            <div className='footer-contact-item'>
+              <FaPhone className='footer-contact-icon' />
+              <a
+                href='tel:+33388520382'
+                className='footer-contact-text footer-contact-link'
+                aria-label='Appelez-nous au 03.88.52.03.82'
+              >
+                +33 3 88 52 03 82
+              </a>
             </div>
-            <ExtendedFooter />
-          </>
-        ) : (
-          <SimpleFooter />
-        )}
+            <div className='footer-contact-item'>
+              <FaMapMarkerAlt className='footer-contact-icon' />
+              <a
+                href='https://maps.google.com/?q=36+quai+Mullenheim,+67000+Strasbourg'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='footer-contact-text footer-contact-link'
+                aria-label='Voir notre adresse sur Google Maps'
+              >
+                36 quai Mullenheim, 67000 Strasbourg
+              </a>
+            </div>
+          </div>
+        </div>
+        <FooterWithNavigation />
 
         {/* Séparateur */}
         <div className='footer-divider' />

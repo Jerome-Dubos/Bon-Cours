@@ -1,6 +1,6 @@
 /* === TESTIMONIALS SECTION === */
 .testimonials {
-  padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 60px) 0 clamp(20px, 5vw, 60px);
+  padding: clamp(30px, 4vw, 60px) clamp(20px, 5vw, 60px) 0 clamp(20px, 5vw, 60px);
   background: linear-gradient(
     135deg,
     var(--primary-blue) 0%,
@@ -403,7 +403,7 @@
 /* === RESPONSIVE DESKTOP LARGE === */
 @media (min-width: 1280px) {
   .testimonials {
-    padding: clamp(80px, 10vw, 140px) clamp(40px, 6vw, 80px);
+    padding: clamp(40px, 5vw, 70px) clamp(40px, 6vw, 80px);
   }
 
   .carousel-nav.prev {
@@ -418,7 +418,7 @@
 /* === RESPONSIVE DESKTOP === */
 @media (min-width: 1024px) and (max-width: 1279px) {
   .testimonials {
-    padding: clamp(60px, 8vw, 100px) clamp(30px, 4vw, 60px);
+    padding: clamp(30px, 4vw, 50px) clamp(30px, 4vw, 60px);
   }
 
   .testimonials-carousel {
@@ -437,7 +437,7 @@
 /* === RESPONSIVE TABLETTE === */
 @media (max-width: 1023px) {
   .testimonials {
-    padding: clamp(40px, 6vw, 80px) clamp(20px, 3vw, 40px);
+    padding: clamp(20px, 3vw, 40px) clamp(20px, 3vw, 40px);
   }
 
   .testimonials h2 {
@@ -467,7 +467,7 @@
 /* === RESPONSIVE TABLETTE ET MOBILE === */
 @media (max-width: 1023px) {
   .testimonials {
-    padding: clamp(30px, 5vw, 60px) clamp(15px, 2.5vw, 30px) !important;
+    padding: clamp(15px, 2.5vw, 30px) clamp(15px, 2.5vw, 30px) !important;
   }
 }
 
@@ -561,7 +561,7 @@
 /* === RESPONSIVE PETIT MOBILE === */
 @media (max-width: 480px) {
   .testimonials {
-    padding: clamp(20px, 4vw, 40px) clamp(10px, 2vw, 20px);
+    padding: clamp(10px, 2vw, 20px) clamp(10px, 2vw, 20px);
   }
 
   .testimonials h2 {
