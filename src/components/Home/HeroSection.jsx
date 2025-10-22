@@ -65,8 +65,8 @@ const HeroSection = () => {
       title: 'Accompagnement illimité',
       subtitle: 'Profitez de notre suivi individuel dans toutes vos démarches',
       image: '/assets/images/carousel/carousel-5.webp',
-      ctaText: "S'inscrire",
-      ctaAction: () => navigate('/inscription'),
+      ctaText: 'En savoir plus',
+      ctaAction: () => navigate('/qui-sommes-nous'),
       icon: FaUsers,
     },
   ];
