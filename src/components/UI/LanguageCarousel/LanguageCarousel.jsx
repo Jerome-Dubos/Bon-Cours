@@ -55,10 +55,10 @@ const LanguageCarousel = ({
         alt: 'Drapeau turc',
       },
       {
-        id: 'arabic',
-        name: 'Arabe',
-        flag: '/assets/images/flags/arabie-saoudite.webp',
-        alt: 'Drapeau arabe',
+        id: 'russian',
+        name: 'Russe',
+        flag: '/assets/images/flags/russie.webp',
+        alt: 'Drapeau russe',
       },
       {
         id: 'persian',
