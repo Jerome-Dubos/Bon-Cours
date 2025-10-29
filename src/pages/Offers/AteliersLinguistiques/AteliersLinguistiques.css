@@ -34,6 +34,134 @@
   margin-right: auto;
 }
 
+/* === LIEN NEWSLETTER === */
+.newsletter-link {
+  background: none;
+  border: none;
+  color: var(--secondary-peach);
+  font-size: var(--text-base);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--secondary-peach);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  padding: 0;
+  margin: 0;
+  display: inline;
+  line-height: inherit;
+}
+
+.newsletter-link:hover {
+  color: var(--secondary-peach-light);
+  text-decoration-color: var(--secondary-peach-light);
+  text-shadow: 0 0 8px rgba(255, 214, 176, 0.3);
+  transform: translateY(-1px);
+}
+
+.newsletter-link:focus {
+  outline: 2px solid var(--secondary-peach);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+.newsletter-link:active {
+  transform: translateY(0);
+  text-shadow: none;
+}
+
+/* === MODALE NEWSLETTER === */
+.newsletter-modal .modal-content {
+  text-align: center;
+}
+
+.newsletter-modal-content {
+  margin-bottom: var(--spacing-lg);
+}
+
+.newsletter-description {
+  color: var(--text-light);
+  opacity: 0.9;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--text-base);
+}
+
+.newsletter-privacy {
+  border-top: 1px solid rgba(255, 214, 176, 0.2);
+  padding-top: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.newsletter-privacy p {
+  color: var(--text-light);
+  opacity: 0.7;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Styles spécifiques pour le formulaire de newsletter */
+.newsletter-modal .form-group,
+.newsletter-form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.newsletter-modal .form-group label,
+.newsletter-label {
+  color: var(--text-light);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.newsletter-modal .form-group input,
+.newsletter-input {
+  width: 100%;
+  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 214, 176, 0.3);
+  border-radius: var(--border-radius-lg);
+  color: var(--text-light);
+  font-size: var(--text-base);
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(10px);
+}
+
+.newsletter-modal .form-group input::placeholder,
+.newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.newsletter-modal .form-group input:focus,
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--secondary-peach);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(255, 214, 176, 0.2);
+}
+
+.newsletter-modal .form-group input:disabled,
+.newsletter-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive pour la modale newsletter */
+@media (max-width: 640px) {
+  .newsletter-modal-content {
+    padding: var(--spacing-sm);
+  }
+
+  .newsletter-description {
+    font-size: var(--text-sm);
+  }
+}
+
 .price-card {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
   border: 1px solid rgba(255, 214, 176, 0.2);
@@ -107,6 +235,12 @@
 }
 
 /* Le loader utilise maintenant les styles globaux */
+
+/* === CAROUSEL DES LANGUES === */
+.ateliers-language-carousel {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-lg) 0;
+}
 
 /* === SYSTÈME D'ONGLETS === */
 .tabs-container {

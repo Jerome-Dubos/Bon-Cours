@@ -1,15 +1,21 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
-import { IoReload } from 'react-icons/io5';
 import { Link, useLocation } from 'react-router-dom';
 import Tabs from '../../../components/Tabs/Tabs';
+import LanguageCarousel from '../../../components/UI/LanguageCarousel';
+import { FormModal } from '../../../components/UI/Modales';
+import { ErrorNotification, SuccessNotification } from '../../../components/UI/Notifications';
 import { useErrorHandler, usePerformance } from '../../../hooks';
 import { useTabNavigation } from '../../../hooks/useTabNavigation';
 import './AteliersLinguistiques.css';
 
 const AteliersLinguistiques = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [imageVariants, setImageVariants] = useState({});
+  const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
+  const [newsletterData, setNewsletterData] = useState({ email: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+  const [isEmailValid, setIsEmailValid] = useState(false);
   const location = useLocation();
 
   // Hooks personnalisés
@@ -18,12 +24,75 @@ const AteliersLinguistiques = () => {
 
   const { handleError } = useErrorHandler();
 
-  // Fonction pour basculer entre les images
-  const toggleImageVariant = atelierId => {
-    setImageVariants(prev => ({
-      ...prev,
-      [atelierId]: !prev[atelierId],
-    }));
+  // Validation email
+  const validateEmail = email => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Gestion des notifications
+  const addNotification = (type, message) => {
+    const id = Date.now();
+    setNotifications(prev => [...prev, { id, type, message }]);
+
+    // Auto-suppression après 5 secondes
+    setTimeout(() => {
+      setNotifications(prev => prev.filter(n => n.id !== id));
+    }, 5000);
+  };
+
+  const removeNotification = id => {
+    setNotifications(prev => prev.filter(n => n.id !== id));
+  };
+
+  // Validation en temps réel de l'email
+  useEffect(() => {
+    setIsEmailValid(validateEmail(newsletterData.email));
+  }, [newsletterData.email]);
+
+  // Gestion du changement d'email en temps réel
+  const handleEmailInputChange = e => {
+    const email = e.target.value;
+    setNewsletterData({ email });
+  };
+
+  // Gestion de la newsletter
+  const handleNewsletterSubmit = async formData => {
+    try {
+      // Mettre à jour newsletterData avec les données du formulaire
+      setNewsletterData(formData);
+
+      // Validation de l'email (double vérification)
+      if (!formData.email || !validateEmail(formData.email)) {
+        addNotification('error', 'Veuillez saisir une adresse email valide');
+        return;
+      }
+
+      setIsSubmitting(true);
+
+      // Simulation d'un appel API avec délai
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      console.log('Newsletter subscription:', formData);
+
+      // Ici, vous pourriez ajouter l'appel à votre API de newsletter
+      // await newsletterService.subscribe(formData.email);
+
+      // Notification de succès
+      addNotification('success', 'Inscription à la newsletter réussie !');
+
+      // Fermer la modale
+      setIsNewsletterModalOpen(false);
+
+      // Réinitialiser le formulaire
+      setNewsletterData({ email: '' });
+      setIsEmailValid(false);
+    } catch (error) {
+      addNotification('error', "Erreur lors de l'inscription. Veuillez réessayer.");
+      handleError(error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Définir les onglets disponibles
@@ -35,21 +104,10 @@ const AteliersLinguistiques = () => {
         <div className='atelier-content'>
           <div className='atelier-image-container'>
             <img
-              src={
-                imageVariants['langue-orale']
-                  ? '/assets/images/ateliers/oral-2.webp'
-                  : '/assets/images/ateliers/langue-orale.webp'
-              }
+              src='/assets/images/ateliers/oral-2.webp'
               alt='Atelier Langue Orale'
               className='atelier-image'
             />
-            <button
-              className='image-switcher-btn'
-              onClick={() => toggleImageVariant('langue-orale')}
-              title="Changer d'image"
-            >
-              <IoReload size={20} />
-            </button>
           </div>
           <div className='atelier-text-content'>
             <p className='atelier-description'>
@@ -77,21 +135,10 @@ const AteliersLinguistiques = () => {
         <div className='atelier-content'>
           <div className='atelier-image-container'>
             <img
-              src={
-                imageVariants['langue-ecrite']
-                  ? '/assets/images/ateliers/langue-ecrite-2.webp'
-                  : '/assets/images/ateliers/langue-ecrite.webp'
-              }
+              src='/assets/images/ateliers/langue-ecrite-2.webp'
               alt='Atelier Langue Écrite'
               className='atelier-image'
             />
-            <button
-              className='image-switcher-btn'
-              onClick={() => toggleImageVariant('langue-ecrite')}
-              title="Changer d'image"
-            >
-              <IoReload size={20} />
-            </button>
           </div>
           <div className='atelier-text-content'>
             <p className='atelier-description'>
@@ -130,21 +177,10 @@ const AteliersLinguistiques = () => {
         <div className='atelier-content'>
           <div className='atelier-image-container'>
             <img
-              src={
-                imageVariants['cuisine']
-                  ? '/assets/images/ateliers/cuisine-2.webp'
-                  : '/assets/images/ateliers/cuisine.webp'
-              }
+              src='/assets/images/ateliers/cuisine-2.webp'
               alt='Atelier Cuisine'
               className='atelier-image'
             />
-            <button
-              className='image-switcher-btn'
-              onClick={() => toggleImageVariant('cuisine')}
-              title="Changer d'image"
-            >
-              <IoReload size={20} />
-            </button>
           </div>
           <div className='atelier-text-content'>
             <p className='atelier-description'>
@@ -182,21 +218,10 @@ const AteliersLinguistiques = () => {
         <div className='atelier-content'>
           <div className='atelier-image-container'>
             <img
-              src={
-                imageVariants['sport']
-                  ? '/assets/images/ateliers/sport-2.webp'
-                  : '/assets/images/ateliers/sport.webp'
-              }
+              src='/assets/images/ateliers/sport-2.webp'
               alt='Atelier Sport'
               className='atelier-image'
             />
-            <button
-              className='image-switcher-btn'
-              onClick={() => toggleImageVariant('sport')}
-              title="Changer d'image"
-            >
-              <IoReload size={20} />
-            </button>
           </div>
           <div className='atelier-text-content'>
             <p className='atelier-description'>
@@ -234,21 +259,10 @@ const AteliersLinguistiques = () => {
         <div className='atelier-content'>
           <div className='atelier-image-container'>
             <img
-              src={
-                imageVariants['jeux']
-                  ? '/assets/images/ateliers/jeux-2.webp'
-                  : '/assets/images/ateliers/jeux.webp'
-              }
+              src='/assets/images/ateliers/jeux-2.webp'
               alt='Atelier Jeux'
               className='atelier-image'
             />
-            <button
-              className='image-switcher-btn'
-              onClick={() => toggleImageVariant('jeux')}
-              title="Changer d'image"
-            >
-              <IoReload size={20} />
-            </button>
           </div>
           <div className='atelier-text-content'>
             <p className='atelier-description'>
@@ -287,21 +301,10 @@ const AteliersLinguistiques = () => {
         <div className='atelier-content'>
           <div className='atelier-image-container'>
             <img
-              src={
-                imageVariants['cinema']
-                  ? '/assets/images/ateliers/cinema-2.webp'
-                  : '/assets/images/ateliers/cinema.webp'
-              }
+              src='/assets/images/ateliers/cinema-2.webp'
               alt='Atelier Cinéma'
               className='atelier-image'
             />
-            <button
-              className='image-switcher-btn'
-              onClick={() => toggleImageVariant('cinema')}
-              title="Changer d'image"
-            >
-              <IoReload size={20} />
-            </button>
           </div>
           <div className='atelier-text-content'>
             <p className='atelier-description'>
@@ -384,8 +387,15 @@ const AteliersLinguistiques = () => {
             progresser. C'est pourquoi nous proposons des ateliers ciblés et variés tous les mois.
             L'ensemble de nos ateliers se déclinent dans toutes nos langues disponibles, toujours en
             petits groupes de 6 maximum, du lundi au dimanche sous réserve de disponibilité de nos
-            intervenant.e.s. Inscrivez-vous à notre lettre d'information pour connaître les
-            prochaines dates de nos ateliers!
+            intervenant.e.s.{' '}
+            <button
+              className='newsletter-link'
+              onClick={() => setIsNewsletterModalOpen(true)}
+              type='button'
+            >
+              Inscrivez-vous à notre lettre d'information
+            </button>{' '}
+            pour connaître les prochaines dates de nos ateliers!
           </p>
 
           <div className='price-card'>
@@ -396,9 +406,80 @@ const AteliersLinguistiques = () => {
           </div>
         </div>
 
+        {/* Carousel des langues enseignées */}
+        <LanguageCarousel speed={50} direction='left' className='ateliers-language-carousel' />
+
         {/* Système d'onglets avec animations fluides */}
         <Tabs tabs={tabs} activeTab={activeTab} onTabChange={changeTab} content={true} />
       </div>
+
+      {/* Modale de newsletter */}
+      <FormModal
+        isOpen={isNewsletterModalOpen}
+        onClose={() => {
+          setIsNewsletterModalOpen(false);
+          setNewsletterData({ email: '' });
+          setIsEmailValid(false);
+        }}
+        onSubmit={handleNewsletterSubmit}
+        title='Inscrivez-vous à notre newsletter'
+        submitText={isSubmitting ? 'Inscription...' : "S'inscrire"}
+        cancelText='Annuler'
+        initialData={newsletterData}
+        submitDisabled={isSubmitting || !isEmailValid}
+        fields={[]}
+        className='newsletter-modal'
+      >
+        <div className='newsletter-modal-content'>
+          <p className='newsletter-description'>
+            Recevez les dernières informations sur nos ateliers linguistiques, les nouvelles dates
+            et les événements spéciaux.
+          </p>
+
+          <div className='newsletter-form-group'>
+            <label htmlFor='newsletter-email' className='newsletter-label'>
+              Adresse email *
+            </label>
+            <input
+              type='email'
+              id='newsletter-email'
+              value={newsletterData.email}
+              onChange={handleEmailInputChange}
+              placeholder='votre@email.com'
+              className='newsletter-input'
+              disabled={isSubmitting}
+              required
+            />
+          </div>
+
+          <div className='newsletter-privacy'>
+            <p>
+              En vous inscrivant, vous acceptez de recevoir nos communications. Vous pouvez vous
+              désinscrire à tout moment.
+            </p>
+          </div>
+        </div>
+      </FormModal>
+
+      {/* Notifications */}
+      {notifications.some(n => n.type === 'success') && (
+        <SuccessNotification
+          notifications={notifications.filter(n => n.type === 'success')}
+          onRemove={removeNotification}
+          autoClose={true}
+          autoCloseDelay={5000}
+          position='top-right'
+        />
+      )}
+      {notifications.some(n => n.type === 'error') && (
+        <ErrorNotification
+          notifications={notifications.filter(n => n.type === 'error')}
+          onRemove={removeNotification}
+          autoClose={true}
+          autoCloseDelay={5000}
+          position='top-right'
+        />
+      )}
     </motion.div>
   );
 };
