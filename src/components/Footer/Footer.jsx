@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FaChevronRight,
@@ -8,9 +8,13 @@ import {
   FaInstagram,
   FaMapMarkerAlt,
   FaPhone,
+  FaWhatsapp,
 } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { useErrorHandler } from '../../hooks';
 import { Button } from '../UI/Buttons';
+import { FormModal } from '../UI/Modales';
+import { ErrorNotification, SuccessNotification } from '../UI/Notifications';
 import './Footer.css';
 import LegalModal from './Modals/LegalModal';
 import PrivacyModal from './Modals/PrivacyModal';
@@ -24,6 +28,90 @@ const Footer = () => {
 
   // Gestion des modales avec le hook personnalisé
   const { modalStates, toggleModal } = useModalState(['legal', 'privacy', 'terms']);
+
+  // État pour la newsletter
+  const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
+  const [newsletterData, setNewsletterData] = useState({ email: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+  const [isEmailValid, setIsEmailValid] = useState(false);
+
+  // Hook pour la gestion d'erreurs
+  const { handleError } = useErrorHandler();
+
+  // Validation email
+  const validateEmail = email => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Gestion des notifications
+  const addNotification = (type, message) => {
+    const id = Date.now();
+    setNotifications(prev => [...prev, { id, type, message }]);
+
+    // Auto-suppression après 5 secondes
+    setTimeout(() => {
+      setNotifications(prev => prev.filter(n => n.id !== id));
+    }, 5000);
+  };
+
+  const removeNotification = id => {
+    setNotifications(prev => prev.filter(n => n.id !== id));
+  };
+
+  // Validation en temps réel de l'email
+  useEffect(() => {
+    setIsEmailValid(validateEmail(newsletterData.email));
+  }, [newsletterData.email]);
+
+  // Gestion du changement d'email en temps réel
+  const handleEmailInputChange = e => {
+    const email = e.target.value;
+    setNewsletterData({ email });
+  };
+
+  // Gestion de la newsletter
+  const handleNewsletterSubmit = async formData => {
+    try {
+      // Mettre à jour newsletterData avec les données du formulaire
+      setNewsletterData(formData);
+
+      // Validation de l'email (double vérification)
+      if (!formData.email || !validateEmail(formData.email)) {
+        addNotification('error', 'Veuillez saisir une adresse email valide');
+        return;
+      }
+
+      setIsSubmitting(true);
+
+      // Simulation d'un appel API avec délai
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      console.log('Newsletter subscription:', formData);
+
+      // Ici, vous pourriez ajouter l'appel à votre API de newsletter
+      // await newsletterService.subscribe(formData.email);
+
+      // Notification de succès
+      addNotification('success', "Inscription à la lettre d'information réussie !");
+
+      // Fermer la modale
+      setIsNewsletterModalOpen(false);
+
+      // Réinitialiser le formulaire
+      setNewsletterData({ email: '' });
+      setIsEmailValid(false);
+    } catch (error) {
+      addNotification(
+        'error',
+        "Erreur lors de l'inscription à la lettre d'information. Veuillez réessayer."
+      );
+      handleError(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   // Fonctions optimisées
   const handleContactClick = useCallback(() => {
@@ -54,7 +142,7 @@ const Footer = () => {
     methode: [
       { path: '/methode/approche-actionnelle', label: 'Approche Actionnelle' },
       { path: '/methode/niveaux-parcours', label: 'Niveaux & Parcours' },
-      { path: '/methode/outils-ressources', label: 'Outils & Ressources' },
+      // { path: '/methode/outils-ressources', label: 'Outils & Ressources' }, // Temporairement caché
     ],
     pages: [
       { path: '/', label: 'Accueil' },
@@ -63,199 +151,160 @@ const Footer = () => {
     ],
   };
 
-  // Composants optimisés
-  const LogoSection = ({ className = '' }) => (
-    <header className={`footer-logo ${className}`}>
-      <img
-        src='/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg'
-        alt='Institut Bon Cours - École de langues'
-        className='footer-logo-img'
-        width='250'
-        height='100'
-        loading='lazy'
-      />
-    </header>
-  );
-
-  const DescriptionSection = () => (
-    <div className='footer-description'>
-      <h2 className='footer-tagline'>{t('footer.tagline')}</h2>
-      <p className='footer-description-text'>{t('footer.description')}</p>
-    </div>
-  );
-
-  const SocialSection = () => (
-    <div className='footer-social'>
-      <h3 id='about-heading'>{t('footer.follow')}</h3>
-      <nav className='social-links' role='list' aria-label='Réseaux sociaux'>
-        <a
-          href='https://facebook.com/boncours'
-          className='social-link'
-          aria-label='Suivez-nous sur Facebook'
-          target='_blank'
-          rel='noopener noreferrer'
-          role='listitem'
-        >
-          <FaFacebookF aria-hidden='true' />
-        </a>
-        <a
-          href='https://instagram.com/boncours'
-          className='social-link'
-          aria-label='Suivez-nous sur Instagram'
-          target='_blank'
-          rel='noopener noreferrer'
-          role='listitem'
-        >
-          <FaInstagram aria-hidden='true' />
-        </a>
-      </nav>
-    </div>
-  );
-
-  const ContactSection = () => (
-    <section className='footer-section footer-contact' aria-labelledby='contact-heading'>
-      <h3 id='contact-heading'>{t('footer.contact')}</h3>
-      <address className='contact-info'>
-        <div className='contact-item'>
-          <div className='contact-icon' aria-hidden='true'>
-            <FaMapMarkerAlt />
-          </div>
-          <a
-            href='https://maps.google.com/?q=36+quai+Mullenheim,+67000+Strasbourg'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='contact-text contact-link'
-            aria-label='Voir notre adresse sur Google Maps'
-          >
-            36 quai Mullenheim
-            <br />
-            67000 Strasbourg
-          </a>
-        </div>
-        <div className='contact-item'>
-          <div className='contact-icon' aria-hidden='true'>
-            <FaPhone />
-          </div>
-          <a
-            href='tel:+33388510382'
-            className='contact-text contact-link'
-            aria-label='Appelez-nous au 03.88.51.03.82'
-          >
-            +33 3 88 51 03 82
-          </a>
-        </div>
-        <div className='contact-item'>
-          <div className='contact-icon' aria-hidden='true'>
-            <FaEnvelope />
-          </div>
-          <button
-            className='footer-contact-button'
-            onClick={handleContactClick}
-            type='button'
-            aria-label='Nous contacter par email'
-          >
-            Nous contacter
-          </button>
-        </div>
-      </address>
-    </section>
-  );
-
-  const NavigationSection = ({ title, navLabel, id, links }) => (
-    <section className='footer-section footer-navigation' aria-labelledby={id}>
-      <h3 id={id}>{title}</h3>
-      <nav className='footer-nav' aria-label={navLabel}>
-        <ul>
-          {links.map(link => (
-            <li key={link.path}>
-              <a href={link.path} className='footer-nav-link' onClick={handleNavClick(link.path)}>
-                {link.label}
-                <FaChevronRight className='nav-arrow' aria-hidden='true' />
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </section>
-  );
-
-  // Composant footer avec navigation
-  const FooterWithNavigation = () => (
-    <div className='footer-main footer-extended'>
-      <section className='footer-section' aria-labelledby='about-heading'>
-        <DescriptionSection />
-        <SocialSection />
-      </section>
-
-      <NavigationSection
-        title='Nos Offres'
-        navLabel='Navigation offres'
-        id='nav-offres-heading'
-        links={navigationData.offres}
-      />
-
-      <NavigationSection
-        title='Notre Méthode'
-        navLabel='Navigation méthode'
-        id='nav-methode-heading'
-        links={navigationData.methode}
-      />
-
-      <NavigationSection
-        title='Pages'
-        navLabel='Navigation pages'
-        id='nav-pages-heading'
-        links={navigationData.pages}
-      />
-    </div>
-  );
-
   return (
-    <footer className='footer footer-extended' role='contentinfo'>
+    <footer className='footer' role='contentinfo'>
       <div className='footer-content'>
-        {/* Informations de contact centrées */}
-        <div className='footer-contact-info-container'>
-          <div className='footer-logo-contact-info'>
-            <div className='footer-contact-item'>
-              <FaPhone className='footer-contact-icon' />
-              <a
-                href='tel:+33388520382'
-                className='footer-contact-text footer-contact-link'
-                aria-label='Appelez-nous au 03.88.52.03.82'
-              >
-                +33 3 88 52 03 82
-              </a>
+        {/* Section supérieure - 4 colonnes égales */}
+        <div className='footer-main'>
+          {/* Colonne 1: À propos */}
+          <div className='footer-column footer-about'>
+            <h3 className='footer-column-title'>À propos</h3>
+            <div className='footer-description'>
+              <p className='footer-description-text'>{t('footer.description')}</p>
             </div>
-            <div className='footer-contact-item'>
-              <FaMapMarkerAlt className='footer-contact-icon' />
-              <a
-                href='https://maps.google.com/?q=36+quai+Mullenheim,+67000+Strasbourg'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='footer-contact-text footer-contact-link'
-                aria-label='Voir notre adresse sur Google Maps'
+            <div className='footer-newsletter'>
+              <button
+                className='footer-newsletter-button'
+                onClick={() => setIsNewsletterModalOpen(true)}
+                type='button'
+                aria-label="S'inscrire à la lettre d'information"
               >
-                36 quai Mullenheim, 67000 Strasbourg
-              </a>
+                <FaEnvelope className='newsletter-icon' />
+                Lettre d'information
+              </button>
+            </div>
+            <div className='footer-social'>
+              <h4 className='footer-social-title'>Suivez-nous</h4>
+              <div className='footer-social-links'>
+                <a
+                  href='https://facebook.com/boncours'
+                  className='footer-social-link'
+                  aria-label='Suivez-nous sur Facebook'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <FaFacebookF />
+                </a>
+                <a
+                  href='https://instagram.com/boncours'
+                  className='footer-social-link'
+                  aria-label='Suivez-nous sur Instagram'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <FaInstagram />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Colonne 2: Nos Offres */}
+          <div className='footer-column footer-offers'>
+            <h3 className='footer-column-title'>Nos Offres</h3>
+            <nav className='footer-nav' aria-label='Navigation offres'>
+              <ul>
+                {navigationData.offres.map(link => (
+                  <li key={link.path}>
+                    <a
+                      href={link.path}
+                      className='footer-nav-link'
+                      onClick={handleNavClick(link.path)}
+                    >
+                      {link.label}
+                      <FaChevronRight className='nav-arrow' aria-hidden='true' />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          {/* Colonne 3: Notre Méthode */}
+          <div className='footer-column footer-method'>
+            <h3 className='footer-column-title'>Notre Méthode</h3>
+            <nav className='footer-nav' aria-label='Navigation méthode'>
+              <ul>
+                {navigationData.methode.map(link => (
+                  <li key={link.path}>
+                    <a
+                      href={link.path}
+                      className='footer-nav-link'
+                      onClick={handleNavClick(link.path)}
+                    >
+                      {link.label}
+                      <FaChevronRight className='nav-arrow' aria-hidden='true' />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          {/* Colonne 4: Contact */}
+          <div className='footer-column footer-contact'>
+            <h3 className='footer-column-title'>Contact</h3>
+            <div className='footer-contact-info'>
+              <div className='footer-contact-item'>
+                <FaPhone className='footer-contact-icon' />
+                <a
+                  href='tel:+33388520382'
+                  className='footer-contact-text'
+                  aria-label='Appelez-nous au 03.88.52.03.82'
+                >
+                  03 88 52 03 82
+                </a>
+              </div>
+              <div className='footer-contact-item'>
+                <FaEnvelope className='footer-contact-icon' />
+                <a
+                  href='mailto:contact@boncours.fr'
+                  className='footer-contact-text'
+                  aria-label='Nous contacter par email'
+                >
+                  contact@boncours.fr
+                </a>
+              </div>
+              <div className='footer-contact-item'>
+                <FaMapMarkerAlt className='footer-contact-icon' />
+                <a
+                  href='https://maps.google.com/?q=36+quai+Mullenheim,+67000+Strasbourg'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='footer-contact-text'
+                  aria-label='Voir notre adresse sur Google Maps'
+                >
+                  36 quai Mullenheim
+                  <br />
+                  67000 Strasbourg
+                </a>
+              </div>
+              <div className='footer-contact-item'>
+                <FaWhatsapp className='footer-contact-icon' />
+                <a
+                  href='https://wa.me/33679145577'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='footer-contact-text'
+                  aria-label='Nous contacter sur WhatsApp'
+                >
+                  06 79 14 55 77
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        <FooterWithNavigation />
 
-        {/* Séparateur */}
-        <div className='footer-divider' />
-
-        {/* Bas du footer */}
+        {/* Section inférieure */}
         <div className='footer-bottom'>
           <div className='footer-copyright'>
             <small>
               © {currentYear} Bon Cours. {t('footer.rights')}
             </small>
           </div>
-          <nav className='footer-links' role='navigation' aria-label='Liens légaux'>
+          <nav className='footer-legal' role='navigation' aria-label='Liens légaux'>
             <Button
               variant='text'
-              className='footer-link-button'
+              className='footer-legal-link'
               onClick={() => toggleModal('legal')}
               aria-label='Ouvrir les mentions légales'
               type='button'
@@ -264,7 +313,7 @@ const Footer = () => {
             </Button>
             <Button
               variant='text'
-              className='footer-link-button'
+              className='footer-legal-link'
               onClick={() => toggleModal('privacy')}
               aria-label='Ouvrir la politique de confidentialité'
               type='button'
@@ -273,7 +322,7 @@ const Footer = () => {
             </Button>
             <Button
               variant='text'
-              className='footer-link-button'
+              className='footer-legal-link'
               onClick={() => toggleModal('terms')}
               aria-label="Ouvrir les conditions générales d'utilisation"
               type='button'
@@ -319,6 +368,74 @@ const Footer = () => {
       <LegalModal isOpen={modalStates.legal} onClose={() => toggleModal('legal')} />
       <PrivacyModal isOpen={modalStates.privacy} onClose={() => toggleModal('privacy')} />
       <TermsModal isOpen={modalStates.terms} onClose={() => toggleModal('terms')} />
+
+      {/* Modale de newsletter */}
+      <FormModal
+        isOpen={isNewsletterModalOpen}
+        onClose={() => {
+          setIsNewsletterModalOpen(false);
+          setNewsletterData({ email: '' });
+          setIsEmailValid(false);
+        }}
+        onSubmit={handleNewsletterSubmit}
+        title="Inscrivez-vous à notre lettre d'information"
+        submitText={isSubmitting ? 'Inscription...' : "S'inscrire"}
+        cancelText='Annuler'
+        initialData={newsletterData}
+        submitDisabled={isSubmitting || !isEmailValid}
+        fields={[]}
+        className='newsletter-modal'
+      >
+        <div className='newsletter-modal-content'>
+          <p className='newsletter-description'>
+            Recevez les dernières informations sur nos ateliers linguistiques, les nouvelles dates
+            et les événements spéciaux par lettre d'information.
+          </p>
+
+          <div className='newsletter-form-group'>
+            <label htmlFor='newsletter-email' className='newsletter-label'>
+              Adresse email *
+            </label>
+            <input
+              type='email'
+              id='newsletter-email'
+              value={newsletterData.email}
+              onChange={handleEmailInputChange}
+              placeholder='votre@email.com'
+              className='newsletter-input'
+              disabled={isSubmitting}
+              required
+            />
+          </div>
+
+          <div className='newsletter-privacy'>
+            <p>
+              En vous inscrivant, vous acceptez de recevoir nos communications. Vous pouvez vous
+              désinscrire à tout moment.
+            </p>
+          </div>
+        </div>
+      </FormModal>
+
+      {/* Notifications */}
+      {notifications.some(n => n.type === 'success') && (
+        <SuccessNotification
+          notifications={notifications.filter(n => n.type === 'success')}
+          onRemove={removeNotification}
+          autoClose={true}
+          autoCloseDelay={5000}
+          position='top-right'
+        />
+      )}
+      {notifications.some(n => n.type === 'error') && (
+        <ErrorNotification
+          notifications={notifications.filter(n => n.type === 'error')}
+          onRemove={removeNotification}
+          autoClose={true}
+          autoCloseDelay={5000}
+          position='top-right'
+        />
+      )}
     </footer>
   );
 };

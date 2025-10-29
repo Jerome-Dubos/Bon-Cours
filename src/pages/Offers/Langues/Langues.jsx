@@ -102,10 +102,10 @@ const Langues = () => {
               <h3>Ateliers linguistiques</h3>
               <div className='card-content'>
                 <p>6 apprenants</p>
-                <p>Horaire et durée à définir</p>
+                <p>2h par atelier</p>
                 <p>Tous niveaux</p>
               </div>
-              <div className='price'>30 €/h</div>
+              <div className='price'>30 €/atelier</div>
             </div>
           </div>
           <div className='cta-section'>

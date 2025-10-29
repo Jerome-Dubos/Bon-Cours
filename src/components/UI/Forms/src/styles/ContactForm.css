@@ -7,34 +7,6 @@
   position: relative;
 }
 
-/* Globe en arrière-plan */
-.contact-form::before {
-  content: '';
-  position: fixed;
-  top: 50vh;
-  left: 50vw;
-  transform: translate(-50%, -50%);
-  width: 450px;
-  height: 450px;
-  background-image: url('/assets/images/globe.webp');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: 0;
-  animation: slowRotate 60s linear infinite;
-}
-
-@keyframes slowRotate {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;

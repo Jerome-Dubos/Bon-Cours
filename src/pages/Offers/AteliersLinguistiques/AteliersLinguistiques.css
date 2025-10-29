@@ -204,7 +204,7 @@
 }
 
 .price-label {
-  font-size: var(--text-sm);
+  font-size: var(--text-lg);
   color: var(--text-light);
   opacity: 0.8;
   margin: 0 0 var(--spacing-xs) 0;
@@ -213,7 +213,7 @@
 }
 
 .price-value {
-  font-size: var(--text-2xl);
+  font-size: var(--text-4xl);
   color: var(--secondary-peach);
   font-weight: 700;
   margin: 0;

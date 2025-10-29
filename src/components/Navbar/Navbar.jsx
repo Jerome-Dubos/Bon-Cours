@@ -4,15 +4,15 @@ import { useTranslation } from 'react-i18next';
 import {
   IoChevronDownOutline,
   IoCloseOutline,
-  IoFlaskOutline,
   IoHomeOutline,
-  IoInformationCircleOutline,
   IoLogInOutline,
   IoLogOutOutline,
   IoMailOutline,
   IoMenuOutline,
   IoSchoolOutline,
 } from 'react-icons/io5';
+import { MdGroups2 } from 'react-icons/md';
+import { VscTarget } from 'react-icons/vsc';
 import { Link, useLocation } from 'react-router-dom';
 import { config, isNavLinkHidden } from '../../config/environmentConfig';
 import { useAuth } from '../../context/AuthContext';
@@ -131,7 +131,7 @@ const Navbar = () => {
     () => [
       { label: 'Approche actionnelle', path: '/methode/approche-actionnelle' },
       { label: 'Niveaux & parcours', path: '/methode/niveaux-parcours' },
-      { label: 'Outils & ressources', path: '/methode/outils-ressources' },
+      // { label: 'Outils & ressources', path: '/methode/outils-ressources' }, // Masqué temporairement
     ],
     []
   );
@@ -151,14 +151,14 @@ const Navbar = () => {
         {
           path: '/methode',
           label: t('nav.method', 'Méthode'),
-          icon: <IoFlaskOutline size={20} />,
+          icon: <VscTarget size={20} />,
           hasSubmenu: true,
           submenuKey: 'methode',
         },
         {
           path: '/qui-sommes-nous',
           label: t('nav.qui-sommes-nous', 'Qui sommes nous ?'),
-          icon: <IoInformationCircleOutline size={20} />,
+          icon: <MdGroups2 size={20} />,
         },
         {
           path: '/contact',
