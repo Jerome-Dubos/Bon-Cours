@@ -159,7 +159,7 @@ const Examens = () => {
           </div>
         </div>
       ),
-      title: 'Préparation aux Certifications',
+      title: 'Préparation aux certifications',
     },
     {
       id: 'naturalisation',
@@ -241,7 +241,7 @@ const Examens = () => {
           </div>
         </div>
       ),
-      title: 'Préparation Naturalisation',
+      title: 'Préparation à la naturalisation',
     },
   ];
 

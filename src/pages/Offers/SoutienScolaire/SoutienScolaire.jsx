@@ -59,7 +59,7 @@ const SoutienScolaire = () => {
           </div>
         </div>
       ),
-      title: 'Soutien Scolaire Primaire',
+      title: 'Soutien scolaire primaire',
     },
     {
       id: 'college',
@@ -102,7 +102,7 @@ const SoutienScolaire = () => {
           </div>
         </div>
       ),
-      title: 'Soutien Scolaire Collège',
+      title: 'Soutien scolaire collège',
     },
     {
       id: 'lycee',
@@ -145,7 +145,7 @@ const SoutienScolaire = () => {
           </div>
         </div>
       ),
-      title: 'Soutien Scolaire Lycée',
+      title: 'Soutien scolaire lycée',
     },
   ];
 
@@ -200,7 +200,8 @@ const SoutienScolaire = () => {
 
         <p className='intro-text'>
           Offrez des bases solides et stimulez la confiance en soi de votre enfant grâce à nos
-          intervenant.e.s expérimenté.e.s
+          intervenant.e.s expérimenté.e.s et bénéficiez d'un crédit d'impôts de 50% sur nos cours
+          particuliers à domicile.
         </p>
 
         {/* Système d'onglets avec animations fluides */}

@@ -67,7 +67,7 @@ const Langues = () => {
           </div>
         </div>
       ),
-      title: 'Cours pour Enfants & Adolescents',
+      title: 'Cours pour enfants & adolescents',
     },
     {
       id: 'adultes',
@@ -115,7 +115,7 @@ const Langues = () => {
           </div>
         </div>
       ),
-      title: 'Formation pour Adultes',
+      title: 'Formations pour adultes',
     },
   ];
 

@@ -379,7 +379,7 @@ const AteliersLinguistiques = () => {
       transition={pageTransition}
     >
       <div className='ateliers-linguistiques-container'>
-        <h1>Ateliers Linguistiques</h1>
+        <h1>Ateliers linguistiques</h1>
 
         <div className='intro-section'>
           <p className='intro-text'>

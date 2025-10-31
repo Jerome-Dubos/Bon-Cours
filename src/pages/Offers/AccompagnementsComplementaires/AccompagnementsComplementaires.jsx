@@ -109,7 +109,7 @@ const AccompagnementsComplementaires = () => {
           </div>
         </div>
       ),
-      title: 'Accompagnement Administratif',
+      title: 'Accompagnement administratif',
     },
     {
       id: 'scolarite',
@@ -188,7 +188,7 @@ const AccompagnementsComplementaires = () => {
           </div>
         </div>
       ),
-      title: 'Accompagnement Scolarité',
+      title: 'Accompagnement scolarité',
     },
   ];
 
@@ -239,7 +239,7 @@ const AccompagnementsComplementaires = () => {
       transition={pageTransition}
     >
       <div className='accompagnements-complementaires-container'>
-        <h1>Accompagnements Complémentaires</h1>
+        <h1>Accompagnements complémentaires</h1>
 
         <div className='intro-text'>
           <p className='intro-main-text'>
