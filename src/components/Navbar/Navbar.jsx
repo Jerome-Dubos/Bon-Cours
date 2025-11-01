@@ -119,8 +119,7 @@ const Navbar = () => {
           submenu: [
             { label: 'Administratif', path: '/offres/accompagnements?tab=administratif' },
             { label: 'Scolarité', path: '/offres/accompagnements?tab=scolarite' },
-            { label: 'Traduction', path: '/offres/accompagnements?tab=traduction' },
-          ],
+                      ],
         },
       ],
     }),

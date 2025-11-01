@@ -49,7 +49,7 @@ const SoutienScolaire = () => {
                 <p>15h/semaine</p>
                 <p>Tous niveaux</p>
               </div>
-              <div className='price'>300 €/stage</div>
+              <div className='price'>200 €/stage</div>
             </div>
           </div>
           <div className='cta-section'>
@@ -74,7 +74,7 @@ const SoutienScolaire = () => {
                 <p>Horaire et durée à définir</p>
                 <p>Tous niveaux</p>
               </div>
-              <div className='price'>40 €/h</div>
+              <div className='price'>50 €/h</div>
             </div>
             <div className='offer-card'>
               <h3>Cours en petits groupes</h3>
@@ -83,7 +83,7 @@ const SoutienScolaire = () => {
                 <p>Horaire et durée à définir</p>
                 <p>Tous niveaux</p>
               </div>
-              <div className='price'>20 €/h</div>
+              <div className='price'>25 €/h</div>
             </div>
             <div className='offer-card'>
               <h3>Stage intensif en petits groupes</h3>
@@ -92,7 +92,7 @@ const SoutienScolaire = () => {
                 <p>15h/semaine</p>
                 <p>Tous niveaux</p>
               </div>
-              <div className='price'>300 €/stage</div>
+              <div className='price'>250 €/stage</div>
             </div>
           </div>
           <div className='cta-section'>
@@ -102,7 +102,17 @@ const SoutienScolaire = () => {
           </div>
         </div>
       ),
-      title: 'Soutien scolaire collège',
+      title: (
+        <>
+          <span>Soutien scolaire collège</span>
+          <span className='partnership-badge'>
+            En partenariat avec le{' '}
+            <a href='https://www.parcours-homere.fr' target='_blank' rel='noopener noreferrer'>
+              Parcours Homère
+            </a>
+          </span>
+        </>
+      ),
     },
     {
       id: 'lycee',
@@ -117,7 +127,7 @@ const SoutienScolaire = () => {
                 <p>Horaire et durée à définir</p>
                 <p>Tous niveaux</p>
               </div>
-              <div className='price'>40 €/h</div>
+              <div className='price'>60 €/h</div>
             </div>
             <div className='offer-card'>
               <h3>Cours en petits groupes</h3>
@@ -126,7 +136,7 @@ const SoutienScolaire = () => {
                 <p>Horaire et durée à définir</p>
                 <p>Tous niveaux</p>
               </div>
-              <div className='price'>20 €/h</div>
+              <div className='price'>30 €/h</div>
             </div>
             <div className='offer-card'>
               <h3>Stage intensif en petits groupes</h3>
@@ -145,7 +155,17 @@ const SoutienScolaire = () => {
           </div>
         </div>
       ),
-      title: 'Soutien scolaire lycée',
+      title: (
+        <>
+          <span>Soutien scolaire lycée</span>
+          <span className='partnership-badge'>
+            En partenariat avec le{' '}
+            <a href='https://www.parcours-homere.fr' target='_blank' rel='noopener noreferrer'>
+              Parcours Homère
+            </a>
+          </span>
+        </>
+      ),
     },
   ];
 
@@ -199,9 +219,10 @@ const SoutienScolaire = () => {
         <h1>Soutien Scolaire</h1>
 
         <p className='intro-text'>
-          Offrez des bases solides et stimulez la confiance en soi de votre enfant grâce à nos
-          intervenant.e.s expérimenté.e.s et bénéficiez d'un crédit d'impôts de 50% sur nos cours
-          particuliers à domicile.
+          Offrez des bases solides et stimulez la confiance en soi de votre enfant grâce à nos{' '}
+          intervenant.e.s expérimenté.e.s et{' '}
+          <span className='text-peach font-bold'> bénéficiez d'un crédit d'impôts de 50%</span> sur
+          nos cours particuliers à domicile.
         </p>
 
         {/* Système d'onglets avec animations fluides */}

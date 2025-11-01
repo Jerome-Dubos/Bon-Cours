@@ -6,6 +6,7 @@ import {
   FaFacebookF,
   FaHeart,
   FaInstagram,
+  FaLinkedinIn,
   FaMapMarkerAlt,
   FaPhone,
   FaWhatsapp,
@@ -163,6 +164,7 @@ const Footer = () => {
               <p className='footer-description-text'>{t('footer.description')}</p>
             </div>
             <div className='footer-newsletter'>
+              {/*
               <button
                 className='footer-newsletter-button'
                 onClick={() => setIsNewsletterModalOpen(true)}
@@ -172,6 +174,7 @@ const Footer = () => {
                 <FaEnvelope className='newsletter-icon' />
                 Lettre d'information
               </button>
+              */}
             </div>
             <div className='footer-social'>
               <h4 className='footer-social-title'>Suivez-nous</h4>
@@ -193,6 +196,15 @@ const Footer = () => {
                   rel='noopener noreferrer'
                 >
                   <FaInstagram />
+                </a>
+                <a
+                  href='https://www.linkedin.com/company/boncours'
+                  className='footer-social-link'
+                  aria-label='Suivez-nous sur LinkedIn'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <FaLinkedinIn />
                 </a>
               </div>
             </div>
@@ -255,6 +267,18 @@ const Footer = () => {
                 </a>
               </div>
               <div className='footer-contact-item'>
+                <FaWhatsapp className='footer-contact-icon' />
+                <a
+                  href='https://wa.me/33679145577'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='footer-contact-text'
+                  aria-label='Nous contacter sur WhatsApp'
+                >
+                  06 79 14 55 77
+                </a>
+              </div>
+              <div className='footer-contact-item'>
                 <FaEnvelope className='footer-contact-icon' />
                 <a
                   href='mailto:contact@boncours.fr'
@@ -276,18 +300,6 @@ const Footer = () => {
                   36 quai Mullenheim
                   <br />
                   67000 Strasbourg
-                </a>
-              </div>
-              <div className='footer-contact-item'>
-                <FaWhatsapp className='footer-contact-icon' />
-                <a
-                  href='https://wa.me/33679145577'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='footer-contact-text'
-                  aria-label='Nous contacter sur WhatsApp'
-                >
-                  06 79 14 55 77
                 </a>
               </div>
             </div>
@@ -329,6 +341,15 @@ const Footer = () => {
             >
               CGU
             </Button>
+            <a
+              href='/assets/REGLEMENT%20INTERIEUR.pdf'
+              className='footer-legal-link'
+              aria-label='Ouvrir le règlement intérieur (PDF) dans un nouvel onglet'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              Règlement intérieur
+            </a>
           </nav>
         </div>
 

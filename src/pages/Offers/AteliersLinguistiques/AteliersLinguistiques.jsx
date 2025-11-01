@@ -388,6 +388,7 @@ const AteliersLinguistiques = () => {
             L'ensemble de nos ateliers se déclinent dans toutes nos langues disponibles, toujours en
             petits groupes de 6 maximum, du lundi au dimanche sous réserve de disponibilité de nos
             intervenant.e.s.{' '}
+            {/*
             <button
               className='newsletter-link'
               onClick={() => setIsNewsletterModalOpen(true)}
@@ -396,6 +397,7 @@ const AteliersLinguistiques = () => {
               Inscrivez-vous à notre lettre d'information
             </button>{' '}
             pour connaître les prochaines dates de nos ateliers!
+            */}
           </p>
 
           <div className='price-card'>

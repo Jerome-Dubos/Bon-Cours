@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   FaArrowRight,
   FaCertificate,
@@ -13,12 +13,10 @@ import './HeroSection.css';
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const SLIDE_DURATION = 6000;
   const [currentSlide1, setCurrentSlide1] = useState(0);
   const [currentSlide2, setCurrentSlide2] = useState(1);
   const [currentSlide3, setCurrentSlide3] = useState(2);
-  const [progress1, setProgress1] = useState(0);
-  const [progress2, setProgress2] = useState(0);
-  const [progress3, setProgress3] = useState(0);
 
   const slides = [
     {
@@ -70,70 +68,14 @@ const HeroSection = () => {
       icon: FaUsers,
     },
   ];
-
-  // Références pour éviter les conflits de slides
-  const currentSlide2Ref = useRef(currentSlide2);
-  const currentSlide3Ref = useRef(currentSlide3);
-  const currentSlide1Ref = useRef(currentSlide1);
-
-  // Mise à jour des refs quand les états changent
-  currentSlide2Ref.current = currentSlide2;
-  currentSlide3Ref.current = currentSlide3;
-  currentSlide1Ref.current = currentSlide1;
-
-  // Auto-play avec transition douce pour chaque carousel
+  // Auto-play: un seul timer pour les trois carousels
   useEffect(() => {
-    const duration = 6000; // 6 secondes pour tous les carousels
-
-    // Barres de progression
-    const progressInterval1 = setInterval(() => {
-      setProgress1(prev => {
-        const increment = (100 / duration) * 50; // Update toutes les 50ms
-        const newProgress = prev + increment;
-        return newProgress >= 100 ? 0 : newProgress;
-      });
-    }, 50);
-
-    const progressInterval2 = setInterval(() => {
-      setProgress2(prev => {
-        const increment = (100 / duration) * 50;
-        const newProgress = prev + increment;
-        return newProgress >= 100 ? 0 : newProgress;
-      });
-    }, 50);
-
-    const progressInterval3 = setInterval(() => {
-      setProgress3(prev => {
-        const increment = (100 / duration) * 50;
-        const newProgress = prev + increment;
-        return newProgress >= 100 ? 0 : newProgress;
-      });
-    }, 50);
-
-    // Changement des slides - tous synchronisés
-    const interval1 = setInterval(() => {
+    const interval = setInterval(() => {
       setCurrentSlide1(prev => (prev + 1) % slides.length);
-      setProgress1(0); // Reset progress bar
-    }, duration);
-
-    const interval2 = setInterval(() => {
       setCurrentSlide2(prev => (prev + 1) % slides.length);
-      setProgress2(0); // Reset progress bar
-    }, duration);
-
-    const interval3 = setInterval(() => {
       setCurrentSlide3(prev => (prev + 1) % slides.length);
-      setProgress3(0); // Reset progress bar
-    }, duration);
-
-    return () => {
-      clearInterval(interval1);
-      clearInterval(interval2);
-      clearInterval(interval3);
-      clearInterval(progressInterval1);
-      clearInterval(progressInterval2);
-      clearInterval(progressInterval3);
-    };
+    }, SLIDE_DURATION);
+    return () => clearInterval(interval);
   }, [slides.length]);
 
   // Mémoriser les données de slide pour éviter les re-renders
@@ -174,7 +116,7 @@ const HeroSection = () => {
   );
 
   // Composant Carousel optimisé avec transition smooth
-  const Carousel = useCallback(({ currentSlide, carouselClass, slideData, progress }) => {
+  const Carousel = useCallback(({ currentSlide, carouselClass, slideData, progressDuration }) => {
     const IconComponent = slideData.icon;
 
     return (
@@ -187,7 +129,7 @@ const HeroSection = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{
-              duration: 0.8,
+              duration: 0.6,
               ease: 'easeInOut',
             }}
             style={{
@@ -201,7 +143,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.8,
+                duration: 0.6,
                 delay: 0.2,
                 ease: 'easeOut',
               }}
@@ -227,11 +169,9 @@ const HeroSection = () => {
             {/* Barre de progression */}
             <div className='carousel-progress-bar'>
               <div
+                key={currentSlide}
                 className='progress-fill'
-                style={{
-                  width: `${progress}%`,
-                  transition: 'width 0.1s linear',
-                }}
+                style={{ '--progress-duration': `${progressDuration}ms` }}
               />
             </div>
           </motion.div>
@@ -251,7 +191,7 @@ const HeroSection = () => {
               currentSlide={currentSlide1}
               carouselClass='carousel-large'
               slideData={slideData}
-              progress={progress1}
+              progressDuration={SLIDE_DURATION}
             />
           </div>
 
@@ -260,13 +200,13 @@ const HeroSection = () => {
               currentSlide={currentSlide2}
               carouselClass='carousel-small'
               slideData={slideData2}
-              progress={progress2}
+              progressDuration={SLIDE_DURATION}
             />
             <Carousel
               currentSlide={currentSlide3}
               carouselClass='carousel-small'
               slideData={slideData3}
-              progress={progress3}
+              progressDuration={SLIDE_DURATION}
             />
           </div>
         </div>

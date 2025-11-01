@@ -359,26 +359,24 @@
   }
 
   .history-methodology__content {
-    min-height: 650px;
+    min-height: auto;
     margin-bottom: var(--spacing-4xl);
     position: relative;
   }
 
   .history-methodology__section {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    opacity: 0;
-    transform: translateX(30px);
-    transition: all var(--transition-slow);
-    pointer-events: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+    pointer-events: all;
     height: auto;
   }
 
   .history-methodology__section.active {
     opacity: 1;
-    transform: translateX(0);
+    transform: none;
     pointer-events: all;
     height: auto;
   }
@@ -473,26 +471,24 @@
   }
 
   .history-methodology__content {
-    min-height: 550px;
+    min-height: auto;
     margin-bottom: var(--spacing-3xl);
     position: relative;
   }
 
   .history-methodology__section {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    opacity: 0;
-    transform: translateX(30px);
-    transition: all var(--transition-slow);
-    pointer-events: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+    pointer-events: all;
     height: auto;
   }
 
   .history-methodology__section.active {
     opacity: 1;
-    transform: translateX(0);
+    transform: none;
     pointer-events: all;
     height: auto;
   }
@@ -597,4 +593,14 @@
 .history-methodology__section-image img[style*='opacity: 1'],
 .history-methodology__section-image video[style*='opacity: 1'] {
   opacity: 1;
+}
+/* Overrides: ensure content grows and CTA shifts on small screens */
+@media (max-width: 768px) {
+  .history-methodology__content { min-height: auto !important; }
+  .history-methodology__section { position: relative !important; opacity: 1 !important; transform: none !important; pointer-events: all !important; }
+  .history-methodology__section.active { transform: none !important; }
+}
+@media (max-width: 480px) {
+  .history-methodology__content { min-height: auto !important; }
+  .history-methodology__section { position: relative !important; opacity: 1 !important; transform: none !important; pointer-events: all !important; }
 }
