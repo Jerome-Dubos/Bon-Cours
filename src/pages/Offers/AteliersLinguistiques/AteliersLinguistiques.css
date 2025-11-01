@@ -557,7 +557,7 @@
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .ateliers-linguistiques {
-    padding: var(--spacing-lg);
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-lg) var(--spacing-lg);
   }
 
   .ateliers-linguistiques-container .intro-text {
@@ -641,5 +641,11 @@
   .atelier-text-content {
     flex: none;
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ateliers-linguistiques {
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-md) var(--spacing-md);
   }
 }

@@ -285,7 +285,7 @@
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .langues {
-    padding: var(--spacing-lg);
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-lg) var(--spacing-lg);
   }
 
   .languages-for h2 {
@@ -316,6 +316,9 @@
 }
 
 @media (max-width: 480px) {
+  .langues {
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-md) var(--spacing-md);
+  }
   .languages-for h2 {
     font-size: var(--text-xl);
   }

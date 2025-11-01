@@ -515,7 +515,7 @@
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .examens {
-    padding: var(--spacing-lg);
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-lg) var(--spacing-lg);
   }
 
   .examens-container .intro-text {
@@ -612,5 +612,11 @@
 
   .naturalisation-cta p {
     font-size: var(--text-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .examens {
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-md) var(--spacing-md);
   }
 }

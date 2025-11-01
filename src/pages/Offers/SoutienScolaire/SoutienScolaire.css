@@ -281,7 +281,7 @@
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .soutien-scolaire {
-    padding: var(--spacing-lg);
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-lg) var(--spacing-lg);
   }
 
   .offers-grid {
@@ -309,5 +309,11 @@
   .soutien-scolaire-container .intro-text {
     font-size: var(--text-base);
     margin-bottom: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .soutien-scolaire {
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-md) var(--spacing-md);
   }
 }

@@ -310,7 +310,7 @@
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .niveaux-parcours {
-    padding: var(--spacing-lg);
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-lg) var(--spacing-lg);
   }
 
   .niveaux-grid {
@@ -373,5 +373,11 @@
   .cta-button {
     font-size: var(--text-base);
     padding: var(--spacing-sm) var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .niveaux-parcours {
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-md) var(--spacing-md);
   }
 }

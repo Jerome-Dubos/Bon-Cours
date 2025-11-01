@@ -115,10 +115,16 @@
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .qui-sommes-nous {
-    padding: var(--spacing-lg);
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-lg) var(--spacing-lg);
   }
 
   .qui-sommes-nous-section {
     padding: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .qui-sommes-nous {
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-md) var(--spacing-md);
   }
 }

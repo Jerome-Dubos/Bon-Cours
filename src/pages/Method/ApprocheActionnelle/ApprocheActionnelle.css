@@ -241,7 +241,7 @@
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .approche-actionnelle {
-    padding: var(--spacing-lg);
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-lg) var(--spacing-lg);
   }
 
   .approche-content {
@@ -293,5 +293,11 @@
   .cta-button {
     font-size: var(--text-base);
     padding: var(--spacing-sm) var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .approche-actionnelle {
+    padding: calc(var(--navbar-height) + var(--spacing-lg)) var(--spacing-md) var(--spacing-md);
   }
 }
