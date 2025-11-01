@@ -21,7 +21,7 @@
 }
 
 .team-section__title {
-  font-size: 2.5rem;
+  font-size: var(--text-4xl);
   font-weight: 700;
   background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--secondary-peach-80) 100%);
   -webkit-background-clip: text;
@@ -33,7 +33,7 @@
 }
 
 .team-section__subtitle {
-  font-size: 1.2rem;
+  font-size: var(--text-lg);
   color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
@@ -284,7 +284,7 @@
   color: var(--primary-blue-dark);
   padding: var(--spacing-xs) var(--spacing-md);
   border-radius: var(--border-radius-lg);
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -301,7 +301,7 @@
 }
 
 .team-section__overlay-description p {
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   line-height: 1.5;
   color: var(--text-light);
   margin: 0;
@@ -322,7 +322,7 @@
 }
 
 .team-section__overlay-cta span {
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   color: var(--secondary-peach);
   font-weight: 500;
   text-transform: uppercase;
@@ -351,7 +351,7 @@
 }
 
 .team-section__card-name {
-  font-size: 1.3rem;
+  font-size: var(--text-lg);
   font-weight: 700;
   color: var(--primary-blue-dark);
   margin: 0;
@@ -474,7 +474,7 @@
 }
 
 .team-section__modal-name {
-  font-size: 2rem;
+  font-size: var(--text-3xl);
   font-weight: 700;
   color: var(--secondary-peach);
   margin-bottom: var(--spacing-sm);
@@ -487,7 +487,7 @@
 }
 
 .team-section__modal-description {
-  font-size: 1.2rem;
+  font-size: var(--text-lg);
   line-height: 1.8;
   color: var(--text-light);
   margin-bottom: var(--spacing-2xl);
@@ -504,7 +504,7 @@
 }
 
 .team-section__modal-section h4 {
-  font-size: 1.1rem;
+  font-size: var(--text-lg);
   font-weight: 600;
   color: var(--secondary-peach);
   margin-bottom: var(--spacing-md);
@@ -526,7 +526,7 @@
   color: var(--text-light);
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius-md);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   font-weight: 500;
   border: 1px solid var(--secondary-peach-40);
   transition: all var(--transition-normal);
@@ -564,14 +564,14 @@
 
 .team-section__stat-number {
   display: block;
-  font-size: 1.5rem;
+  font-size: var(--text-2xl);
   font-weight: 700;
   color: var(--secondary-peach);
   margin-bottom: var(--spacing-xs);
 }
 
 .team-section__stat-label {
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   color: var(--text-secondary);
   font-weight: 500;
   line-height: 1.3;
@@ -649,7 +649,7 @@
   border: 1px solid var(--secondary-peach-40);
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--border-radius-md);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -693,7 +693,7 @@
   color: var(--text-light);
   border: 1px solid var(--secondary-peach-40);
   border-radius: var(--border-radius-md);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -719,7 +719,7 @@
   text-align: center;
   margin-top: var(--spacing-lg);
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   opacity: 0.8;
 }
 
@@ -728,11 +728,11 @@
 /* Tablette (768px - 1024px) */
 @media (max-width: 1024px) and (min-width: 768px) {
   .team-section__title {
-    font-size: 2.2rem;
+    font-size: var(--text-3xl);
   }
 
   .team-section__subtitle {
-    font-size: 1.1rem;
+    font-size: var(--text-base);
   }
 
   .team-section__grid {
@@ -774,7 +774,7 @@
   }
 
   .team-section__modal-name {
-    font-size: 1.8rem;
+    font-size: var(--text-2xl);
   }
 
   .team-section__modal-body {
@@ -799,14 +799,14 @@
 
   .team-section__pagination-btn {
     padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     min-height: 40px;
   }
 
   .team-section__pagination-number {
     width: 40px;
     height: 40px;
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
   }
 }
 
@@ -822,11 +822,11 @@
   }
 
   .team-section__title {
-    font-size: 1.8rem;
+    font-size: var(--text-2xl);
   }
 
   .team-section__subtitle {
-    font-size: 1rem;
+    font-size: var(--text-base);
   }
 
   .team-section__content {
@@ -857,7 +857,7 @@
   }
 
   .team-section__card-name {
-    font-size: 1.1rem;
+    font-size: var(--text-base);
   }
 
   .team-section__overlay-content {
@@ -883,11 +883,11 @@
   }
 
   .team-section__overlay-stat span {
-    font-size: 1rem;
+    font-size: var(--text-base);
   }
 
   .team-section__overlay-cta span {
-    font-size: 0.8rem;
+    font-size: var(--text-sm);
   }
 
   .team-section__modal {
@@ -923,7 +923,7 @@
   }
 
   .team-section__modal-name {
-    font-size: 1.5rem;
+    font-size: var(--text-xl);
   }
 
   .team-section__modal-body {
@@ -932,7 +932,7 @@
   }
 
   .team-section__modal-description {
-    font-size: 1rem;
+    font-size: var(--text-base);
     line-height: 1.6;
   }
 
@@ -969,11 +969,11 @@
   }
 
   .team-section__title {
-    font-size: 1.6rem;
+    font-size: var(--text-xl);
   }
 
   .team-section__subtitle {
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
 
   .team-section__content {
@@ -989,7 +989,7 @@
   }
 
   .team-section__card-name {
-    font-size: 1rem;
+    font-size: var(--text-sm);
   }
 
   .team-section__overlay-content {
@@ -1020,7 +1020,7 @@
   }
 
   .team-section__modal-name {
-    font-size: 1.3rem;
+    font-size: var(--text-lg);
   }
 
   .team-section__modal-body {
@@ -1029,7 +1029,7 @@
   }
 
   .team-section__modal-description {
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
   }
 
   .team-section__stat {
@@ -1067,11 +1067,11 @@
   .team-section__pagination-number {
     width: 36px;
     height: 36px;
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
   }
 
   .team-section__pagination-info {
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     margin-top: var(--spacing-md);
   }
 }
@@ -1097,6 +1097,6 @@
   }
 
   .team-section__modal-name {
-    font-size: 1.3rem;
+    font-size: var(--text-lg);
   }
 }

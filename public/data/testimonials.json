@@ -2,179 +2,59 @@
   "testimonials": [
     {
       "id": 1,
-      "name": "Marie Dubois",
+      "name": "GUYSSOU Maquillage & Coiffure",
       "language": "Anglais",
-      "courseType": "Cours adulte",
+      "courseType": "Cours intensif professionnel",
       "rating": 5,
-      "text": "Grâce à Bon Cours, j'ai enfin réussi à surmonter ma peur de parler anglais. Les cours sont dynamiques et les professeurs sont vraiment à l'écoute. Je recommande vivement !"
+      "text": "Nous avons sollicité l’Institut Bon Cours pour un apprentissage d’anglais intensif. Pédagogie, disponibilité et accompagnement au top. Merci pour le professionnalisme et la bienveillance, avec beaucoup de patience et de rigueur."
     },
     {
       "id": 2,
-      "name": "Thomas Moreau",
-      "language": "Anglais",
-      "courseType": "Cours adulte",
+      "name": "Sergii R.",
+      "language": "Français",
+      "courseType": "FLE (enfants)",
       "rating": 5,
-      "text": "Excellente plateforme pour progresser en anglais. Les exercices sont variés et adaptés à mon niveau. J'ai obtenu mon certificat Cambridge grâce à ces cours."
+      "text": "Après notre déménagement en France, mes enfants ont été accompagnés par Florence. En six mois, ils ont atteint un niveau leur permettant de suivre le programme scolaire. Approche individualisée, structurée et efficace."
     },
     {
       "id": 3,
-      "name": "Sophie Laurent",
-      "language": "Anglais",
-      "courseType": "Cours enfant",
-      "rating": 4,
-      "text": "Parfait pour débuter en anglais. Les leçons sont claires et progressives. J'apprécie particulièrement les exercices pratiques qui m'aident à mémoriser."
+      "name": "Aurélie B.",
+      "language": "Soutien scolaire",
+      "courseType": "Suivi scolaire (enfant)",
+      "rating": 5,
+      "text": "Suivi scolaire de notre fils pendant deux ans. Pédagogue et très investie, bien au‑dessus des précédents intervenants. Nous recommandons sans hésitation."
     },
     {
       "id": 4,
-      "name": "Pierre Martin",
-      "language": "Anglais",
-      "courseType": "Cours adulte",
+      "name": "Marion G.",
+      "language": "Soutien scolaire",
+      "courseType": "Suivi scolaire (enfants)",
       "rating": 5,
-      "text": "Interface intuitive et contenu de qualité. Les professeurs sont compétents et patients. Je progresse rapidement et avec plaisir."
+      "text": "Après plusieurs essais, nous avons confié le soutien de nos deux fils pendant plus de quatre ans. Sérieuse, patiente et à l’écoute, Florence s’adapte à leurs besoins et a été un véritable pilier. Recommandé sans réserve."
     },
     {
       "id": 5,
-      "name": "Camille Rousseau",
-      "language": "Espagnol",
-      "courseType": "Cours enfant",
+      "name": "Joshua J.",
+      "language": "Français",
+      "courseType": "Cours adulte",
       "rating": 5,
-      "text": "Superbe découverte ! Les cours d'espagnol sont excellents, avec une approche culturelle en plus de l'apprentissage linguistique. Très satisfaite."
+      "text": "Professeure de langues fantastique, organisation parfaite et méthodes très efficaces. Grâce à elle, j’ai fortement amélioré mon niveau en peu de temps."
     },
     {
       "id": 6,
-      "name": "Lucas Bernard",
-      "language": "Espagnol",
+      "name": "Shelir G.",
+      "language": "Français",
       "courseType": "Cours adulte",
-      "rating": 4,
-      "text": "Bon cours d'espagnol, bien structuré. Les exercices de conversation sont particulièrement utiles pour gagner en fluidité."
+      "rating": 5,
+      "text": "Enseignement avec passion; méthode simple, claire et captivante. Sa présence motive les élèves. Très satisfait et reconnaissant pour ce dévouement."
     },
     {
       "id": 7,
-      "name": "Emma Petit",
-      "language": "Espagnol",
+      "name": "Mourad E.",
+      "language": "Français",
       "courseType": "Cours adulte",
       "rating": 5,
-      "text": "Formation d'excellente qualité. Les professeurs natifs font toute la différence. Je me sens de plus en plus à l'aise en espagnol."
-    },
-    {
-      "id": 8,
-      "name": "Antoine Durand",
-      "language": "Espagnol",
-      "courseType": "Cours enfant",
-      "rating": 4,
-      "text": "Débutant en espagnol, je trouve les cours très accessibles. La progression est logique et les explications sont claires."
-    },
-    {
-      "id": 9,
-      "name": "Julie Leroy",
-      "language": "Allemand",
-      "courseType": "Cours adulte",
-      "rating": 5,
-      "text": "Excellente méthode pour apprendre l'allemand. Les cours sont bien organisés et les exercices variés. Je progresse rapidement."
-    },
-    {
-      "id": 10,
-      "name": "Nicolas Simon",
-      "language": "Allemand",
-      "courseType": "Cours enfant",
-      "rating": 4,
-      "text": "Bon cours d'allemand, bien adapté aux débutants. Les explications grammaticales sont claires et les exercices pratiques."
-    },
-    {
-      "id": 11,
-      "name": "Clara Girard",
-      "language": "Allemand",
-      "courseType": "Cours adulte",
-      "rating": 5,
-      "text": "Formation de très haute qualité. Les professeurs sont excellents et le contenu est riche. Parfait pour se perfectionner."
-    },
-    {
-      "id": 12,
-      "name": "Maxime Fournier",
-      "language": "Italien",
-      "courseType": "Cours adulte",
-      "rating": 5,
-      "text": "Super cours d'italien ! L'approche est moderne et efficace. Les professeurs sont passionnés et transmettent bien leur savoir."
-    },
-    {
-      "id": 13,
-      "name": "Léa Mercier",
-      "language": "Italien",
-      "courseType": "Cours enfant",
-      "rating": 4,
-      "text": "Très bonne plateforme pour apprendre l'italien. Les cours sont bien structurés et les exercices sont variés et intéressants."
-    },
-    {
-      "id": 14,
-      "name": "Hugo Blanc",
-      "language": "Italien",
-      "courseType": "Cours adulte",
-      "rating": 5,
-      "text": "Excellente formation en italien. Le contenu est de qualité et les professeurs sont très compétents. Je recommande vivement."
-    },
-    {
-      "id": 15,
-      "name": "Chloé Roux",
-      "language": "Portugais",
-      "courseType": "Cours enfant",
-      "rating": 4,
-      "text": "Bon cours de portugais pour débutants. Les leçons sont claires et la progression est bien pensée. Très satisfaite."
-    },
-    {
-      "id": 16,
-      "name": "Alexandre Denis",
-      "language": "Portugais",
-      "courseType": "Cours adulte",
-      "rating": 5,
-      "text": "Formation de qualité en portugais. Les professeurs sont excellents et le contenu est riche et varié. Je progresse bien."
-    },
-    {
-      "id": 17,
-      "name": "Sarah Fontaine",
-      "language": "Anglais",
-      "courseType": "Cours enfant",
-      "rating": 5,
-      "text": "Plateforme exceptionnelle pour l'apprentissage de l'anglais. Les cours sont de très haute qualité et les résultats sont au rendez-vous."
-    },
-    {
-      "id": 18,
-      "name": "Léonie Moreau",
-      "language": "Soutien scolaire",
-      "courseType": "Mathématiques",
-      "rating": 5,
-      "text": "Le soutien scolaire en mathématiques a été un vrai plus pour ma fille. Les professeurs sont patients et expliquent très bien. Ses notes ont considérablement progressé !"
-    },
-    {
-      "id": 19,
-      "name": "Marc Dubois",
-      "language": "Soutien scolaire",
-      "courseType": "Français",
-      "rating": 4,
-      "text": "Excellent soutien en français. Mon fils a repris confiance en lui grâce aux cours personnalisés. Les exercices sont adaptés à son niveau et ses difficultés."
-    },
-    {
-      "id": 20,
-      "name": "Isabelle Rousseau",
-      "language": "Soutien scolaire",
-      "courseType": "Physique-Chimie",
-      "rating": 5,
-      "text": "Grâce au soutien scolaire en physique-chimie, ma fille a enfin compris les concepts qui lui posaient problème. Les explications sont claires et les exercices progressifs."
-    },
-    {
-      "id": 21,
-      "name": "François Leroy",
-      "language": "Soutien scolaire",
-      "courseType": "Histoire-Géographie",
-      "rating": 4,
-      "text": "Très bon soutien en histoire-géographie. Les cours sont intéressants et les méthodes de mémorisation sont efficaces. Mon fils a amélioré ses résultats."
-    },
-    {
-      "id": 22,
-      "name": "Céline Martin",
-      "language": "Soutien scolaire",
-      "courseType": "SVT",
-      "rating": 5,
-      "text": "Le soutien en SVT a permis à mon enfant de mieux comprendre les concepts scientifiques. Les professeurs sont compétents et motivants. Je recommande vivement !"
+      "text": "Professeure très compétente qui simplifie les leçons de français. Ancien élève, j’ai rapidement compris sa méthode pédagogique. Je recommande vivement."
     }
   ]
 }

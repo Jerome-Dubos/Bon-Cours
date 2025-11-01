@@ -114,9 +114,9 @@ const TeamSection = () => {
     },
     {
       id: 10,
-      name: 'Mattéo',
+      name: 'Homere',
       role: 'Mathématiques & Physique (Parcours Homère)',
-      photo: encodeURI('/assets/images/team/Matteo.webp'),
+      photo: encodeURI('/assets/images/team/homere.webp'),
       description:
         "Fraîchement diplômé de l'INSA Strasbourg en tant qu'Ingénieur en Génie Civil, je travaille pour Parcours Homère depuis maintenant 2 ans. Mon but est de transmettre les savoirs en Mathématiques et en Physique avec un aspect ludique aux personnes qui en ont besoin, leur proposant ainsi une alternative aux cours plus classiques. Parcours Homère, ce sont des sciences, bien évidemment, mais bien plus encore!",
       languages: [],
@@ -157,6 +157,24 @@ const TeamSection = () => {
       description:
         "J'ai dix ans d'expérience dans l'enseignement de l'espagnol ELE. Ma méthode est pratique et communicative, privilégiant l'expression orale. J'utilise des jeux, des supports variés et des activités dynamiques pour vous immerger rapidement. L'objectif est d'atteindre une aisance réelle tout en s'assurant que le plaisir et l'amusement restent au cœur de votre apprentissage. C'est la clé pour progresser !",
       languages: ['Espagnol'],
+    },
+    {
+      id: 15,
+      name: 'Matthieu',
+      role: 'Fondateur de Parcours Homère, Professeur de Sciences',
+      photo: encodeURI('/assets/images/team/homere.webp'),
+      description:
+        "Fondateur de Parcours Homère, Professeur de Sciences (Collège et Lycée), j’ai développé une solide expérience de l’enseignement et de l’aide aux devoirs. J’ai acquis la certitude que la transmission des connaissances (du simple vers le complexe) représente bien plus que d’appliquer de simples techniques pédagogiques. Il nous faut également réunir la chaleur humaine, la conviction, l’enthousiasme, qualités sans lesquelles un simple tutoriel suffirait à instruire, mais de manière très incomplète, de nombreux élèves.",
+      languages: [],
+    },
+    {
+      id: 16,
+      name: 'Léon',
+      role: 'Tutorat en sciences (Maths, Physique-Chimie, SI) - Parcours Homère',
+      photo: encodeURI('/assets/images/team/homere.webp'),
+      description:
+        "Je travaille via le parcours Homère pour du tutorat en sciences, plus particulièrement les mathématiques, physique chimie et sciences de l’ingénieur. La méthode de travail est basée sur la transmission des savoirs, en détectant les problèmes sur certaines notions. Ensuite, nous travaillons avec des exercices ciblés sur les points faibles de l'élève/étudiant.",
+      languages: [],
     },
   ];
 
