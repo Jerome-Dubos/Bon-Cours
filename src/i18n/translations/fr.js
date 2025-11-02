@@ -246,7 +246,7 @@ export const fr = {
         placeholders: {
           last_name: 'Dupont',
           first_name: 'Jean',
-          email: 'jean.dupont@example.com',
+          email: 'jean.dupont@exemple.com',
           message: 'Votre message...',
         },
         preferences: {
@@ -850,6 +850,7 @@ export const fr = {
         saturday: 'Samedi',
         sunday: 'Dimanche',
       },
+      hours: '8h - 20h',
       transport: {
         tram: {
           title: 'Tram',

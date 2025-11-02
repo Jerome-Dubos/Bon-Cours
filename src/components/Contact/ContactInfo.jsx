@@ -12,13 +12,13 @@ const ContactInfo = () => {
 
   const horaires = useMemo(
     () => [
-      { jour: t('contact.days.monday'), heures: '8h - 20h', ouvert: true },
-      { jour: t('contact.days.tuesday'), heures: '8h - 20h', ouvert: true },
-      { jour: t('contact.days.wednesday'), heures: '8h - 20h', ouvert: true },
-      { jour: t('contact.days.thursday'), heures: '8h - 20h', ouvert: true },
-      { jour: t('contact.days.friday'), heures: '8h - 20h', ouvert: true },
-      { jour: t('contact.days.saturday'), heures: '8h - 20h', ouvert: true },
-      { jour: t('contact.days.sunday'), heures: '8h - 20h', ouvert: true },
+      { jour: t('contact.days.monday'), heures: t('contact.hours'), ouvert: true },
+      { jour: t('contact.days.tuesday'), heures: t('contact.hours'), ouvert: true },
+      { jour: t('contact.days.wednesday'), heures: t('contact.hours'), ouvert: true },
+      { jour: t('contact.days.thursday'), heures: t('contact.hours'), ouvert: true },
+      { jour: t('contact.days.friday'), heures: t('contact.hours'), ouvert: true },
+      { jour: t('contact.days.saturday'), heures: t('contact.hours'), ouvert: true },
+      { jour: t('contact.days.sunday'), heures: t('contact.hours'), ouvert: true },
     ],
     [t]
   );

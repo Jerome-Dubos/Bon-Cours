@@ -626,7 +626,7 @@ export const en = {
       },
       objective: {
         title: 'Our goal',
-        text: 'is for everyone to leave not only with solid language skills, but also with the ability to communicate effectively and pleasurably in the target language.',
+        text: 'is for everyone to leave not only with solid language skills, but also with the ability to communicate effectively and enjoy it in the target language.',
       },
     },
     approche_actionnelle: {
@@ -644,7 +644,7 @@ export const en = {
       },
       objective: {
         title: 'Our goal',
-        text: 'is for everyone to leave not only with solid language skills, but also with the ability to communicate effectively and pleasurably in the target language.',
+        text: 'is for everyone to leave not only with solid language skills, but also with the ability to communicate effectively and enjoy it in the target language.',
       },
       cta: {
         title: 'Ready to discover our approach?',
@@ -842,6 +842,7 @@ export const en = {
         saturday: 'Saturday',
         sunday: 'Sunday',
       },
+      hours: '8am - 8pm',
       transport: {
         tram: {
           title: 'Tram',
