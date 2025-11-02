@@ -55,6 +55,38 @@
       "courseType": "Cours adulte",
       "rating": 4,
       "text": "Professeure très compétente qui simplifie les leçons de français. Ancien élève, j’ai rapidement compris sa méthode pédagogique. Je recommande vivement."
+    },
+    {
+      "id": 8,
+      "name": "Hamza N.",
+      "language": "Français",
+      "courseType": "Cours adulte",
+      "rating": 5,
+      "text": "Madame Florence se distingue par sa générosité dans l’enseignement. Elle simplifie les idées pour que nous les comprenions facilement. C’est une enseignante académique par excellence. Son enseignement reflète sa patience et son intérêt pour la réussite des autres. Elle fait preuve d’un grand dévouement et d’un amour sincère dans son travail."
+    },
+    {
+      "id": 9,
+      "name": "Tobias S.",
+      "language": "Français",
+      "courseType": "Cours adulte",
+      "rating": 5,
+      "text": "J'ai pris des cours de français avec Florence une fois par semaine sur une période de 4 mois. Florence a été très professionnelle et a répondu très efficacement à mes objectifs d'apprentissage. J’ai pu améliorer mon français sensiblement en peu de temps. Je recommende Florence pour les cours de francais. Merci Florence!"
+    },
+    {
+      "id": 10,
+      "name": "Marie",
+      "language": "Français",
+      "courseType": "Cours adulte",
+      "rating": 5,
+      "text": "J'ai beaucoup profité des formations organisées par Florence pour obtenir la nationalité française, et Florence m'a enseigné avec beaucoup de patience et de méthode. Un grand merci."
+    },
+    {
+      "id": 11,
+      "name": "Shelir G.",
+      "language": "Français",
+      "courseType": "Cours adulte",
+      "rating": 5,
+      "text": "Vous enseignez avec amour et passion, et cela transparaît clairement dans votre style pédagogique. Votre méthode est simple, claire et très captivante. Votre présence en classe suscite la motivation et l'intérêt des élèves pour l'apprentissage. Je suis très satisfait de votre style d'enseignement et de vos précieux efforts, et je vous remercie sincèrement pour votre dévouement."
     }
   ]
 }

@@ -114,6 +114,10 @@ export const en = {
       5: 'Fantastic language teacher, perfect organization and very effective methods. Thanks to her, I greatly improved my level in a short time.',
       6: 'Teaching with passion; simple, clear and captivating method. Her presence motivates students. Very satisfied and grateful for this dedication.',
       7: 'Very competent teacher who simplifies French lessons. Former student, I quickly understood her pedagogical method. I highly recommend.',
+      8: 'Madame Florence stands out for her generosity in teaching. She simplifies ideas so that we can understand them easily. She is an academic teacher par excellence. Her teaching reflects her patience and interest in the success of others. She demonstrates great dedication and sincere love in her work.',
+      9: 'I took French lessons with Florence once a week over a 4-month period. Florence was very professional and responded very effectively to my learning objectives. I was able to significantly improve my French in a short time. I recommend Florence for French lessons. Thank you Florence!',
+      10: 'I greatly benefited from the training organized by Florence to obtain French nationality, and Florence taught me with great patience and method. Many thanks.',
+      11: 'You teach with love and passion, and this clearly shines through in your teaching style. Your method is simple, clear and very captivating. Your presence in class generates motivation and interest among students for learning. I am very satisfied with your teaching style and your valuable efforts, and I sincerely thank you for your dedication.',
     },
     nav: {
       home: 'Home',

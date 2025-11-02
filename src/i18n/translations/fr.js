@@ -114,6 +114,10 @@ export const fr = {
       5: "Professeure de langues fantastique, organisation parfaite et méthodes très efficaces. Grâce à elle, j'ai fortement amélioré mon niveau en peu de temps.",
       6: 'Enseignement avec passion; méthode simple, claire et captivante. Sa présence motive les élèves. Très satisfait et reconnaissant pour ce dévouement.',
       7: "Professeure très compétente qui simplifie les leçons de français. Ancien élève, j'ai rapidement compris sa méthode pédagogique. Je recommande vivement.",
+      8: "Madame Florence se distingue par sa générosité dans l'enseignement. Elle simplifie les idées pour que nous les comprenions facilement. C'est une enseignante académique par excellence. Son enseignement reflète sa patience et son intérêt pour la réussite des autres. Elle fait preuve d'un grand dévouement et d'un amour sincère dans son travail.",
+      9: "J'ai pris des cours de français avec Florence une fois par semaine sur une période de 4 mois. Florence a été très professionnelle et a répondu très efficacement à mes objectifs d'apprentissage. J'ai pu améliorer mon français sensiblement en peu de temps. Je recommande Florence pour les cours de francais. Merci Florence!",
+      10: "J'ai beaucoup profité des formations organisées par Florence pour obtenir la nationalité française, et Florence m'a enseigné avec beaucoup de patience et de méthode. Un grand merci.",
+      11: "Vous enseignez avec amour et passion, et cela transparaît clairement dans votre style pédagogique. Votre méthode est simple, claire et très captivante. Votre présence en classe suscite la motivation et l'intérêt des élèves pour l'apprentissage. Je suis très satisfait de votre style d'enseignement et de vos précieux efforts, et je vous remercie sincèrement pour votre dévouement.",
     },
     nav: {
       home: 'Accueil',
@@ -882,7 +886,7 @@ export const fr = {
     legal: {
       title: 'Mentions légales',
       company: {
-        title: 'Identification de l\'entreprise',
+        title: "Identification de l'entreprise",
         name: 'BON COURS',
         legal_form: 'Société à responsabilité limitée (sans autre indication)',
         address: '36 QUAI MULLENHEIM, 67000 STRASBOURG, France',
@@ -916,12 +920,12 @@ export const fr = {
       liability: {
         title: 'Responsabilité',
         description:
-          'Bon Cours s\'efforce de fournir des informations exactes et à jour sur ce site. Cependant, nous ne pouvons garantir l\'exactitude, la précision ou l\'exhaustivité des informations mises à disposition. En conséquence, nous déclinons toute responsabilité pour toute imprécision, inexactitude ou omission portant sur des informations disponibles sur ce site.',
+          "Bon Cours s'efforce de fournir des informations exactes et à jour sur ce site. Cependant, nous ne pouvons garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition. En conséquence, nous déclinons toute responsabilité pour toute imprécision, inexactitude ou omission portant sur des informations disponibles sur ce site.",
       },
       personal_data: {
         title: 'Données personnelles',
         description:
-          'Les informations personnelles collectées sur ce site font l\'objet d\'un traitement informatique destiné à la gestion des inscriptions et de la relation client. Conformément au RGPD, vous disposez d\'un droit d\'accès, de rectification, de suppression et de portabilité des données vous concernant.',
+          "Les informations personnelles collectées sur ce site font l'objet d'un traitement informatique destiné à la gestion des inscriptions et de la relation client. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité des données vous concernant.",
       },
       contact: {
         title: 'Contact pour questions juridiques',
@@ -958,7 +962,8 @@ export const fr = {
           phone: 'Numéro de téléphone (optionnel, selon votre préférence de contact)',
           message: 'Message',
           preference: 'Préférence de contact (email ou téléphone)',
-          schedule: 'Jours et horaires préférés pour être contacté (si vous choisissez le téléphone comme moyen de contact)',
+          schedule:
+            'Jours et horaires préférés pour être contacté (si vous choisissez le téléphone comme moyen de contact)',
         },
       },
       purposes: {
@@ -966,11 +971,13 @@ export const fr = {
         description: 'Nous utilisons vos données personnelles uniquement pour :',
         contact: {
           title: 'Traitement de votre demande de contact',
-          description: 'Répondre à vos questions et demandes d\'information via notre formulaire de contact',
+          description:
+            "Répondre à vos questions et demandes d'information via notre formulaire de contact",
         },
         communication: {
           title: 'Communication',
-          description: 'Vous contacter selon vos préférences (email ou téléphone) pour répondre à votre demande',
+          description:
+            'Vous contacter selon vos préférences (email ou téléphone) pour répondre à votre demande',
         },
       },
       legal_basis: {
@@ -978,29 +985,32 @@ export const fr = {
         description: 'Le traitement de vos données repose sur :',
         consent: {
           title: 'Consentement',
-          description: 'Vous fournissez volontairement vos données via le formulaire de contact pour que nous puissions répondre à votre demande',
+          description:
+            'Vous fournissez volontairement vos données via le formulaire de contact pour que nous puissions répondre à votre demande',
         },
         legitimate_interest: {
           title: 'Intérêt légitime',
-          description: 'Répondre à vos demandes d\'information et améliorer notre service client',
+          description: "Répondre à vos demandes d'information et améliorer notre service client",
         },
       },
       retention: {
         title: 'Durée de conservation',
         contact_data: {
           title: 'Données du formulaire de contact',
-          description: '3 ans après la dernière communication, conformément aux recommandations de la CNIL',
+          description:
+            '3 ans après la dernière communication, conformément aux recommandations de la CNIL',
         },
         cookies: {
           title: 'Cookies techniques',
-          description: '13 mois maximum (uniquement les cookies strictement nécessaires au fonctionnement du site)',
+          description:
+            '13 mois maximum (uniquement les cookies strictement nécessaires au fonctionnement du site)',
         },
       },
       rights: {
         title: 'Vos droits',
         description: 'Conformément au RGPD, vous disposez des droits suivants :',
         access: {
-          title: 'Droit d\'accès',
+          title: "Droit d'accès",
           description: 'Obtenir une copie de vos données personnelles',
         },
         rectification: {
@@ -1008,7 +1018,7 @@ export const fr = {
           description: 'Corriger des données inexactes',
         },
         erasure: {
-          title: 'Droit à l\'effacement',
+          title: "Droit à l'effacement",
           description: 'Demander la suppression de vos données',
         },
         limitation: {
@@ -1020,14 +1030,14 @@ export const fr = {
           description: 'Récupérer vos données dans un format structuré',
         },
         opposition: {
-          title: 'Droit d\'opposition',
+          title: "Droit d'opposition",
           description: 'Vous opposer au traitement à des fins de marketing direct',
         },
       },
       cookies: {
         title: 'Cookies',
         description:
-          'Notre site utilise uniquement des cookies techniques strictement nécessaires au fonctionnement du site. Aucun cookie analytique ou de suivi n\'est utilisé. Vous pouvez configurer votre navigateur pour refuser les cookies, mais cela peut affecter certaines fonctionnalités du site.',
+          "Notre site utilise uniquement des cookies techniques strictement nécessaires au fonctionnement du site. Aucun cookie analytique ou de suivi n'est utilisé. Vous pouvez configurer votre navigateur pour refuser les cookies, mais cela peut affecter certaines fonctionnalités du site.",
       },
       security: {
         title: 'Sécurité',
@@ -1037,11 +1047,12 @@ export const fr = {
       transfers: {
         title: 'Transferts de données',
         description:
-          'Vos données sont transmises via EmailJS pour l\'envoi des messages de contact. EmailJS est un service conforme au RGPD qui héberge les données dans l\'Union Européenne. Aucun autre transfert de données vers des pays tiers n\'est effectué.',
+          "Vos données sont transmises via EmailJS pour l'envoi des messages de contact. EmailJS est un service conforme au RGPD qui héberge les données dans l'Union Européenne. Aucun autre transfert de données vers des pays tiers n'est effectué.",
       },
       contact: {
         title: 'Exercer vos droits',
-        description: 'Pour toute question concernant vos données personnelles ou pour exercer vos droits :',
+        description:
+          'Pour toute question concernant vos données personnelles ou pour exercer vos droits :',
         email: 'contact@boncours.fr',
         mail: 'BON COURS, 36 QUAI MULLENHEIM, 67000 STRASBOURG, France',
         phone: '03 88 52 03 82',
