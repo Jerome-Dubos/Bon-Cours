@@ -625,7 +625,7 @@ export const fr = {
         "Dans notre centre de langues, nous utilisons l'approche actionnelle, une méthode moderne et motivante qui place l'apprenant au cœur de son apprentissage. L'idée est simple : apprendre une langue, ce n'est pas seulement mémoriser des règles, c'est surtout savoir l'utiliser dans la vie de tous les jours.",
       concrete: {
         title: 'Concrètement, cela signifie que...',
-        text: 'les cours sont organisés autour de tâches et de projets concrets : écrire un e-mail professionnel, préparer un voyage, consulter un médecin ou donner des indications pour la livraison de repas à domicile. Ces mises en situation permettent de pratiquer la langue de façon naturelle, comme on le ferait dans un vrai contexte.',
+        text: 'les cours sont organisés autour de tâches et de projets concrets. Ces mises en situation permettent de pratiquer la langue de façon naturelle, comme on le ferait dans un vrai contexte.',
       },
       activities: {
         title: "Les activités favorisent l'échange et la confiance en soi",
@@ -643,7 +643,7 @@ export const fr = {
         "Dans notre centre de langues, nous utilisons l'approche actionnelle, une méthode moderne et motivante qui place l'apprenant au cœur de son apprentissage. L'idée est simple : apprendre une langue, ce n'est pas seulement mémoriser des règles, c'est surtout savoir l'utiliser dans la vie de tous les jours.",
       concrete: {
         title: 'Concrètement, cela signifie que...',
-        text: 'les cours sont organisés autour de tâches et de projets concrets : écrire un e-mail professionnel, préparer un voyage, consulter un médecin ou donner des indications pour la livraison de repas à domicile. Ces mises en situation permettent de pratiquer la langue de façon naturelle, comme on le ferait dans un vrai contexte.',
+        text: 'les cours sont organisés autour de tâches et de projets concrets. Ces mises en situation permettent de pratiquer la langue de façon naturelle, comme on le ferait dans un vrai contexte.',
       },
       activities: {
         title: "Les activités favorisent l'échange et la confiance en soi",

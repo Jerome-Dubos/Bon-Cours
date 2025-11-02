@@ -617,8 +617,8 @@ export const en = {
       intro:
         "In our language center, we use the action-oriented approach, a modern and motivating method that places the learner at the heart of their learning. The idea is simple: learning a language isn't just about memorizing rules, it's above all about being able to use it in everyday life.",
       concrete: {
-        title: 'Concretely, this means that...',
-        text: 'courses are organized around concrete tasks and projects: writing a professional email, preparing a trip, consulting a doctor or giving directions for home food delivery. These situations allow you to practice the language naturally, as you would in a real context.',
+        title: 'Pratically speaking, this means that...',
+        text: 'courses are organised around real-life tasks and projects. These situations allow you to practice the language naturally, as you would in a real context.',
       },
       activities: {
         title: 'Activities promote exchange and self-confidence',
@@ -635,8 +635,8 @@ export const en = {
       intro:
         "In our language center, we use the action-oriented approach, a modern and motivating method that places the learner at the heart of their learning. The idea is simple: learning a language isn't just about memorizing rules, it's above all about being able to use it in everyday life.",
       concrete: {
-        title: 'Concretely, this means that...',
-        text: 'courses are organized around concrete tasks and projects: writing a professional email, preparing a trip, consulting a doctor or giving directions for home food delivery. These situations allow you to practice the language naturally, as you would in a real context.',
+        title: 'Pratically speaking, this means that...',
+        text: 'courses are organised around real-life tasks and projects. These situations allow you to practice the language naturally, as you would in a real context.',
       },
       activities: {
         title: 'Activities promote exchange and self-confidence',
