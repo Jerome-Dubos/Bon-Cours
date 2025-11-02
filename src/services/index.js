@@ -14,4 +14,5 @@ export {
   initializeEmailJS,
   sendContactMessage,
   sendInterestRequest,
+  sendInaugurationRegistration,
 } from './contactEmailService';

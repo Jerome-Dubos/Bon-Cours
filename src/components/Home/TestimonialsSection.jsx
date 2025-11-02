@@ -38,6 +38,7 @@ const TestimonialsSection = ({ isMobile = false }) => {
         'Suivi scolaire (enfant)': t('course_types.school_support_child'),
         'Suivi scolaire (enfants)': t('course_types.school_support_children'),
         'Cours adulte': t('course_types.adult'),
+        'Cours enfant': t('course_types.child'),
       };
       return mappings[courseType] || courseType;
     },

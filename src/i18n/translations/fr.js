@@ -105,6 +105,7 @@ export const fr = {
       school_support_child: 'Suivi scolaire (enfant)',
       school_support_children: 'Suivi scolaire (enfants)',
       adult: 'Cours adulte',
+      child: 'Cours enfant',
     },
     testimonials_texts: {
       1: "Nous avons sollicité l'Institut Bon Cours pour un apprentissage d'anglais intensif. Pédagogie, disponibilité et accompagnement au top. Merci pour le professionnalisme et la bienveillance, avec beaucoup de patience et de rigueur.",
@@ -118,6 +119,7 @@ export const fr = {
       9: "J'ai pris des cours de français avec Florence une fois par semaine sur une période de 4 mois. Florence a été très professionnelle et a répondu très efficacement à mes objectifs d'apprentissage. J'ai pu améliorer mon français sensiblement en peu de temps. Je recommande Florence pour les cours de francais. Merci Florence!",
       10: "J'ai beaucoup profité des formations organisées par Florence pour obtenir la nationalité française, et Florence m'a enseigné avec beaucoup de patience et de méthode. Un grand merci.",
       11: "Vous enseignez avec amour et passion, et cela transparaît clairement dans votre style pédagogique. Votre méthode est simple, claire et très captivante. Votre présence en classe suscite la motivation et l'intérêt des élèves pour l'apprentissage. Je suis très satisfait de votre style d'enseignement et de vos précieux efforts, et je vous remercie sincèrement pour votre dévouement.",
+      12: "Notre fille suit des cours de français avec Florence depuis environ deux ans (elle est en primaire) et nous avons constaté de grands progrès et une grande confiance en elle. Je tiens également à souligner son approche personnalisée, flexible et créative. Je la recommande vivement !",
     },
     nav: {
       home: 'Accueil',

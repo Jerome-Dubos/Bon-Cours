@@ -105,6 +105,7 @@ export const en = {
       school_support_child: 'Academic support (child)',
       school_support_children: 'Academic support (children)',
       adult: 'Adult course',
+      child: 'Children course',
     },
     testimonials_texts: {
       1: 'We requested Institut Bon Cours for intensive English learning. Pedagogy, availability and support are top-notch. Thank you for the professionalism and kindness, with great patience and rigor.',
@@ -118,6 +119,7 @@ export const en = {
       9: 'I took French lessons with Florence once a week over a 4-month period. Florence was very professional and responded very effectively to my learning objectives. I was able to significantly improve my French in a short time. I recommend Florence for French lessons. Thank you Florence!',
       10: 'I greatly benefited from the training organized by Florence to obtain French nationality, and Florence taught me with great patience and method. Many thanks.',
       11: 'You teach with love and passion, and this clearly shines through in your teaching style. Your method is simple, clear and very captivating. Your presence in class generates motivation and interest among students for learning. I am very satisfied with your teaching style and your valuable efforts, and I sincerely thank you for your dedication.',
+      12: 'Our daughter has been taking French lessons with Florence for about two years (she is in primary school) and we have seen great progress and great confidence in her. I would also like to highlight her personalized, flexible and creative approach. I highly recommend her!',
     },
     nav: {
       home: 'Home',
