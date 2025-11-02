@@ -132,21 +132,5 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "images": {
-    "sizes": [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    "domains": ["images.unsplash.com", "boncours.fr"],
-    "formats": ["image/webp", "image/avif"],
-    "minimumCacheTTL": 31536000,
-    "deviceSizes": [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    "imageSizes": [16, 32, 48, 64, 96, 128, 256, 384]
-  },
-  "compress": true,
-  "functions": {
-    "app/api/**/*.js": {
-      "maxDuration": 30
-    }
-  },
-  "regions": ["cdg1"],
-  "framework": "vite"
+  ]
 }
