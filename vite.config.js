@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import viteCompression from 'vite-plugin-compression2';
 
 // https://vite.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -21,6 +22,21 @@ export default defineConfig(({ command, mode }) => {
           ],
         },
       }),
+      // Compression gzip et brotli pour production
+      ...(isProduction
+        ? [
+            viteCompression({
+              algorithm: 'gzip',
+              threshold: 512,
+              exclude: [/\.(br)$/, /\.(gz)$/], // Éviter la double compression
+            }),
+            viteCompression({
+              algorithm: 'brotliCompress',
+              threshold: 512,
+              exclude: [/\.(br)$/, /\.(gz)$/], // Éviter la double compression
+            }),
+          ]
+        : []),
     ],
 
     // Configuration du serveur de développement
@@ -46,19 +62,34 @@ export default defineConfig(({ command, mode }) => {
       target: 'esnext',
       outDir: 'dist',
       assetsDir: 'assets',
-      sourcemap: !isProduction,
-      minify: isProduction ? 'esbuild' : false,
+      sourcemap: false, // Désactivé pour réduire la taille du bundle
+      minify: isProduction ? 'terser' : false, // Utiliser terser pour meilleure compression
 
       // Optimisations de chunks
       rollupOptions: {
         output: {
-          // Séparation des chunks pour optimiser le cache
-          manualChunks: {
-            vendor: ['react', 'react-dom'],
-            router: ['react-router-dom'],
-            motion: ['framer-motion'],
-            i18n: ['i18next', 'react-i18next'],
-            icons: ['react-icons'],
+          // Séparation des chunks pour optimiser le cache et réduire les ressources inutilisées
+          manualChunks(id) {
+            // Vendor chunks séparés pour meilleur caching
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'vendor-react';
+              }
+              if (id.includes('react-router')) {
+                return 'vendor-router';
+              }
+              if (id.includes('framer-motion')) {
+                return 'vendor-motion';
+              }
+              if (id.includes('i18next') || id.includes('react-i18next')) {
+                return 'vendor-i18n';
+              }
+              if (id.includes('react-icons')) {
+                return 'vendor-icons';
+              }
+              // Autres node_modules ensemble
+              return 'vendor';
+            }
           },
           // Optimisation des noms de fichiers
           chunkFileNames: 'assets/js/[name]-[hash].js',
@@ -78,13 +109,25 @@ export default defineConfig(({ command, mode }) => {
       },
 
       // Optimisations de taille
-      chunkSizeWarningLimit: 1000,
+      chunkSizeWarningLimit: 500, // Plus strict pour éviter les gros chunks
 
       // Configuration CSS
       cssCodeSplit: true,
 
-      // Optimisations d'assets
-      assetsInlineLimit: 4096,
+      // Optimisations d'assets - augmenter pour plus d'inline
+      assetsInlineLimit: 8192,
+      
+      // Compression améliorée
+      terserOptions: isProduction ? {
+        compress: {
+          drop_console: true, // Supprimer console.log en production
+          drop_debugger: true,
+          pure_funcs: ['console.log', 'console.info'], // Supprimer ces fonctions
+        },
+        format: {
+          comments: false, // Supprimer les commentaires
+        },
+      } : {},
     },
 
     // Résolution des modules

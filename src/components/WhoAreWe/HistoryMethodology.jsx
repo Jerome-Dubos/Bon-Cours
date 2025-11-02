@@ -26,6 +26,8 @@ const HistoryMethodology = () => {
                   loop
                   muted
                   playsInline
+                  preload='metadata'
+                  poster='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIi8+PC9zdmc+'
                   onLoadedData={e => {
                     e.target.style.opacity = '1';
                   }}

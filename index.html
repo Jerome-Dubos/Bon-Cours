@@ -68,16 +68,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Chargement optimisé des polices de la charte graphique -->
+    <!-- DNS prefetch pour les domaines externes -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    
+    <!-- Chargement optimisé des polices avec font-display: swap pour non-bloquant -->
     <!-- Co Headline pour les titres et Afacad pour le corps de texte -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Co+Headline:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      media="print"
+      onload="this.media='all'"
     />
-
-    <!-- DNS prefetch pour les domaines externes -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Co+Headline:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+      />
+    </noscript>
 
     <!-- Performance hints -->
     <meta name="format-detection" content="telephone=no" />
