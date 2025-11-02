@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ContactInfo } from '../../components/Contact';
 import { ContactForm } from '../../components/UI/Forms';
+import { contactService, initializeEmailJS } from '../../services';
 import './Contact.css';
 
 const Contact = () => {
   const { t } = useTranslation();
+
+  // Initialiser EmailJS au chargement du composant
+  useEffect(() => {
+    initializeEmailJS();
+  }, []);
+
   const handleSubmit = async formData => {
     console.log('Données du formulaire:', formData);
 
-    // TODO: Intégrer avec votre service de contact
-    // const response = await contactService.sendMessage(formData);
-    // return response;
-
-    // Simulation pour le moment
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    return { success: true };
+    try {
+      // Utiliser le service de contact avec EmailJS
+      const response = await contactService.sendContactMessage(formData);
+      return response;
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi du formulaire:', error);
+      throw error;
+    }
   };
 
   const handleSuccess = data => {

@@ -1,8 +1,9 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Footer, Loader, Navbar, ScrollToTop } from './components';
 import { AuthProvider } from './context/AuthContext';
+import { initializeEmailJS } from './services';
 import './index.css';
 
 // Lazy loading des pages pour optimiser les performances
@@ -38,6 +39,11 @@ const Test = lazy(() => import('./pages/Offers/Test/Test'));
 // Composant principal optimisé
 const App = () => {
   const { t } = useTranslation();
+
+  // Initialiser EmailJS au démarrage de l'application
+  useEffect(() => {
+    initializeEmailJS();
+  }, []);
 
   return (
     <Router

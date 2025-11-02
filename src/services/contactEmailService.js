@@ -52,15 +52,35 @@ const sendEmailViaEmailJS = async (templateId, templateParams, retryCount = 0) =
 
     // Envoi réel via EmailJS avec retry
     console.log(`📤 Envoi réel via EmailJS... (tentative ${retryCount + 1})`);
-    const response = await emailjs.send(
-      EMAILJS_CONFIG.SERVICE_ID,
-      templateId,
-      templateParams,
-      EMAILJS_CONFIG.PUBLIC_KEY
-    );
+    console.log('📋 Configuration EmailJS:', {
+      serviceId: EMAILJS_CONFIG.SERVICE_ID,
+      templateId: templateId,
+      publicKey: EMAILJS_CONFIG.PUBLIC_KEY
+        ? EMAILJS_CONFIG.PUBLIC_KEY.substring(0, 8) + '...'
+        : 'MANQUANTE',
+    });
+    console.log('📋 Paramètres du template:', templateParams);
 
-    console.log('✅ Email de contact envoyé avec succès:', response);
-    return { success: true, data: response, simulated: false };
+    try {
+      const response = await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        templateId,
+        templateParams,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      console.log('✅ Email de contact envoyé avec succès:', response);
+      return { success: true, data: response, simulated: false };
+    } catch (emailjsError) {
+      // Logger l'erreur complète pour diagnostic
+      console.error("❌ Détails de l'erreur EmailJS:", {
+        status: emailjsError?.status,
+        text: emailjsError?.text,
+        message: emailjsError?.message,
+        error: emailjsError,
+      });
+      throw emailjsError;
+    }
   } catch (error) {
     console.error(`❌ Erreur EmailJS (tentative ${retryCount + 1}):`, error);
 
@@ -71,10 +91,23 @@ const sendEmailViaEmailJS = async (templateId, templateParams, retryCount = 0) =
       return sendEmailViaEmailJS(templateId, templateParams, retryCount + 1);
     }
 
+    // Extraire le message d'erreur de manière sécurisée
+    let errorMessage = "Erreur lors de l'envoi de l'email";
+    if (error?.message) {
+      errorMessage = error.message;
+    } else if (error?.text) {
+      errorMessage = error.text;
+    } else if (typeof error === 'string') {
+      errorMessage = error;
+    } else if (error?.statusText) {
+      errorMessage = `${error.status} - ${error.statusText}`;
+    }
+
     return {
       success: false,
-      error: error.message,
+      error: errorMessage,
       retryCount: retryCount + 1,
+      details: error,
     };
   }
 };
@@ -83,6 +116,11 @@ const sendEmailViaEmailJS = async (templateId, templateParams, retryCount = 0) =
  * Vérifie si une erreur est récupérable
  */
 const isRetryableError = error => {
+  // Vérifier que error et error.message existent
+  if (!error || !error.message) {
+    return false;
+  }
+
   const retryableErrors = [
     'Network Error',
     'Failed to fetch',
@@ -91,8 +129,9 @@ const isRetryableError = error => {
     'ENOTFOUND',
   ];
 
+  const errorMessage = String(error.message).toLowerCase();
   return retryableErrors.some(retryableError =>
-    error.message.toLowerCase().includes(retryableError.toLowerCase())
+    errorMessage.includes(retryableError.toLowerCase())
   );
 };
 
@@ -108,19 +147,52 @@ export const sendContactMessage = async formData => {
       throw new Error('Données de formulaire incomplètes');
     }
 
-    // Préparer les données pour le template
+    // Fonction pour nettoyer et valider les valeurs avant envoi à EmailJS
+    const cleanValue = (value, defaultValue = '') => {
+      if (value === null || value === undefined) return defaultValue;
+      if (typeof value === 'string') return value.trim() || defaultValue;
+      if (Array.isArray(value)) return value.length > 0 ? value.join(', ') : defaultValue;
+      return String(value) || defaultValue;
+    };
+
+    // Préparer le numéro de téléphone avec l'indicatif
+    const telephoneComplet = formData.telephone
+      ? `${formData.indicatif || '+33'} ${formData.telephone}`.trim()
+      : null;
+
+    // Préparer les données pour le template EmailJS
+    // Note: Les noms de variables doivent correspondre exactement à ceux utilisés dans le template EmailJS
+    // Toutes les valeurs doivent être des strings valides (pas undefined, null, ou objets)
     const templateParams = {
-      to_email: EMAILJS_CONFIG.CONTACT_EMAIL,
-      user_name: `${formData.prenom} ${formData.nom}`,
-      user_email: formData.email,
-      user_phone: formData.telephone || 'Non renseigné',
-      user_message: formData.message,
-      preference_contact: formData.preferenceContact || 'Non spécifié',
-      jours_preferes: formData.jours?.length > 0 ? formData.jours.join(', ') : 'Non spécifié',
-      horaires_preferes:
-        formData.horaires?.length > 0 ? formData.horaires.join(', ') : 'Non spécifié',
-      contact_date: new Date().toLocaleString('fr-FR'),
-      school_name: EMAILJS_CONFIG.SCHOOL_NAME,
+      // Variables principales (utilisées dans le template) - OBLIGATOIRES
+      name: cleanValue(`${formData.prenom || ''} ${formData.nom || ''}`.trim(), 'Visiteur'),
+      email: cleanValue(formData.email, ''),
+      message: cleanValue(formData.message, ''),
+      time: cleanValue(new Date().toLocaleString('fr-FR'), new Date().toLocaleString('fr-FR')),
+
+      // Variables supplémentaires (pour template avancé)
+      title: cleanValue(
+        `Nouveau message de contact de ${formData.prenom || ''} ${formData.nom || ''}`.trim(),
+        'Nouveau message de contact'
+      ),
+      user_name: cleanValue(`${formData.prenom || ''} ${formData.nom || ''}`.trim(), 'Visiteur'),
+      user_email: cleanValue(formData.email, ''),
+      user_phone: cleanValue(telephoneComplet, 'Non renseigné'),
+      user_message: cleanValue(formData.message, ''),
+      preference_contact: cleanValue(formData.preferenceContact, 'Non spécifié'),
+      jours_preferes: cleanValue(
+        formData.jours && formData.jours.length > 0 ? formData.jours.join(', ') : null,
+        'Non spécifié'
+      ),
+      horaires_preferes: cleanValue(
+        formData.horaires && formData.horaires.length > 0 ? formData.horaires.join(', ') : null,
+        'Non spécifié'
+      ),
+      contact_date: cleanValue(
+        new Date().toLocaleString('fr-FR'),
+        new Date().toLocaleString('fr-FR')
+      ),
+      school_name: cleanValue(EMAILJS_CONFIG.SCHOOL_NAME, 'Bon Cours'),
     };
 
     console.log('📨 Paramètres email de contact:', templateParams);
@@ -182,21 +254,52 @@ export const sendInterestRequest = async (formData, courseData) => {
       throw new Error('Données de cours invalides');
     }
 
+    // Fonction pour nettoyer et valider les valeurs avant envoi à EmailJS
+    const cleanValue = (value, defaultValue = '') => {
+      if (value === null || value === undefined) return defaultValue;
+      if (typeof value === 'string') return value.trim() || defaultValue;
+      if (Array.isArray(value)) return value.length > 0 ? value.join(', ') : defaultValue;
+      return String(value) || defaultValue;
+    };
+
+    // Préparer le numéro de téléphone avec l'indicatif
+    const telephoneComplet = formData.telephone
+      ? `${formData.indicatif || '+33'} ${formData.telephone}`.trim()
+      : null;
+
     const templateParams = {
-      to_email: EMAILJS_CONFIG.CONTACT_EMAIL,
-      user_name: `${formData.prenom} ${formData.nom}`,
-      user_email: formData.email,
-      user_phone: formData.telephone || 'Non renseigné',
-      user_message: formData.message,
-      course_language: courseData.language || 'Non spécifié',
-      course_level: courseData.level || 'Non spécifié',
-      course_name: courseData.name || 'Non spécifié',
-      preference_contact: formData.preferenceContact || 'Non spécifié',
-      jours_preferes: formData.jours?.length > 0 ? formData.jours.join(', ') : 'Non spécifié',
-      horaires_preferes:
-        formData.horaires?.length > 0 ? formData.horaires.join(', ') : 'Non spécifié',
-      contact_date: new Date().toLocaleString('fr-FR'),
-      school_name: EMAILJS_CONFIG.SCHOOL_NAME,
+      // Variables principales (utilisées dans le template) - OBLIGATOIRES
+      name: cleanValue(`${formData.prenom || ''} ${formData.nom || ''}`.trim(), 'Visiteur'),
+      email: cleanValue(formData.email, ''),
+      message: cleanValue(formData.message, ''),
+      time: cleanValue(new Date().toLocaleString('fr-FR'), new Date().toLocaleString('fr-FR')),
+
+      // Variables supplémentaires (pour template avancé)
+      title: cleanValue(
+        `Demande d'intérêt pour ${courseData?.name || 'un cours'}`,
+        "Demande d'intérêt pour un cours"
+      ),
+      user_name: cleanValue(`${formData.prenom || ''} ${formData.nom || ''}`.trim(), 'Visiteur'),
+      user_email: cleanValue(formData.email, ''),
+      user_phone: cleanValue(telephoneComplet, 'Non renseigné'),
+      user_message: cleanValue(formData.message, ''),
+      course_language: cleanValue(courseData?.language, 'Non spécifié'),
+      course_level: cleanValue(courseData?.level, 'Non spécifié'),
+      course_name: cleanValue(courseData?.name, 'Non spécifié'),
+      preference_contact: cleanValue(formData.preferenceContact, 'Non spécifié'),
+      jours_preferes: cleanValue(
+        formData.jours && formData.jours.length > 0 ? formData.jours.join(', ') : null,
+        'Non spécifié'
+      ),
+      horaires_preferes: cleanValue(
+        formData.horaires && formData.horaires.length > 0 ? formData.horaires.join(', ') : null,
+        'Non spécifié'
+      ),
+      contact_date: cleanValue(
+        new Date().toLocaleString('fr-FR'),
+        new Date().toLocaleString('fr-FR')
+      ),
+      school_name: cleanValue(EMAILJS_CONFIG.SCHOOL_NAME, 'Bon Cours'),
     };
 
     console.log("📨 Paramètres email d'intérêt:", templateParams);

@@ -789,7 +789,7 @@ export const fr = {
             "Passionnée des langues et de leur transmission, je parle russe, anglais et mandarin, et j'apprends actuellement le français (niveau B1). Ayant vécu à l'étranger depuis 2013, j'accorde une grande importance aux échanges culturels et j'aime rencontrer des personnes du monde entier!",
         },
         qin: {
-          role: 'Chinois',
+          role: 'Mandarin',
           description:
             "Passionnée par la langue et la culture chinoises, j'aime partager ce patrimoine unique avec mes élèves. Diplômée d'un Master 2 en Didactique des Langues à l'Université du Maine, j'enseigne le chinois mandarin à des apprenants de tous âges, en adaptant mes méthodes — académiques, interactives ou ludiques — selon leurs besoins et leurs objectifs.",
         },
@@ -814,17 +814,17 @@ export const fr = {
             "Fondateur de Parcours Homère, Professeur de Sciences (Collège et Lycée), j'ai développé une solide expérience de l'enseignement et de l'aide aux devoirs. J'ai acquis la certitude que la transmission des connaissances (du simple vers le complexe) représente bien plus que d'appliquer de simples techniques pédagogiques. Il nous faut également réunir la chaleur humaine, la conviction, l'enthousiasme, qualités sans lesquelles un simple tutoriel suffirait à instruire, mais de manière très incomplète, de nombreux élèves.",
         },
         leon: {
-          role: 'Tutorat en sciences (Maths, Physique-Chimie, SI) - Parcours Homère',
+          role: 'Soutien Scolaire',
           description:
             "Je travaille via le parcours Homère pour du tutorat en sciences, plus particulièrement les mathématiques, physique chimie et sciences de l'ingénieur. La méthode de travail est basée sur la transmission des savoirs, en détectant les problèmes sur certaines notions. Ensuite, nous travaillons avec des exercices ciblés sur les points faibles de l'élève/étudiant.",
         },
         matteo: {
-          role: 'Mathématiques & Physique (Parcours Homère)',
+          role: 'Soutien Scolaire',
           description:
             "Fraîchement diplômé de l'INSA Strasbourg en tant qu'Ingénieur en Génie Civil, je travaille pour Parcours Homère depuis maintenant 2 ans. Mon but est de transmettre les savoirs en Mathématiques et en Physique avec un aspect ludique aux personnes qui en ont besoin, leur proposant ainsi une alternative aux cours plus classiques. Parcours Homère, ce sont des sciences, bien évidemment, mais bien plus encore!",
         },
         maryse: {
-          role: 'Français & Anglais / Aide aux devoirs',
+          role: 'Soutien Scolaire',
           description:
             "Professeure de français et d'anglais, je propose à l'Institut Bon Cours de l'aide aux devoirs dans toutes les matières aux élèves de primaire, collège et lycée. Ma pédagogie est adaptée aux élèves souffrants de troubles dys. J'accompagne également les élèves dans la préparation du brevet et du bac.",
         },

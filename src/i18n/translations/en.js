@@ -781,7 +781,7 @@ export const en = {
             'Passionate about languages and their transmission, I speak Russian, English and Mandarin, and I am currently learning French (B1 level). Having lived abroad since 2013, I place great importance on cultural exchanges and love meeting people from all over the world!',
         },
         qin: {
-          role: 'Chinese',
+          role: 'Mandarin',
           description:
             "Passionate about the Chinese language and culture, I love sharing this unique heritage with my students. Graduated with a Master's in Language Didactics from the University of Maine, I teach Mandarin Chinese to learners of all ages, adapting my methods – academic, interactive or playful – according to their needs and objectives.",
         },
@@ -806,17 +806,17 @@ export const en = {
             'Founder of Parcours Homère, Science Teacher (Middle School and High School), I have developed solid experience in teaching and homework help. I have gained the certainty that knowledge transmission (from simple to complex) represents far more than applying simple teaching techniques. We also need to bring together human warmth, conviction, enthusiasm, qualities without which a simple tutorial would be enough to instruct, but very incompletely, many students.',
         },
         leon: {
-          role: 'Science Tutoring (Maths, Physics-Chemistry, Engineering Sciences) - Parcours Homère',
+          role: 'Academic Support',
           description:
             "I work through the Parcours Homère for science tutoring, particularly mathematics, physics-chemistry and engineering sciences. The working method is based on knowledge transmission, detecting problems on certain concepts. Then we work with targeted exercises on the student's weak points.",
         },
         matteo: {
-          role: 'Mathematics & Physics (Parcours Homère)',
+          role: 'Academic Support',
           description:
             'Freshly graduated from INSA Strasbourg as a Civil Engineering Engineer, I have been working for Parcours Homère for 2 years now. My goal is to transmit knowledge in Mathematics and Physics with a fun aspect to those who need it, offering them an alternative to more traditional courses. Parcours Homère is about sciences, of course, but much more!',
         },
         maryse: {
-          role: 'French & English / Homework Help',
+          role: 'Academic Support',
           description:
             'French and English teacher, I offer homework help in all subjects to elementary, middle school and high school students at Institut Bon Cours. My pedagogy is adapted to students with dyslexia. I also help students prepare for the brevet and baccalaureate exams.',
         },

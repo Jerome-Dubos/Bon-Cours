@@ -15,7 +15,7 @@ const DEFAULT_CONFIG = {
   PUBLIC_KEY: 'your_public_key_here',
   SERVICE_ID: 'your_service_id_here',
   TEMPLATE_ID_CONTACT: 'template_contact',
-  CONTACT_EMAIL: 'contact@boncours.fr',
+  CONTACT_EMAIL: 'contact@boncours.fr', // Email de destination par défaut
   SCHOOL_NAME: 'Bon Cours',
 };
 

@@ -98,13 +98,6 @@ const TeamSection = () => {
         languages: ['Japonais'],
       },
       {
-        id: 11,
-        name: 'Maryse',
-        translationKey: 'maryse',
-        photo: encodeURI('/assets/images/team/Maryse.webp'),
-        languages: ['Français', 'Anglais'],
-      },
-      {
         id: 12,
         name: 'Célia',
         translationKey: 'celia',
@@ -117,6 +110,13 @@ const TeamSection = () => {
         translationKey: 'malou',
         photo: encodeURI('/assets/images/team/Malou.webp'),
         languages: [],
+      },
+      {
+        id: 11,
+        name: 'Maryse',
+        translationKey: 'maryse',
+        photo: encodeURI('/assets/images/team/Maryse.webp'),
+        languages: ['Français', 'Anglais'],
       },
       {
         id: 14,
