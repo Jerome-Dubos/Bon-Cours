@@ -55,6 +55,8 @@ Un backend Express minimal est créé si demandé, dans `backend/`.
 
 ---
 
-**Merci d’utiliser ce générateur de projets React moderne.**
+**Merci d'utiliser ce générateur de projets React moderne.**
+
+---
 
 # Bon-Cours
