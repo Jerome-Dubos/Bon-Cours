@@ -1,99 +1,105 @@
+import { useTranslation } from 'react-i18next';
 import { MediumModal } from '../../UI/Modales';
 
 const LegalModal = ({ isOpen, onClose }) => {
+  const { t, i18n } = useTranslation();
+  const currentDate = new Date().toLocaleDateString(i18n.language === 'en' ? 'en-US' : 'fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
   return (
-    <MediumModal isOpen={isOpen} onClose={onClose} title='Mentions légales'>
+    <MediumModal isOpen={isOpen} onClose={onClose} title={t('legal.title')}>
       <div>
-        <h3>Identification de l'entreprise</h3>
+        <h3>{t('legal.company.title')}</h3>
         <p>
-          <strong>Dénomination sociale :</strong> Bon Cours SARL
+          <strong>{i18n.language === 'fr' ? 'Dénomination sociale' : 'Company Name'} :</strong> {t('legal.company.name')}
           <br />
-          <strong>Siège social :</strong> 123 Rue de l'Éducation, 75001 Paris, France
+          <strong>{i18n.language === 'fr' ? 'Forme juridique' : 'Legal Form'} :</strong> {t('legal.company.legal_form')}
           <br />
-          <strong>RCS :</strong> Paris B 123 456 789
+          <strong>{i18n.language === 'fr' ? 'Siège social' : 'Registered Office'} :</strong> {t('legal.company.address')}
           <br />
-          <strong>SIRET :</strong> 123 456 789 00012
+          <strong>SIREN :</strong> {t('legal.company.siren')}
           <br />
-          <strong>Capital social :</strong> 50 000 €<br />
-          <strong>TVA intracommunautaire :</strong> FR12345678901
+          <strong>{i18n.language === 'fr' ? 'SIRET du siège social' : 'SIRET of registered office'} :</strong>{' '}
+          {t('legal.company.siret')}
+          <br />
+          <strong>{i18n.language === 'fr' ? 'TVA intracommunautaire' : 'VAT'} :</strong> {t('legal.company.vat')}
+          <br />
+          <strong>{i18n.language === 'fr' ? 'Activité principale' : 'Main Activity'} :</strong> {t('legal.company.activity')}
+          <br />
+          <strong>{i18n.language === 'fr' ? 'Date de création' : 'Creation Date'} :</strong> {t('legal.company.creation_date')}
+          <br />
+          <strong>{i18n.language === 'fr' ? 'Capital social' : 'Share Capital'} :</strong> {t('legal.company.capital')}
+          <br />
+          <strong>{i18n.language === 'fr' ? 'Clôture de l\'exercice comptable' : 'Fiscal Year End'} :</strong>{' '}
+          {t('legal.company.fiscal_year_end')}
+          <br />
+          <strong>{i18n.language === 'fr' ? 'Durée de la personne morale' : 'Legal Entity Duration'} :</strong>{' '}
+          {t('legal.company.duration')}
+          <br />
+          <strong>{i18n.language === 'fr' ? 'Nature de l\'entreprise' : 'Nature of Business'} :</strong> {t('legal.company.nature')}
         </p>
 
         <hr className='modal-separator' />
 
-        <h3>Directeur de la publication</h3>
+        <h3>{t('legal.publisher.title')}</h3>
         <p>
-          <strong>Nom :</strong> Marie DUBOIS
-          <br />
-          <strong>Qualité :</strong> Directrice générale
-          <br />
-          <strong>Email :</strong> <a href='mailto:direction@boncours.fr'>direction@boncours.fr </a>
+          <strong>{i18n.language === 'fr' ? 'Email' : 'Email'} :</strong>{' '}
+          <a href={`mailto:${t('legal.publisher.email')}`}>{t('legal.publisher.email')}</a>
         </p>
 
         <hr className='modal-separator' />
 
-        <h3>Hébergement du site</h3>
+        <h3>{t('legal.hosting.title')}</h3>
         <p>
-          Ce site est hébergé par :<br />
-          <strong>OVH SAS</strong>
+          {t('legal.hosting.description')}
           <br />
-          2 rue Kellermann
+          <strong>{t('legal.hosting.company')}</strong>
           <br />
-          59100 Roubaix, France
+          {t('legal.hosting.address')}
           <br />
-          Téléphone : 1007
+          {t('legal.hosting.city')}
           <br />
-          Site web :{' '}
-          <a href='https://www.ovh.com' target='_blank' rel='noopener noreferrer'>
-            www.ovh.com
+          {i18n.language === 'fr' ? 'Site web' : 'Website'} :{' '}
+          <a href={`https://${t('legal.hosting.website')}`} target='_blank' rel='noopener noreferrer'>
+            {t('legal.hosting.website')}
           </a>
         </p>
 
         <hr className='modal-separator' />
 
-        <h3>Propriété intellectuelle</h3>
-        <p>
-          L'ensemble du contenu de ce site (textes, images, vidéos, logos, graphismes, etc.) est
-          protégé par le droit d'auteur et appartient à Bon Cours ou à ses partenaires. Toute
-          reproduction, même partielle, est strictement interdite sans autorisation préalable
-          écrite.
-        </p>
+        <h3>{t('legal.intellectual_property.title')}</h3>
+        <p>{t('legal.intellectual_property.description')}</p>
 
         <hr className='modal-separator' />
 
-        <h3>Responsabilité</h3>
-        <p>
-          Bon Cours s'efforce de fournir des informations exactes et à jour sur ce site. Cependant,
-          nous ne pouvons garantir l'exactitude, la précision ou l'exhaustivité des informations
-          mises à disposition. En conséquence, nous déclinons toute responsabilité pour toute
-          imprécision, inexactitude ou omission portant sur des informations disponibles sur ce
-          site.
-        </p>
+        <h3>{t('legal.liability.title')}</h3>
+        <p>{t('legal.liability.description')}</p>
 
         <hr className='modal-separator' />
 
-        <h3>Données personnelles</h3>
-        <p>
-          Les informations personnelles collectées sur ce site font l'objet d'un traitement
-          informatique destiné à la gestion des inscriptions et de la relation client. Conformément
-          au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et de
-          portabilité des données vous concernant.
-        </p>
+        <h3>{t('legal.personal_data.title')}</h3>
+        <p>{t('legal.personal_data.description')}</p>
 
         <hr className='modal-separator' />
 
         <div className='modal-contact'>
-          <h4>Contact pour questions juridiques</h4>
+          <h4>{t('legal.contact.title')}</h4>
           <p>
-            <strong>Email :</strong> <a href='mailto:legal@boncours.fr'>legal@boncours.fr</a>
+            <strong>{i18n.language === 'fr' ? 'Email' : 'Email'} :</strong>{' '}
+            <a href={`mailto:${t('legal.contact.email')}`}>{t('legal.contact.email')}</a>
             <br />
-            <strong>Téléphone :</strong> <a href='tel:+33123456789'>+33 1 23 45 67 89</a>
+            <strong>{i18n.language === 'fr' ? 'Téléphone' : 'Phone'} :</strong>{' '}
+            <a href={`tel:+33${t('legal.contact.phone').replace(/\s/g, '').substring(1)}`}>{t('legal.contact.phone')}</a>
             <br />
-            <strong>Adresse :</strong> 123 Rue de l'Éducation, 75001 Paris
+            <strong>{i18n.language === 'fr' ? 'Adresse' : 'Address'} :</strong> {t('legal.contact.address')}
           </p>
         </div>
 
         <div className='modal-date'>
-          <em>Dernière mise à jour : 15 janvier 2025</em>
+          <em>{t('legal.last_update', { date: currentDate })}</em>
         </div>
       </div>
     </MediumModal>

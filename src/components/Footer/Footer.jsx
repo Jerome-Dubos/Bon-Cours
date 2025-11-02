@@ -335,6 +335,7 @@ const Footer = () => {
             >
               {t('footer.privacy')}
             </Button>
+            {/*
             <Button
               variant='text'
               className='footer-legal-link'
@@ -344,6 +345,7 @@ const Footer = () => {
             >
               {t('footer.terms')}
             </Button>
+            */}
             <a
               href='/assets/REGLEMENT%20INTERIEUR.pdf'
               className='footer-legal-link'
@@ -391,7 +393,9 @@ const Footer = () => {
       {/* Modales */}
       <LegalModal isOpen={modalStates.legal} onClose={() => toggleModal('legal')} />
       <PrivacyModal isOpen={modalStates.privacy} onClose={() => toggleModal('privacy')} />
+      {/*
       <TermsModal isOpen={modalStates.terms} onClose={() => toggleModal('terms')} />
+      */}
 
       {/* Modale de newsletter */}
       <FormModal

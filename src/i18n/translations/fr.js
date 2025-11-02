@@ -879,5 +879,178 @@ export const fr = {
     common: {
       loading: 'Chargement en cours...',
     },
+    legal: {
+      title: 'Mentions légales',
+      company: {
+        title: 'Identification de l\'entreprise',
+        name: 'BON COURS',
+        legal_form: 'Société à responsabilité limitée (sans autre indication)',
+        address: '36 QUAI MULLENHEIM, 67000 STRASBOURG, France',
+        siren: '989 660 709',
+        siret: '989 660 709 00019',
+        vat: 'FR28 989 660 709',
+        activity: 'Autres enseignements (Code NAF/APE: 85.59B)',
+        creation_date: '01/08/2025',
+        capital: '6 000,00 €',
+        fiscal_year_end: '31/08',
+        duration: '99 ans',
+        nature: 'Libérale non réglementée',
+      },
+      publisher: {
+        title: 'Directeur de la publication',
+        email: 'contact@boncours.fr',
+      },
+      hosting: {
+        title: 'Hébergement du site',
+        description: 'Ce site est hébergé par :',
+        company: 'Vercel Inc.',
+        address: '340 S Lemon Ave #4133',
+        city: 'Walnut, CA 91789, États-Unis',
+        website: 'www.vercel.com',
+      },
+      intellectual_property: {
+        title: 'Propriété intellectuelle',
+        description:
+          "L'ensemble du contenu de ce site (textes, images, vidéos, logos, graphismes, etc.) est protégé par le droit d'auteur et appartient à Bon Cours ou à ses partenaires. Toute reproduction, même partielle, est strictement interdite sans autorisation préalable écrite.",
+      },
+      liability: {
+        title: 'Responsabilité',
+        description:
+          'Bon Cours s\'efforce de fournir des informations exactes et à jour sur ce site. Cependant, nous ne pouvons garantir l\'exactitude, la précision ou l\'exhaustivité des informations mises à disposition. En conséquence, nous déclinons toute responsabilité pour toute imprécision, inexactitude ou omission portant sur des informations disponibles sur ce site.',
+      },
+      personal_data: {
+        title: 'Données personnelles',
+        description:
+          'Les informations personnelles collectées sur ce site font l\'objet d\'un traitement informatique destiné à la gestion des inscriptions et de la relation client. Conformément au RGPD, vous disposez d\'un droit d\'accès, de rectification, de suppression et de portabilité des données vous concernant.',
+      },
+      contact: {
+        title: 'Contact pour questions juridiques',
+        email: 'contact@boncours.fr',
+        phone: '03 88 52 03 82',
+        address: '36 QUAI MULLENHEIM, 67000 STRASBOURG, France',
+      },
+      last_update: 'Dernière mise à jour : {{date}}',
+    },
+    privacy: {
+      title: 'Politique de confidentialité',
+      introduction: {
+        title: 'Introduction',
+        description:
+          'Bon Cours accorde une grande importance à la protection de vos données personnelles. Cette politique de confidentialité explique quelles informations nous collectons, pourquoi nous les collectons et comment nous les utilisons.',
+      },
+      controller: {
+        title: 'Responsable du traitement',
+        company: 'BON COURS',
+        legal_form: 'Société à responsabilité limitée (sans autre indication)',
+        siren: '989 660 709',
+        siret: '989 660 709 00019',
+        address: '36 QUAI MULLENHEIM, 67000 STRASBOURG, France',
+        email: 'contact@boncours.fr',
+      },
+      data_collected: {
+        title: 'Données collectées',
+        description:
+          'Les seules données personnelles que nous collectons sont celles que vous nous fournissez volontairement via notre formulaire de contact disponible sur la page de contact de notre site.',
+        subtitle: 'Données collectées via le formulaire de contact',
+        list: {
+          name: 'Nom et prénom',
+          email: 'Adresse email',
+          phone: 'Numéro de téléphone (optionnel, selon votre préférence de contact)',
+          message: 'Message',
+          preference: 'Préférence de contact (email ou téléphone)',
+          schedule: 'Jours et horaires préférés pour être contacté (si vous choisissez le téléphone comme moyen de contact)',
+        },
+      },
+      purposes: {
+        title: 'Finalités du traitement',
+        description: 'Nous utilisons vos données personnelles uniquement pour :',
+        contact: {
+          title: 'Traitement de votre demande de contact',
+          description: 'Répondre à vos questions et demandes d\'information via notre formulaire de contact',
+        },
+        communication: {
+          title: 'Communication',
+          description: 'Vous contacter selon vos préférences (email ou téléphone) pour répondre à votre demande',
+        },
+      },
+      legal_basis: {
+        title: 'Base légale',
+        description: 'Le traitement de vos données repose sur :',
+        consent: {
+          title: 'Consentement',
+          description: 'Vous fournissez volontairement vos données via le formulaire de contact pour que nous puissions répondre à votre demande',
+        },
+        legitimate_interest: {
+          title: 'Intérêt légitime',
+          description: 'Répondre à vos demandes d\'information et améliorer notre service client',
+        },
+      },
+      retention: {
+        title: 'Durée de conservation',
+        contact_data: {
+          title: 'Données du formulaire de contact',
+          description: '3 ans après la dernière communication, conformément aux recommandations de la CNIL',
+        },
+        cookies: {
+          title: 'Cookies techniques',
+          description: '13 mois maximum (uniquement les cookies strictement nécessaires au fonctionnement du site)',
+        },
+      },
+      rights: {
+        title: 'Vos droits',
+        description: 'Conformément au RGPD, vous disposez des droits suivants :',
+        access: {
+          title: 'Droit d\'accès',
+          description: 'Obtenir une copie de vos données personnelles',
+        },
+        rectification: {
+          title: 'Droit de rectification',
+          description: 'Corriger des données inexactes',
+        },
+        erasure: {
+          title: 'Droit à l\'effacement',
+          description: 'Demander la suppression de vos données',
+        },
+        limitation: {
+          title: 'Droit à la limitation',
+          description: 'Limiter le traitement dans certains cas',
+        },
+        portability: {
+          title: 'Droit à la portabilité',
+          description: 'Récupérer vos données dans un format structuré',
+        },
+        opposition: {
+          title: 'Droit d\'opposition',
+          description: 'Vous opposer au traitement à des fins de marketing direct',
+        },
+      },
+      cookies: {
+        title: 'Cookies',
+        description:
+          'Notre site utilise uniquement des cookies techniques strictement nécessaires au fonctionnement du site. Aucun cookie analytique ou de suivi n\'est utilisé. Vous pouvez configurer votre navigateur pour refuser les cookies, mais cela peut affecter certaines fonctionnalités du site.',
+      },
+      security: {
+        title: 'Sécurité',
+        description:
+          'Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, modification, divulgation ou destruction. Nos serveurs sont sécurisés et nous utilisons le chiffrement SSL pour les transmissions de données sensibles.',
+      },
+      transfers: {
+        title: 'Transferts de données',
+        description:
+          'Vos données sont transmises via EmailJS pour l\'envoi des messages de contact. EmailJS est un service conforme au RGPD qui héberge les données dans l\'Union Européenne. Aucun autre transfert de données vers des pays tiers n\'est effectué.',
+      },
+      contact: {
+        title: 'Exercer vos droits',
+        description: 'Pour toute question concernant vos données personnelles ou pour exercer vos droits :',
+        email: 'contact@boncours.fr',
+        mail: 'BON COURS, 36 QUAI MULLENHEIM, 67000 STRASBOURG, France',
+        phone: '03 88 52 03 82',
+        cnil: {
+          text: 'En cas de désaccord, vous pouvez saisir la CNIL :',
+          website: 'www.cnil.fr',
+        },
+      },
+      last_update: 'Dernière mise à jour : {{date}}',
+    },
   },
 };

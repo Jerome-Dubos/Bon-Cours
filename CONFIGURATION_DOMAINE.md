@@ -8,16 +8,17 @@ Ce guide vous explique étape par étape comment connecter votre site hébergé 
 - Un compte Gandi avec accès à la gestion du domaine boncours.fr
 - Le projet doit être déjà déployé sur Vercel
 
-## 🚀 Étape 1 : Ajouter le domaine dans Vercel
+## 🚀 Étape 1 : Vérifier les domaines dans Vercel (✅ Déjà fait)
 
-1. Connectez-vous à votre [dashboard Vercel](https://vercel.com/dashboard)
-2. Sélectionnez votre projet (boncours-frontend)
-3. Allez dans l'onglet **Settings** (Paramètres)
-4. Cliquez sur **Domains** dans le menu de gauche
-5. Ajoutez les domaines suivants :
-   - `boncours.fr`
-   - `www.boncours.fr` (optionnel mais recommandé)
-6. Vercel va vous afficher les **valeurs DNS à configurer** pour chaque domaine
+D'après votre dashboard Vercel, les domaines suivants sont déjà ajoutés :
+- ✅ `boncours.fr` (statut actuel : Invalid Configuration)
+- ✅ `www.boncours.fr` (statut actuel : Invalid Configuration)
+
+Les valeurs DNS à configurer dans Gandi sont :
+- **boncours.fr** : Enregistrement **A** avec la valeur `216.198.79.1`
+- **www.boncours.fr** : Enregistrement **CNAME** avec la valeur `b77e3e856849c1a2.vercel-dns-017.com.`
+
+> 📝 **Note** : Le statut "Invalid Configuration" indique que les enregistrements DNS n'ont pas encore été configurés correctement dans Gandi. Une fois configurés, le statut passera à "Valid Configuration".
 
 ## 🔧 Étape 2 : Configurer les DNS dans Gandi
 
@@ -27,60 +28,68 @@ Ce guide vous explique étape par étape comment connecter votre site hébergé 
 2. Allez dans **Domaines** → Sélectionnez **boncours.fr**
 3. Cliquez sur **Enregistrements DNS** ou **Zone DNS**
 
-### 2.2 Configurer les enregistrements
+### 2.2 Configurer les enregistrements DNS dans Gandi
 
-Vercel propose généralement deux méthodes pour connecter un domaine racine :
+**📌 VALEURS EXACTES À CONFIGURER** (selon votre dashboard Vercel) :
 
-#### **Option A : Utiliser les enregistrements A (recommandé pour les domaines racine)**
-
-Ajoutez/modifiez les enregistrements suivants dans votre zone DNS Gandi :
+Vous devez créer/modifier les enregistrements suivants dans votre zone DNS Gandi :
 
 | Type | Nom | Valeur | TTL |
 |------|-----|--------|-----|
-| A | @ | `76.76.21.21` | 3600 |
-| A | @ | `76.76.22.22` | 3600 |
-| CNAME | www | `cname.vercel-dns.com.` | 3600 |
+| A | @ | `216.198.79.1` | 3600 |
+| CNAME | www | `b77e3e856849c1a2.vercel-dns-017.com.` | 3600 |
 
-> ⚠️ **Note** : Les adresses IP ci-dessus sont les adresses par défaut de Vercel. Vérifiez dans votre dashboard Vercel les valeurs exactes qui vous sont données.
+> ⚠️ **Important** : 
+> - Pour l'enregistrement CNAME, **notez le point (.) à la fin** de la valeur : `b77e3e856849c1a2.vercel-dns-017.com.`
+> - Le nom `@` représente le domaine racine (boncours.fr)
 
-#### **Option B : Utiliser CNAME via DNS flattening**
+### 2.3 Instructions détaillées étape par étape dans Gandi
 
-Si Gandi supporte les CNAME pour le domaine racine (ALIAS/ANAME) :
+1. **Connectez-vous à Gandi** :
+   - Allez sur [https://id.gandi.net/](https://id.gandi.net/)
+   - Connectez-vous avec vos identifiants
 
-| Type | Nom | Valeur | TTL |
-|------|-----|--------|-----|
-| ALIAS ou CNAME | @ | `cname.vercel-dns.com.` | 3600 |
-| CNAME | www | `cname.vercel-dns.com.` | 3600 |
+2. **Accédez à la zone DNS** :
+   - Cliquez sur **Domaines** dans le menu
+   - Sélectionnez **boncours.fr**
+   - Cliquez sur **Enregistrements DNS** ou **Zone DNS**
 
-### 2.3 Instructions détaillées pour Gandi
+3. **Configurez l'enregistrement A pour boncours.fr** :
+   - Cherchez s'il existe déjà un enregistrement de type **A** avec le nom **@** (ou vide)
+   - **Si oui** : Modifiez-le pour que la valeur soit `216.198.79.1`
+   - **Si non** : Créez un nouvel enregistrement :
+     - **Type** : `A`
+     - **Nom** : `@` (ou laissez vide, selon l'interface Gandi)
+     - **Valeur** : `216.198.79.1`
+     - **TTL** : `3600` (ou valeur par défaut)
+   - Sauvegardez
 
-1. **Pour le domaine racine (boncours.fr)** :
-   - Si vous choisissez l'option A : Supprimez l'ancien enregistrement A s'il existe, puis ajoutez les deux nouveaux enregistrements A avec les IP de Vercel
-   - Si vous choisissez l'option B : Créez un enregistrement ALIAS (ou ANAME selon Gandi) pointant vers `cname.vercel-dns.com.`
-
-2. **Pour www.boncours.fr** :
-   - Créez ou modifiez un enregistrement CNAME :
-     - **Nom** : `www`
+4. **Configurez l'enregistrement CNAME pour www.boncours.fr** :
+   - Cherchez s'il existe déjà un enregistrement de type **CNAME** avec le nom **www**
+   - **Si oui** : Modifiez-le pour que la valeur soit `b77e3e856849c1a2.vercel-dns-017.com.`
+   - **Si non** : Créez un nouvel enregistrement :
      - **Type** : `CNAME`
-     - **Valeur** : `cname.vercel-dns.com.` (notez le point à la fin)
-     - **TTL** : `3600` (ou la valeur par défaut)
+     - **Nom** : `www`
+     - **Valeur** : `b77e3e856849c1a2.vercel-dns-017.com.` ⚠️ **Avec le point à la fin !**
+     - **TTL** : `3600` (ou valeur par défaut)
+   - Sauvegardez
 
-### 2.4 Exemple de configuration dans Gandi
+5. **Vérifiez vos modifications** :
+   - Assurez-vous que les enregistrements sont bien sauvegardés
+   - La zone DNS devrait maintenant contenir ces deux enregistrements
 
-Dans l'interface Gandi, voici à quoi ressemblerait votre zone DNS :
+### 2.4 À quoi devrait ressembler votre zone DNS dans Gandi
 
-```
-@        IN A        76.76.21.21
-@        IN A        76.76.22.22
-www      IN CNAME    cname.vercel-dns.com.
-```
-
-Ou si vous utilisez ALIAS :
+Après configuration, votre zone DNS devrait ressembler à ceci :
 
 ```
-@        IN ALIAS    cname.vercel-dns.com.
-www      IN CNAME    cname.vercel-dns.com.
+Type    Nom      Valeur                                    TTL
+---------------------------------------------------------------
+A       @        216.198.79.1                              3600
+CNAME   www      b77e3e856849c1a2.vercel-dns-017.com.      3600
 ```
+
+> 💡 **Astuce** : Dans certaines interfaces Gandi, le nom `@` peut apparaître comme vide ou comme le nom de domaine lui-même. C'est normal, cela représente toujours le domaine racine.
 
 ## ⏱️ Étape 3 : Attendre la propagation DNS
 
@@ -145,5 +154,19 @@ Pour configurer les redirections, allez dans **Settings** → **Domains** dans V
 
 ---
 
-**Note** : Les valeurs IP et CNAME spécifiques à votre projet sont affichées dans le dashboard Vercel lorsque vous ajoutez un domaine. Utilisez toujours ces valeurs plutôt que celles génériques mentionnées ci-dessus.
+## 📝 Récapitulatif rapide
+
+Pour configurer rapidement votre domaine dans Gandi :
+
+1. **boncours.fr** → Créer/modifier enregistrement **A** :
+   - Nom : `@`
+   - Valeur : `216.198.79.1`
+
+2. **www.boncours.fr** → Créer/modifier enregistrement **CNAME** :
+   - Nom : `www`
+   - Valeur : `b77e3e856849c1a2.vercel-dns-017.com.` (avec le point à la fin)
+
+3. Attendre la propagation DNS (1-4 heures généralement)
+
+4. Vérifier dans Vercel que le statut passe à "Valid Configuration"
 

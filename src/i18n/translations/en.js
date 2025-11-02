@@ -163,7 +163,7 @@ export const en = {
       privacy: 'Privacy policy',
       terms: 'Terms',
       developer: 'Designed and developed with',
-      heart: 'at',
+      heart: 'in',
       location: 'Schiltigheim, France.',
       solution: 'A solution by',
       company: 'DUBOS WEB SERVICES',
@@ -870,6 +870,183 @@ export const en = {
     },
     common: {
       loading: 'Loading...',
+    },
+    legal: {
+      title: 'Legal Notice',
+      company: {
+        title: 'Company Identification',
+        name: 'BON COURS',
+        legal_form: 'Limited Liability Company (without other indication)',
+        address: '36 QUAI MULLENHEIM, 67000 STRASBOURG, France',
+        siren: '989 660 709',
+        siret: '989 660 709 00019',
+        vat: 'FR28 989 660 709',
+        activity: 'Other education (NAF/APE Code: 85.59B)',
+        creation_date: '01/08/2025',
+        capital: '6,000.00 €',
+        fiscal_year_end: '31/08',
+        duration: '99 years',
+        nature: 'Liberal, non-regulated',
+      },
+      publisher: {
+        title: 'Publication Director',
+        email: 'contact@boncours.fr',
+      },
+      hosting: {
+        title: 'Website Hosting',
+        description: 'This website is hosted by:',
+        company: 'Vercel Inc.',
+        address: '340 S Lemon Ave #4133',
+        city: 'Walnut, CA 91789, United States',
+        website: 'www.vercel.com',
+      },
+      intellectual_property: {
+        title: 'Intellectual Property',
+        description:
+          'All content on this website (texts, images, videos, logos, graphics, etc.) is protected by copyright and belongs to Bon Cours or its partners. Any reproduction, even partial, is strictly prohibited without prior written authorization.',
+      },
+      liability: {
+        title: 'Liability',
+        description:
+          'Bon Cours strives to provide accurate and up-to-date information on this website. However, we cannot guarantee the accuracy, precision or completeness of the information provided. Consequently, we disclaim any responsibility for any inaccuracy, imprecision or omission regarding information available on this website.',
+      },
+      personal_data: {
+        title: 'Personal Data',
+        description:
+          'Personal information collected on this website is subject to computer processing for enrollment management and customer relations. In accordance with GDPR, you have the right to access, rectify, delete and port your personal data.',
+      },
+      contact: {
+        title: 'Contact for Legal Questions',
+        email: 'contact@boncours.fr',
+        phone: '03 88 52 03 82',
+        address: '36 QUAI MULLENHEIM, 67000 STRASBOURG, France',
+      },
+      last_update: 'Last update: {{date}}',
+    },
+    privacy: {
+      title: 'Privacy Policy',
+      introduction: {
+        title: 'Introduction',
+        description:
+          'Bon Cours attaches great importance to the protection of your personal data. This privacy policy explains what information we collect, why we collect it and how we use it.',
+      },
+      controller: {
+        title: 'Data Controller',
+        company: 'BON COURS',
+        legal_form: 'Limited Liability Company (without other indication)',
+        siren: '989 660 709',
+        siret: '989 660 709 00019',
+        address: '36 QUAI MULLENHEIM, 67000 STRASBOURG, France',
+        email: 'contact@boncours.fr',
+      },
+      data_collected: {
+        title: 'Data Collected',
+        description:
+          'The only personal data we collect is that which you voluntarily provide to us through our contact form available on the contact page of our website.',
+        subtitle: 'Data collected via the contact form',
+        list: {
+          name: 'First and last name',
+          email: 'Email address',
+          phone: 'Phone number (optional, depending on your contact preference)',
+          message: 'Message',
+          preference: 'Contact preference (email or phone)',
+          schedule:
+            'Preferred days and times to be contacted (if you choose phone as contact method)',
+        },
+      },
+      purposes: {
+        title: 'Purposes of Processing',
+        description: 'We use your personal data only for:',
+        contact: {
+          title: 'Processing Your Contact Request',
+          description: 'Responding to your questions and information requests via our contact form',
+        },
+        communication: {
+          title: 'Communication',
+          description:
+            'Contacting you according to your preferences (email or phone) to respond to your request',
+        },
+      },
+      legal_basis: {
+        title: 'Legal Basis',
+        description: 'The processing of your data is based on:',
+        consent: {
+          title: 'Consent',
+          description:
+            'You voluntarily provide your data through the contact form so we can respond to your request',
+        },
+        legitimate_interest: {
+          title: 'Legitimate Interest',
+          description: 'Responding to your information requests and improving our customer service',
+        },
+      },
+      retention: {
+        title: 'Retention Period',
+        contact_data: {
+          title: 'Contact Form Data',
+          description:
+            '3 years after the last communication, in accordance with CNIL recommendations',
+        },
+        cookies: {
+          title: 'Technical Cookies',
+          description: 'Maximum 13 months (only cookies strictly necessary for website operation)',
+        },
+      },
+      rights: {
+        title: 'Your Rights',
+        description: 'In accordance with GDPR, you have the following rights:',
+        access: {
+          title: 'Right of Access',
+          description: 'Obtain a copy of your personal data',
+        },
+        rectification: {
+          title: 'Right of Rectification',
+          description: 'Correct inaccurate data',
+        },
+        erasure: {
+          title: 'Right to Erasure',
+          description: 'Request deletion of your data',
+        },
+        limitation: {
+          title: 'Right to Limitation',
+          description: 'Limit processing in certain cases',
+        },
+        portability: {
+          title: 'Right to Portability',
+          description: 'Retrieve your data in a structured format',
+        },
+        opposition: {
+          title: 'Right to Object',
+          description: 'Object to processing for direct marketing purposes',
+        },
+      },
+      cookies: {
+        title: 'Cookies',
+        description:
+          'Our website uses only technical cookies strictly necessary for website operation. No analytical or tracking cookies are used. You can configure your browser to refuse cookies, but this may affect some website features.',
+      },
+      security: {
+        title: 'Security',
+        description:
+          'We implement appropriate technical and organizational measures to protect your data against unauthorized access, modification, disclosure or destruction. Our servers are secure and we use SSL encryption for sensitive data transmissions.',
+      },
+      transfers: {
+        title: 'Data Transfers',
+        description:
+          'Your data is transmitted via EmailJS for sending contact messages. EmailJS is a GDPR-compliant service that hosts data in the European Union. No other data transfers to third countries are carried out.',
+      },
+      contact: {
+        title: 'Exercise Your Rights',
+        description: 'For any questions regarding your personal data or to exercise your rights:',
+        email: 'contact@boncours.fr',
+        mail: 'BON COURS, 36 QUAI MULLENHEIM, 67000 STRASBOURG, France',
+        phone: '03 88 52 03 82',
+        cnil: {
+          text: 'In case of disagreement, you can contact the CNIL:',
+          website: 'www.cnil.fr',
+        },
+      },
+      last_update: 'Last update: {{date}}',
     },
   },
 };
