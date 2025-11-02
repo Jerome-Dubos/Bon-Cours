@@ -4,12 +4,7 @@
   min-height: 100vh;
 }
 
-/* Étendre la section en pleine largeur uniquement en mode flat */
-.team-section--flat {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-}
+/* Mode flat : même layout que le mode normal */
 
 .team-section__header {
   text-align: center;
@@ -77,8 +72,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: var(--spacing-xl);
-  max-width: 1600px;
-  width: 100%;
+  max-width: 1200px;
 }
 
 .team-section--flat .team-section__card {
@@ -86,11 +80,6 @@
   flex: unset;
   max-width: unset;
   min-width: 0;
-}
-
-/* Étendre le conteneur en mode flat pour afficher 5 colonnes confortablement */
-.team-section--flat .team-section__content {
-  max-width: 1600px;
 }
 
 @media (max-width: 1199px) and (min-width: 1024px) {
@@ -105,14 +94,12 @@
   }
 }
 
-/* Garder 2 colonnes entre 768px et 480px pour mieux voir les photos */
 @media (max-width: 767px) and (min-width: 480px) {
   .team-section--flat .team-section__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* 1 colonne en dessous de 480px */
 @media (max-width: 480px) {
   .team-section--flat .team-section__grid {
     grid-template-columns: 1fr;
