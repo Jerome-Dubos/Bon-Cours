@@ -264,9 +264,9 @@ const Footer = () => {
                 <a
                   href='tel:+33388520382'
                   className='footer-contact-text'
-                  aria-label='Appelez-nous au 03.88.52.03.82'
+                  aria-label={t('footer.call_us', { phone: t('footer.phone_fixed') })}
                 >
-                  03 88 52 03 82
+                  {t('footer.phone_fixed')}
                 </a>
               </div>
               <div className='footer-contact-item'>
@@ -276,9 +276,9 @@ const Footer = () => {
                   target='_blank'
                   rel='noopener noreferrer'
                   className='footer-contact-text'
-                  aria-label='Nous contacter sur WhatsApp'
+                  aria-label={t('footer.contact_whatsapp')}
                 >
-                  06 79 14 55 77
+                  {t('footer.phone_mobile')}
                 </a>
               </div>
               <div className='footer-contact-item'>
@@ -286,7 +286,7 @@ const Footer = () => {
                 <a
                   href='mailto:contact@boncours.fr'
                   className='footer-contact-text'
-                  aria-label='Nous contacter par email'
+                  aria-label={t('footer.contact_email_label')}
                 >
                   contact@boncours.fr
                 </a>
@@ -298,7 +298,7 @@ const Footer = () => {
                   target='_blank'
                   rel='noopener noreferrer'
                   className='footer-contact-text'
-                  aria-label='Voir notre adresse sur Google Maps'
+                  aria-label={t('footer.view_address')}
                 >
                   36 quai Mullenheim
                   <br />
