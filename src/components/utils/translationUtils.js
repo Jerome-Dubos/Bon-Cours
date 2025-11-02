@@ -61,7 +61,6 @@ export const translateDataKey = (key, t, fallback = '') => {
 
     return result;
   } catch (error) {
-    console.warn(`Erreur de traduction pour la clé "${key}":`, error);
     return fallback;
   }
 };

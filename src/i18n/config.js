@@ -19,7 +19,6 @@ const loadTranslations = async language => {
         return fr;
     }
   } catch (error) {
-    console.error(`Erreur lors du chargement des traductions pour ${language}:`, error);
     // Fallback vers le français
     return fr;
   }
@@ -73,8 +72,8 @@ const i18nConfig = {
   cleanCode: true, // Nettoie les codes de langue
   nonExplicitSupportedLngs: true, // Support des variantes de langue
 
-  // Configuration du debug (uniquement en développement)
-  debug: process.env.NODE_ENV === 'development',
+  // Configuration du debug (désactivé)
+  debug: false,
 
   // Configuration de la sauvegarde
   saveMissing: process.env.NODE_ENV === 'development',
@@ -113,7 +112,6 @@ export const changeLanguage = async language => {
     localStorage.setItem('i18nextLng', language);
     return true;
   } catch (error) {
-    console.error(`Erreur lors du changement de langue vers ${language}:`, error);
     return false;
   }
 };
