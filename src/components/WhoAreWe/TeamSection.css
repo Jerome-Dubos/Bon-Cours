@@ -58,81 +58,39 @@
 }
 
 .team-section__grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xl);
-  max-width: 1200px;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-/* Disposition alternative: toutes les cards sur une page, 5 par ligne */
-.team-section--flat .team-section__grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: var(--spacing-xl);
   max-width: 1200px;
+  margin: 0 auto;
 }
 
-.team-section--flat .team-section__card {
+.team-section__card {
   width: 100%;
-  flex: unset;
-  max-width: unset;
   min-width: 0;
 }
 
 @media (max-width: 1199px) and (min-width: 1024px) {
-  .team-section--flat .team-section__grid {
+  .team-section__grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 1023px) and (min-width: 768px) {
-  .team-section--flat .team-section__grid {
+  .team-section__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 767px) and (min-width: 480px) {
-  .team-section--flat .team-section__grid {
+  .team-section__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
-  .team-section--flat .team-section__grid {
+  .team-section__grid {
     grid-template-columns: 1fr;
-  }
-}
-
-.team-section__card {
-  flex: 0 0 calc(33.333% - var(--spacing-xl));
-  max-width: calc(33.333% - var(--spacing-xl));
-  min-width: 280px;
-}
-
-@media (min-width: 1024px) {
-  .team-section__grid {
-    max-width: 1000px;
-  }
-
-  .team-section__card {
-    flex: 0 0 calc(33.333% - var(--spacing-xl));
-    max-width: calc(33.333% - var(--spacing-xl));
-    min-width: 300px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .team-section__grid {
-    max-width: 1200px;
-  }
-
-  .team-section__card {
-    flex: 0 0 calc(33.333% - var(--spacing-xl));
-    max-width: calc(33.333% - var(--spacing-xl));
-    min-width: 320px;
   }
 }
 
@@ -152,43 +110,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Style spécial pour une seule carte sur la ligne */
-.team-section__card--alone {
-  flex: 0 0 500px !important;
-  max-width: 500px !important;
-  height: 380px !important;
-}
-
-.team-section__card--alone .team-section__card-image img {
-  object-position: center top;
-  object-fit: cover !important;
-}
-
-@media (min-width: 1024px) {
-  .team-section__card--alone {
-    flex: 0 0 600px !important;
-    max-width: 600px !important;
-    height: 380px !important;
-  }
-
-  .team-section__card--alone .team-section__card-image img {
-    object-position: center top;
-    object-fit: cover !important;
-  }
-}
-
-@media (min-width: 1200px) {
-  .team-section__card--alone {
-    flex: 0 0 700px !important;
-    max-width: 700px !important;
-    height: 380px !important;
-  }
-
-  .team-section__card--alone .team-section__card-image img {
-    object-position: center top;
-    object-fit: cover !important;
-  }
-}
 
 .team-section__card:hover {
   transform: translateY(-8px);
@@ -299,7 +220,7 @@
 }
 
 .team-section__overlay-description {
-  margin: var(--spacing-md) 0;
+  margin: var(--spacing-md) 0 var(--spacing-lg) 0;
   padding: 0 var(--spacing-sm);
 }
 
@@ -313,16 +234,11 @@
 }
 
 .team-section__overlay-cta {
-  margin-top: 0;
+  margin-top: var(--spacing-md);
   margin-bottom: 0;
   flex-shrink: 0;
 }
 
-/* Remonter le texte CTA pour les cartes seules */
-.team-section__card--alone .team-section__overlay-cta {
-  margin-top: calc(-1 * var(--spacing-md));
-  margin-bottom: var(--spacing-4xl);
-}
 
 .team-section__overlay-cta span {
   font-size: var(--text-sm);
@@ -740,20 +656,8 @@
 
   .team-section__grid {
     gap: var(--spacing-xl);
-    max-width: 800px;
   }
 
-  .team-section__card {
-    flex: 0 0 calc(50% - var(--spacing-xl));
-    max-width: calc(50% - var(--spacing-xl));
-    min-width: 0;
-    height: 380px;
-  }
-
-  /* Hauteur ajustée pour la carte seule sur tablette */
-  .team-section__card--alone {
-    height: 360px !important;
-  }
 
   .team-section__overlay-stats {
     flex-direction: column;
@@ -840,20 +744,7 @@
     gap: var(--spacing-lg);
   }
 
-  .team-section__card {
-    flex: 0 0 calc(50% - var(--spacing-lg));
-    max-width: calc(50% - var(--spacing-lg));
-    min-width: 0;
-    height: 400px;
-    border-radius: var(--border-radius-lg);
-  }
 
-  /* Hauteur ajustée pour la carte seule sur mobile */
-  .team-section__card--alone {
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
-    height: 400px !important;
-  }
 
   .team-section__card-badge {
     padding: var(--spacing-md);
@@ -987,19 +878,7 @@
     gap: var(--spacing-md);
   }
 
-  .team-section__card {
-    flex: 0 0 100%;
-    max-width: 100%;
-    min-width: 0;
-    height: 380px;
-  }
 
-  /* Hauteur ajustée pour la carte seule sur petit mobile */
-  .team-section__card--alone {
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
-    height: 380px !important;
-  }
 
   .team-section__card-badge {
     padding: var(--spacing-sm);
