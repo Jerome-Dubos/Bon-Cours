@@ -32,7 +32,6 @@ class ContactService {
         this.interestRequests = JSON.parse(interestData);
       }
     } catch (error) {
-      console.warn('Erreur lors du chargement des données de contact:', error);
       // Réinitialiser avec des tableaux vides
       this.contacts = [];
       this.interestRequests = [];
@@ -45,7 +44,6 @@ class ContactService {
       localStorage.setItem(this.storageKey.contacts, JSON.stringify(this.contacts));
       localStorage.setItem(this.storageKey.interests, JSON.stringify(this.interestRequests));
     } catch (error) {
-      console.error('Erreur lors de la sauvegarde des données de contact:', error);
       throw new Error('Impossible de sauvegarder les données de contact');
     }
   }
@@ -84,8 +82,6 @@ class ContactService {
   // Envoyer un message de contact (optimisé)
   async sendContactMessage(formData) {
     try {
-      console.log('📧 Service de contact - Envoi du message...');
-
       // Validation des données
       this.validateContactForm(formData);
 
@@ -108,8 +104,6 @@ class ContactService {
       // Envoyer l'email via EmailJS
       const emailResult = await sendContactEmail(formData);
 
-      console.log("📨 Résultat de l'envoi d'email:", emailResult);
-
       if (emailResult.success) {
         // Mettre à jour le statut
         contactRequest.status = 'sent';
@@ -131,7 +125,6 @@ class ContactService {
         );
       }
     } catch (error) {
-      console.error('💥 Erreur dans sendContactMessage:', error);
       throw error;
     }
   }
@@ -172,8 +165,6 @@ class ContactService {
 
       // Envoyer l'email via EmailJS
       const emailResult = await sendInterestEmail(formData, courseData);
-
-      console.log("📨 Résultat de l'envoi d'email d'intérêt:", emailResult);
 
       if (emailResult.success) {
         // Mettre à jour le statut

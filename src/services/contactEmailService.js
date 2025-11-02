@@ -26,7 +26,6 @@ const sendEmailViaEmailJS = async (templateId, templateParams, retryCount = 0) =
   try {
     // Vérifier si EmailJS est configuré
     if (!isEmailJSConfigured()) {
-      console.warn('⚠️ EmailJS non configuré - Mode simulation activé');
       showConfigurationInstructions();
 
       // Simulation d'envoi
@@ -41,8 +40,6 @@ const sendEmailViaEmailJS = async (templateId, templateParams, retryCount = 0) =
         timestamp: new Date().toISOString(),
       };
 
-      console.log('📨 Email de contact simulé créé:', fakeEmail);
-
       return {
         success: true,
         data: { status: 'simulated', email: fakeEmail },
@@ -51,16 +48,6 @@ const sendEmailViaEmailJS = async (templateId, templateParams, retryCount = 0) =
     }
 
     // Envoi réel via EmailJS avec retry
-    console.log(`📤 Envoi réel via EmailJS... (tentative ${retryCount + 1})`);
-    console.log('📋 Configuration EmailJS:', {
-      serviceId: EMAILJS_CONFIG.SERVICE_ID,
-      templateId: templateId,
-      publicKey: EMAILJS_CONFIG.PUBLIC_KEY
-        ? EMAILJS_CONFIG.PUBLIC_KEY.substring(0, 8) + '...'
-        : 'MANQUANTE',
-    });
-    console.log('📋 Paramètres du template:', templateParams);
-
     try {
       const response = await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
@@ -69,24 +56,13 @@ const sendEmailViaEmailJS = async (templateId, templateParams, retryCount = 0) =
         EMAILJS_CONFIG.PUBLIC_KEY
       );
 
-      console.log('✅ Email de contact envoyé avec succès:', response);
       return { success: true, data: response, simulated: false };
     } catch (emailjsError) {
-      // Logger l'erreur complète pour diagnostic
-      console.error("❌ Détails de l'erreur EmailJS:", {
-        status: emailjsError?.status,
-        text: emailjsError?.text,
-        message: emailjsError?.message,
-        error: emailjsError,
-      });
       throw emailjsError;
     }
   } catch (error) {
-    console.error(`❌ Erreur EmailJS (tentative ${retryCount + 1}):`, error);
-
     // Retry pour les erreurs réseau
     if (retryCount < EMAIL_DELAYS.MAX_RETRIES && isRetryableError(error)) {
-      console.warn(`🔄 Retry dans ${EMAIL_DELAYS.RETRY}ms...`);
       await new Promise(resolve => setTimeout(resolve, EMAIL_DELAYS.RETRY));
       return sendEmailViaEmailJS(templateId, templateParams, retryCount + 1);
     }
@@ -140,8 +116,6 @@ const isRetryableError = error => {
  */
 export const sendContactMessage = async formData => {
   try {
-    console.log('📧 Préparation email de contact...');
-
     // Validation des données
     if (!formData.prenom || !formData.nom || !formData.email || !formData.message) {
       throw new Error('Données de formulaire incomplètes');
@@ -195,8 +169,6 @@ export const sendContactMessage = async formData => {
       school_name: cleanValue(EMAILJS_CONFIG.SCHOOL_NAME, 'Bon Cours'),
     };
 
-    console.log('📨 Paramètres email de contact:', templateParams);
-
     const result = await sendEmailViaEmailJS(EMAIL_TEMPLATES.CONTACT, templateParams);
 
     // Enregistrer dans localStorage pour le suivi
@@ -215,12 +187,10 @@ export const sendContactMessage = async formData => {
       };
 
       saveEmailRecord(emailRecord);
-      console.log('💾 Email de contact enregistré dans localStorage');
     }
 
     return result;
   } catch (error) {
-    console.error("💥 Erreur lors de l'envoi du message de contact:", error);
     return { success: false, error: error.message };
   }
 };
@@ -234,7 +204,7 @@ const saveEmailRecord = emailRecord => {
     sentEmails.push(emailRecord);
     localStorage.setItem('sentEmails', JSON.stringify(sentEmails));
   } catch (error) {
-    console.error("Erreur lors de la sauvegarde de l'enregistrement email:", error);
+    // Erreur silencieuse lors de la sauvegarde
   }
 };
 
@@ -243,8 +213,6 @@ const saveEmailRecord = emailRecord => {
  */
 export const sendInterestRequest = async (formData, courseData) => {
   try {
-    console.log("📧 Préparation email d'intérêt...");
-
     // Validation des données
     if (!formData.prenom || !formData.nom || !formData.email || !formData.message) {
       throw new Error('Données de formulaire incomplètes');
@@ -302,8 +270,6 @@ export const sendInterestRequest = async (formData, courseData) => {
       school_name: cleanValue(EMAILJS_CONFIG.SCHOOL_NAME, 'Bon Cours'),
     };
 
-    console.log("📨 Paramètres email d'intérêt:", templateParams);
-
     const result = await sendEmailViaEmailJS(EMAIL_TEMPLATES.INTEREST, templateParams);
 
     // Enregistrer dans localStorage pour le suivi
@@ -323,12 +289,10 @@ export const sendInterestRequest = async (formData, courseData) => {
       };
 
       saveEmailRecord(emailRecord);
-      console.log("💾 Email d'intérêt enregistré dans localStorage");
     }
 
     return result;
   } catch (error) {
-    console.error("💥 Erreur lors de l'envoi de la demande d'intérêt:", error);
     return { success: false, error: error.message };
   }
 };
@@ -340,14 +304,11 @@ export const initializeEmailJS = () => {
   if (isEmailJSConfigured()) {
     try {
       emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
-      console.log('✅ EmailJS initialisé avec la clé publique');
       return true;
     } catch (error) {
-      console.error("❌ Erreur lors de l'initialisation d'EmailJS:", error);
       return false;
     }
   } else {
-    console.warn('⚠️ EmailJS non configuré - Mode simulation');
     return false;
   }
 };
@@ -368,7 +329,6 @@ export const getEmailStats = () => {
     };
     return stats;
   } catch (error) {
-    console.error('Erreur lors de la récupération des statistiques email:', error);
     return { total: 0, contact: 0, interest: 0, simulated: 0, real: 0, lastSent: null };
   }
 };
@@ -388,14 +348,10 @@ export const cleanOldEmailRecords = () => {
 
     if (filteredEmails.length !== sentEmails.length) {
       localStorage.setItem('sentEmails', JSON.stringify(filteredEmails));
-      console.log(
-        `${sentEmails.length - filteredEmails.length} anciens enregistrements d'emails supprimés`
-      );
     }
 
     return filteredEmails.length;
   } catch (error) {
-    console.error('Erreur lors du nettoyage des enregistrements email:', error);
     return 0;
   }
 };

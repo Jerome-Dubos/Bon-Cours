@@ -14,24 +14,21 @@ const Contact = () => {
   }, []);
 
   const handleSubmit = async formData => {
-    console.log('Données du formulaire:', formData);
-
     try {
       // Utiliser le service de contact avec EmailJS
       const response = await contactService.sendContactMessage(formData);
       return response;
     } catch (error) {
-      console.error('Erreur lors de l\'envoi du formulaire:', error);
       throw error;
     }
   };
 
   const handleSuccess = data => {
-    console.log('Message envoyé avec succès!', data);
+    // Message envoyé avec succès
   };
 
   const handleError = error => {
-    console.error("Erreur lors de l'envoi:", error);
+    // Erreur gérée par le formulaire
   };
 
   return (
