@@ -76,63 +76,63 @@ const Navbar = () => {
     () => ({
       // Colonne gauche
       leftColumn: [
-        { label: 'Horaires', path: '/offres/horaires' },
-        { label: 'Passez votre test', path: '/offres/test' },
+        { label: t('nav.submenus.horaires'), path: '/offres/horaires' },
+        { label: t('nav.submenus.test'), path: '/offres/test' },
         {
-          label: 'Langues',
+          label: t('nav.submenus.langues'),
           submenu: [
-            { label: 'Enfants & ados', path: '/offres/langues?tab=enfants-ados' },
-            { label: 'Adultes', path: '/offres/langues?tab=adultes' },
+            { label: t('nav.submenus.enfants-ados'), path: '/offres/langues?tab=enfants-ados' },
+            { label: t('nav.submenus.adultes'), path: '/offres/langues?tab=adultes' },
           ],
         },
         {
-          label: 'Soutien scolaire',
+          label: t('nav.submenus.soutien-scolaire'),
           submenu: [
-            { label: 'Primaire', path: '/offres/soutien-scolaire?tab=primaire' },
-            { label: 'Collège', path: '/offres/soutien-scolaire?tab=college' },
-            { label: 'Lycée', path: '/offres/soutien-scolaire?tab=lycee' },
+            { label: t('nav.submenus.primaire'), path: '/offres/soutien-scolaire?tab=primaire' },
+            { label: t('nav.submenus.college'), path: '/offres/soutien-scolaire?tab=college' },
+            { label: t('nav.submenus.lycee'), path: '/offres/soutien-scolaire?tab=lycee' },
           ],
         },
       ],
       // Colonne droite
       rightColumn: [
         {
-          label: 'Ateliers linguistiques',
+          label: t('nav.submenus.ateliers-linguistiques'),
           submenu: [
-            { label: 'Langue orale', path: '/offres/ateliers?tab=langue-orale' },
-            { label: 'Langue écrite', path: '/offres/ateliers?tab=langue-ecrite' },
-            { label: 'Cuisine', path: '/offres/ateliers?tab=cuisine' },
-            { label: 'Sport', path: '/offres/ateliers?tab=sport' },
-            { label: 'Jeux', path: '/offres/ateliers?tab=jeux' },
-            { label: 'Cinéma', path: '/offres/ateliers?tab=cinema' },
+            { label: t('nav.submenus.langue-orale'), path: '/offres/ateliers?tab=langue-orale' },
+            { label: t('nav.submenus.langue-ecrite'), path: '/offres/ateliers?tab=langue-ecrite' },
+            { label: t('nav.submenus.cuisine'), path: '/offres/ateliers?tab=cuisine' },
+            { label: t('nav.submenus.sport'), path: '/offres/ateliers?tab=sport' },
+            { label: t('nav.submenus.jeux'), path: '/offres/ateliers?tab=jeux' },
+            { label: t('nav.submenus.cinema'), path: '/offres/ateliers?tab=cinema' },
           ],
         },
         {
-          label: 'Examens',
+          label: t('nav.submenus.examens'),
           submenu: [
-            { label: 'Certifications', path: '/offres/examens?tab=certifications' },
-            { label: 'Naturalisation', path: '/offres/examens?tab=naturalisation' },
+            { label: t('nav.submenus.certifications'), path: '/offres/examens?tab=certifications' },
+            { label: t('nav.submenus.naturalisation'), path: '/offres/examens?tab=naturalisation' },
           ],
         },
         {
-          label: 'Accompagnements complémentaires',
+          label: t('nav.submenus.accompagnements-complementaires'),
           submenu: [
-            { label: 'Administratif', path: '/offres/accompagnements?tab=administratif' },
-            { label: 'Scolarité', path: '/offres/accompagnements?tab=scolarite' },
-                      ],
+            { label: t('nav.submenus.administratif'), path: '/offres/accompagnements?tab=administratif' },
+            { label: t('nav.submenus.scolarite'), path: '/offres/accompagnements?tab=scolarite' },
+          ],
         },
       ],
     }),
-    []
+    [t]
   );
 
   const methodeSubmenu = useMemo(
     () => [
-      { label: 'Approche actionnelle', path: '/methode/approche-actionnelle' },
-      { label: 'Niveaux & parcours', path: '/methode/niveaux-parcours' },
+      { label: t('nav.submenus.approche-actionnelle'), path: '/methode/approche-actionnelle' },
+      { label: t('nav.submenus.niveaux-parcours'), path: '/methode/niveaux-parcours' },
       // { label: 'Outils & ressources', path: '/methode/outils-ressources' }, // Masqué temporairement
     ],
-    []
+    [t]
   );
 
   // Liens de navigation publique - mémorisés (définis en premier)

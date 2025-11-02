@@ -95,15 +95,10 @@ const Error = () => {
             <h1 className='error-code'>404</h1>
 
             {/* Titre */}
-            <h2 className='error-title'>{t('error.title', 'Page non trouvée')}</h2>
+            <h2 className='error-title'>{t('error.title')}</h2>
 
             {/* Description */}
-            <p className='error-description'>
-              {t(
-                'error.description',
-                "La page que vous recherchez n'existe pas ou a été déplacée."
-              )}
-            </p>
+            <p className='error-description'>{t('error.description')}</p>
 
             {/* Actions */}
             <div className='error-actions'>
@@ -115,7 +110,7 @@ const Error = () => {
                 whileTap='tap'
               >
                 <IoHomeOutline />
-                {t('error.backToHome', "Retour à l'accueil")}
+                {t('error.backToHome')}
               </motion.button>
 
               <motion.button
@@ -126,7 +121,7 @@ const Error = () => {
                 whileTap='tap'
               >
                 <IoArrowBackOutline />
-                {t('error.goBack', 'Retour')}
+                {t('error.goBack')}
               </motion.button>
 
               <motion.button
@@ -137,7 +132,7 @@ const Error = () => {
                 whileTap='tap'
               >
                 <IoRefreshOutline />
-                {t('error.refresh', 'Actualiser')}
+                {t('error.refresh')}
               </motion.button>
             </div>
           </div>

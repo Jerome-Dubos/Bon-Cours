@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import './LanguageCarousel.css';
 
 const LanguageCarousel = ({
@@ -9,87 +11,94 @@ const LanguageCarousel = ({
   className = '',
   onLanguageClick = null,
 }) => {
+  const { t } = useTranslation();
+
   // Configuration par défaut des langues si aucune n'est fournie
   const defaultLanguages = useMemo(
     () => [
       {
         id: 'french',
-        name: 'Français',
+        name: t('languages.french'),
         flag: '/assets/images/flags/france.webp',
-        alt: 'Drapeau français',
+        alt: t('carousel.flags.french'),
       },
       {
         id: 'english',
-        name: 'Anglais',
+        name: t('languages.english'),
         flag: '/assets/images/flags/royaume-uni.webp',
-        alt: 'Drapeau britannique',
+        alt: t('carousel.flags.english'),
       },
       {
         id: 'german',
-        name: 'Allemand',
+        name: t('languages.german'),
         flag: '/assets/images/flags/allemagne.webp',
-        alt: 'Drapeau allemand',
+        alt: t('carousel.flags.german'),
       },
       {
         id: 'spanish',
-        name: 'Espagnol',
+        name: t('languages.spanish'),
         flag: '/assets/images/flags/espagne.webp',
-        alt: 'Drapeau espagnol',
+        alt: t('carousel.flags.spanish'),
       },
       {
         id: 'portuguese',
-        name: 'Portugais',
+        name: t('languages.portuguese'),
         flag: '/assets/images/flags/le-portugal.webp',
-        alt: 'Drapeau portugais',
+        alt: t('carousel.flags.portuguese'),
       },
       {
         id: 'italian',
-        name: 'Italien',
+        name: t('languages.italian'),
         flag: '/assets/images/flags/italie.webp',
-        alt: 'Drapeau italien',
+        alt: t('carousel.flags.italian'),
       },
       {
         id: 'turkish',
-        name: 'Turc',
+        name: t('languages.turkish'),
         flag: '/assets/images/flags/turquie.webp',
-        alt: 'Drapeau turc',
+        alt: t('carousel.flags.turkish'),
       },
       {
         id: 'russian',
-        name: 'Russe',
+        name: t('languages.russian'),
         flag: '/assets/images/flags/russie.webp',
-        alt: 'Drapeau russe',
+        alt: t('carousel.flags.russian'),
       },
       {
         id: 'persian',
-        name: 'Persan',
+        name: t('languages.persian'),
         flag: '/assets/images/flags/Iran.webp',
-        alt: 'Drapeau iranien',
+        alt: t('carousel.flags.persian'),
       },
       {
         id: 'chinese',
-        name: 'Mandarin',
+        name: t('languages.chinese'),
         flag: '/assets/images/flags/chine.webp',
-        alt: 'Drapeau chinois',
+        alt: t('carousel.flags.chinese'),
       },
       {
         id: 'japanese',
-        name: 'Japonais',
+        name: t('languages.japanese'),
         flag: '/assets/images/flags/japon.webp',
-        alt: 'Drapeau japonais',
+        alt: t('carousel.flags.japanese'),
       },
     ],
-    []
+    [t]
   );
 
   const languagesToUse = languages.length > 0 ? languages : defaultLanguages;
+  const navigate = useNavigate();
 
   // Dupliquer les langues pour l'effet infini
   const duplicatedLanguages = [...languagesToUse, ...languagesToUse];
 
   const handleLanguageClick = language => {
+    // Si un callback est fourni, le laisser gérer la navigation
     if (onLanguageClick) {
       onLanguageClick(language);
+    } else {
+      // Sinon, rediriger vers la page des langues sans paramètre
+      navigate('/offres/langues', { replace: true });
     }
   };
 

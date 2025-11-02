@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FaBook, FaBullseye, FaGraduationCap, FaTrophy } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../UI/Buttons';
 import LanguageCarousel from '../UI/LanguageCarousel';
 import './FeaturesSection.css';
 
 const FeaturesSection = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -45,9 +47,9 @@ const FeaturesSection = () => {
         {/* Section Langues */}
         <div className='language-section'>
           <div className='section-header'>
-            <h2 className='section-title'>Choisissez votre langue</h2>
+            <h2 className='section-title'>{t('home.features.languages.title')}</h2>
             <p className='section-subtitle'>
-              Découvrez nos cours de langues adaptés à tous les niveaux
+              {t('home.features.languages.subtitle')}
             </p>
           </div>
 
@@ -65,9 +67,9 @@ const FeaturesSection = () => {
             <div className='school-icon'>
               <FaGraduationCap />
             </div>
-            <h2 className='section-title'>Soutien scolaire</h2>
+            <h2 className='section-title'>{t('home.features.school.title')}</h2>
             <p className='section-subtitle'>
-              Accompagnement personnalisé pour atteindre vos objectifs
+              {t('home.features.school.subtitle')}
             </p>
           </div>
 
@@ -77,22 +79,22 @@ const FeaturesSection = () => {
                 <div className='feature-icon'>
                   <FaBook />
                 </div>
-                <h3>Pour tous les niveaux</h3>
-                <p>Primaire, Collège, Lycée</p>
+                <h3>{t('home.features.school.subjects.title')}</h3>
+                <p>{t('home.features.school.subjects.description')}</p>
               </div>
               <div className='feature-item'>
                 <div className='feature-icon'>
                   <FaBullseye />
                 </div>
-                <h3>Diagnostic offert</h3>
-                <p>Pour optimiser votre progression</p>
+                <h3>{t('home.features.school.objectives.title')}</h3>
+                <p>{t('home.features.school.objectives.description')}</p>
               </div>
               <div className='feature-item'>
                 <div className='feature-icon'>
                   <FaTrophy />
                 </div>
-                <h3>Équipe experte</h3>
-                <p>Intervenants pédagogues et bienveillants</p>
+                <h3>{t('home.features.school.teachers.title')}</h3>
+                <p>{t('home.features.school.teachers.description')}</p>
               </div>
             </div>
           </div>
@@ -106,7 +108,7 @@ const FeaturesSection = () => {
               onClick={handleContactClick}
               className='action-button contact-button'
             >
-              Contactez-nous
+              {t('home.features.actions.contact')}
             </PrimaryButton>
           </div>
         </div>

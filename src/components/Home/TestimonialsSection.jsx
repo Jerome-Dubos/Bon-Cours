@@ -1,18 +1,48 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { IoChevronBack, IoChevronForward, IoStar, IoStarOutline } from 'react-icons/io5';
+import { useTranslation } from 'react-i18next';
 import apiService from '../../services/apiService';
 import { Button } from '../UI/Buttons';
 import './TestimonialsSection.css';
 
 const TestimonialsSection = ({ isMobile = false }) => {
+  const { t } = useTranslation();
   const [testimonials, setTestimonials] = useState([]);
   const [filteredTestimonials, setFilteredTestimonials] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedLanguage, setSelectedLanguage] = useState('Toutes');
+  const [selectedLanguage, setSelectedLanguage] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const carouselRef = useRef(null);
+
+  // Mapping pour traduire les langues
+  const translateLanguage = useCallback(
+    language => {
+      const mappings = {
+        'Anglais': t('languages.english'),
+        'Français': t('languages.french'),
+        'Soutien scolaire': t('languages.school_support'),
+      };
+      return mappings[language] || language;
+    },
+    [t]
+  );
+
+  // Mapping pour traduire les types de cours
+  const translateCourseType = useCallback(
+    courseType => {
+      const mappings = {
+        'Cours intensif professionnel': t('course_types.intensive'),
+        'FLE (enfants)': t('course_types.fle_children'),
+        'Suivi scolaire (enfant)': t('course_types.school_support_child'),
+        'Suivi scolaire (enfants)': t('course_types.school_support_children'),
+        'Cours adulte': t('course_types.adult'),
+      };
+      return mappings[courseType] || courseType;
+    },
+    [t]
+  );
 
   // Charger les témoignages
   useEffect(() => {
@@ -30,24 +60,31 @@ const TestimonialsSection = ({ isMobile = false }) => {
     loadTestimonials();
   }, []);
 
+  // Initialiser la langue sélectionnée
+  useEffect(() => {
+    if (selectedLanguage === null && t) {
+      setSelectedLanguage(t('home.testimonials.all'));
+    }
+  }, [selectedLanguage, t]);
+
   // Langues disponibles
   const languages = useMemo(
-    () => ['Toutes', ...new Set(testimonials.map(t => t.language))],
-    [testimonials]
+    () => [t('home.testimonials.all'), ...new Set(testimonials.map(testimonial => testimonial.language))],
+    [testimonials, t]
   );
 
   // Filtrer par langue
   const handleLanguageFilter = useCallback(
     language => {
       setSelectedLanguage(language);
-      if (language === 'Toutes') {
+      if (language === t('home.testimonials.all')) {
         setFilteredTestimonials(testimonials);
       } else {
-        setFilteredTestimonials(testimonials.filter(t => t.language === language));
+        setFilteredTestimonials(testimonials.filter(testimonial => testimonial.language === language));
       }
       setCurrentIndex(0);
     },
-    [testimonials]
+    [testimonials, t]
   );
 
   // Navigation
@@ -137,7 +174,7 @@ const TestimonialsSection = ({ isMobile = false }) => {
       <section className='testimonials' id='testimonials'>
         <div className='testimonials-loading'>
           <div className='loading-spinner'></div>
-          <p>Chargement des témoignages...</p>
+          <p>{t('home.testimonials.loading')}</p>
         </div>
       </section>
     );
@@ -147,8 +184,8 @@ const TestimonialsSection = ({ isMobile = false }) => {
     return (
       <section className='testimonials' id='testimonials'>
         <div className='testimonials-empty'>
-          <h2>Témoignages de nos apprenants</h2>
-          <p>Aucun témoignage disponible pour cette langue.</p>
+          <h2>{t('home.testimonials_title')}</h2>
+          <p>{t('home.testimonials.empty')}</p>
         </div>
       </section>
     );
@@ -158,20 +195,24 @@ const TestimonialsSection = ({ isMobile = false }) => {
     <section className='testimonials' id='testimonials'>
       <div className='testimonials-container'>
         {/* Titre */}
-        <h2>Témoignages de nos apprenants</h2>
+        <h2>{t('home.testimonials_title')}</h2>
 
         {/* Filtres */}
         <div className='testimonials-filters'>
-          {languages.map(language => (
-            <Button
-              key={language}
-              variant={selectedLanguage === language ? 'primary' : 'outline'}
-              className={`filter-btn ${selectedLanguage === language ? 'active' : ''}`}
-              onClick={() => handleLanguageFilter(language)}
-            >
-              {language}
-            </Button>
-          ))}
+          {languages.map(language => {
+            const isTranslatedAll = language === t('home.testimonials.all');
+            const displayText = isTranslatedAll ? language : translateLanguage(language);
+            return (
+              <Button
+                key={language}
+                variant={selectedLanguage === language ? 'primary' : 'outline'}
+                className={`filter-btn ${selectedLanguage === language ? 'active' : ''}`}
+                onClick={() => handleLanguageFilter(language)}
+              >
+                {displayText}
+              </Button>
+            );
+          })}
         </div>
 
         {/* Carousel */}
@@ -210,8 +251,8 @@ const TestimonialsSection = ({ isMobile = false }) => {
               <div className='testimonial-info'>
                 <h3 className='testimonial-name'>{filteredTestimonials[currentIndex]?.name}</h3>
                 <p className='testimonial-course'>
-                  {filteredTestimonials[currentIndex]?.language} -{' '}
-                  {filteredTestimonials[currentIndex]?.courseType}
+                  {translateLanguage(filteredTestimonials[currentIndex]?.language)} -{' '}
+                  {translateCourseType(filteredTestimonials[currentIndex]?.courseType)}
                 </p>
               </div>
               <div className='testimonial-rating'>
@@ -220,7 +261,7 @@ const TestimonialsSection = ({ isMobile = false }) => {
             </div>
 
             <blockquote className='testimonial-text'>
-              "{filteredTestimonials[currentIndex]?.text}"
+              "{t(`testimonials_texts.${filteredTestimonials[currentIndex]?.id}`) || filteredTestimonials[currentIndex]?.text}"
             </blockquote>
           </div>
         </div>

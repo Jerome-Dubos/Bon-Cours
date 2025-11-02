@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import AboutTabs from '../../components/WhoAreWe/AboutTabs';
 import { useErrorHandler, usePerformance } from '../../hooks';
 import './QuiSommesNous.css';
 
 const QuiSommesNous = () => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
@@ -59,7 +61,7 @@ const QuiSommesNous = () => {
       transition={pageTransition}
     >
       <div className='qui-sommes-nous-container'>
-        <h1>Qui sommes nous ?</h1>
+        <h1>{t('qui_sommes_nous.title')}</h1>
         <AboutTabs />
       </div>
     </motion.div>

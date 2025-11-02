@@ -2,11 +2,31 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ErrorBoundary } from 'react-error-boundary';
 import App from './App.jsx';
-import './i18n/hybrid-config';
+import './i18n';
 import './index.css';
 
 // Composant d'erreur pour ErrorBoundary
 function ErrorFallback({ error, resetErrorBoundary }) {
+  // Note: Nous ne pouvons pas utiliser useTranslation dans un composant fonction non-hook ici
+  // car ErrorFallback est rendu par ErrorBoundary en dehors du contexte React normal
+  // Nous utiliserons des valeurs par défaut en français qui seront cohérentes
+  const texts = {
+    fr: {
+      title: 'Oups ! Une erreur est survenue',
+      description: 'Nous nous excusons pour ce désagrément. L\'équipe technique a été notifiée.',
+      button: 'Réessayer',
+    },
+    en: {
+      title: 'Oops! An error occurred',
+      description: 'We apologize for the inconvenience. The technical team has been notified.',
+      button: 'Try again',
+    },
+  };
+  
+  // Déterminer la langue depuis localStorage ou utiliser 'fr' par défaut
+  const currentLang = localStorage.getItem('i18nextLng') || 'fr';
+  const t = texts[currentLang] || texts.fr;
+
   return (
     <div
       style={{
@@ -21,9 +41,9 @@ function ErrorFallback({ error, resetErrorBoundary }) {
         color: '#ffffff',
       }}
     >
-      <h1 style={{ marginBottom: '1rem', fontSize: '2rem' }}>Oups ! Une erreur est survenue</h1>
+      <h1 style={{ marginBottom: '1rem', fontSize: '2rem' }}>{t.title}</h1>
       <p style={{ marginBottom: '2rem', opacity: 0.9, maxWidth: '500px' }}>
-        Nous nous excusons pour ce désagrément. L'équipe technique a été notifiée.
+        {t.description}
       </p>
       <button
         onClick={resetErrorBoundary}
@@ -41,7 +61,7 @@ function ErrorFallback({ error, resetErrorBoundary }) {
         onMouseOver={e => (e.target.style.backgroundColor = '#f4d4a8')}
         onMouseOut={e => (e.target.style.backgroundColor = '#eabd83')}
       >
-        Réessayer
+        {t.button}
       </button>
     </div>
   );

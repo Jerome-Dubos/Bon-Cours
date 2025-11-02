@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { useErrorHandler, usePerformance } from '../../../hooks';
 import './Test.css';
 
 const Test = () => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
@@ -58,89 +60,67 @@ const Test = () => {
       transition={pageTransition}
     >
       <div className='test-container'>
-        <h1>Votre accompagnement linguistique commence par un diagnostic sur mesure</h1>
+        <h1>{t('test.title')}</h1>
 
         <div className='test-content'>
           <div className='test-section'>
-            <p className='test-intro'>
-              Chez Bon Cours, nous considérons que chaque parcours linguistique est unique. Avant
-              toute formation, nous vous proposons un entretien individuel gratuit avec un formateur
-              expert, afin d'établir un bilan précis et personnalisé de votre niveau, de vos besoins
-              et de vos objectifs.
-            </p>
+            <p className='test-intro'>{t('test.intro')}</p>
           </div>
 
           <div className='test-section'>
-            <h2>Un entretien privilégié avec un formateur expert</h2>
-            <p className='test-intro'>
-              Durant cet échange confidentiel, en présentiel ou à distance, votre formateur dédié
-              prendra le temps de :
-            </p>
+            <h2>{t('test.expert.title')}</h2>
+            <p className='test-intro'>{t('test.expert.intro')}</p>
             <div className='test-info'>
               <ul>
                 <li>
-                  <strong>Évaluer votre niveau linguistique actuel</strong> selon le Cadre Européen
-                  Commun de Référence (CECRL)
+                  <strong>{t('test.expert.item1')}</strong>
                 </li>
                 <li>
-                  <strong>Comprendre vos objectifs</strong> personnels et professionnels
+                  <strong>{t('test.expert.item2')}</strong>
                 </li>
                 <li>
-                  <strong>Identifier vos forces</strong>, vos axes de progression et vos préférences
-                  d'apprentissage
+                  <strong>{t('test.expert.item3')}</strong>
                 </li>
                 <li>
-                  <strong>Vous orienter</strong> vers la stratégie la plus adaptée pour atteindre
-                  vos ambitions
+                  <strong>{t('test.expert.item4')}</strong>
                 </li>
               </ul>
             </div>
-            <p className='test-intro'>
-              Chaque diagnostic est conduit avec rigueur, bienveillance et expertise, dans le
-              respect de votre rythme et de vos attentes.
-            </p>
+            <p className='test-intro'>{t('test.expert.conclusion')}</p>
           </div>
 
           <div className='test-section'>
-            <h2>Un service offert, conçu pour l'excellence</h2>
-            <p className='test-intro'>
-              Ce diagnostic constitue la première étape de votre réussite.
-            </p>
+            <h2>{t('test.service.title')}</h2>
+            <p className='test-intro'>{t('test.service.intro')}</p>
             <div className='test-info'>
               <ul>
                 <li>
-                  <strong>Gratuit et sans engagement</strong>, il vous offre une vision claire de
-                  votre profil linguistique
+                  <strong>{t('test.service.item1')}</strong>
                 </li>
                 <li>
-                  <strong>Expertise d'un professionnel qualifié</strong>, habitué à accompagner un
-                  public exigeant
+                  <strong>{t('test.service.item2')}</strong>
                 </li>
                 <li>
-                  <strong>Analyse complète et recommandations personnalisées</strong> pour
-                  progresser avec méthode et efficacité
+                  <strong>{t('test.service.item3')}</strong>
                 </li>
               </ul>
             </div>
           </div>
 
           <div className='test-section'>
-            <h2>Réservez votre diagnostic personnalisé</h2>
+            <h2>{t('test.reserve.title')}</h2>
             <div className='test-info'>
               <ul>
-                <li>1. Cliquez sur le bouton ci-dessous</li>
-                <li>2. Choisissez le créneau qui vous convient le mieux</li>
-                <li>3. Recevez votre confirmation et les informations de rendez-vous</li>
+                <li>1. {t('test.reserve.item1')}</li>
+                <li>2. {t('test.reserve.item2')}</li>
+                <li>3. {t('test.reserve.item3')}</li>
               </ul>
             </div>
-            <p className='test-intro'>
-              Parce que la maîtrise d'une langue ouvre de nouvelles perspectives, commencez votre
-              parcours avec l'accompagnement qu'il mérite.
-            </p>
+            <p className='test-intro'>{t('test.reserve.conclusion')}</p>
 
             <div className='test-cta-main'>
               <Link to='/contact' className='contact-button'>
-                Réserver mon diagnostic personnalisé
+                {t('test.reserve.button')}
               </Link>
             </div>
           </div>

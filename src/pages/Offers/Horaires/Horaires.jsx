@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../../../components/UI/Buttons';
 import { useErrorHandler, usePerformance } from '../../../hooks';
 import './Horaires.css';
 
 const Horaires = () => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
@@ -66,61 +68,40 @@ const Horaires = () => {
       transition={pageTransition}
     >
       <div className='horaires-container'>
-        <h1>Des horaires pensés pour votre rythme – avec la flexibilité que vous méritez</h1>
+        <h1>{t('horaires.title')}</h1>
 
         <div className='horaires-content'>
-          <p className='horaires-intro'>
-            Chez Bon Cours, nous comprenons que votre temps est précieux. C'est pourquoi nous avons
-            conçu un planning de base qui respecte les contraintes des journées de travail et des
-            emplois du temps scolaires, afin de faciliter l'intégration des cours dans votre
-            quotidien.
-          </p>
+          <p className='horaires-intro'>{t('horaires.intro')}</p>
 
-          <p className='horaires-flexibility'>
-            Mais parce que chaque situation est unique, nous avons fait le choix de la flexibilité :
-          </p>
+          <p className='horaires-flexibility'>{t('horaires.flexibility')}</p>
 
           <div className='horaires-features'>
-            <p>
-              Nos horaires peuvent être ajustés en fonction de vos disponibilités et de celles de
-              nos intervenants.
-            </p>
-            <p>
-              Que vous soyez salarié, parent, étudiant ou en transition, notre priorité est de vous
-              proposer des horaires qui vous permettent de progresser à votre rythme.
-            </p>
+            <p>{t('horaires.features.p1')}</p>
+            <p>{t('horaires.features.p2')}</p>
           </div>
 
           <div className='horaires-practice'>
             <h2>
               <FaCheck />
-              En pratique :
+              {t('horaires.practice.title')}
             </h2>
             <ul>
-              <li>
-                Des plages horaires variées en matinée, après-midi ou soirée, du lundi au dimanche
-                inclus
-              </li>
-              <li>Possibilité de cours en présentiel ou à distance</li>
-              <li>Groupes réduits ou cours individuels selon vos préférences</li>
-              <li>
-                Ajustements possibles en cas de changement de planning personnel ou professionnel
-              </li>
+              <li>{t('horaires.practice.item1')}</li>
+              <li>{t('horaires.practice.item2')}</li>
+              <li>{t('horaires.practice.item3')}</li>
+              <li>{t('horaires.practice.item4')}</li>
             </ul>
           </div>
 
           <div className='horaires-cta'>
-            <p>
-              Pour en savoir plus ou discuter de vos disponibilités, contactez-nous pour nous faire
-              part de vos besoins : nous vous proposerons une solution sur mesure.
-            </p>
+            <p>{t('horaires.cta.text')}</p>
             <Button
               variant='primary'
               size='large'
               onClick={handleContactClick}
               className='horaires-cta-button'
             >
-              Contactez-nous
+              {t('horaires.cta.button')}
             </Button>
           </div>
         </div>

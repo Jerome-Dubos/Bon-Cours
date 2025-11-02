@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import Tabs from '../../../components/Tabs/Tabs';
 import LanguageCarousel from '../../../components/UI/LanguageCarousel';
@@ -10,6 +11,7 @@ import { useTabNavigation } from '../../../hooks/useTabNavigation';
 import './AteliersLinguistiques.css';
 
 const AteliersLinguistiques = () => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
   const [newsletterData, setNewsletterData] = useState({ email: '' });
@@ -64,7 +66,7 @@ const AteliersLinguistiques = () => {
 
       // Validation de l'email (double vérification)
       if (!formData.email || !validateEmail(formData.email)) {
-        addNotification('error', 'Veuillez saisir une adresse email valide');
+        addNotification('error', t('footer.newsletter.error'));
         return;
       }
 
@@ -79,7 +81,7 @@ const AteliersLinguistiques = () => {
       // await newsletterService.subscribe(formData.email);
 
       // Notification de succès
-      addNotification('success', 'Inscription à la newsletter réussie !');
+      addNotification('success', t('footer.newsletter.success'));
 
       // Fermer la modale
       setIsNewsletterModalOpen(false);
@@ -95,242 +97,203 @@ const AteliersLinguistiques = () => {
     }
   };
 
-  // Définir les onglets disponibles
-  const tabs = [
-    {
-      id: 'langue-orale',
-      label: 'Langue orale',
-      content: (
-        <div className='atelier-content'>
-          <div className='atelier-image-container'>
-            <img
-              src='/assets/images/ateliers/oral-2.webp'
-              alt='Atelier Langue Orale'
-              className='atelier-image'
-            />
-          </div>
-          <div className='atelier-text-content'>
-            <p className='atelier-description'>
-              Si vous maîtrisez déjà les bases et souhaitez aller plus loin pour gagner en{' '}
-              <strong>fluidité</strong> et en <strong>confiance</strong> pour vous exprimer aussi
-              bien en langue cible que dans votre propre langue, cet atelier est fait pour vous ! À
-              travers des échanges vivants autour de thèmes d'actualité, vous perfectionnerez votre{' '}
-              <strong>prononciation</strong>, votre <strong>intonation</strong> et votre{' '}
-              <strong>expression orale</strong>. Chaque séance offre un cadre bienveillant et
-              exigeant à la fois, propice à l'écoute, à la précision et au plaisir de la langue.
-            </p>
-            <div className='cta-section'>
-              <Link to='/contact' className='cta-button'>
-                S'inscrire à l'atelier
-              </Link>
+  // Définir les onglets disponibles avec traductions
+  const tabs = useMemo(
+    () => [
+      {
+        id: 'langue-orale',
+        label: t('nav.submenus.langue-orale'),
+        content: (
+          <div className='atelier-content'>
+            <div className='atelier-image-container'>
+              <img
+                src='/assets/images/ateliers/oral-2.webp'
+                alt={t('ateliers_linguistiques.langue_orale.alt')}
+                className='atelier-image'
+              />
+            </div>
+            <div className='atelier-text-content'>
+              <p className='atelier-description'>{t('ateliers_linguistiques.langue_orale.description')}</p>
+              <div className='cta-section'>
+                <Link to='/contact' className='cta-button'>
+                  {t('ateliers_linguistiques.langue_orale.cta')}
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      ),
-    },
-    {
-      id: 'langue-ecrite',
-      label: 'Langue écrite',
-      content: (
-        <div className='atelier-content'>
-          <div className='atelier-image-container'>
-            <img
-              src='/assets/images/ateliers/langue-ecrite-2.webp'
-              alt='Atelier Langue Écrite'
-              className='atelier-image'
-            />
-          </div>
-          <div className='atelier-text-content'>
-            <p className='atelier-description'>
-              Ces ateliers s'adressent à celles et ceux qui ont atteint un niveau A2 et souhaitent
-              perfectionner leur expression écrite, du{' '}
-              <strong>message du quotidien au document professionnel</strong>. Vous y apprendrez à{' '}
-              <strong>rédiger avec clarté, élégance et précision</strong>, tout en développant un
-              style personnel et adapté à chaque situation.
-              <br />
-              <br />
-              <strong>Au programme :</strong>
-              <br />
-              - Rédaction de courriels et lettres formels ou informels
-              <br />
-              - Élaboration de CV et lettres de motivation
-              <br />
-              - Préparation aux examens de langue avec un accompagnement sur mesure
-              <br />
-              <br />
-              Chaque séance allie méthode, créativité et exigence linguistique, pour vous permettre
-              d'écrire de façon naturelle et maîtrisée.
-            </p>
-            <div className='cta-section'>
-              <Link to='/contact' className='cta-button'>
-                S'inscrire à l'atelier
-              </Link>
+        ),
+      },
+      {
+        id: 'langue-ecrite',
+        label: t('nav.submenus.langue-ecrite'),
+        content: (
+          <div className='atelier-content'>
+            <div className='atelier-image-container'>
+              <img
+                src='/assets/images/ateliers/langue-ecrite-2.webp'
+                alt={t('ateliers_linguistiques.langue_ecrite.alt')}
+                className='atelier-image'
+              />
+            </div>
+            <div className='atelier-text-content'>
+              <p className='atelier-description'>
+                {t('ateliers_linguistiques.langue_ecrite.description')}
+                <br />
+                <br />
+                <strong>{t('ateliers_linguistiques.langue_ecrite.programme')}</strong>
+                <br />- {t('ateliers_linguistiques.langue_ecrite.item1')}
+                <br />- {t('ateliers_linguistiques.langue_ecrite.item2')}
+                <br />- {t('ateliers_linguistiques.langue_ecrite.item3')}
+                <br />
+                <br />
+                {t('ateliers_linguistiques.langue_ecrite.conclusion')}
+              </p>
+              <div className='cta-section'>
+                <Link to='/contact' className='cta-button'>
+                  {t('ateliers_linguistiques.langue_ecrite.cta')}
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      ),
-    },
-    {
-      id: 'cuisine',
-      label: 'Cuisine',
-      content: (
-        <div className='atelier-content'>
-          <div className='atelier-image-container'>
-            <img
-              src='/assets/images/ateliers/cuisine-2.webp'
-              alt='Atelier Cuisine'
-              className='atelier-image'
-            />
-          </div>
-          <div className='atelier-text-content'>
-            <p className='atelier-description'>
-              Venez découvrir les langues autrement, autour des <strong>saveurs</strong> et des{' '}
-              <strong>gestes de la cuisine</strong>. Ces ateliers vous permettent de pratiquer la
-              langue dans un cadre <strong>détendu et convivial</strong>, tout en explorant{' '}
-              <strong>recettes et traditions culinaires</strong>.
-              <br />
-              <br />
-              Chaque séance vous permet de :
-              <br />- Découvrir le <strong>vocabulaire et les expressions</strong> liés à la cuisine
-              et à la gastronomie ;
-              <br />- Pratiquer le français à l'oral dans des{' '}
-              <strong>situations concrètes et motivantes</strong> ;
-              <br />- Partager des moments de <strong>convivialité et de découverte</strong> avec
-              d'autres apprenants.
-              <br />
-              <br />
-              Un moyen <strong>ludique et immersif</strong> de faire du français une langue vivante
-              tout en explorant la <strong>richesse culinaire française et internationale</strong>.
-            </p>
-            <div className='cta-section'>
-              <Link to='/contact' className='cta-button'>
-                S'inscrire à l'atelier
-              </Link>
+        ),
+      },
+      {
+        id: 'cuisine',
+        label: t('nav.submenus.cuisine'),
+        content: (
+          <div className='atelier-content'>
+            <div className='atelier-image-container'>
+              <img
+                src='/assets/images/ateliers/cuisine-2.webp'
+                alt={t('ateliers_linguistiques.cuisine.alt')}
+                className='atelier-image'
+              />
+            </div>
+            <div className='atelier-text-content'>
+              <p className='atelier-description'>
+                {t('ateliers_linguistiques.cuisine.description')}
+                <br />
+                <br />
+                {t('ateliers_linguistiques.cuisine.intro')}
+                <br />- {t('ateliers_linguistiques.cuisine.item1')}
+                <br />- {t('ateliers_linguistiques.cuisine.item2')}
+                <br />- {t('ateliers_linguistiques.cuisine.item3')}
+                <br />
+                <br />
+                {t('ateliers_linguistiques.cuisine.conclusion')}
+              </p>
+              <div className='cta-section'>
+                <Link to='/contact' className='cta-button'>
+                  {t('ateliers_linguistiques.cuisine.cta')}
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      ),
-    },
-    {
-      id: 'sport',
-      label: 'Sport',
-      content: (
-        <div className='atelier-content'>
-          <div className='atelier-image-container'>
-            <img
-              src='/assets/images/ateliers/sport-2.webp'
-              alt='Atelier Sport'
-              className='atelier-image'
-            />
-          </div>
-          <div className='atelier-text-content'>
-            <p className='atelier-description'>
-              Bougez, échangez et pratiquez les langues dans un cadre{' '}
-              <strong>dynamique et convivial</strong> ! Ces ateliers combinent{' '}
-              <strong>activité physique et apprentissage linguistique</strong> pour progresser tout
-              en prenant plaisir à se dépenser.
-              <br />
-              <br />
-              Chaque séance vous permet de :
-              <br />- Découvrir le <strong>vocabulaire et les expressions</strong> liés au sport et
-              à la santé ;
-              <br />- Pratiquer le français à l'oral dans des{' '}
-              <strong>situations concrètes et motivantes</strong> ;
-              <br />- Partager des moments d'<strong>effort et de convivialité</strong> avec
-              d'autres apprenants.
-              <br />
-              <br />
-              Un moyen <strong>ludique et immersif</strong> de faire du français une langue vivante
-              tout en prenant soin de votre corps.
-            </p>
-            <div className='cta-section'>
-              <Link to='/contact' className='cta-button'>
-                S'inscrire à l'atelier
-              </Link>
+        ),
+      },
+      {
+        id: 'sport',
+        label: t('nav.submenus.sport'),
+        content: (
+          <div className='atelier-content'>
+            <div className='atelier-image-container'>
+              <img
+                src='/assets/images/ateliers/sport-2.webp'
+                alt={t('ateliers_linguistiques.sport.alt')}
+                className='atelier-image'
+              />
+            </div>
+            <div className='atelier-text-content'>
+              <p className='atelier-description'>
+                {t('ateliers_linguistiques.sport.description')}
+                <br />
+                <br />
+                {t('ateliers_linguistiques.sport.intro')}
+                <br />- {t('ateliers_linguistiques.sport.item1')}
+                <br />- {t('ateliers_linguistiques.sport.item2')}
+                <br />- {t('ateliers_linguistiques.sport.item3')}
+                <br />
+                <br />
+                {t('ateliers_linguistiques.sport.conclusion')}
+              </p>
+              <div className='cta-section'>
+                <Link to='/contact' className='cta-button'>
+                  {t('ateliers_linguistiques.sport.cta')}
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      ),
-    },
-    {
-      id: 'jeux',
-      label: 'Jeux',
-      content: (
-        <div className='atelier-content'>
-          <div className='atelier-image-container'>
-            <img
-              src='/assets/images/ateliers/jeux-2.webp'
-              alt='Atelier Jeux'
-              className='atelier-image'
-            />
-          </div>
-          <div className='atelier-text-content'>
-            <p className='atelier-description'>
-              Ces ateliers vous permettent de pratiquer la langue en jouant, que ce soit à travers
-              des <strong>jeux de société</strong>, des <strong>énigmes</strong> ou des{' '}
-              <strong>défis collectifs</strong>.
-              <br />
-              <br />
-              Chaque séance vous offre l'opportunité de :
-              <br />- Enrichir votre <strong>vocabulaire et vos expressions</strong> dans des
-              situations <strong>amusantes et stimulantes</strong> ;
-              <br />- Pratiquer votre <strong>expression orale</strong> dans un contexte{' '}
-              <strong>naturel et détendu</strong> ;
-              <br />- Partager des moments de <strong>
-                rire, de réflexion et de complicité
-              </strong>{' '}
-              avec d'autres participants.
-              <br />
-              <br />
-              Une manière <strong>originale et immersive</strong> d'apprendre une langue tout en
-              s'amusant et en stimulant sa curiosité !
-            </p>
-            <div className='cta-section'>
-              <Link to='/contact' className='cta-button'>
-                S'inscrire à l'atelier
-              </Link>
+        ),
+      },
+      {
+        id: 'jeux',
+        label: t('nav.submenus.jeux'),
+        content: (
+          <div className='atelier-content'>
+            <div className='atelier-image-container'>
+              <img
+                src='/assets/images/ateliers/jeux-2.webp'
+                alt={t('ateliers_linguistiques.jeux.alt')}
+                className='atelier-image'
+              />
+            </div>
+            <div className='atelier-text-content'>
+              <p className='atelier-description'>
+                {t('ateliers_linguistiques.jeux.description')}
+                <br />
+                <br />
+                {t('ateliers_linguistiques.jeux.intro')}
+                <br />- {t('ateliers_linguistiques.jeux.item1')}
+                <br />- {t('ateliers_linguistiques.jeux.item2')}
+                <br />- {t('ateliers_linguistiques.jeux.item3')}
+                <br />
+                <br />
+                {t('ateliers_linguistiques.jeux.conclusion')}
+              </p>
+              <div className='cta-section'>
+                <Link to='/contact' className='cta-button'>
+                  {t('ateliers_linguistiques.jeux.cta')}
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      ),
-    },
-    {
-      id: 'cinema',
-      label: 'Cinéma',
-      content: (
-        <div className='atelier-content'>
-          <div className='atelier-image-container'>
-            <img
-              src='/assets/images/ateliers/cinema-2.webp'
-              alt='Atelier Cinéma'
-              className='atelier-image'
-            />
-          </div>
-          <div className='atelier-text-content'>
-            <p className='atelier-description'>
-              Plongez dans l'univers des <strong>films, des séries et des émissions télé</strong>{' '}
-              pour apprendre les langues autrement. Chaque séance est une{' '}
-              <strong>expérience immersive</strong> : vous regardez, écoutez, analysez... et
-              surtout, vous parlez !
-              <br />
-              <br />
-              Entre <strong>extraits captivants et discussions animées</strong>, vous découvrirez
-              les <strong>expressions courantes</strong>, affinerez votre{' '}
-              <strong>compréhension</strong> et développerez votre <strong>aisance à l'oral</strong>
-              . Les échanges permettent de partager{' '}
-              <strong>impressions, interprétations et points de vue</strong>, tout en explorant la
-              culture sous un angle <strong>original, vivant et concret</strong>.
-            </p>
-            <div className='cta-section'>
-              <Link to='/contact' className='cta-button'>
-                S'inscrire à l'atelier
-              </Link>
+        ),
+      },
+      {
+        id: 'cinema',
+        label: t('nav.submenus.cinema'),
+        content: (
+          <div className='atelier-content'>
+            <div className='atelier-image-container'>
+              <img
+                src='/assets/images/ateliers/cinema-2.webp'
+                alt={t('ateliers_linguistiques.cinema.alt')}
+                className='atelier-image'
+              />
+            </div>
+            <div className='atelier-text-content'>
+              <p className='atelier-description'>
+                {t('ateliers_linguistiques.cinema.description')}
+                <br />
+                <br />
+                {t('ateliers_linguistiques.cinema.intro')}{' '}
+                <strong>{t('ateliers_linguistiques.cinema.item1')}</strong>,{' '}
+                {t('ateliers_linguistiques.cinema.item2')}{' '}
+                <strong>{t('ateliers_linguistiques.cinema.item3')}</strong>
+                {t('ateliers_linguistiques.cinema.conclusion')}
+              </p>
+              <div className='cta-section'>
+                <Link to='/contact' className='cta-button'>
+                  {t('ateliers_linguistiques.cinema.cta')}
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      ),
-    },
-  ];
+        ),
+      },
+    ],
+    [t]
+  );
 
   // Hook personnalisé pour la navigation par onglets
   const { activeTab, changeTab } = useTabNavigation('langue-orale', tabs);
@@ -379,31 +342,15 @@ const AteliersLinguistiques = () => {
       transition={pageTransition}
     >
       <div className='ateliers-linguistiques-container'>
-        <h1>Ateliers linguistiques</h1>
+        <h1>{t('ateliers_linguistiques.title')}</h1>
 
         <div className='intro-section'>
-          <p className='intro-text'>
-            Chez Bon Cours, nous sommes convaincus que des activités immersives vous aident à
-            progresser. C'est pourquoi nous proposons des ateliers ciblés et variés tous les mois.
-            L'ensemble de nos ateliers se déclinent dans toutes nos langues disponibles, toujours en
-            petits groupes de 6 maximum, du lundi au dimanche sous réserve de disponibilité de nos
-            intervenant.e.s.{' '}
-            {/*
-            <button
-              className='newsletter-link'
-              onClick={() => setIsNewsletterModalOpen(true)}
-              type='button'
-            >
-              Inscrivez-vous à notre lettre d'information
-            </button>{' '}
-            pour connaître les prochaines dates de nos ateliers!
-            */}
-          </p>
+          <p className='intro-text'>{t('ateliers_linguistiques.intro')}</p>
 
           <div className='price-card'>
             <div className='price-content'>
-              <p className='price-label'>Tarif unique</p>
-              <p className='price-value'>30 € / atelier de 2h</p>
+              <p className='price-label'>{t('ateliers_linguistiques.price_label')}</p>
+              <p className='price-value'>{t('ateliers_linguistiques.price_value')}</p>
             </div>
           </div>
         </div>
@@ -424,8 +371,8 @@ const AteliersLinguistiques = () => {
           setIsEmailValid(false);
         }}
         onSubmit={handleNewsletterSubmit}
-        title='Inscrivez-vous à notre newsletter'
-        submitText={isSubmitting ? 'Inscription...' : "S'inscrire"}
+        title={t('footer.newsletter_title')}
+        submitText={isSubmitting ? t('common.loading') : t('footer.newsletter_title')}
         cancelText='Annuler'
         initialData={newsletterData}
         submitDisabled={isSubmitting || !isEmailValid}
@@ -434,8 +381,8 @@ const AteliersLinguistiques = () => {
       >
         <div className='newsletter-modal-content'>
           <p className='newsletter-description'>
-            Recevez les dernières informations sur nos ateliers linguistiques, les nouvelles dates
-            et les événements spéciaux.
+            Recevez les dernières informations sur nos ateliers linguistiques, les nouvelles dates et
+            les événements spéciaux.
           </p>
 
           <div className='newsletter-form-group'>

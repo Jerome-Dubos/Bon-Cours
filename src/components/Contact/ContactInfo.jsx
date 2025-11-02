@@ -1,29 +1,48 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { FaClock, FaDirections, FaMapMarkerAlt } from 'react-icons/fa';
 import { MdDirectionsBus, MdDirectionsCar, MdPedalBike, MdTram } from 'react-icons/md';
+import { useTranslation } from 'react-i18next';
 import { InfoNotification } from '../UI/Notifications';
 import './ContactInfo.css';
 
 const ContactInfo = () => {
+  const { t } = useTranslation();
   const [infoNotifications, setInfoNotifications] = useState([]);
   const [nextNotificationId, setNextNotificationId] = useState(1);
 
-  const horaires = [
-    { jour: 'Lundi', heures: '8h - 20h', ouvert: true },
-    { jour: 'Mardi', heures: '8h - 20h', ouvert: true },
-    { jour: 'Mercredi', heures: '8h - 20h', ouvert: true },
-    { jour: 'Jeudi', heures: '8h - 20h', ouvert: true },
-    { jour: 'Vendredi', heures: '8h - 20h', ouvert: true },
-    { jour: 'Samedi', heures: '8h - 20h', ouvert: true },
-    { jour: 'Dimanche', heures: '8h - 20h', ouvert: true },
-  ];
+  const horaires = useMemo(
+    () => [
+      { jour: t('contact.days.monday'), heures: '8h - 20h', ouvert: true },
+      { jour: t('contact.days.tuesday'), heures: '8h - 20h', ouvert: true },
+      { jour: t('contact.days.wednesday'), heures: '8h - 20h', ouvert: true },
+      { jour: t('contact.days.thursday'), heures: '8h - 20h', ouvert: true },
+      { jour: t('contact.days.friday'), heures: '8h - 20h', ouvert: true },
+      { jour: t('contact.days.saturday'), heures: '8h - 20h', ouvert: true },
+      { jour: t('contact.days.sunday'), heures: '8h - 20h', ouvert: true },
+    ],
+    [t]
+  );
 
-  const contactInfo = {
-    adresse: '36 quai Mullenheim, 67000 Strasbourg',
-  };
+  const contactInfo = useMemo(
+    () => ({
+      adresse: t('contact.address'),
+    }),
+    [t]
+  );
 
   // Détermination du jour actif
-  const joursFR = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+  const joursFR = useMemo(
+    () => [
+      t('contact.days.sunday'),
+      t('contact.days.monday'),
+      t('contact.days.tuesday'),
+      t('contact.days.wednesday'),
+      t('contact.days.thursday'),
+      t('contact.days.friday'),
+      t('contact.days.saturday'),
+    ],
+    [t]
+  );
   const today = new Date();
   const todayName = joursFR[today.getDay()];
 
@@ -57,37 +76,40 @@ const ContactInfo = () => {
 
   const handleCopyAddress = () => {
     copyToClipboard(contactInfo.adresse);
-    addNotification('Adresse copiée !');
+    addNotification(t('contact.address_copied'));
   };
 
   const handleCopyHours = () => {
     const hoursText = horaires.map(h => `${h.jour}: ${h.heures}`).join('\n');
     copyToClipboard(hoursText);
-    addNotification('Horaires copiés !');
+    addNotification(t('contact.hours_copied'));
   };
 
-  const transportMethods = [
-    {
-      icon: MdTram,
-      title: 'Tram',
-      description: 'Ligne B - Arrêt Lycée Kleber',
-    },
-    {
-      icon: MdDirectionsBus,
-      title: 'Bus',
-      description: 'Ligne 2 - Arrêt Bethesda\nLigne C6, 30 et 72 - Arrêt Orangerie',
-    },
-    {
-      icon: MdDirectionsCar,
-      title: 'Voiture',
-      description: 'Places payantes à proximité',
-    },
-    {
-      icon: MdPedalBike,
-      title: 'Vélo',
-      description: "Stationnement au pied de l'immeuble",
-    },
-  ];
+  const transportMethods = useMemo(
+    () => [
+      {
+        icon: MdTram,
+        title: t('contact.transport.tram.title'),
+        description: t('contact.transport.tram.description'),
+      },
+      {
+        icon: MdDirectionsBus,
+        title: t('contact.transport.bus.title'),
+        description: t('contact.transport.bus.description'),
+      },
+      {
+        icon: MdDirectionsCar,
+        title: t('contact.transport.car.title'),
+        description: t('contact.transport.car.description'),
+      },
+      {
+        icon: MdPedalBike,
+        title: t('contact.transport.bike.title'),
+        description: t('contact.transport.bike.description'),
+      },
+    ],
+    [t]
+  );
 
   return (
     <div className='contact-info-container'>
@@ -95,7 +117,7 @@ const ContactInfo = () => {
         {/* Section "Où nous trouver" */}
         <div className='where-to-find-section'>
           <div className='where-to-find-header'>
-            <h2 className='where-to-find-title'>Où nous trouver</h2>
+            <h2 className='where-to-find-title'>{t('contact.where_to_find')}</h2>
           </div>
 
           <div className='where-to-find-grid'>
@@ -110,7 +132,7 @@ const ContactInfo = () => {
                   allowFullScreen=''
                   loading='lazy'
                   referrerPolicy='no-referrer-when-downgrade'
-                  title='Localisation Bon Cours Strasbourg'
+                  title={t('contact.map_title')}
                   className='map-iframe'
                 />
               </div>
@@ -124,7 +146,7 @@ const ContactInfo = () => {
                   <div className='info-block-icon'>
                     <FaMapMarkerAlt size={20} />
                   </div>
-                  <h3 className='info-block-title'>Adresse</h3>
+                  <h3 className='info-block-title'>{t('contact.address_title')}</h3>
                 </div>
                 <p className='info-block-content'>{contactInfo.adresse}</p>
                 <button
@@ -133,7 +155,7 @@ const ContactInfo = () => {
                   aria-label="Obtenir l'itinéraire vers notre adresse"
                 >
                   <FaDirections size={16} />
-                  <span>Obtenir l'itinéraire</span>
+                  <span>{t('contact.get_directions')}</span>
                 </button>
               </div>
 
@@ -143,7 +165,7 @@ const ContactInfo = () => {
                   <div className='info-block-icon'>
                     <FaClock size={20} />
                   </div>
-                  <h3 className='info-block-title'>Horaires d'ouverture</h3>
+                  <h3 className='info-block-title'>{t('contact.hours_title')}</h3>
                 </div>
                 <div className='hours-list'>
                   {horaires.map((horaire, index) => (
@@ -167,7 +189,7 @@ const ContactInfo = () => {
         {/* Section "Comment venir" */}
         <div className='how-to-come-section'>
           <div className='how-to-come-header'>
-            <h2 className='how-to-come-title'>Comment venir</h2>
+            <h2 className='how-to-come-title'>{t('contact.how_to_come')}</h2>
           </div>
           <div className='transport-grid'>
             {transportMethods.map((method, index) => {

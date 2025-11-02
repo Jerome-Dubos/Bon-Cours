@@ -1,9 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ContactInfo } from '../../components/Contact';
 import { ContactForm } from '../../components/UI/Forms';
 import './Contact.css';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const handleSubmit = async formData => {
     console.log('Données du formulaire:', formData);
 
@@ -27,7 +29,7 @@ const Contact = () => {
   return (
     <div className='contact'>
       <div className='contact-form-section'>
-        <h2 className='contact-form-title'>Contactez-nous</h2>
+        <h2 className='contact-form-title'>{t('contact.title')}</h2>
         <ContactForm onSubmit={handleSubmit} onSuccess={handleSuccess} onError={handleError} />
       </div>
       <ContactInfo />

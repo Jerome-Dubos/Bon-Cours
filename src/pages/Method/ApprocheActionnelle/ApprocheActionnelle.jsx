@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
 import { FaBullseye, FaHandshake, FaLightbulb, FaRocket } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useErrorHandler, usePerformance } from '../../../hooks';
 import './ApprocheActionnelle.css';
 
 const ApprocheActionnelle = () => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const [searchParams] = useSearchParams();
@@ -65,7 +67,7 @@ const ApprocheActionnelle = () => {
       transition={pageTransition}
     >
       <div className='approche-actionnelle-container'>
-        <h1>Approche Actionnelle</h1>
+        <h1>{t('approche_actionnelle.title')}</h1>
 
         <div className='approche-content'>
           <motion.div
@@ -78,14 +80,9 @@ const ApprocheActionnelle = () => {
               <div className='intro-icon'>
                 <FaRocket />
               </div>
-              <h2>Notre Approche</h2>
+              <h2>{t('approche_actionnelle.our_approach')}</h2>
             </div>
-            <p>
-              Dans notre centre de langues, nous utilisons l'approche actionnelle, une méthode
-              moderne et motivante qui place l'apprenant au cœur de son apprentissage. L'idée est
-              simple : apprendre une langue, ce n'est pas seulement mémoriser des règles, c'est
-              surtout savoir l'utiliser dans la vie de tous les jours.
-            </p>
+            <p>{t('approche_actionnelle.intro')}</p>
           </motion.div>
 
           <div className='approche-sections'>
@@ -99,14 +96,8 @@ const ApprocheActionnelle = () => {
                 <FaLightbulb />
               </div>
               <div className='section-content'>
-                <h3>Concrètement, cela signifie que...</h3>
-                <p>
-                  les cours sont organisés autour de tâches et de projets concrets : écrire un
-                  e-mail professionnel, préparer un voyage, consulter un médecin ou donner des
-                  indications pour la livraison de repas à domicile. Ces mises en situation
-                  permettent de pratiquer la langue de façon naturelle, comme on le ferait dans un
-                  vrai contexte.
-                </p>
+                <h3>{t('approche_actionnelle.concrete.title')}</h3>
+                <p>{t('approche_actionnelle.concrete.text')}</p>
               </div>
             </motion.div>
 
@@ -120,11 +111,8 @@ const ApprocheActionnelle = () => {
                 <FaHandshake />
               </div>
               <div className='section-content'>
-                <h3>Les activités favorisent l'échange et la confiance en soi</h3>
-                <p>
-                  On apprend en communiquant, en testant, en s'impliquant, plutôt qu'en restant
-                  spectateur.
-                </p>
+                <h3>{t('approche_actionnelle.activities.title')}</h3>
+                <p>{t('approche_actionnelle.activities.text')}</p>
               </div>
             </motion.div>
 
@@ -138,12 +126,8 @@ const ApprocheActionnelle = () => {
                 <FaBullseye />
               </div>
               <div className='section-content'>
-                <h3>Notre objectif</h3>
-                <p>
-                  est que chacun reparte non seulement avec des connaissances linguistiques solides,
-                  mais aussi avec la capacité de communiquer efficacement et avec plaisir dans la
-                  langue cible.
-                </p>
+                <h3>{t('approche_actionnelle.objective.title')}</h3>
+                <p>{t('approche_actionnelle.objective.text')}</p>
               </div>
             </motion.div>
           </div>
@@ -154,10 +138,10 @@ const ApprocheActionnelle = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <h3>Prêt à découvrir notre approche ?</h3>
-            <p>Contactez-nous pour en savoir plus sur nos cours et notre méthode pédagogique.</p>
+            <h3>{t('approche_actionnelle.cta.title')}</h3>
+            <p>{t('approche_actionnelle.cta.text')}</p>
             <Link to='/contact' className='cta-button'>
-              Nous contacter
+              {t('approche_actionnelle.cta.button')}
             </Link>
           </motion.div>
         </div>

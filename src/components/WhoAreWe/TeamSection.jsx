@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LargeModal } from '../UI/Modales';
 import { Button } from '../UI/Buttons/src';
@@ -21,162 +21,131 @@ const TeamSection = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const teamMembers = [
-    {
-      id: 0,
-      name: 'Florence',
-      role: 'Fondatrice & Directrice',
-      photo: encodeURI('/assets/images/team/Florence.webp'),
-      description:
-        "Fondatrice et directrice de Bon Cours, je partage depuis plus de dix ans ma passion pour les langues et l’enseignement avec des enfants, des adolescents et des adultes de profils variés. Ancienne élève allophone arrivée en France à l’âge de 12 ans, j’ai développé une compréhension fine des besoins d’apprentissage et conçois des programmes personnalisés, avec des outils adaptés qui favorisent la progression dans le respect du rythme de chacun·e.",
-      languages: ['Français'],
-    },
-    {
-      id: 1,
-      name: 'Aya',
-      role: 'Japonais',
-      photo: encodeURI('/assets/images/team/Aya.webp'),
-      description:
-        "Native du Japon, j’enseigne le japonais depuis plus de dix ans à des apprenants de tous âges. Passionnée par la transmission de ma langue et de ma culture, je propose des cours dynamiques, bienveillants et adaptés à chacun, pour apprendre le japonais avec plaisir et confiance.",
-      languages: ['Japonais'],
-    },
-    {
-      id: 2,
-      name: 'Maryse',
-      role: 'Français & Anglais / Aide aux devoirs',
-      photo: encodeURI('/assets/images/team/Maryse.webp'),
-      description:
-        "Professeure de français et d'anglais, je propose à l'Institut Bon Cours de l'aide aux devoirs dans toutes les matières aux élèves de primaire, collège et lycée. Ma pédagogie est adaptée aux élèves souffrants de troubles dys. J'accompagne également les élèves dans la préparation du brevet et du bac.",
-      languages: ['Français', 'Anglais'],
-    },
-    {
-      id: 3,
-      name: 'Qin',
-      role: 'Chinois',
-      photo: encodeURI('/assets/images/team/Qin.webp'),
-      description:
-        "Passionnée par la langue et la culture chinoises, j’aime partager ce patrimoine unique avec mes élèves. Diplômée d’un Master 2 en Didactique des Langues à l’Université du Maine, j’enseigne le chinois mandarin à des apprenants de tous âges, en adaptant mes méthodes — académiques, interactives ou ludiques — selon leurs besoins et leurs objectifs.",
-      languages: ['Chinois'],
-    },
-    {
-      id: 4,
-      name: 'Célia',
-      role: 'Coach sportive',
-      photo: encodeURI('/assets/images/team/Celia.webp'),
-      description:
-        'Coach sportive diplômée d’un Master "Entraînement, Sport et Santé", je propose des séances ludiques et variées axées sur le renforcement musculaire et le cardio adaptées à tous les niveaux. J\'accorde une attention particulière à la bonne exécution des mouvements, à la progression et au plaisir de bouger, dans une approche à la fois bienveillante et stimulante.',
-      languages: [],
-    },
-    {
-      id: 5,
-      name: 'Melissa',
-      role: 'Anglais',
-      photo: encodeURI('/assets/images/team/Melissa.webp'),
-      description:
-        "Formatrice native d’anglais britannique (niveau 5 du TOEIC), j'ai plus de 5 ans d’expérience en France auprès d’entreprises, d’universités et d’enfants de 3 à 16 ans. Avec mon parcours d'assistante pédagogique pour enfants à besoins éducatifs particuliers, je m’adapte aux besoins de chacun afin de rendre l’apprentissage agréable. Ma philosophie : aucune question n’est ridicule !",
-      languages: ['Anglais'],
-    },
-    {
-      id: 6,
-      name: 'Noémie',
-      role: 'Français & Anglais',
-      photo: encodeURI('/assets/images/team/Noemie.webp'),
-      description:
-        "Diplômée en FLE et en anglais, j'ai enseigné ces disciplines à divers publics adolescents et adultes en Angleterre et en France, dont plusieurs années au sein de nombreuses facultés et écoles supérieures de l'université de Strasbourg, en présentiel et en ligne, du niveau A1 au C2, affectionnant particulièrement l'approche actionnelle, participative et inclusive.",
-      languages: ['Français', 'Anglais'],
-    },
-    {
-      id: 7,
-      name: 'Olivia',
-      role: 'Français',
-      photo: encodeURI('/assets/images/team/Olivia.webp'),
-      description:
-        "Une langue, c'est comme un jeu de construction. Une fois qu'on en saisit les composants, les créations sont infinies ! Apprendre avec moi, c'est gagner en confiance en s'amusant avec la langue française. Je vous fournirai la boîte à outils qui correspond à vos objectifs personnels pour la langue, le tout dans une atmosphère chaleureuse et de confiance.",
-      languages: ['Français'],
-    },
-    {
-      id: 8,
-      name: 'Domenico',
-      role: 'Italien',
-      photo: encodeURI('/assets/images/team/Domenico.webp'),
-      description:
-        "Enseignant d’italien, j’accompagne mes élèves dans la découverte vivante de la langue et de la culture italiennes à travers des échanges, des activités créatives et des projets collaboratifs. Ma démarche privilégie la communication, l’autonomie et le plaisir d’apprendre. Grâce à des supports variés – musique, vidéos, jeux et outils numériques – je cherche à éveiller la curiosité et à encourager l’expression personnelle.",
-      languages: ['Italien'],
-    },
-    {
-      id: 9,
-      name: 'Gizem',
-      role: 'Turc',
-      photo: encodeURI('/assets/images/team/Gizem.webp'),
-      description:
-        "Envie de découvrir le turc dans une ambiance conviviale, ludique et ouverte sur le monde ? Grâce à mes méthodes adaptées à différents niveaux, j'enseigne cette langue unique à des apprenants de tous âges avec plaisir. Venez rejoindre mes cours !",
-      languages: ['Turc'],
-    },
-    {
-      id: 10,
-      name: 'Homere',
-      role: 'Mathématiques & Physique (Parcours Homère)',
-      photo: encodeURI('/assets/images/team/homere.webp'),
-      description:
-        "Fraîchement diplômé de l'INSA Strasbourg en tant qu'Ingénieur en Génie Civil, je travaille pour Parcours Homère depuis maintenant 2 ans. Mon but est de transmettre les savoirs en Mathématiques et en Physique avec un aspect ludique aux personnes qui en ont besoin, leur proposant ainsi une alternative aux cours plus classiques. Parcours Homère, ce sont des sciences, bien évidemment, mais bien plus encore!",
-      languages: [],
-    },
-    {
-      id: 11,
-      name: 'Daiane',
-      role: 'Portugais, Anglais & Espagnol',
-      photo: encodeURI('/assets/images/team/Daiane.webp'),
-      description:
-        "Enseignante expérimentée et passionnée par les langues vivantes, je suis titulaire de deux Masters 2 en enseignement et en littérature. J’enseigne le portugais, l’anglais et l’espagnol à des publics variés, de tous âges et niveaux, selon leurs objectifs d’apprentissage. J’adopte une pédagogie dynamique et bienveillante qui encourage la communication, la confiance en soi et le plaisir d’apprendre.",
-      languages: ['Portugais', 'Anglais', 'Espagnol'],
-    },
-    {
-      id: 12,
-      name: 'Mariia',
-      role: 'Russe, Anglais & Mandarin',
-      photo: encodeURI('/assets/images/team/Mariia.webp'),
-      description:
-        "Passionnée des langues et de leur transmission, je parle russe, anglais et mandarin, et j’apprends actuellement le français (niveau B1). Ayant vécu à l’étranger depuis 2013, j’accorde une grande importance aux échanges culturels et j’aime rencontrer des personnes du monde entier!",
-      languages: ['Russe', 'Anglais', 'Mandarin'],
-    },
-    {
-      id: 13,
-      name: 'Malou',
-      role: 'Coach sportive & Danse',
-      photo: encodeURI('/assets/images/team/Malou.webp'),
-      description:
-        'Coach sportive, professeure de danse, animatrice et chorégraphe en club, j’ai décidé d’en faire mon métier. Donner du bonheur aux gens en alliant forme, joie et bien-être! À l’écoute du corps et de chacun, mon but est de donner ou redonner confiance à travers le corps.',
-      languages: [],
-    },
-    {
-      id: 14,
-      name: 'Diana',
-      role: 'Espagnol',
-      photo: encodeURI('/assets/images/team/Diana.webp'),
-      imagePosition: 'center 20%',
-      description:
-        "J'ai dix ans d'expérience dans l'enseignement de l'espagnol ELE. Ma méthode est pratique et communicative, privilégiant l'expression orale. J'utilise des jeux, des supports variés et des activités dynamiques pour vous immerger rapidement. L'objectif est d'atteindre une aisance réelle tout en s'assurant que le plaisir et l'amusement restent au cœur de votre apprentissage. C'est la clé pour progresser !",
-      languages: ['Espagnol'],
-    },
-    {
-      id: 15,
-      name: 'Matthieu',
-      role: 'Fondateur de Parcours Homère, Professeur de Sciences',
-      photo: encodeURI('/assets/images/team/homere.webp'),
-      description:
-        "Fondateur de Parcours Homère, Professeur de Sciences (Collège et Lycée), j’ai développé une solide expérience de l’enseignement et de l’aide aux devoirs. J’ai acquis la certitude que la transmission des connaissances (du simple vers le complexe) représente bien plus que d’appliquer de simples techniques pédagogiques. Il nous faut également réunir la chaleur humaine, la conviction, l’enthousiasme, qualités sans lesquelles un simple tutoriel suffirait à instruire, mais de manière très incomplète, de nombreux élèves.",
-      languages: [],
-    },
-    {
-      id: 16,
-      name: 'Léon',
-      role: 'Tutorat en sciences (Maths, Physique-Chimie, SI) - Parcours Homère',
-      photo: encodeURI('/assets/images/team/homere.webp'),
-      description:
-        "Je travaille via le parcours Homère pour du tutorat en sciences, plus particulièrement les mathématiques, physique chimie et sciences de l’ingénieur. La méthode de travail est basée sur la transmission des savoirs, en détectant les problèmes sur certaines notions. Ensuite, nous travaillons avec des exercices ciblés sur les points faibles de l'élève/étudiant.",
-      languages: [],
-    },
-  ];
+  const teamMembers = useMemo(
+    () => [
+      {
+        id: 0,
+        name: 'Florence',
+        translationKey: 'florence',
+        photo: encodeURI('/assets/images/team/Florence.webp'),
+        languages: ['Français'],
+      },
+      {
+        id: 1,
+        name: 'Olivia',
+        translationKey: 'olivia',
+        photo: encodeURI('/assets/images/team/Olivia.webp'),
+        languages: ['Français'],
+      },
+      {
+        id: 2,
+        name: 'Noémie',
+        translationKey: 'noemie',
+        photo: encodeURI('/assets/images/team/Noemie.webp'),
+        languages: ['Français', 'Anglais'],
+      },
+      {
+        id: 3,
+        name: 'Melissa',
+        translationKey: 'melissa',
+        photo: encodeURI('/assets/images/team/Melissa.webp'),
+        languages: ['Anglais'],
+      },
+      {
+        id: 4,
+        name: 'Diana',
+        translationKey: 'diana',
+        photo: encodeURI('/assets/images/team/Diana.webp'),
+        imagePosition: 'center 20%',
+        languages: ['Espagnol'],
+      },
+      {
+        id: 5,
+        name: 'Domenico',
+        translationKey: 'domenico',
+        photo: encodeURI('/assets/images/team/Domenico.webp'),
+        languages: ['Italien'],
+      },
+      {
+        id: 6,
+        name: 'Daiane',
+        translationKey: 'daiane',
+        photo: encodeURI('/assets/images/team/Daiane.webp'),
+        languages: ['Portugais', 'Anglais', 'Espagnol'],
+      },
+      {
+        id: 7,
+        name: 'Gizem',
+        translationKey: 'gizem',
+        photo: encodeURI('/assets/images/team/Gizem.webp'),
+        languages: ['Turc'],
+      },
+      {
+        id: 8,
+        name: 'Mariia',
+        translationKey: 'mariia',
+        photo: encodeURI('/assets/images/team/Mariia.webp'),
+        languages: ['Russe', 'Anglais', 'Mandarin'],
+      },
+      {
+        id: 9,
+        name: 'Qin',
+        translationKey: 'qin',
+        photo: encodeURI('/assets/images/team/Qin.webp'),
+        languages: ['Chinois'],
+      },
+      {
+        id: 10,
+        name: 'Aya',
+        translationKey: 'aya',
+        photo: encodeURI('/assets/images/team/Aya.webp'),
+        languages: ['Japonais'],
+      },
+      {
+        id: 11,
+        name: 'Célia',
+        translationKey: 'celia',
+        photo: encodeURI('/assets/images/team/Celia.webp'),
+        languages: [],
+      },
+      {
+        id: 12,
+        name: 'Malou',
+        translationKey: 'malou',
+        photo: encodeURI('/assets/images/team/Malou.webp'),
+        languages: [],
+      },
+      {
+        id: 13,
+        name: 'Matthieu',
+        translationKey: 'matthieu',
+        photo: encodeURI('/assets/images/team/homere.webp'),
+        languages: [],
+      },
+      {
+        id: 14,
+        name: 'Léon',
+        translationKey: 'leon',
+        photo: encodeURI('/assets/images/team/homere.webp'),
+        languages: [],
+      },
+      {
+        id: 15,
+        name: 'Mattéo',
+        translationKey: 'matteo',
+        photo: encodeURI('/assets/images/team/homere.webp'),
+        languages: [],
+      },
+      {
+        id: 16,
+        name: 'Maryse',
+        translationKey: 'maryse',
+        photo: encodeURI('/assets/images/team/Maryse.webp'),
+        languages: ['Français', 'Anglais'],
+      },
+    ],
+    []
+  );
 
   const handleCardClick = member => {
     setSelectedMember(member);
@@ -186,12 +155,21 @@ const TeamSection = () => {
     setSelectedMember(null);
   };
 
+  // Enrichir les membres avec leurs traductions
+  const enrichedMembers = useMemo(() => {
+    return teamMembers.map(member => ({
+      ...member,
+      role: t(`qui_sommes_nous.team_members.${member.translationKey}.role`),
+      description: t(`qui_sommes_nous.team_members.${member.translationKey}.description`),
+    }));
+  }, [teamMembers, t]);
+
   // Calculs de pagination
-  const totalPages = Math.ceil(teamMembers.length / cardsPerPage);
+  const totalPages = Math.ceil(enrichedMembers.length / cardsPerPage);
   const startIndex = (currentPage - 1) * cardsPerPage;
   const endIndex = startIndex + cardsPerPage;
-  const currentMembers = teamMembers.slice(startIndex, endIndex);
-  const displayedMembers = isFlatLayout ? teamMembers : currentMembers;
+  const currentMembers = enrichedMembers.slice(startIndex, endIndex);
+  const displayedMembers = isFlatLayout ? enrichedMembers : currentMembers;
 
   // Fonctions de navigation
   const goToPage = page => {
@@ -229,8 +207,8 @@ const TeamSection = () => {
   return (
     <div className={`team-section ${isFlatLayout ? 'team-section--flat' : ''}`}>
       <div className='team-section__header'>
-        <h2 className='team-section__title'>Notre équipe</h2>
-        <p className='team-section__subtitle'>Découvrez les experts qui vous accompagnent</p>
+        <h2 className='team-section__title'>{t('qui_sommes_nous.team_title')}</h2>
+        <p className='team-section__subtitle'>{t('qui_sommes_nous.team_subtitle')}</p>
         <div className='team-section__toolbar'>
           <Button
             variant='outline'
@@ -238,7 +216,7 @@ const TeamSection = () => {
             onClick={() => setIsFlatLayout(v => !v)}
             aria-pressed={isFlatLayout}
           >
-            {isFlatLayout ? 'Afficher par pages' : 'Afficher tout (5 par ligne)'}
+            {isFlatLayout ? t('qui_sommes_nous.team_show_pages') : t('qui_sommes_nous.team_show_all')}
           </Button>
         </div>
       </div>
@@ -275,7 +253,7 @@ const TeamSection = () => {
                     </div>
 
                     <div className='team-section__overlay-cta'>
-                      <span>Cliquez pour en savoir plus</span>
+                      <span>{t('qui_sommes_nous.team_click_more')}</span>
                     </div>
                   </div>
                 </div>
@@ -308,7 +286,7 @@ const TeamSection = () => {
               >
                 <polyline points='15,18 9,12 15,6'></polyline>
               </svg>
-              Précédent
+              {t('qui_sommes_nous.team_previous')}
             </button>
 
             <div className='team-section__pagination-numbers'>
@@ -333,7 +311,7 @@ const TeamSection = () => {
               disabled={currentPage === totalPages}
               aria-label='Page suivante'
             >
-              Suivant
+              {t('qui_sommes_nous.team_next')}
               <svg
                 width='20'
                 height='20'
@@ -352,7 +330,7 @@ const TeamSection = () => {
         {!isFlatLayout && (
           <div className='team-section__pagination-info'>
             <span>
-              Affichage de {startIndex + 1} à {Math.min(endIndex, teamMembers.length)} sur {teamMembers.length} membres
+              {t('qui_sommes_nous.team_display_info')} {startIndex + 1} {t('qui_sommes_nous.team_display_from')} {Math.min(endIndex, enrichedMembers.length)} {t('qui_sommes_nous.team_display_of')} {enrichedMembers.length} {t('qui_sommes_nous.team_display_members')}
             </span>
           </div>
         )}

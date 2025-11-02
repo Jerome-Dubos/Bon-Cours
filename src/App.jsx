@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Footer, Loader, Navbar, ScrollToTop } from './components';
 import { AuthProvider } from './context/AuthContext';
 import './index.css';
@@ -36,6 +37,8 @@ const Test = lazy(() => import('./pages/Offers/Test/Test'));
 
 // Composant principal optimisé
 const App = () => {
+  const { t } = useTranslation();
+
   return (
     <Router
       future={{
@@ -52,7 +55,7 @@ const App = () => {
               size='default'
               variant='rotating-squares'
               color='default'
-              message='Chargement...'
+              message={t('common.loading')}
             />
           }
         >

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './AboutTabs.css';
 import HistoryMethodology from './HistoryMethodology';
 import TeamSection from './TeamSection';
 
 const AboutTabs = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('history');
 
   // Fonction pour obtenir le paramètre tab de l'URL
@@ -31,8 +33,8 @@ const AboutTabs = () => {
   }, []);
 
   const tabs = [
-    { id: 'history', label: 'Notre histoire' },
-    { id: 'team', label: 'Notre équipe' },
+    { id: 'history', label: t('qui_sommes_nous.history') },
+    { id: 'team', label: t('qui_sommes_nous.team') },
   ];
 
   const handleTabClick = tabId => {

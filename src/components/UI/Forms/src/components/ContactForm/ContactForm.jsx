@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   FaCalendar,
   FaChevronDown,
@@ -9,6 +9,7 @@ import {
   FaPhone,
   FaUser,
 } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorNotification, SuccessNotification } from '../../../../../UI/Notifications';
 import '../../styles/ContactForm.css';
@@ -31,9 +32,11 @@ const ContactForm = ({
   onSuccess,
   onError,
 }) => {
-  // Textes par défaut en français
-  const defaultSubmitText = submitText || 'Envoyer le message';
-  const defaultLoadingText = loadingText || 'Envoi en cours...';
+  const { t } = useTranslation();
+
+  // Textes par défaut traduits
+  const defaultSubmitText = submitText || t('forms.contact.submit');
+  const defaultLoadingText = loadingText || t('forms.contact.loading');
 
   const [formData, setFormData] = useState({
     nom: '',
@@ -58,18 +61,21 @@ const ContactForm = ({
   const phoneSelectorRef = useRef(null);
 
   // Liste des indicatifs téléphoniques les plus courants (réduite)
-  const indicatifsOptions = [
-    { code: '+33', country: 'France', flag: '🇫🇷' },
-    { code: '+49', country: 'Allemagne', flag: '🇩🇪' },
-    { code: '+44', country: 'Royaume-Uni', flag: '🇬🇧' },
-    { code: '+34', country: 'Espagne', flag: '🇪🇸' },
-    { code: '+39', country: 'Italie', flag: '🇮🇹' },
-    { code: '+32', country: 'Belgique', flag: '🇧🇪' },
-    { code: '+41', country: 'Suisse', flag: '🇨🇭' },
-    { code: '+1', country: 'États-Unis/Canada', flag: '🇺🇸' },
-    { code: '+90', country: 'Turquie', flag: '🇹🇷' },
-    { code: '+7', country: 'Russie', flag: '🇷🇺' },
-  ];
+  const indicatifsOptions = useMemo(
+    () => [
+      { code: '+33', country: t('forms.contact.countries.france'), flag: '🇫🇷' },
+      { code: '+49', country: t('forms.contact.countries.germany'), flag: '🇩🇪' },
+      { code: '+44', country: t('forms.contact.countries.uk'), flag: '🇬🇧' },
+      { code: '+34', country: t('forms.contact.countries.spain'), flag: '🇪🇸' },
+      { code: '+39', country: t('forms.contact.countries.italy'), flag: '🇮🇹' },
+      { code: '+32', country: t('forms.contact.countries.belgium'), flag: '🇧🇪' },
+      { code: '+41', country: t('forms.contact.countries.switzerland'), flag: '🇨🇭' },
+      { code: '+1', country: t('forms.contact.countries.us_canada'), flag: '🇺🇸' },
+      { code: '+90', country: t('forms.contact.countries.turkey'), flag: '🇹🇷' },
+      { code: '+7', country: t('forms.contact.countries.russia'), flag: '🇷🇺' },
+    ],
+    [t]
+  );
 
   // Fermer le dropdown quand on clique ailleurs
   useEffect(() => {
@@ -347,51 +353,60 @@ const ContactForm = ({
     }
   };
 
-  const joursOptions = [
-    { value: 'lundi', label: 'Lundi' },
-    { value: 'mardi', label: 'Mardi' },
-    { value: 'mercredi', label: 'Mercredi' },
-    { value: 'jeudi', label: 'Jeudi' },
-    { value: 'vendredi', label: 'Vendredi' },
-    { value: 'samedi', label: 'Samedi' },
-    { value: 'dimanche', label: 'Dimanche' },
-  ];
+  const joursOptions = useMemo(
+    () => [
+      { value: 'monday', label: t('forms.contact.days.monday') },
+      { value: 'tuesday', label: t('forms.contact.days.tuesday') },
+      { value: 'wednesday', label: t('forms.contact.days.wednesday') },
+      { value: 'thursday', label: t('forms.contact.days.thursday') },
+      { value: 'friday', label: t('forms.contact.days.friday') },
+      { value: 'saturday', label: t('forms.contact.days.saturday') },
+      { value: 'sunday', label: t('forms.contact.days.sunday') },
+    ],
+    [t]
+  );
 
-  const horairesOptions = [
-    {
-      value: 'matin',
-      label: 'Matin',
-      sublabel: '8h-12h',
-    },
-    {
-      value: 'apres-midi',
-      label: 'Après-midi',
-      sublabel: '12h-18h',
-    },
-    {
-      value: 'soir',
-      label: 'Soir',
-      sublabel: '18h-21h',
-    },
-    {
-      value: 'flexible',
-      label: 'Flexible',
-      sublabel: 'Tous créneaux',
-    },
-  ];
+  const horairesOptions = useMemo(
+    () => [
+      {
+        value: 'morning',
+        label: t('forms.contact.hours.morning'),
+        sublabel: t('forms.contact.hours.morning_hours'),
+      },
+      {
+        value: 'afternoon',
+        label: t('forms.contact.hours.afternoon'),
+        sublabel: t('forms.contact.hours.afternoon_hours'),
+      },
+      {
+        value: 'evening',
+        label: t('forms.contact.hours.evening'),
+        sublabel: t('forms.contact.hours.evening_hours'),
+      },
+      {
+        value: 'flexible',
+        label: t('forms.contact.hours.flexible'),
+        sublabel: t('forms.contact.hours.all_slots'),
+      },
+    ],
+    [t]
+  );
 
-  const preferenceOptions = [
-    {
-      value: 'email',
-      label: 'Par email',
-      icon: FaEnvelope,
-    },
-    {
-      value: 'telephone',
-      label: 'Par téléphone',
-      icon: FaPhone,
-    },
-  ];
+  const preferenceOptions = useMemo(
+    () => [
+      {
+        value: 'email',
+        label: t('forms.contact.preferences.email'),
+        icon: FaEnvelope,
+      },
+      {
+        value: 'telephone',
+        label: t('forms.contact.preferences.phone'),
+        icon: FaPhone,
+      },
+    ],
+    [t]
+  );
 
   // Fonctions de validation
   const validateField = (field, value) => {
@@ -399,36 +414,50 @@ const ContactForm = ({
 
     switch (field) {
       case 'nom':
-        error = createRequiredRule()(value) || createNameRule()(value);
+        error =
+          createRequiredRule(t('forms.contact.validation.required'))(value) ||
+          createNameRule(t('forms.contact.validation.name_invalid'))(value);
         break;
       case 'prenom':
-        error = createRequiredRule()(value) || createNameRule()(value);
+        error =
+          createRequiredRule(t('forms.contact.validation.required'))(value) ||
+          createNameRule(t('forms.contact.validation.name_invalid'))(value);
         break;
       case 'email':
-        error = createRequiredRule()(value) || createEmailRule()(value);
+        error =
+          createRequiredRule(t('forms.contact.validation.required'))(value) ||
+          createEmailRule(t('forms.contact.validation.email_invalid'))(value);
         break;
       case 'telephone':
         if (formData.preferenceContact === 'telephone') {
           // Validation avec l'indicatif
           const phoneWithIndicatif = `${formData.indicatif} ${value}`;
-          error = createRequiredRule()(value) || createPhoneRule()(phoneWithIndicatif);
+          error =
+            createRequiredRule(t('forms.contact.validation.required'))(value) ||
+            createPhoneRule(t('forms.contact.validation.phone_invalid'))(phoneWithIndicatif);
         }
         break;
       case 'message':
-        error = createRequiredRule()(value) || createMessageRule(10, 1000)(value);
+        error =
+          createRequiredRule(t('forms.contact.validation.required'))(value) ||
+          createMessageRule(
+            10,
+            1000,
+            t('forms.contact.validation.message_min'),
+            t('forms.contact.validation.message_max')
+          )(value);
         break;
       case 'preferenceContact':
-        error = createRequiredRule()(value);
+        error = createRequiredRule(t('forms.contact.validation.required'))(value);
         break;
       case 'jours':
         if (formData.preferenceContact === 'telephone') {
-          error = !value || value.length === 0 ? 'Veuillez sélectionner au moins un jour' : '';
+          error = !value || value.length === 0 ? t('forms.contact.validation.days_required') : '';
         }
         break;
       case 'horaires':
         if (formData.preferenceContact === 'telephone') {
-          error =
-            !value || value.length === 0 ? 'Veuillez sélectionner au moins un créneau horaire' : '';
+          error = !value || value.length === 0 ? t('forms.contact.validation.hours_required') : '';
         }
         break;
       default:
@@ -542,7 +571,7 @@ const ContactForm = ({
         const horairesSansFlexible = formData.horaires.filter(h => h !== 'flexible');
         newHoraires = [...horairesSansFlexible, horaire];
 
-        const creneauxSpecifiques = ['matin', 'apres-midi', 'soir'];
+        const creneauxSpecifiques = ['morning', 'afternoon', 'evening'];
         const creneauxSelectionnes = newHoraires.filter(h => creneauxSpecifiques.includes(h));
 
         if (creneauxSelectionnes.length === 3) {
@@ -618,8 +647,8 @@ const ContactForm = ({
         const result = await onSubmit(formData);
         if (result) {
           const successMessage = result.simulated
-            ? 'Votre message a été préparé avec succès. (Mode simulation)'
-            : 'Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.';
+            ? t('forms.contact.success_simulation')
+            : `${t('forms.contact.success')} ${t('forms.contact.success_details')}`;
 
           addNotification('success', successMessage);
           if (onSuccess) onSuccess(formData);
@@ -643,10 +672,7 @@ const ContactForm = ({
       } else {
         await new Promise(resolve => setTimeout(resolve, 2000));
 
-        addNotification(
-          'success',
-          'Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.'
-        );
+        addNotification('success', `${t('forms.contact.success')} ${t('forms.contact.success_details')}`);
 
         setFormData({
           nom: '',
@@ -664,8 +690,7 @@ const ContactForm = ({
         setTouched({});
       }
     } catch (error) {
-      const errorMessage =
-        error.message || "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.";
+      const errorMessage = error.message || t('forms.contact.error');
       addNotification('error', errorMessage);
       if (onError) onError(error);
     } finally {
@@ -684,12 +709,12 @@ const ContactForm = ({
               <div className='contact-field'>
                 <label className='contact-label'>
                   <FaUser className='contact-icon' />
-                  Nom
+                  {t('forms.contact.fields.last_name')}
                 </label>
                 <input
                   type='text'
                   className={`contact-input ${errors.nom && touched.nom ? 'contact-error' : ''}`}
-                  placeholder='Dupont'
+                  placeholder={t('forms.contact.placeholders.last_name')}
                   value={formData.nom}
                   onChange={e => handleInputChange('nom', e.target.value)}
                   onBlur={e => handleInputBlur('nom', e.target.value)}
@@ -702,12 +727,12 @@ const ContactForm = ({
               <div className='contact-field'>
                 <label className='contact-label'>
                   <FaUser className='contact-icon' />
-                  Prénom
+                  {t('forms.contact.fields.first_name')}
                 </label>
                 <input
                   type='text'
                   className={`contact-input ${errors.prenom && touched.prenom ? 'contact-error' : ''}`}
-                  placeholder='Jean'
+                  placeholder={t('forms.contact.placeholders.first_name')}
                   value={formData.prenom}
                   onChange={e => handleInputChange('prenom', e.target.value)}
                   onBlur={e => handleInputBlur('prenom', e.target.value)}
@@ -722,12 +747,12 @@ const ContactForm = ({
             <div className='contact-field'>
               <label className='contact-label'>
                 <FaEnvelope className='contact-icon' />
-                Email
+                {t('forms.contact.fields.email')}
               </label>
               <input
                 type='email'
                 className={`contact-input ${errors.email && touched.email ? 'contact-error' : ''}`}
-                placeholder='jean.dupont@example.com'
+                placeholder={t('forms.contact.placeholders.email')}
                 value={formData.email}
                 onChange={e => handleInputChange('email', e.target.value)}
                 onBlur={e => handleInputBlur('email', e.target.value)}
@@ -741,7 +766,7 @@ const ContactForm = ({
             <div className='contact-field'>
               <label className='contact-label'>
                 <FaPhone className='contact-icon' />
-                Téléphone
+                {t('forms.contact.fields.phone')}
               </label>
               <div className='contact-phone-group'>
                 <div className='contact-phone-selector' ref={phoneSelectorRef}>
@@ -810,7 +835,7 @@ const ContactForm = ({
                 ) : (
                   <FaPhone className='contact-icon' />
                 )}
-                Préférence de contact
+                {t('forms.contact.fields.contact_preference')}
               </label>
               <div className='contact-radio-group'>
                 {preferenceOptions.map(option => (
@@ -844,11 +869,11 @@ const ContactForm = ({
             <div className='contact-field'>
               <label className='contact-label'>
                 <FaComments className='contact-icon' />
-                Message
+                {t('forms.contact.fields.message')}
               </label>
               <textarea
                 className={`contact-textarea ${errors.message && touched.message ? 'contact-error' : ''}`}
-                placeholder='Votre message...'
+                placeholder={t('forms.contact.placeholders.message')}
                 value={formData.message}
                 onChange={e => handleInputChange('message', e.target.value)}
                 onBlur={e => handleInputBlur('message', e.target.value)}
@@ -868,7 +893,7 @@ const ContactForm = ({
               >
                 <label className='contact-label'>
                   <FaCalendar className='contact-icon' />
-                  Jours de disponibilité
+                  {t('forms.contact.fields.days')}
                 </label>
                 <div className='contact-radio-group contact-horizontal'>
                   {joursOptions.map(option => (
@@ -906,7 +931,7 @@ const ContactForm = ({
               >
                 <label className='contact-label'>
                   <FaClock className='contact-icon' />
-                  Créneaux horaires
+                  {t('forms.contact.fields.hours')}
                 </label>
                 <div className='contact-radio-group contact-horizontal'>
                   {horairesOptions.map(option => (

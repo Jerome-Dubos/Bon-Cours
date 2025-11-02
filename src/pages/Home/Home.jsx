@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { FeaturesSection, HeroSection, TestimonialsSection } from '../../components';
 import { Loader } from '../../components/UI';
@@ -7,6 +8,7 @@ import { useDebounce, usePerformance } from '../../hooks';
 import './Home.css';
 
 const Home = () => {
+  const { t } = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -98,7 +100,7 @@ const Home = () => {
         size='default'
         variant='rotating-squares'
         color='default'
-        message="Chargement de la page d'accueil..."
+        message={t('home.loading')}
       />
     );
   }

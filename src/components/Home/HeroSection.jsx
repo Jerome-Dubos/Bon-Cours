@@ -8,10 +8,12 @@ import {
   FaGraduationCap,
   FaUsers,
 } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import './HeroSection.css';
 
 const HeroSection = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const SLIDE_DURATION = 6000;
   const [currentSlide1, setCurrentSlide1] = useState(0);
@@ -21,98 +23,98 @@ const HeroSection = () => {
   const slides = [
     {
       id: 0,
-      title: 'Cours et ateliers en petits groupes',
-      subtitle:
-        'Apprenez la langue de votre choix en groupes de 6 personnes ou renforcez votre niveau scolaire en groupes de 4 élèves',
+      title: t('home.hero_carousel.slide1.title'),
+      subtitle: t('home.hero_carousel.slide1.subtitle'),
       image: '/assets/images/carousel/carousel-1.webp',
-      ctaText: 'Découvrir nos offres',
+      ctaText: t('home.hero_carousel.slide1.cta'),
       ctaAction: () => navigate('/offres/langues?tab=enfants-ados'),
       icon: FaGraduationCap,
     },
     {
       id: 1,
-      title: 'Cours adaptés à vos besoins',
-      subtitle:
-        "Bénéficiez d'un diagnostic initial, de nos cours personnalisés et de bilans réguliers",
+      title: t('home.hero_carousel.slide2.title'),
+      subtitle: t('home.hero_carousel.slide2.subtitle'),
       image: '/assets/images/carousel/carousel-2.webp',
-      ctaText: 'Notre méthode',
+      ctaText: t('home.hero_carousel.slide2.cta'),
       ctaAction: () => navigate('/methode/approche-actionnelle'),
       icon: FaChalkboardTeacher,
     },
     {
       id: 2,
-      title: 'Horaires flexibles',
-      subtitle: "Décidez de l'horaire de votre cours ou de votre atelier",
+      title: t('home.hero_carousel.slide3.title'),
+      subtitle: t('home.hero_carousel.slide3.subtitle'),
       image: '/assets/images/carousel/carousel-3.webp',
-      ctaText: 'Voir les horaires',
+      ctaText: t('home.hero_carousel.slide3.cta'),
       ctaAction: () => navigate('/offres/horaires'),
       icon: FaClock,
     },
     {
       id: 3,
-      title: 'Professeurs qualifiés',
-      subtitle:
-        'Notre équipe diplômée et expérimentée est à votre service pour vous faire progresser au rythme que vous désirez',
+      title: t('home.hero_carousel.slide4.title'),
+      subtitle: t('home.hero_carousel.slide4.subtitle'),
       image: '/assets/images/carousel/carousel-4.webp',
-      ctaText: 'Nous contacter',
+      ctaText: t('home.hero_carousel.slide4.cta'),
       ctaAction: () => navigate('/contact'),
       icon: FaCertificate,
     },
     {
       id: 4,
-      title: 'Accompagnement illimité',
-      subtitle: 'Profitez de notre suivi individuel dans toutes vos démarches',
+      title: t('home.hero_carousel.slide5.title'),
+      subtitle: t('home.hero_carousel.slide5.subtitle'),
       image: '/assets/images/carousel/carousel-5.webp',
-      ctaText: 'En savoir plus',
+      ctaText: t('home.hero_carousel.slide5.cta'),
       ctaAction: () => navigate('/qui-sommes-nous'),
       icon: FaUsers,
     },
   ];
+  // Mémoriser les slides avec la fonction t
+  const slidesMemo = useMemo(() => slides, [t]);
+
   // Auto-play: un seul timer pour les trois carousels
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide1(prev => (prev + 1) % slides.length);
-      setCurrentSlide2(prev => (prev + 1) % slides.length);
-      setCurrentSlide3(prev => (prev + 1) % slides.length);
+      setCurrentSlide1(prev => (prev + 1) % slidesMemo.length);
+      setCurrentSlide2(prev => (prev + 1) % slidesMemo.length);
+      setCurrentSlide3(prev => (prev + 1) % slidesMemo.length);
     }, SLIDE_DURATION);
     return () => clearInterval(interval);
-  }, [slides.length]);
+  }, [slidesMemo.length]);
 
   // Mémoriser les données de slide pour éviter les re-renders
   const slideData = useMemo(
     () => ({
-      image: slides[currentSlide1].image,
-      icon: slides[currentSlide1].icon,
-      title: slides[currentSlide1].title,
-      subtitle: slides[currentSlide1].subtitle,
-      ctaText: slides[currentSlide1].ctaText,
-      ctaAction: slides[currentSlide1].ctaAction,
+      image: slidesMemo[currentSlide1].image,
+      icon: slidesMemo[currentSlide1].icon,
+      title: slidesMemo[currentSlide1].title,
+      subtitle: slidesMemo[currentSlide1].subtitle,
+      ctaText: slidesMemo[currentSlide1].ctaText,
+      ctaAction: slidesMemo[currentSlide1].ctaAction,
     }),
-    [currentSlide1]
+    [currentSlide1, slidesMemo]
   );
 
   const slideData2 = useMemo(
     () => ({
-      image: slides[currentSlide2].image,
-      icon: slides[currentSlide2].icon,
-      title: slides[currentSlide2].title,
-      subtitle: slides[currentSlide2].subtitle,
-      ctaText: slides[currentSlide2].ctaText,
-      ctaAction: slides[currentSlide2].ctaAction,
+      image: slidesMemo[currentSlide2].image,
+      icon: slidesMemo[currentSlide2].icon,
+      title: slidesMemo[currentSlide2].title,
+      subtitle: slidesMemo[currentSlide2].subtitle,
+      ctaText: slidesMemo[currentSlide2].ctaText,
+      ctaAction: slidesMemo[currentSlide2].ctaAction,
     }),
-    [currentSlide2]
+    [currentSlide2, slidesMemo]
   );
 
   const slideData3 = useMemo(
     () => ({
-      image: slides[currentSlide3].image,
-      icon: slides[currentSlide3].icon,
-      title: slides[currentSlide3].title,
-      subtitle: slides[currentSlide3].subtitle,
-      ctaText: slides[currentSlide3].ctaText,
-      ctaAction: slides[currentSlide3].ctaAction,
+      image: slidesMemo[currentSlide3].image,
+      icon: slidesMemo[currentSlide3].icon,
+      title: slidesMemo[currentSlide3].title,
+      subtitle: slidesMemo[currentSlide3].subtitle,
+      ctaText: slidesMemo[currentSlide3].ctaText,
+      ctaAction: slidesMemo[currentSlide3].ctaAction,
     }),
-    [currentSlide3]
+    [currentSlide3, slidesMemo]
   );
 
   // Composant Carousel optimisé avec transition smooth
@@ -183,7 +185,7 @@ const HeroSection = () => {
   return (
     <section className='hero' id='home'>
       <div className='hero-content'>
-        <h1>L'excellence sur mesure au cœur de Strasbourg</h1>
+        <h1>{t('home.hero_title')}</h1>
 
         <div className='carousel-container'>
           <div className='carousel-main'>

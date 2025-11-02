@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { Loader } from '../../components/UI';
 import { useErrorHandler, usePerformance } from '../../hooks';
 import './Method.css';
 
 const Method = () => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
@@ -56,7 +58,7 @@ const Method = () => {
         size='default'
         variant='rotating-squares'
         color='default'
-        message='Chargement de la méthode...'
+        message={t('method.loading')}
       />
     );
   }
@@ -71,43 +73,26 @@ const Method = () => {
       transition={pageTransition}
     >
       <div className='method-container'>
-        <h1>Notre Méthode</h1>
+        <h1>{t('method.title')}</h1>
 
         <div className='method-content'>
           <div className='method-intro'>
-            <p>
-              Dans notre centre de langues, nous utilisons l'approche actionnelle, une méthode
-              moderne et motivante qui place l'apprenant au cœur de son apprentissage. L'idée est
-              simple : apprendre une langue, ce n'est pas seulement mémoriser des règles, c'est
-              surtout savoir l'utiliser dans la vie de tous les jours.
-            </p>
+            <p>{t('method.intro')}</p>
           </div>
 
           <div className='method-concrete'>
-            <h2>Concrètement, cela signifie que...</h2>
-            <p>
-              les cours sont organisés autour de tâches et de projets concrets : écrire un e-mail
-              professionnel, préparer un voyage, consulter un médecin ou donner des indications pour
-              la livraison de repas à domicile. Ces mises en situation permettent de pratiquer la
-              langue de façon naturelle, comme on le ferait dans un vrai contexte.
-            </p>
+            <h2>{t('method.concrete.title')}</h2>
+            <p>{t('method.concrete.text')}</p>
           </div>
 
           <div className='method-activities'>
-            <h2>Les activités favorisent l'échange et la confiance en soi</h2>
-            <p>
-              On apprend en communiquant, en testant, en s'impliquant, plutôt qu'en restant
-              spectateur.
-            </p>
+            <h2>{t('method.activities.title')}</h2>
+            <p>{t('method.activities.text')}</p>
           </div>
 
           <div className='method-objective'>
-            <h2>Notre objectif</h2>
-            <p>
-              est que chacun reparte non seulement avec des connaissances linguistiques solides,
-              mais aussi avec la capacité de communiquer efficacement et avec plaisir dans la langue
-              cible.
-            </p>
+            <h2>{t('method.objective.title')}</h2>
+            <p>{t('method.objective.text')}</p>
           </div>
         </div>
       </div>

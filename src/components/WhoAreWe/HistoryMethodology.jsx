@@ -1,8 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import './HistoryMethodology.css';
 
 const HistoryMethodology = () => {
+  const { t } = useTranslation();
   return (
     <div className='history-methodology'>
       <div className='history-methodology__container'>
@@ -10,17 +12,10 @@ const HistoryMethodology = () => {
           <div className='history-methodology__section active'>
             <div className='history-methodology__section-content'>
               <div className='history-methodology__section-text'>
-                <h2 className='history-methodology__section-title'>Notre histoire</h2>
-                <p className='history-methodology__section-subtitle'>Expérience et expertise</p>
+                <h2 className='history-methodology__section-title'>{t('qui_sommes_nous.history_title')}</h2>
+                <p className='history-methodology__section-subtitle'>{t('qui_sommes_nous.history_subtitle')}</p>
                 <div className='history-methodology__section-body'>
-                  <p>
-                    Notre expérience en tant qu'apprenant(e)s et nos parcours académiques ont révélé
-                    un manque crucial de pragmatisme dans les formations. C'est pourquoi nous avons
-                    fait le choix de combler ce manque en proposant des formations fondées sur « la
-                    réalité du terrain ». Cette méthode prône un partage des savoirs inspiré de la
-                    vie des locuteurs locaux et favorise le progrès en mettant l'apprenant au cœur
-                    de son apprentissage.
-                  </p>
+                  <p>{t('qui_sommes_nous.history_text')}</p>
                 </div>
               </div>
 
@@ -40,7 +35,7 @@ const HistoryMethodology = () => {
                     });
                   }}
                 >
-                  Votre navigateur ne supporte pas la lecture de vidéos.
+                  {t('qui_sommes_nous.video_not_supported')}
                 </video>
               </div>
             </div>
@@ -49,17 +44,14 @@ const HistoryMethodology = () => {
 
         <div className='history-methodology__cta'>
           <div className='history-methodology__cta-content'>
-            <h3 className='history-methodology__cta-title'>Prêt à nous rejoindre ?</h3>
-            <p className='history-methodology__cta-text'>
-              Contactez-nous pour découvrir comment nous pouvons vous aider à atteindre vos
-              objectifs.
-            </p>
+            <h3 className='history-methodology__cta-title'>{t('qui_sommes_nous.cta_title')}</h3>
+            <p className='history-methodology__cta-text'>{t('qui_sommes_nous.cta_text')}</p>
             <Link
               to='/contact'
               className='history-methodology__cta-button'
               aria-label="Contactez-nous pour plus d'informations"
             >
-              Nous contacter
+              {t('qui_sommes_nous.cta_button')}
             </Link>
           </div>
         </div>

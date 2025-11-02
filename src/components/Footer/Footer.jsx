@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FaChevronRight,
@@ -80,7 +80,7 @@ const Footer = () => {
 
       // Validation de l'email (double vérification)
       if (!formData.email || !validateEmail(formData.email)) {
-        addNotification('error', 'Veuillez saisir une adresse email valide');
+        addNotification('error', t('footer.newsletter.error'));
         return;
       }
 
@@ -95,7 +95,7 @@ const Footer = () => {
       // await newsletterService.subscribe(formData.email);
 
       // Notification de succès
-      addNotification('success', "Inscription à la lettre d'information réussie !");
+      addNotification('success', t('footer.newsletter.success'));
 
       // Fermer la modale
       setIsNewsletterModalOpen(false);
@@ -131,26 +131,29 @@ const Footer = () => {
     [navigate]
   );
 
-  // Données de navigation optimisées
-  const navigationData = {
-    offres: [
-      { path: '/offres/langues', label: 'Langues' },
-      { path: '/offres/soutien-scolaire', label: 'Soutien Scolaire' },
-      { path: '/offres/ateliers', label: 'Ateliers' },
-      { path: '/offres/examens', label: 'Examens' },
-      { path: '/offres/accompagnements', label: 'Accompagnements' },
-    ],
-    methode: [
-      { path: '/methode/approche-actionnelle', label: 'Approche Actionnelle' },
-      { path: '/methode/niveaux-parcours', label: 'Niveaux & Parcours' },
-      // { path: '/methode/outils-ressources', label: 'Outils & Ressources' }, // Temporairement caché
-    ],
-    pages: [
-      { path: '/', label: 'Accueil' },
-      { path: '/qui-sommes-nous', label: 'Qui sommes nous ?' },
-      { path: '/contact', label: 'Contact' },
-    ],
-  };
+  // Données de navigation optimisées avec traductions
+  const navigationData = useMemo(
+    () => ({
+      offres: [
+        { path: '/offres/langues', label: t('footer.navigation.langues') },
+        { path: '/offres/soutien-scolaire', label: t('footer.navigation.soutien-scolaire') },
+        { path: '/offres/ateliers', label: t('footer.navigation.ateliers') },
+        { path: '/offres/examens', label: t('footer.navigation.examens') },
+        { path: '/offres/accompagnements', label: t('footer.navigation.accompagnements') },
+      ],
+      methode: [
+        { path: '/methode/approche-actionnelle', label: t('footer.navigation.approche-actionnelle') },
+        { path: '/methode/niveaux-parcours', label: t('footer.navigation.niveaux-parcours') },
+        // { path: '/methode/outils-ressources', label: 'Outils & Ressources' }, // Temporairement caché
+      ],
+      pages: [
+        { path: '/', label: t('footer.navigation.accueil') },
+        { path: '/qui-sommes-nous', label: t('footer.navigation.qui-sommes-nous') },
+        { path: '/contact', label: t('nav.contact') },
+      ],
+    }),
+    [t]
+  );
 
   return (
     <footer className='footer' role='contentinfo'>
@@ -159,7 +162,7 @@ const Footer = () => {
         <div className='footer-main'>
           {/* Colonne 1: À propos */}
           <div className='footer-column footer-about'>
-            <h3 className='footer-column-title'>À propos</h3>
+            <h3 className='footer-column-title'>{t('footer.about_title')}</h3>
             <div className='footer-description'>
               <p className='footer-description-text'>{t('footer.description')}</p>
             </div>
@@ -169,20 +172,20 @@ const Footer = () => {
                 className='footer-newsletter-button'
                 onClick={() => setIsNewsletterModalOpen(true)}
                 type='button'
-                aria-label="S'inscrire à la lettre d'information"
+                aria-label={t('footer.newsletter_title')}
               >
                 <FaEnvelope className='newsletter-icon' />
-                Lettre d'information
+                {t('footer.newsletter_title')}
               </button>
               */}
             </div>
             <div className='footer-social'>
-              <h4 className='footer-social-title'>Suivez-nous</h4>
+              <h4 className='footer-social-title'>{t('footer.follow')}</h4>
               <div className='footer-social-links'>
                 <a
                   href='https://facebook.com/boncours'
                   className='footer-social-link'
-                  aria-label='Suivez-nous sur Facebook'
+                  aria-label={t('footer.follow-facebook')}
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -191,7 +194,7 @@ const Footer = () => {
                 <a
                   href='https://instagram.com/boncours'
                   className='footer-social-link'
-                  aria-label='Suivez-nous sur Instagram'
+                  aria-label={t('footer.follow-instagram')}
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -200,7 +203,7 @@ const Footer = () => {
                 <a
                   href='https://www.linkedin.com/company/boncours'
                   className='footer-social-link'
-                  aria-label='Suivez-nous sur LinkedIn'
+                  aria-label={t('footer.follow-linkedin')}
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -212,7 +215,7 @@ const Footer = () => {
 
           {/* Colonne 2: Nos Offres */}
           <div className='footer-column footer-offers'>
-            <h3 className='footer-column-title'>Nos Offres</h3>
+            <h3 className='footer-column-title'>{t('footer.offers_title')}</h3>
             <nav className='footer-nav' aria-label='Navigation offres'>
               <ul>
                 {navigationData.offres.map(link => (
@@ -233,7 +236,7 @@ const Footer = () => {
 
           {/* Colonne 3: Notre Méthode */}
           <div className='footer-column footer-method'>
-            <h3 className='footer-column-title'>Notre Méthode</h3>
+            <h3 className='footer-column-title'>{t('footer.method_title')}</h3>
             <nav className='footer-nav' aria-label='Navigation méthode'>
               <ul>
                 {navigationData.methode.map(link => (
@@ -254,7 +257,7 @@ const Footer = () => {
 
           {/* Colonne 4: Contact */}
           <div className='footer-column footer-contact'>
-            <h3 className='footer-column-title'>Contact</h3>
+            <h3 className='footer-column-title'>{t('footer.contact_title')}</h3>
             <div className='footer-contact-info'>
               <div className='footer-contact-item'>
                 <FaPhone className='footer-contact-icon' />
@@ -318,37 +321,37 @@ const Footer = () => {
               variant='text'
               className='footer-legal-link'
               onClick={() => toggleModal('legal')}
-              aria-label='Ouvrir les mentions légales'
+              aria-label={t('footer.legal')}
               type='button'
             >
-              Mentions légales
+              {t('footer.legal')}
             </Button>
             <Button
               variant='text'
               className='footer-legal-link'
               onClick={() => toggleModal('privacy')}
-              aria-label='Ouvrir la politique de confidentialité'
+              aria-label={t('footer.privacy')}
               type='button'
             >
-              Politique de confidentialité
+              {t('footer.privacy')}
             </Button>
             <Button
               variant='text'
               className='footer-legal-link'
               onClick={() => toggleModal('terms')}
-              aria-label="Ouvrir les conditions générales d'utilisation"
+              aria-label={t('footer.terms')}
               type='button'
             >
-              CGU
+              {t('footer.terms')}
             </Button>
             <a
               href='/assets/REGLEMENT%20INTERIEUR.pdf'
               className='footer-legal-link'
-              aria-label='Ouvrir le règlement intérieur (PDF) dans un nouvel onglet'
+              aria-label={t('footer.open-legal-pdf')}
               target='_blank'
               rel='noopener noreferrer'
             >
-              Règlement intérieur
+              {t('footer.interior-regulations')}
             </a>
           </nav>
         </div>
@@ -356,18 +359,18 @@ const Footer = () => {
         {/* Section développeur */}
         <div className='footer-developer'>
           <p>
-            Conçu et développé avec <FaHeart className='heart' aria-label='amour' /> à Schiltigheim,
-            France.
+            {t('footer.developer')} <FaHeart className='heart' aria-label='amour' /> {t('footer.heart')}{' '}
+            {t('footer.location')}
             <br />
-            Une solution{' '}
+            {t('footer.solution')}{' '}
             <a
               href='https://www.duboswebservices.fr/'
               target='_blank'
               rel='noopener noreferrer'
               className='dubos-link'
-              aria-label='Visitez le site de Dubos Web Services (nouvelle fenêtre)'
+              aria-label={t('footer.visit-dubos')}
             >
-              DUBOS WEB SERVICES
+              {t('footer.company')}
             </a>
             .
           </p>
@@ -379,7 +382,7 @@ const Footer = () => {
         variant='text'
         className='back-to-top'
         onClick={scrollToTop}
-        aria-label='Retour en haut de la page'
+        aria-label={t('footer.back_to_top')}
         type='button'
       >
         ↑

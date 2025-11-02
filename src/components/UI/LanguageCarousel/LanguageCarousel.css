@@ -81,7 +81,7 @@
 }
 
 .language-carousel__item:hover {
-  cursor: default;
+  cursor: pointer;
   transform: translateY(-2px) scale(1.02);
 }
 

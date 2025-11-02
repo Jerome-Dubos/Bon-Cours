@@ -5,23 +5,22 @@
 
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import { fr } from './translations/fr.js';
+import { en } from './translations/en.js';
 
 // Import des traductions de manière lazy pour optimiser les performances
 const loadTranslations = async language => {
   try {
     switch (language) {
       case 'en':
-        const { en } = await import('./translations/en.js');
         return en;
       case 'fr':
       default:
-        const { fr } = await import('./translations/fr.js');
         return fr;
     }
   } catch (error) {
     console.error(`Erreur lors du chargement des traductions pour ${language}:`, error);
     // Fallback vers le français
-    const { fr } = await import('./translations/fr.js');
     return fr;
   }
 };
@@ -34,56 +33,10 @@ const i18nConfig = {
     caches: ['localStorage'],
   },
 
-  // Configuration des ressources - Chargement initial des traductions françaises
+  // Configuration des ressources - Chargement initial des traductions
   resources: {
-    fr: {
-      translation: {
-        nav: {
-          home: 'Accueil',
-          offers: 'Offres',
-          method: 'Méthode',
-          registration: 'Inscription',
-          contact: 'Contact',
-          courses: 'Cours',
-          test: 'Test',
-          dashboard: 'Dashboard',
-          login: 'Connexion',
-          logout: 'Se déconnecter',
-          selectLanguage: 'Choisir la langue',
-          roles: {
-            director: 'Directrice',
-            teacher: 'Professeur',
-            student: 'Étudiant',
-          },
-        },
-        footer: {
-          tagline: 'Accompagnement personnalisé en langues et en soutien scolaire',
-          description:
-            'Depuis plus de 10 ans, nous accompagnons nos apprenants avec passion et expertise. Notre approche actionnelle garantit des résultats exceptionnels.',
-          follow: 'Suivez-nous',
-          contact: 'Contact',
-          address: '36 quai Mullenheim, 67000 Strasbourg',
-          rights: 'Tous droits réservés.',
-          contact_us: 'Nous contacter',
-          legal: 'Mentions légales',
-          privacy: 'Politique de confidentialité',
-          terms: 'CGU',
-          developer: 'Conçu et développé avec',
-          heart: 'à',
-          location: 'Schiltigheim, France.',
-          solution: 'Une solution',
-          company: 'DUBOS WEB SERVICES',
-        },
-        common: {
-          loading: 'Chargement en cours...',
-          error: 'Erreur',
-          name: 'Nom',
-          email: 'Email',
-          phone: 'Téléphone',
-          message: 'Message',
-        },
-      },
-    },
+    fr: fr,
+    en: en,
   },
 
   // Langue par défaut

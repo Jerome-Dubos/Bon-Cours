@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useErrorHandler, usePerformance } from '../../../hooks';
 import './OutilsRessources.css';
 
 const OutilsRessources = () => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const [searchParams] = useSearchParams();
@@ -64,13 +66,10 @@ const OutilsRessources = () => {
       transition={pageTransition}
     >
       <div className='outils-ressources-container'>
-        <h1>Outils & Ressources</h1>
+        <h1>{t('outils_ressources.title')}</h1>
 
         <div className='outils-ressources-intro'>
-          <p>
-            Retrouvez des ressources recommandées par nos formateurs experts qui vous aideront à
-            atteindre vos objectifs et à progresser rapidement!
-          </p>
+          <p>{t('outils_ressources.intro')}</p>
         </div>
       </div>
     </motion.div>
