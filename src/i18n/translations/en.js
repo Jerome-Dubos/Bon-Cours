@@ -117,7 +117,7 @@ export const en = {
     },
     nav: {
       home: 'Home',
-      offers: 'Offers',
+      offers: 'Programs',
       method: 'Method',
       'qui-sommes-nous': 'Who are we?',
       contact: 'Contact',
