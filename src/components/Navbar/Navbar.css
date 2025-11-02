@@ -16,7 +16,7 @@
     border-color 0.3s ease,
     backdrop-filter 0.3s ease;
   will-change: background-color, border-color, backdrop-filter;
-  min-height: 120px;
+  height: 100px;
 }
 
 /* S'assurer que la navbar reste en dessous des modales */
@@ -60,7 +60,7 @@ body.modal-open .navbar.scrolled {
   overflow: hidden;
   cursor: pointer;
   padding: 0;
-  height: 60px;
+  height: 100%;
 }
 
 .navbar-logo:hover {
@@ -68,7 +68,7 @@ body.modal-open .navbar.scrolled {
 }
 
 .navbar-logo-img {
-  height: 90px;
+  height: 150px;
   width: auto;
   max-width: 450px;
   transition: all var(--transition-normal);
