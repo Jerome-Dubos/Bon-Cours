@@ -179,6 +179,7 @@ const Footer = () => {
               </button>
               */}
             </div>
+            {/*
             <div className='footer-social'>
               <h4 className='footer-social-title'>{t('footer.follow')}</h4>
               <div className='footer-social-links'>
@@ -211,6 +212,7 @@ const Footer = () => {
                 </a>
               </div>
             </div>
+            */}
           </div>
 
           {/* Colonne 2: Nos Offres */}

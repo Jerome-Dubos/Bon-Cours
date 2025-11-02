@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { FeaturesSection, HeroSection, TestimonialsSection } from '../../components';
 import { Loader } from '../../components/UI';
 import { useDebounce, usePerformance } from '../../hooks';
+import { SEOWrapper } from '../../hooks/useSEO';
 import './Home.css';
 
 const Home = () => {
@@ -12,7 +13,16 @@ const Home = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [testimonials, setTestimonials] = useState([]);
   const location = useLocation();
+
+  // Charger les témoignages pour le SEO
+  useEffect(() => {
+    fetch('/data/testimonials.json')
+      .then((res) => res.json())
+      .then((data) => setTestimonials(data.testimonials || []))
+      .catch((err) => console.error('Erreur chargement témoignages:', err));
+  }, []);
 
   // Hooks personnalisés
   const { isLowEndDevice, prefersReducedMotion, animationConfig, measurePerformance } =
@@ -106,18 +116,21 @@ const Home = () => {
   }
 
   return (
-    <motion.div
-      className='home'
-      variants={pageVariants}
-      initial='initial'
-      animate='animate'
-      exit='exit'
-      transition={pageTransition}
-    >
-      <HeroSection />
-      <FeaturesSection {...mobileProps} />
-      <TestimonialsSection {...mobileProps} />
-    </motion.div>
+    <>
+      <SEOWrapper testimonials={testimonials} />
+      <motion.div
+        className='home'
+        variants={pageVariants}
+        initial='initial'
+        animate='animate'
+        exit='exit'
+        transition={pageTransition}
+      >
+        <HeroSection />
+        <FeaturesSection {...mobileProps} />
+        <TestimonialsSection {...mobileProps} />
+      </motion.div>
+    </>
   );
 };
 

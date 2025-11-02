@@ -69,6 +69,38 @@ const Navbar = () => {
   const navLinksRef = useRef(null);
   const linkRefs = useRef([]);
   const languageDropdownRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Détecter si une modale est ouverte
+  useEffect(() => {
+    const checkModalOpen = () => {
+      setIsModalOpen(document.body.classList.contains('modal-open'));
+    };
+
+    // Observer les changements de classe sur body
+    const observer = new MutationObserver(checkModalOpen);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    checkModalOpen(); // Vérifier l'état initial
+
+    return () => observer.disconnect();
+  }, []);
+
+  // S'assurer que le conteneur logo est toujours après les modales dans le DOM
+  useEffect(() => {
+    if (isModalOpen && typeof document !== 'undefined') {
+      const logoRoot = document.getElementById('navbar-logo-root');
+      const modalOverlay = document.querySelector('.modal-overlay');
+      
+      if (logoRoot && modalOverlay && logoRoot.parentNode === document.body) {
+        // Déplacer le logo root après la modale dans le DOM
+        document.body.appendChild(logoRoot);
+      }
+    }
+  }, [isModalOpen]);
 
   // Structure des sous-menus pour Offres et Méthode
   // Organisation en colonnes pour le mega menu
@@ -546,10 +578,17 @@ const Navbar = () => {
     >
       {/* Logo */}
       <Link to='/' className='navbar-logo' onClick={() => handleNavLinkClick('/')}>
+        {/* Logo desktop - horizontal */}
         <img
           src='/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg'
           alt='Bon Cours Logo'
-          className='navbar-logo-img'
+          className='navbar-logo-img navbar-logo-img-desktop'
+        />
+        {/* Logo mobile - circulaire */}
+        <img
+          src='/assets/images/logo/InstitutBonCours_Logo_B_clair.svg'
+          alt='Bon Cours Logo'
+          className='navbar-logo-img navbar-logo-img-mobile'
         />
       </Link>
       {/* Navigation principale */}

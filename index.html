@@ -15,46 +15,66 @@
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Meta tags SEO -->
-    <title>Institut Bon Cours</title>
+    <title>Institut Bon Cours - École de langues et accompagnement scolaire à Strasbourg</title>
     <meta
       name="description"
-      content="Institut Bon Cours, école de langues et accompagnement scolaire : cours de langues, soutien scolaire, préparation aux examens et ateliers linguistiques."
+      content="Institut Bon Cours à Strasbourg : école de langues et accompagnement scolaire. Cours de langues en petits groupes (6 personnes), soutien scolaire personnalisé, préparation aux examens et ateliers linguistiques. Professeurs qualifiés, horaires flexibles, méthode adaptée."
     />
     <meta
       name="keywords"
-      content="école de langues, cours de langues, soutien scolaire, préparation examens, ateliers linguistiques, Institut Bon Cours"
+      content="école de langues Strasbourg, cours de langues Strasbourg, soutien scolaire Strasbourg, préparation examens, ateliers linguistiques, Institut Bon Cours, cours anglais Strasbourg, cours allemand Strasbourg, cours espagnol Strasbourg, cours italien Strasbourg, cours persan, cours portugais, cours turc, cours russe, cours chinois, cours japonais, accompagnement scolaire personnalisé, groupes réduits, méthode actionnelle"
     />
     <meta name="author" content="Institut Bon Cours" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
     <link rel="canonical" href="https://boncours.fr/" />
+    <meta name="geo.region" content="FR-67" />
+    <meta name="geo.placename" content="Strasbourg" />
+    <meta name="geo.position" content="48.5734;7.7521" />
+    <meta name="ICBM" content="48.5734, 7.7521" />
+    <meta name="language" content="French" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="rating" content="general" />
+    <meta name="distribution" content="global" />
+    <meta name="coverage" content="worldwide" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://boncours.fr/" />
-    <meta property="og:title" content="Institut Bon Cours" />
+    <meta property="og:title" content="Institut Bon Cours - École de langues et accompagnement scolaire à Strasbourg" />
     <meta
       property="og:description"
-      content="Institut Bon Cours, école de langues et accompagnement scolaire : cours de langues, soutien scolaire, préparation aux examens et ateliers linguistiques."
+      content="Institut Bon Cours à Strasbourg : école de langues et accompagnement scolaire. Cours de langues en petits groupes (6 personnes), soutien scolaire personnalisé, préparation aux examens et ateliers linguistiques. Professeurs qualifiés, horaires flexibles."
     />
     <meta
       property="og:image"
       content="https://boncours.fr/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg"
     />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logo Institut Bon Cours - École de langues Strasbourg" />
     <meta property="og:site_name" content="Institut Bon Cours" />
     <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="place:location:latitude" content="48.5734" />
+    <meta property="place:location:longitude" content="7.7521" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://boncours.fr/" />
-    <meta property="twitter:title" content="Institut Bon Cours" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://boncours.fr/" />
+    <meta name="twitter:title" content="Institut Bon Cours - École de langues et accompagnement scolaire à Strasbourg" />
     <meta
-      property="twitter:description"
-      content="Institut Bon Cours, école de langues et accompagnement scolaire : cours de langues, soutien scolaire, préparation aux examens et ateliers linguistiques."
+      name="twitter:description"
+      content="Institut Bon Cours à Strasbourg : école de langues et accompagnement scolaire. Cours de langues en petits groupes, soutien scolaire personnalisé, préparation aux examens et ateliers linguistiques."
     />
     <meta
-      property="twitter:image"
+      name="twitter:image"
       content="https://boncours.fr/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg"
     />
+    <meta name="twitter:image:alt" content="Logo Institut Bon Cours - École de langues Strasbourg" />
+    <meta name="twitter:site" content="@boncours" />
+    <meta name="twitter:creator" content="@boncours" />
 
     <!-- Meta tags pour les applications mobiles -->
     <meta name="application-name" content="Institut Bon Cours" />
@@ -67,10 +87,19 @@
     <!-- Preconnect pour optimiser les performances -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.google.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
 
     <!-- DNS prefetch pour les domaines externes -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="//www.google.com" />
+    <link rel="dns-prefetch" href="//maps.google.com" />
+    
+    <!-- Preload ressources critiques -->
+    <link rel="preload" href="/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml" />
     
     <!-- Chargement optimisé des polices avec font-display: swap pour non-bloquant -->
     <!-- Co Headline pour les titres et Afacad pour le corps de texte -->
@@ -89,23 +118,215 @@
 
     <!-- Performance hints -->
     <meta name="format-detection" content="telephone=no" />
+    
+    <!-- Google My Business / Local SEO -->
+    <meta name="google-site-verification" content="" />
+    <meta name="geo.region" content="FR-67" />
+    <meta name="geo.placename" content="Strasbourg" />
+    <meta name="geo.position" content="48.5734;7.7521" />
+    <meta name="ICBM" content="48.5734, 7.7521" />
+    
+    <!-- Rich Snippets supplémentaires -->
+    <meta name="application-name" content="Institut Bon Cours" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    
+    <!-- Optimisations performances -->
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <link rel="prefetch" href="/offres" />
+    <link rel="prefetch" href="/contact" />
+    
+    <!-- Security (Note: X-Frame-Options doit être dans les headers HTTP, pas dans meta) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
 
     <!-- Structured data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
+        "@type": ["EducationalOrganization", "LanguageSchool"],
         "name": "Institut Bon Cours",
+        "alternateName": "Bon Cours",
         "url": "https://boncours.fr",
         "logo": "https://boncours.fr/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg",
-        "description": "École de langues, soutien scolaire et préparation aux examens",
+        "image": "https://boncours.fr/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg",
+        "description": "Institut Bon Cours est une école de langues et centre d'accompagnement scolaire situé au cœur de Strasbourg. Nous proposons des cours de langues en petits groupes de 6 personnes, un soutien scolaire personnalisé en groupes de 4 élèves, la préparation aux examens et des ateliers linguistiques. Notre méthode adaptative avec diagnostic initial, cours personnalisés et bilans réguliers garantit une progression optimale.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "36 quai Mullenheim",
+            "addressLocality": "Strasbourg",
+            "addressRegion": "Alsace",
+            "postalCode": "67000",
+            "addressCountry": "FR"
+          },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "48.5734",
+          "longitude": "7.7521"
+        },
+        "telephone": "+33388520382",
+        "email": "contact@boncours.fr",
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+33388520382",
+            "contactType": "customer service",
+            "areaServed": "FR",
+            "availableLanguage": ["French", "English"]
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+33679145577",
+            "contactType": "customer service",
+            "areaServed": "FR",
+            "availableLanguage": ["French", "English"]
+          }
+        ],
+        "areaServed": {
+          "@type": "City",
+          "name": "Strasbourg"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Services éducatifs Institut Bon Cours",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Course",
+                "name": "Cours de langues en petits groupes",
+                "description": "Apprentissage des langues en groupes de 6 personnes maximum. Anglais, Allemand, Espagnol, Italien, Persan, Portugais, Turc, Russe, Chinois, Japonais.",
+                "educationalLevel": "Tous niveaux"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Course",
+                "name": "Soutien scolaire",
+                "description": "Accompagnement scolaire personnalisé en groupes de 4 élèves. Primaire, Collège, Lycée.",
+                "educationalLevel": "Primaire, Collège, Lycée"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Course",
+                "name": "Préparation aux examens",
+                "description": "Préparation personnalisée pour tous types d'examens linguistiques et scolaires."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Course",
+                "name": "Ateliers linguistiques",
+                "description": "Ateliers pratiques pour renforcer vos compétences linguistiques."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Course",
+                "name": "Accompagnements complémentaires",
+                "description": "Services d'accompagnement additionnels pour votre progression."
+              }
+            }
+          ]
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "50",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
         "sameAs": [
           "https://www.facebook.com/boncours",
           "https://www.twitter.com/boncours",
           "https://www.linkedin.com/company/boncours"
+        ],
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "19:00"
+        },
+        "priceRange": "$$",
+        "paymentAccepted": "Cash, Credit Card, Check"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Institut Bon Cours",
+        "image": "https://boncours.fr/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg",
+        "@id": "https://boncours.fr",
+        "url": "https://boncours.fr",
+        "telephone": "+33388520382",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "36 quai Mullenheim",
+          "addressLocality": "Strasbourg",
+          "postalCode": "67000",
+          "addressRegion": "Alsace",
+          "addressCountry": "FR"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+33388520382",
+            "contactType": "customer service",
+            "areaServed": "FR",
+            "availableLanguage": ["French", "English"]
+          }
+        ],
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 48.5734,
+          "longitude": 7.7521
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "19:00"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://boncours.fr/"
+          }
         ]
       }
     </script>
+    <!-- Hreflang pour multi-langues -->
+    <link rel="alternate" hreflang="fr" href="https://boncours.fr/" />
+    <link rel="alternate" hreflang="en" href="https://boncours.fr/en" />
+    <link rel="alternate" hreflang="x-default" href="https://boncours.fr/" />
   </head>
   <body>
     <div id="root"></div>

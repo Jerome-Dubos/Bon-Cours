@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Page d'accueil avec images -->
+  <url>
+    <loc>https://boncours.fr/</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://boncours.fr/assets/images/logo/InstitutBonCours_Logo_horizontal_clair.svg</image:loc>
+      <image:title>Logo Institut Bon Cours - École de langues Strasbourg</image:title>
+      <image:caption>Institut Bon Cours, école de langues et accompagnement scolaire à Strasbourg</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Page Offres -->
+  <url>
+    <loc>https://boncours.fr/offres</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Page Cours de Langues -->
+  <url>
+    <loc>https://boncours.fr/offres/langues</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Page Soutien Scolaire -->
+  <url>
+    <loc>https://boncours.fr/offres/soutien-scolaire</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Page Contact -->
+  <url>
+    <loc>https://boncours.fr/contact</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
+

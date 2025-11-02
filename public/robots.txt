@@ -1,22 +1,80 @@
+# robots.txt pour Institut Bon Cours
+# Optimisé pour le référencement et l'accessibilité
+
+# Tous les robots sont autorisés par défaut
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemap principal
 Sitemap: https://boncours.fr/sitemap.xml
+Sitemap: https://boncours.fr/sitemap-images.xml
 
-# Disallow private areas
+# Autoriser l'indexation des pages importantes
+Allow: /
+Allow: /offres
+Allow: /offres/langues
+Allow: /offres/soutien-scolaire
+Allow: /offres/ateliers
+Allow: /offres/examens
+Allow: /offres/accompagnements
+Allow: /offres/horaires
+Allow: /offres/test
+Allow: /methode
+Allow: /methode/approche-actionnelle
+Allow: /methode/niveaux-parcours
+Allow: /methode/outils-ressources
+Allow: /qui-sommes-nous
+Allow: /contact
+
+# Interdire les zones privées et techniques
 Disallow: /admin/
 Disallow: /api/
 Disallow: /private/
 Disallow: /_next/
-Disallow: /assets/
+Disallow: /.well-known/
+Disallow: /*.json$
 
-# Allow important pages
+# Autoriser les assets statiques importants pour le SEO
+Allow: /assets/images/
+Allow: /favicon.ico
+Allow: /favicon.svg
+Allow: /robots.txt
+Allow: /sitemap.xml
+
+# Interdire certains types de fichiers
+Disallow: /*.pdf$
+Disallow: /dist/
+Disallow: /node_modules/
+
+# Règles spécifiques pour Googlebot
+User-agent: Googlebot
 Allow: /
-Allow: /cours
-Allow: /contact
-Allow: /about
-Allow: /pricing
+Crawl-delay: 0
 
-# Crawl-delay for respectful crawling
+# Règles spécifiques pour Bingbot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# Règles spécifiques pour les autres crawlers majeurs
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# Bloquer les bots malveillants et spam
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+# Délai de crawl général pour respecter les serveurs
 Crawl-delay: 1

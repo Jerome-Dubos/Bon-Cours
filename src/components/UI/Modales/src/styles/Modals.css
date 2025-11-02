@@ -7,15 +7,39 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--bg-overlay, rgba(7, 46, 65, 0.8));
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2147483647;
   padding: 20px;
-  backdrop-filter: blur(4px);
+  padding-left: 500px; /* Laisser de l'espace pour le logo horizontal (450px + marge) */
   animation: modalFadeIn 0.3s ease-out;
   isolation: isolate;
+}
+
+/* Fond de l'overlay qui commence après le logo */
+.modal-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 500px; /* Commence après la zone du logo horizontal en desktop */
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-overlay, rgba(7, 46, 65, 0.8));
+  backdrop-filter: blur(4px);
+  z-index: -1;
+}
+
+/* Sur petits écrans, l'overlay commence après le logo circulaire */
+@media (max-width: 1023px) {
+  .modal-overlay {
+    padding-left: 20px;
+  }
+
+  .modal-overlay::before {
+    left: 140px; /* Logo circulaire 100px + marge */
+  }
 }
 
 /* Modal principale */

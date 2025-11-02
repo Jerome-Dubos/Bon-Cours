@@ -68,11 +68,34 @@ body.modal-open .navbar.scrolled {
 }
 
 .navbar-logo-img {
+  transition: all var(--transition-normal);
+  object-fit: contain;
+}
+
+/* Logo desktop - horizontal */
+.navbar-logo-img-desktop {
   height: 150px;
   width: auto;
   max-width: 450px;
-  transition: all var(--transition-normal);
-  object-fit: contain;
+  display: block;
+}
+
+/* Logo mobile - circulaire */
+.navbar-logo-img-mobile {
+  height: 100px;
+  width: 100px;
+  display: none;
+}
+
+/* Sur mobile, afficher le logo circulaire et cacher le desktop */
+@media (max-width: 1023px) {
+  .navbar-logo-img-desktop {
+    display: none;
+  }
+  
+  .navbar-logo-img-mobile {
+    display: block;
+  }
 }
 
 .navbar-logo:hover .navbar-logo-img {
