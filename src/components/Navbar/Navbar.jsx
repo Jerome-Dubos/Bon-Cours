@@ -94,7 +94,7 @@ const Navbar = () => {
     if (isModalOpen && typeof document !== 'undefined') {
       const logoRoot = document.getElementById('navbar-logo-root');
       const modalOverlay = document.querySelector('.modal-overlay');
-      
+
       if (logoRoot && modalOverlay && logoRoot.parentNode === document.body) {
         // Déplacer le logo root après la modale dans le DOM
         document.body.appendChild(logoRoot);
@@ -149,7 +149,10 @@ const Navbar = () => {
         {
           label: t('nav.submenus.accompagnements-complementaires'),
           submenu: [
-            { label: t('nav.submenus.administratif'), path: '/offres/accompagnements?tab=administratif' },
+            {
+              label: t('nav.submenus.administratif'),
+              path: '/offres/accompagnements?tab=administratif',
+            },
             { label: t('nav.submenus.scolarite'), path: '/offres/accompagnements?tab=scolarite' },
           ],
         },
@@ -188,7 +191,7 @@ const Navbar = () => {
         },
         {
           path: '/qui-sommes-nous',
-          label: t('nav.qui-sommes-nous', 'Qui sommes nous ?'),
+          label: t('nav.qui-sommes-nous', 'Qui sommes-nous ?'),
           icon: <MdGroups2 size={20} />,
         },
         {
