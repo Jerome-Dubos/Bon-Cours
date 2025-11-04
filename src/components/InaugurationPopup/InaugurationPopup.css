@@ -6,16 +6,38 @@
   backdrop-filter: blur(20px);
   border-radius: 28px;
   padding: 0;
-  box-shadow: 
+  box-shadow:
     0 25px 70px rgba(0, 0, 0, 0.5),
     0 0 0 1px rgba(255, 214, 176, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  z-index: 1000;
+  z-index: 10000; /* Au-dessus de la navbar (9999) mais en dessous des modales */
   min-width: 480px;
   max-width: 520px;
+  max-height: calc(100vh - 140px); /* Limiter la hauteur pour éviter qu'il dépasse */
+  min-height: auto; /* Permettre au pop-up de s'adapter au contenu */
+  overflow-y: auto; /* Permettre le scroll si nécessaire */
+  overflow-x: hidden; /* Empêcher le scroll horizontal */
   animation: slideInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   border: 1px solid rgba(255, 214, 176, 0.25);
-  overflow: hidden;
+}
+
+/* Personnalisation de la scrollbar pour le pop-up */
+.inauguration-popup::-webkit-scrollbar {
+  width: 8px;
+}
+
+.inauguration-popup::-webkit-scrollbar-track {
+  background: rgba(255, 214, 176, 0.1);
+  border-radius: 4px;
+}
+
+.inauguration-popup::-webkit-scrollbar-thumb {
+  background: rgba(255, 214, 176, 0.4);
+  border-radius: 4px;
+}
+
+.inauguration-popup::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 214, 176, 0.6);
 }
 
 .inauguration-popup::before {
@@ -25,15 +47,18 @@
   left: 0;
   right: 0;
   height: 5px;
-  background: linear-gradient(90deg, 
-    var(--secondary-peach, #ffd6b0) 0%, 
+  background: linear-gradient(
+    90deg,
+    var(--secondary-peach, #ffd6b0) 0%,
     rgba(255, 214, 176, 0.6) 50%,
-    var(--secondary-peach, #ffd6b0) 100%);
+    var(--secondary-peach, #ffd6b0) 100%
+  );
   animation: shimmer 3s ease-in-out infinite;
 }
 
 @keyframes shimmer {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -54,7 +79,7 @@
 
 /* Bouton fermeture */
 .inauguration-popup-close {
-  position: absolute;
+  position: absolute; /* Position fixe dans le pop-up */
   top: 24px;
   right: 24px;
   background: rgba(255, 255, 255, 0.1);
@@ -71,7 +96,7 @@
   justify-content: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
-  z-index: 10;
+  z-index: 20; /* Au-dessus du contenu pour rester accessible */
 }
 
 .inauguration-popup-close:hover {
@@ -86,9 +111,11 @@
   position: relative;
   z-index: 1;
   padding: 50px 45px 40px;
+  padding-top: 60px; /* Espace pour le bouton de fermeture */
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-height: min-content; /* Permet au contenu de définir sa hauteur minimale */
 }
 
 /* Icône principale */
@@ -106,7 +133,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
@@ -188,7 +216,7 @@
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   margin-top: 8px;
-  box-shadow: 
+  box-shadow:
     0 6px 20px rgba(255, 214, 176, 0.4),
     0 0 0 1px rgba(35, 49, 88, 0.1) inset;
   letter-spacing: 0.02em;
@@ -214,14 +242,14 @@
 .inauguration-popup-button:hover {
   background: linear-gradient(135deg, #ffc895 0%, #ffd6b0 100%);
   transform: translateY(-4px);
-  box-shadow: 
+  box-shadow:
     0 12px 32px rgba(255, 214, 176, 0.6),
     0 0 0 1px rgba(35, 49, 88, 0.1) inset;
 }
 
 .inauguration-popup-button:active {
   transform: translateY(-2px);
-  box-shadow: 
+  box-shadow:
     0 4px 12px rgba(255, 214, 176, 0.5),
     0 0 0 1px rgba(35, 49, 88, 0.1) inset;
 }
@@ -249,7 +277,7 @@
   justify-content: center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 999;
+  z-index: 10000; /* Même z-index que le pop-up */
   opacity: 0.85;
 }
 
@@ -277,10 +305,12 @@
     max-width: none;
     min-width: auto;
     border-radius: 24px;
+    max-height: calc(100vh - 100px);
   }
 
   .inauguration-popup-content {
     padding: 40px 30px 35px;
+    padding-top: 55px; /* Espace pour le bouton de fermeture */
     gap: 20px;
   }
 
@@ -310,5 +340,55 @@
 
   .inauguration-reopen-button svg {
     font-size: 20px;
+  }
+}
+
+/* Ajustements pour les grands écrans */
+@media (min-width: 1400px) {
+  .inauguration-popup {
+    max-width: 480px;
+    min-width: 440px;
+    max-height: calc(100vh - 160px);
+  }
+
+  .inauguration-popup-content {
+    padding: 45px 40px 35px;
+    padding-top: 55px; /* Espace pour le bouton de fermeture */
+    gap: 20px;
+  }
+
+  .inauguration-popup-title {
+    font-size: 2.25rem;
+  }
+
+  .inauguration-popup-icon {
+    font-size: 56px;
+  }
+}
+
+/* Très grands écrans (moniteurs 4K, etc.) */
+@media (min-width: 1920px) {
+  .inauguration-popup {
+    max-width: 460px;
+    min-width: 420px;
+    max-height: calc(100vh - 180px);
+  }
+
+  .inauguration-popup-content {
+    padding: 40px 35px 30px;
+    padding-top: 50px; /* Espace pour le bouton de fermeture */
+    gap: 18px;
+  }
+
+  .inauguration-popup-title {
+    font-size: 2rem;
+  }
+
+  .inauguration-popup-icon {
+    font-size: 52px;
+  }
+
+  .inauguration-popup-date {
+    font-size: 1.2rem;
   }
 }

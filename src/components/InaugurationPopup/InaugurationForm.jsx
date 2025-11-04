@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
-import { FaUser, FaEnvelope, FaComments, FaPaperPlane } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FaComments, FaEnvelope, FaPaperPlane, FaUser } from 'react-icons/fa';
 import { sendInaugurationRegistration } from '../../services';
 import { ErrorNotification, SuccessNotification } from '../UI/Notifications';
 import './InaugurationForm.css';
 
 const InaugurationForm = ({ onSuccess, onError }) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     nom: '',
     prenom: '',
     email: '',
-    message: 'Bonjour,\n\nJe souhaite participer à l\'inauguration de l\'Institut Bon Cours le 8 novembre 2025.\n\nMerci de confirmer mon inscription.\n\n[Votre nom]',
+    message: '',
   });
+
+  // Initialiser le message par défaut au chargement
+  useEffect(() => {
+    const defaultMessage = t('inauguration.form.defaultMessage');
+    setFormData(prev => ({
+      ...prev,
+      message: prev.message || defaultMessage,
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
@@ -25,24 +37,24 @@ const InaugurationForm = ({ onSuccess, onError }) => {
     switch (field) {
       case 'nom':
         if (!value.trim()) {
-          error = 'Le nom est requis';
+          error = t('inauguration.form.errors.nomRequired');
         }
         break;
       case 'prenom':
         if (!value.trim()) {
-          error = 'Le prénom est requis';
+          error = t('inauguration.form.errors.prenomRequired');
         }
         break;
       case 'email':
         if (!value.trim()) {
-          error = 'L\'email est requis';
+          error = t('inauguration.form.errors.emailRequired');
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-          error = 'L\'email n\'est pas valide';
+          error = t('inauguration.form.errors.emailInvalid');
         }
         break;
       case 'message':
         if (!value.trim()) {
-          error = 'Le message est requis';
+          error = t('inauguration.form.errors.messageRequired');
         }
         break;
       default:
@@ -119,7 +131,7 @@ const InaugurationForm = ({ onSuccess, onError }) => {
     setErrorNotifications(prev => prev.filter(n => n.id !== id));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     // Marquer tous les champs comme touchés
@@ -151,7 +163,7 @@ const InaugurationForm = ({ onSuccess, onError }) => {
           nom: '',
           prenom: '',
           email: '',
-          message: 'Bonjour,\n\nJe souhaite participer à l\'inauguration de l\'Institut Bon Cours le 8 novembre 2025.\n\nMerci de confirmer mon inscription.\n\n[Votre nom]',
+          message: t('inauguration.form.defaultMessage'),
         });
         setErrors({});
         setTouched({});
@@ -161,12 +173,12 @@ const InaugurationForm = ({ onSuccess, onError }) => {
           onSuccess();
         }
       } else {
-        throw new Error(result.error || 'Erreur lors de l\'envoi de l\'inscription');
+        throw new Error(result.error || "Erreur lors de l'envoi de l'inscription");
       }
     } catch (error) {
-      console.error('Erreur lors de l\'envoi du formulaire:', error);
-      const errorMessage = error.message || 'Une erreur est survenue lors de l\'envoi de votre inscription. Veuillez réessayer.';
-      
+      console.error("Erreur lors de l'envoi du formulaire:", error);
+      const errorMessage = error.message || t('inauguration.form.errors.genericError');
+
       // Notifier le parent de l'erreur (notification gérée au niveau parent)
       if (onError) {
         onError(errorMessage);
@@ -180,94 +192,94 @@ const InaugurationForm = ({ onSuccess, onError }) => {
   };
 
   return (
-    <form className="inauguration-form" onSubmit={handleSubmit}>
-      <div className="inauguration-form-field">
-        <label className="inauguration-form-label">
-          <FaUser className="inauguration-form-icon" />
-          Nom
+    <form className='inauguration-form' onSubmit={handleSubmit}>
+      <div className='inauguration-form-field'>
+        <label className='inauguration-form-label'>
+          <FaUser className='inauguration-form-icon' />
+          {t('inauguration.form.fields.nom')}
         </label>
         <input
-          type="text"
+          type='text'
           className={`inauguration-form-input ${errors.nom && touched.nom ? 'inauguration-form-error' : ''}`}
-          placeholder="Votre nom"
+          placeholder={t('inauguration.form.placeholders.nom')}
           value={formData.nom}
-          onChange={(e) => handleInputChange('nom', e.target.value)}
-          onBlur={(e) => handleInputBlur('nom', e.target.value)}
+          onChange={e => handleInputChange('nom', e.target.value)}
+          onBlur={e => handleInputBlur('nom', e.target.value)}
         />
         {errors.nom && touched.nom && (
-          <span className="inauguration-form-error-message">{errors.nom}</span>
+          <span className='inauguration-form-error-message'>{errors.nom}</span>
         )}
       </div>
 
-      <div className="inauguration-form-field">
-        <label className="inauguration-form-label">
-          <FaUser className="inauguration-form-icon" />
-          Prénom
+      <div className='inauguration-form-field'>
+        <label className='inauguration-form-label'>
+          <FaUser className='inauguration-form-icon' />
+          {t('inauguration.form.fields.prenom')}
         </label>
         <input
-          type="text"
+          type='text'
           className={`inauguration-form-input ${errors.prenom && touched.prenom ? 'inauguration-form-error' : ''}`}
-          placeholder="Votre prénom"
+          placeholder={t('inauguration.form.placeholders.prenom')}
           value={formData.prenom}
-          onChange={(e) => handleInputChange('prenom', e.target.value)}
-          onBlur={(e) => handleInputBlur('prenom', e.target.value)}
+          onChange={e => handleInputChange('prenom', e.target.value)}
+          onBlur={e => handleInputBlur('prenom', e.target.value)}
         />
         {errors.prenom && touched.prenom && (
-          <span className="inauguration-form-error-message">{errors.prenom}</span>
+          <span className='inauguration-form-error-message'>{errors.prenom}</span>
         )}
       </div>
 
-      <div className="inauguration-form-field">
-        <label className="inauguration-form-label">
-          <FaEnvelope className="inauguration-form-icon" />
-          Email
+      <div className='inauguration-form-field'>
+        <label className='inauguration-form-label'>
+          <FaEnvelope className='inauguration-form-icon' />
+          {t('inauguration.form.fields.email')}
         </label>
         <input
-          type="email"
+          type='email'
           className={`inauguration-form-input ${errors.email && touched.email ? 'inauguration-form-error' : ''}`}
-          placeholder="votre.email@exemple.com"
+          placeholder={t('inauguration.form.placeholders.email')}
           value={formData.email}
-          onChange={(e) => handleInputChange('email', e.target.value)}
-          onBlur={(e) => handleInputBlur('email', e.target.value)}
+          onChange={e => handleInputChange('email', e.target.value)}
+          onBlur={e => handleInputBlur('email', e.target.value)}
         />
         {errors.email && touched.email && (
-          <span className="inauguration-form-error-message">{errors.email}</span>
+          <span className='inauguration-form-error-message'>{errors.email}</span>
         )}
       </div>
 
-      <div className="inauguration-form-field">
-        <label className="inauguration-form-label">
-          <FaComments className="inauguration-form-icon" />
-          Message
+      <div className='inauguration-form-field'>
+        <label className='inauguration-form-label'>
+          <FaComments className='inauguration-form-icon' />
+          {t('inauguration.form.fields.message')}
         </label>
         <textarea
           className={`inauguration-form-textarea ${errors.message && touched.message ? 'inauguration-form-error' : ''}`}
-          placeholder="Votre message"
+          placeholder={t('inauguration.form.placeholders.message')}
           value={formData.message}
-          onChange={(e) => handleInputChange('message', e.target.value)}
-          onBlur={(e) => handleInputBlur('message', e.target.value)}
-          rows="8"
+          onChange={e => handleInputChange('message', e.target.value)}
+          onBlur={e => handleInputBlur('message', e.target.value)}
+          rows='8'
         />
         {errors.message && touched.message && (
-          <span className="inauguration-form-error-message">{errors.message}</span>
+          <span className='inauguration-form-error-message'>{errors.message}</span>
         )}
       </div>
 
-      <div className="inauguration-form-actions">
+      <div className='inauguration-form-actions'>
         <button
-          type="submit"
+          type='submit'
           className={`inauguration-form-submit ${isSubmitting ? 'inauguration-form-loading' : ''}`}
           disabled={isSubmitting || !isFormValid()}
         >
           {isSubmitting ? (
             <>
-              <div className="inauguration-form-loading-spinner"></div>
-              Envoi en cours...
+              <div className='inauguration-form-loading-spinner'></div>
+              {t('inauguration.form.submitting')}
             </>
           ) : (
             <>
-              <FaPaperPlane className="inauguration-form-submit-icon" />
-              Envoyer l'inscription
+              <FaPaperPlane className='inauguration-form-submit-icon' />
+              {t('inauguration.form.submit')}
             </>
           )}
         </button>
@@ -298,4 +310,3 @@ const InaugurationForm = ({ onSuccess, onError }) => {
 };
 
 export default InaugurationForm;
-

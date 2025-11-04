@@ -207,6 +207,52 @@ export const fr = {
         'qui-sommes-nous': 'Qui sommes nous ?',
       },
     },
+    inauguration: {
+      popup: {
+        title: 'Inauguration',
+        subtitle: 'Institut Bon Cours',
+        date: 'Le 8 novembre 2025',
+        description:
+          'Rejoignez-nous pour célébrer le lancement de notre institut et découvrir nos offres exclusives !',
+        button: 'Inscrivez-vous',
+        closeLabel: 'Fermer',
+        reopenLabel: "Réouvrir l'annonce d'inauguration",
+        reopenTitle: 'Inauguration le 8 novembre 2025',
+      },
+      modal: {
+        title: "Inscription à l'inauguration",
+      },
+      form: {
+        fields: {
+          nom: 'Nom',
+          prenom: 'Prénom',
+          email: 'Email',
+          message: 'Message',
+        },
+        placeholders: {
+          nom: 'Votre nom',
+          prenom: 'Votre prénom',
+          email: 'votre.email@exemple.com',
+          message: 'Votre message',
+        },
+        defaultMessage:
+          "Bonjour,\n\nJe souhaite participer à l'inauguration de l'Institut Bon Cours le 8 novembre 2025.\n\nMerci de confirmer mon inscription.\n\n[Votre nom]",
+        submit: "Envoyer l'inscription",
+        submitting: 'Envoi en cours...',
+        errors: {
+          nomRequired: 'Le nom est requis',
+          prenomRequired: 'Le prénom est requis',
+          emailRequired: "L'email est requis",
+          emailInvalid: "L'email n'est pas valide",
+          messageRequired: 'Le message est requis',
+          genericError:
+            "Une erreur est survenue lors de l'envoi de votre inscription. Veuillez réessayer.",
+        },
+      },
+      notifications: {
+        success: "Votre inscription à l'inauguration a été envoyée avec succès !",
+      },
+    },
     error: {
       title: 'Page non trouvée',
       description: "La page que vous recherchez n'existe pas ou a été déplacée.",
