@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Footer, Loader, Navbar, ScrollToTop } from './components';
 import { AuthProvider } from './context/AuthContext';
 import { initializeEmailJS } from './services';
-import InaugurationPopup from './components/InaugurationPopup';
 import './index.css';
 
 // Lazy loading des pages pour optimiser les performances
@@ -89,7 +88,6 @@ const App = () => {
           </Routes>
         </Suspense>
         <Footer />
-        <InaugurationPopup />
       </AuthProvider>
     </Router>
   );

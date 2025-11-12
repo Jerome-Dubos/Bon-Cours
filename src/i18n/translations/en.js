@@ -207,51 +207,6 @@ export const en = {
         'qui-sommes-nous': 'Who are we?',
       },
     },
-    inauguration: {
-      popup: {
-        title: 'Inauguration',
-        subtitle: 'Institut Bon Cours',
-        date: 'November 8, 2025',
-        description:
-          'Join us to celebrate the launch of our institute and discover our exclusive offers!',
-        button: 'Register',
-        closeLabel: 'Close',
-        reopenLabel: 'Reopen inauguration announcement',
-        reopenTitle: 'Inauguration on November 8, 2025',
-      },
-      modal: {
-        title: 'Inauguration Registration',
-      },
-      form: {
-        fields: {
-          nom: 'Last Name',
-          prenom: 'First Name',
-          email: 'Email',
-          message: 'Message',
-        },
-        placeholders: {
-          nom: 'Your last name',
-          prenom: 'Your first name',
-          email: 'your.email@example.com',
-          message: 'Your message',
-        },
-        defaultMessage:
-          'Hello,\n\n\n\nI would like to attend the opening of Bon Cours Institute on 8 November 2025.\n\nPlease confirm my registration.\n\n\n\n[Your Name]',
-        submit: 'Send Registration',
-        submitting: 'Sending...',
-        errors: {
-          nomRequired: 'Last name is required',
-          prenomRequired: 'First name is required',
-          emailRequired: 'Email is required',
-          emailInvalid: 'Email is not valid',
-          messageRequired: 'Message is required',
-          genericError: 'An error occurred while sending your registration. Please try again.',
-        },
-      },
-      notifications: {
-        success: 'Your inauguration registration has been sent successfully!',
-      },
-    },
     error: {
       title: 'Page not found',
       description: 'The page you are looking for does not exist or has been moved.',

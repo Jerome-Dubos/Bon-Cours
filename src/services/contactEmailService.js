@@ -10,7 +10,6 @@ import {
 const EMAIL_TEMPLATES = {
   CONTACT: EMAILJS_CONFIG.TEMPLATE_ID_CONTACT,
   INTEREST: EMAILJS_CONFIG.TEMPLATE_ID_CONTACT, // Même template, données différentes
-  INAUGURATION: EMAILJS_CONFIG.TEMPLATE_ID_CONTACT, // Même template, données différentes
 };
 
 // Configuration des délais
@@ -286,84 +285,6 @@ export const sendInterestRequest = async (formData, courseData) => {
         simulated: result.simulated || false,
         user_name: `${formData.prenom} ${formData.nom}`,
         course: courseData,
-        retryCount: result.retryCount || 0,
-      };
-
-      saveEmailRecord(emailRecord);
-    }
-
-    return result;
-  } catch (error) {
-    return { success: false, error: error.message };
-  }
-};
-
-/**
- * Envoie une inscription à l'inauguration (optimisé)
- */
-export const sendInaugurationRegistration = async formData => {
-  try {
-    // Validation des données
-    if (!formData.prenom || !formData.nom || !formData.email || !formData.message) {
-      throw new Error('Données de formulaire incomplètes');
-    }
-
-    // Fonction pour nettoyer et valider les valeurs avant envoi à EmailJS
-    const cleanValue = (value, defaultValue = '') => {
-      if (value === null || value === undefined) return defaultValue;
-      if (typeof value === 'string') return value.trim() || defaultValue;
-      if (Array.isArray(value)) return value.length > 0 ? value.join(', ') : defaultValue;
-      return String(value) || defaultValue;
-    };
-
-    // Remplacer [Votre nom] par le nom réel dans le message
-    const finalMessage = formData.message.replace(
-      '[Votre nom]',
-      `${formData.prenom || ''} ${formData.nom || ''}`.trim()
-    );
-
-    // Préparer les données pour le template EmailJS (même template que ContactForm)
-    const templateParams = {
-      // Variables principales (utilisées dans le template) - OBLIGATOIRES
-      name: cleanValue(`${formData.prenom || ''} ${formData.nom || ''}`.trim(), 'Visiteur'),
-      email: cleanValue(formData.email, ''),
-      message: cleanValue(finalMessage, ''),
-      time: cleanValue(new Date().toLocaleString('fr-FR'), new Date().toLocaleString('fr-FR')),
-
-      // Variables supplémentaires (pour compatibilité avec le template existant)
-      title: cleanValue(
-        `Inscription à l'inauguration de ${formData.prenom || ''} ${formData.nom || ''}`.trim(),
-        'Inscription à l\'inauguration'
-      ),
-      user_name: cleanValue(`${formData.prenom || ''} ${formData.nom || ''}`.trim(), 'Visiteur'),
-      user_email: cleanValue(formData.email, ''),
-      user_phone: 'Non renseigné', // Pas de téléphone pour l'inauguration
-      user_message: cleanValue(finalMessage, ''),
-      preference_contact: 'Email', // Par défaut pour l'inauguration
-      jours_preferes: 'Non spécifié', // Pas applicable pour l'inauguration
-      horaires_preferes: 'Non spécifié', // Pas applicable pour l'inauguration
-      contact_date: cleanValue(
-        new Date().toLocaleString('fr-FR'),
-        new Date().toLocaleString('fr-FR')
-      ),
-      school_name: cleanValue(EMAILJS_CONFIG.SCHOOL_NAME, 'Bon Cours'),
-    };
-
-    // Envoi réel via EmailJS
-    const result = await sendEmailViaEmailJS(EMAIL_TEMPLATES.INAUGURATION, templateParams);
-
-    // Enregistrer dans localStorage pour le suivi
-    if (result.success) {
-      const emailRecord = {
-        id: Date.now(),
-        to: EMAILJS_CONFIG.CONTACT_EMAIL,
-        from: formData.email,
-        type: 'inauguration_registration',
-        timestamp: new Date().toISOString(),
-        status: 'sent',
-        template: 'inauguration_registration',
-        simulated: result.simulated || false,
-        user_name: `${formData.prenom} ${formData.nom}`,
         retryCount: result.retryCount || 0,
       };
 
