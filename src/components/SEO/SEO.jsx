@@ -15,7 +15,7 @@ const SEO = ({
   noindex = false,
   canonical,
   ogType = 'website',
-  twitterCard = 'summary_large_image',
+  // twitterCard retiré - Twitter non utilisé
 }) => {
   const location = useLocation();
   const baseUrl = 'https://boncours.fr';
@@ -81,16 +81,8 @@ const SEO = ({
       updateMetaTag('og:image:alt', `${fullTitle} - Institut Bon Cours`, true);
     }
 
-    // Twitter Card
-    updateMetaTag('twitter:card', twitterCard);
-    updateMetaTag('twitter:title', fullTitle);
-    updateMetaTag('twitter:description', fullDescription);
-    updateMetaTag('twitter:image', image);
-    if (image) {
-      updateMetaTag('twitter:image:alt', `${fullTitle} - Institut Bon Cours`);
-    }
-    updateMetaTag('twitter:site', '@boncours');
-    updateMetaTag('twitter:creator', '@boncours');
+    // Twitter Card retiré - Twitter non utilisé
+    // Les meta tags Open Graph sont utilisés par Instagram et autres réseaux sociaux
 
     // Structured Data
     if (structuredData) {
@@ -112,7 +104,7 @@ const SEO = ({
         }
       });
     }
-  }, [fullTitle, fullDescription, keywords, image, type, currentUrl, canonicalUrl, noindex, ogType, twitterCard, structuredData]);
+  }, [fullTitle, fullDescription, keywords, image, type, currentUrl, canonicalUrl, noindex, ogType, structuredData]);
 
   return null; // Ce composant ne rend rien visuellement
 };

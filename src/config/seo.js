@@ -56,7 +56,7 @@ const baseOrganizationSchema = {
   },
   sameAs: [
     'https://www.facebook.com/boncours',
-    'https://www.twitter.com/boncours',
+    'https://www.instagram.com/institutboncours/',
     'https://www.linkedin.com/company/boncours',
   ],
   openingHoursSpecification: {
