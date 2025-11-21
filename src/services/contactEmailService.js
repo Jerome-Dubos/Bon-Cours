@@ -49,6 +49,17 @@ const sendEmailViaEmailJS = async (templateId, templateParams, retryCount = 0) =
 
     // Envoi réel via EmailJS avec retry
     try {
+      // Validation des paramètres avant envoi
+      if (!EMAILJS_CONFIG.SERVICE_ID || EMAILJS_CONFIG.SERVICE_ID === 'your_service_id_here') {
+        throw new Error('Service ID EmailJS non configuré');
+      }
+      if (!templateId || templateId === 'template_contact') {
+        throw new Error('Template ID EmailJS non configuré');
+      }
+      if (!EMAILJS_CONFIG.PUBLIC_KEY || EMAILJS_CONFIG.PUBLIC_KEY === 'your_public_key_here') {
+        throw new Error('Clé publique EmailJS non configurée');
+      }
+
       const response = await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
         templateId,
@@ -58,6 +69,38 @@ const sendEmailViaEmailJS = async (templateId, templateParams, retryCount = 0) =
 
       return { success: true, data: response, simulated: false };
     } catch (emailjsError) {
+      // Améliorer le message d'erreur pour les erreurs 400
+      if (emailjsError?.status === 400) {
+        let detailedError = 'Erreur 400 - Requête invalide';
+        
+        if (emailjsError?.text) {
+          detailedError += `: ${emailjsError.text}`;
+        } else if (emailjsError?.message) {
+          detailedError += `: ${emailjsError.message}`;
+        }
+        
+        // Ajouter des informations de diagnostic
+        if (EMAILJS_CONFIG.ENABLE_LOGGING) {
+          console.error('❌ Erreur EmailJS 400 - Détails:', {
+            serviceId: EMAILJS_CONFIG.SERVICE_ID,
+            templateId: templateId,
+            publicKey: EMAILJS_CONFIG.PUBLIC_KEY ? `${EMAILJS_CONFIG.PUBLIC_KEY.substring(0, 8)}...` : 'non configurée',
+            templateParams: Object.keys(templateParams),
+            error: emailjsError,
+          });
+        }
+        
+        // Créer une erreur enrichie
+        const enhancedError = new Error(detailedError);
+        enhancedError.status = 400;
+        enhancedError.originalError = emailjsError;
+        enhancedError.diagnostic = {
+          serviceId: EMAILJS_CONFIG.SERVICE_ID,
+          templateId: templateParams,
+          hasPublicKey: !!EMAILJS_CONFIG.PUBLIC_KEY,
+        };
+        throw enhancedError;
+      }
       throw emailjsError;
     }
   } catch (error) {
@@ -69,6 +112,8 @@ const sendEmailViaEmailJS = async (templateId, templateParams, retryCount = 0) =
 
     // Extraire le message d'erreur de manière sécurisée
     let errorMessage = "Erreur lors de l'envoi de l'email";
+    let errorDetails = null;
+    
     if (error?.message) {
       errorMessage = error.message;
     } else if (error?.text) {
@@ -76,12 +121,27 @@ const sendEmailViaEmailJS = async (templateId, templateParams, retryCount = 0) =
     } else if (typeof error === 'string') {
       errorMessage = error;
     } else if (error?.statusText) {
-      errorMessage = `${error.status} - ${error.statusText}`;
+      errorMessage = `${error.status || 'Unknown'} - ${error.statusText}`;
+    }
+    
+    // Pour les erreurs 400, fournir plus de détails
+    if (error?.status === 400) {
+      errorDetails = {
+        status: 400,
+        message: errorMessage,
+        suggestion: 'Vérifiez que les variables d\'environnement EmailJS sont correctement configurées et que les paramètres du template correspondent aux variables envoyées.',
+      };
+      
+      if (EMAILJS_CONFIG.ENABLE_LOGGING) {
+        console.error('❌ Erreur EmailJS 400:', errorDetails);
+        console.error('Paramètres envoyés:', templateParams);
+      }
     }
 
     return {
       success: false,
       error: errorMessage,
+      errorDetails: errorDetails,
       retryCount: retryCount + 1,
       details: error,
     };
